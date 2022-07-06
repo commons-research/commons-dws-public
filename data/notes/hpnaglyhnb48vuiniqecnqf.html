@@ -1,0 +1,88 @@
+<h1 id="nginx"><a aria-hidden="true" class="anchor-heading" href="#nginx"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Nginx</h1>
+<h1 id="title"><a aria-hidden="true" class="anchor-heading" href="#title"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Title</h1>
+<p>time</p>
+<h2 id="context"><a aria-hidden="true" class="anchor-heading" href="#context"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Context</h2>
+<p>Looking into nginx to setup a connection to NocoDB from the commons_lab server </p>
+<p>This was done on the metabomaps server for the graphDB instance with the help of Jo.
+Trying to reproduce here.</p>
+<h2 id="need"><a aria-hidden="true" class="anchor-heading" href="#need"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Need</h2>
+<p>setup a connection to NocoDB from the commons_lab server</p>
+<h2 id="task-of-the-noteparagraphtextpaperproject"><a aria-hidden="true" class="anchor-heading" href="#task-of-the-noteparagraphtextpaperproject"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Task (of the note/paragraph/text/paper/project)</h2>
+<p>Third, indicate what you have done in an effort to address the need (this is the task).</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Watching <a href="https://www.youtube.com/watch?v=JKxlsvZXG7c">https://www.youtube.com/watch?v=JKxlsvZXG7c</a></li>
+</ul>
+<p>They indicate that the conf file is usually under etc/nginx.
+Indeed over there on the metabomaps server.</p>
+<p>Lets looks at the commonslab server
+Not there.</p>
+<p>Lets install this</p>
+<p>Following <a href="https://ubuntu.com/tutorials/install-and-configure-nginx#2-installing-nginx">https://ubuntu.com/tutorials/install-and-configure-nginx#2-installing-nginx</a></p>
+<p>We get the following error when starting nginx </p>
+<p>(base) allardpm<a title="Private" style="color: brown" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank">@biolpc045600 (Private)</a>:/etc/nginx/sites-enabled$ systemctl status nginx.service
+● nginx.service - A high performance web server and a reverse proxy server
+Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+Active: failed (Result: exit-code) since Sun 2022-06-19 09:06:20 CEST; 57s ago
+Docs: man:nginx(8)
+Process: 3544101 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+Process: 3544102 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=1/FAILURE)</p>
+<p>Following <a href="https://stackoverflow.com/questions/51525710/nginx-failed-to-start-a-high-performance-web-server-and-a-reverse-proxy-server">https://stackoverflow.com/questions/51525710/nginx-failed-to-start-a-high-performance-web-server-and-a-reverse-proxy-server</a></p>
+<p>we
+sudo service apache2 stop</p>
+<p> <img src="/commons-dws-public/assets/images/2022-06-19-09-11-18.png"></p>
+<p> Amazing !</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> So this was a first step.
+Apparently certbot was used later one. Lets see how this one works</li>
+</ul>
+<p><a href="https://certbot.eff.org/instructions?ws=nginx&#x26;os=ubuntufocal">https://certbot.eff.org/instructions?ws=nginx&#x26;os=ubuntufocal</a></p>
+<p>I added the ip of the commons lab server to the dbgi DNS
+And can now vie the previously made placeholder website when serving on port 80</p>
+<p><img src="/commons-dws-public/assets/images/2022-06-19-09-43-57.png"></p>
+<p>However the certbot step is not working
+sudo certbot --nginx</p>
+<p>And returns </p>
+<p><a href="https://check-your-website.server-daten.de/?q=commons.dbgi.org">https://check-your-website.server-daten.de/?q=commons.dbgi.org</a></p>
+<p><img src="/commons-dws-public/assets/images/2022-06-19-10-53-34.png"></p>
+<p>Yeah !! But thats on the metabomaps server. Apparently thing will not work that smoothly on the commons server sinc it is behind the university firewall
+running (saved as a .sh script)
+certbot --authenticator standalone --installer nginx   -d xxxxxxx.xxxx.org --pre-hook "service nginx stop" --post-hook "service nginx start"</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> So I can serve the nocodb instance hosted on the commonslab server via a .dbgi.org domains</li>
+</ul>
+<p>nginx server file is as follows</p>
+<p>server {
+listen 80;
+listen [::]:80;</p>
+<pre><code>   server_name xxxxx.dbgi.org;
+</code></pre>
+<h1 id="if-you-would-like-to-gzip-your-stuff"><a aria-hidden="true" class="anchor-heading" href="#if-you-would-like-to-gzip-your-stuff"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>If you would like to gzip your stuff</h1>
+<p>  gzip on;
+gzip_min_length 1;
+gzip_types *;</p>
+<h1 id="setup-the-proxy"><a aria-hidden="true" class="anchor-heading" href="#setup-the-proxy"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Setup the proxy</h1>
+<h1 id="this-will-forward-all-requests-to-the-server"><a aria-hidden="true" class="anchor-heading" href="#this-will-forward-all-requests-to-the-server"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>This will forward all requests to the server</h1>
+<h1 id="and-then-it-will-relay-the-servers-response-back-to-the-client"><a aria-hidden="true" class="anchor-heading" href="#and-then-it-will-relay-the-servers-response-back-to-the-client"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>and then it will relay the servers response back to the client</h1>
+<p>  location / {
+proxy_pass <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection 'upgrade';
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_cache_bypass $http_upgrade;
+}
+}</p>
+<p>Node: <strong>v16.15.1</strong>
+Arch: <strong>x64</strong>
+Platform: <strong>linux</strong>
+Docker: <strong>false</strong>
+Database: <strong>pg</strong>
+ProjectOnRootDB: <strong>true</strong>
+RootDB: <strong>pg</strong>
+PackageVersion: <strong>0.91.10</strong></p>
+<h2 id="object-of-the-noteparagraphtextpaperproject"><a aria-hidden="true" class="anchor-heading" href="#object-of-the-noteparagraphtextpaperproject"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Object (of the note/paragraph/text/paper/project)</h2>
+<p>Finally, preview the remainder of the paper to mentally prepare you/readers for its structure, in the object of the document.</p>
+<h2 id="ressources"><a aria-hidden="true" class="anchor-heading" href="#ressources"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Ressources</h2>
+<p>Some notes:
+<a href="https://www.youtube.com/watch?v=JKxlsvZXG7c">https://www.youtube.com/watch?v=JKxlsvZXG7c</a></p>
