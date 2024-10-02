@@ -2,7 +2,7 @@
 id: qcUnyE9eaS2PVPPngKeB1
 title: Sparql
 desc: ''
-updated: 1720770679966
+updated: 1727799648242
 created: 1611593110381
 ---
 
@@ -1086,3 +1086,32 @@ https://qlever.cs.uni-freiburg.de/wikidata/TqdMNf
 https://qlever.cs.uni-freiburg.de/wikidata/ThyZSf
 
 2024.07.12 2024-07-12 09:47 > 1'755'037
+
+### Qlever LOTUS chemical count
+
+https://qlever.cs.uni-freiburg.de/wikidata/0Slm8l
+
+227,090
+"227090"^^<http://www.w3.org/2001/XMLSchema#int>
+
+### Qlever LOTUS chemical count with Isomeric SMILES
+
+https://qlever.cs.uni-freiburg.de/wikidata/wnFz75
+
+172,598
+"172598"^^<http://www.w3.org/2001/XMLSchema#int>
+
+### Qlever LOTUS organisms count 
+
+https://qlever.cs.uni-freiburg.de/wikidata/1e5Rdg
+
+37,471
+
+### Qlever LOTUS organisms count with taxon name
+
+https://qlever.cs.uni-freiburg.de/wikidata/f0F9Y4
+
+37,461
+"37461"^^<http://www.w3.org/2001/XMLSchema#int>
+
+
