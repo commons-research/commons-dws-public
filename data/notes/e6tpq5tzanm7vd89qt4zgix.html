@@ -1,0 +1,39 @@
+<h1 id="2024-06-20"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-06-20"></a>2024-06-20</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<p>Today I asked again the question, how should I store the database and how could be accessible (what is the need of it?)</p>
+<blockquote>
+<p>Which fileformat is the best?
+source: <a href="https://www.reddit.com/r/learnpython/comments/omhsl5/pandas_saving_a_large_data_frame_efficiently/">https://www.reddit.com/r/learnpython/comments/omhsl5/pandas_saving_a_large_data_frame_efficiently/</a>
+They say, that the parquet file would be the best way to go. It is possible to reduce 50 Gb to 6 Gb.
+The thing about *.parquet is, that it is binary (not human readable) and my dates are with the parquet file format still ~120 Gb togheter.
+Even with streaming and loading this huge datasets with the berner cluster (IBU) I run in "kill", which result in a OOM (out of memory).</p>
+</blockquote>
+<p>parquet: column oriented storage with a self-describing header (metadata). It was introduced 2013 by <a href="https://parquet.apache.org/">https://parquet.apache.org/</a> which   is an opensource project.
+compression is done columne wise and can be stored as a binary. It uses also RLE (Run length encoding) which saves multiple occurences of words only ones with a index.
+parquet format can be read from multiple dataanalytic tools and is not only smaller in storagespace, but also in read &#x26; save speed.
+good to know: Parquet files can be a zip bomb. so be carefull to read in parquet files (if possible, set max limits.)</p>
+<ul>
+<li>DuckDB can use parquet files. (<a href="https://duckdb.org/2024/03/26/42-parquet-a-zip-bomb-for-the-big-data-age.html">https://duckdb.org/2024/03/26/42-parquet-a-zip-bomb-for-the-big-data-age.html</a>)</li>
+</ul>
+<p><a aria-hidden="true" class="block-anchor anchor-heading icon-link" id="^uapatuqa2w46" href="#^uapatuqa2w46"></a>for big data processing they speak from dask or spark. Dask is in general less heavy and faster. It get public 2014 and spark 2010. </p>
+<blockquote>
+<p>Which are the "intresting questions" for this dataset?
+My interpretation of the questions who can be answered with this datset, if the possibility exist, that a specific molecule exist in a choosen organism.
+For example: If we analyse bacetrias thuringensis and we found in the MS spectra an unknown peak (untargeted). When we kind of can reconstruct the molecule, so we can search in our database and try to find it. If yes, we can check, in which organism it is known...</p>
+</blockquote>
+<p>test run 1#:
+polars: shape: (7_431, 8)
+start time: 1718883014.44sec    read_in_time: 0.05sec   filtered_time: 0.01sec         show_time: 516.50sec</p>
+<p>test run 2#:
+polars: shape: (14_862, 8)
+read_in_time: 4.60sec   filtered_time: 1718883699.48sec         show_time: 4849.37sec</p>
+<p>I had a small error in my script. But what we can see, that the time to show it takes the longest...
+The show time for the second run (full dataset) took over an 1h and 20min.</p>
+<p>test run 2b# (corrected version of time):</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>
