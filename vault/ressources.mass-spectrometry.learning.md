@@ -2,7 +2,7 @@
 id: relr5672yilb4jxnpypvr6w
 title: Learning
 desc: ''
-updated: 1729846910573
+updated: 1729847779644
 created: 1729846879064
 ---
 
@@ -33,3 +33,17 @@ Set of papers shared by Adriano regarding ML approaches and MSMS
 - https://doi.org/10.1186/s13321-024-00905-1
 - https://doi.org/10.1021/acs.analchem.4c02426
 - https://doi.org/10.1021/acs.analchem.4c03724
+
+### Comparison of Cosine, Modified Cosine, and Neutral Loss Based Spectrum Alignment For Discovery of Structurally Related Molecules
+
+https://doi.org/10.1021/jasms.2c00153
+
+### Spectral entropy outperforms MS/MS dot product similarity for small-molecule compound identification
+
+https://doi.org/10.1038/s41592-021-01331-z
+
+### BLINK enables ultrafast tandem mass spectrometry cosine similarity scoring
+
+https://doi.org/10.1038/s41598-023-40496-9
+
+
