@@ -2,7 +2,7 @@
 id: 8mpdyp5uvho24ngupmg4wz6
 title: '2024-11-18'
 desc: ''
-updated: 1731945446789
+updated: 1731953868706
 created: 1731937282182
 traitIds:
   - open-notebook-commons-rouchene
@@ -37,16 +37,19 @@ See [[projects.commons-public.microcosmics]]
 ###
 
 ## Doing
+ this evening clean fungi collection, everything should be strerilized. 
 
 ## Paused
 
 ## Done 
-PMA for the moment we keep the strains after metabolomics we will see.
+PMA mettenig: for the moment we keep the strains after metabolomics we will see.
 
 ## Notes
 
+
 ## Todo tomorrow, one day ... or never 
 
+Tomorrow: all results sshould be in the same table.
 
 ###
 ###
