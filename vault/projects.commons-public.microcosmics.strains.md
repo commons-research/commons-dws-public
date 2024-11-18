@@ -2,7 +2,7 @@
 id: a0iu9pk5ktxoo6h7y7gmm6e
 title: Strain
 desc: ''
-updated: 1730968529607
+updated: 1731936637171
 created: 1729759559391
 ---
 
@@ -12,6 +12,10 @@ The followoing strains have been identified through their 16RNA sequencing data.
 ## Streptomyces lusitanus
 
 WD query for compounds https://w.wiki/BfHS
+
+30 compound isolated https://w.wiki/BfHK
+
+
 #wd 
 
 More info in the related note [[projects.commons-public.microcosmics.strains.Streptomyces lusitanus]]
