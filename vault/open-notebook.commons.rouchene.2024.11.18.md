@@ -2,7 +2,7 @@
 id: 8mpdyp5uvho24ngupmg4wz6
 title: '2024-11-18'
 desc: ''
-updated: 1731940259556
+updated: 1731945446789
 created: 1731937282182
 traitIds:
   - open-notebook-commons-rouchene
@@ -28,6 +28,7 @@ internal code | species name| wikidataQID of the species |blast job link|comment
     - https://github.com/orgs/commons-research/discussions
 
 ### Daily work on the Microcosmics project
+prepare SCV table for all data collection.
 
 See [[projects.commons-public.microcosmics]]
 
@@ -39,7 +40,8 @@ See [[projects.commons-public.microcosmics]]
 
 ## Paused
 
-## Done
+## Done 
+PMA for the moment we keep the strains after metabolomics we will see.
 
 ## Notes
 
