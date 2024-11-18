@@ -2,7 +2,7 @@
 id: 8mpdyp5uvho24ngupmg4wz6
 title: '2024-11-18'
 desc: ''
-updated: 1731937362784
+updated: 1731937530963
 created: 1731937282182
 traitIds:
   - open-notebook-commons-rouchene
@@ -15,7 +15,8 @@ traitIds:
 Today is 2024.11.18
 
 ## Todo today
-meetin PMA.
+meeting PMA.
+
 
 ### Have a look at the COMMONS research discussion forum
     - https://github.com/orgs/commons-research/discussions
