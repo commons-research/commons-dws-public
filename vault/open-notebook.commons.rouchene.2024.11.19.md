@@ -2,7 +2,7 @@
 id: 99u9z6ewyutmnz705foai0z
 title: '2024-11-19'
 desc: ''
-updated: 1732018390745
+updated: 1732026014912
 created: 1732009484156
 traitIds:
   - open-notebook-commons-rouchene
@@ -16,6 +16,7 @@ Today is 2024.11.19
 
 ## Todo today
  CSV table with all project data.
+ Semminair gut microbiota 11h30.
 
 
 ### Have a look at the COMMONS research discussion forum
