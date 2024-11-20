@@ -2,7 +2,7 @@
 id: 4pqppog2u66rx1tkc8jy5v9
 title: Port Forwarding
 desc: ''
-updated: 1731595367247
+updated: 1732038122089
 created: 1731595287017
 ---
 
@@ -18,3 +18,4 @@ This will cease existing once your bash session is closed. If you want to keep i
 autossh -M 0 -f -N -L 8888:localhost:8890 commons-server
 ```
 
+ssh metabomaps.nprod.net -L 8888:localhost:80
