@@ -2,7 +2,7 @@
 id: 1e9g8cb03t304exi3ruog8p
 title: '2024-11-25'
 desc: ''
-updated: 1732534348100
+updated: 1732540540453
 created: 1732534175402
 traitIds:
   - open-notebook-commons-rouchene
@@ -47,6 +47,14 @@ See [[projects.commons-public.microcosmics]]
 ###
 
 
-## Today I learned that
+## Today I learned that to clone git repo
+1. ouvrir le terminal.
+2. Vérifier que Git est installé 'git'
+3. Lister les fichiers et répertoires dans le terminal avec ls ou dir 'ls'.
+4. Créer un dossier appelé git_repos avec "mkdir".
+5. Se déplacer dans ce dossier avec 'cd'.
+6. Cloner un dépôt Git depuis GitHub avec git clone git clone "https://github.com/mapp-metabolomics-unit/swiss-soil-microbials.git" (this path from ghithub code you will find dit). 
+7. Se déplacer dans le répertoire cloné avec cd.
+8. Ouvrir le projet dans Visual Studio Code avec code ..
 
 - 
