@@ -2,7 +2,7 @@
 id: SS0rQYcsKz30tWG5tQVOB
 title: Rsync
 desc: ''
-updated: 1702019652135
+updated: 1732205446304
 created: 1609680294356
 ---
 
@@ -118,6 +118,9 @@ rsync -rvz -e 'ssh' --progress allardp@baobab2.unige.ch:/home/allardp/CFM_result
 
 
 rsync -rvz -e 'ssh' --progress --rsync-path="sudo rsync" ~/Downloads/wetransfer-27d788/210523_lotus_map4_2D.js pma@metabomaps.nprod.net:/srv/metabo-store/tmap
+
+rsync -rvz -e 'ssh' --progress  pma@metabomaps:/home/pma/.ssh ~/02_tmp/backup_metabomaps
+rsync -rvz -e 'ssh' --progress  --rsync-path="sudo rsync" pma@metabomaps:/home/bjo/scrappers ~/02_tmp/backup_metabomaps
 
 
 # local > metabomaps
