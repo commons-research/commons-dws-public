@@ -2,7 +2,7 @@
 id: esda3tqsxwrr2akiec45760
 title: '2024-11-26'
 desc: ''
-updated: 1732627136444
+updated: 1732821430117
 created: 1732620042016
 traitIds:
   - open-notebook-commons-rouchene
@@ -35,11 +35,12 @@ See [[projects.commons-public.microcosmics]]
 ## Doing
 Goog paper: describe a compound-first approach to natural product discovery in which adsorbent resins capture compounds directly from the environments in which they are produced. Using this technique, which we call SMIRC, natural products were captured and purified from a marine deployment site in sufficient quantities to elucidate the structures of cabrillostatin (1) and the halogenated polyketides cabrillospirals A and B (2-3), which represent two new carbon skeletons https://www.nature.com/articles/s41467-024-49367-x.
 
-
 ## 
 
 
 ## Done
+protocol of endophytic bacteria isolation.
+I didn't sampled yet.
 
 ## Notes
 
