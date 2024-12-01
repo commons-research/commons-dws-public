@@ -2,7 +2,7 @@
 id: kzs1hwnr29wjcbzpl60i30x
 title: '2024-11-28'
 desc: ''
-updated: 1732826116867
+updated: 1733076832601
 created: 1732821459934
 traitIds:
   - open-notebook-commons-rouchene
@@ -30,6 +30,7 @@ See [[projects.commons-public.microcosmics]]
 ### Litterature
 1. la méthode SMIRC :
 La méthode SMIRC (capture de résine in situ de petites molécules) est une approche indépendante de la culture qui permet de capturer des produits naturels directement à partir des environnements où les microbes les produisent, sans avoir besoin de cultiver ces microbes en laboratoire (https://www.nature.com/articles/s41467-024-49367-x).
+https://www.mdpi.com/2076-3417/11/20/9418 
 
 
 ###
