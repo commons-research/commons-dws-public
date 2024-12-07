@@ -1,0 +1,111 @@
+<h1 id="papers"><a aria-hidden="true" class="anchor-heading icon-link" href="#papers"></a>Papers</h1>
+<h2 id="papers-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#papers-1"></a>Paper's</h2>
+<h3 id="lotus"><a aria-hidden="true" class="anchor-heading icon-link" href="#lotus"></a><a href="https://doi.org/10.7554/eLife.70780">LOTUS</a></h3>
+<p><a href="https://lotus.naturalproducts.net">LOTUS (LOpen Knowledge Management in Natural Products Research)</a> is a database of over 750'000+ referenced structure-organism pairs. A structure-organims pairs shows the relationship between organisms and molecules.
+With the increasing technology, the data for chemical compounds (exp. mass specrometry) and organisms (exp. sequencing machines) also increases exponentialy. To link the data will be more and more beneficial.<br>
+The idea of LOTUS is to interconnect the three central objects of the living (metabolites, proteins and genes).  </p>
+<p>Step 1 - Data harmonization:<br>
+The information comes from different sources, which has to be harmonized/standardized for building the new DB.
+The scripts involves a comparison with the gathered data to ensure no duplication (SSOT).  </p>
+<p>Step 2 - Precessing and Validation:<br>
+The tree central objects where taken togheter. Mostly the references was particularly challenging (poor quality).
+An unit test checked the code after each changes for the same results.</p>
+<p>Step 3 - Dissemination:<br>
+The researchdata should be accessible following the FAIR principles. SPARQL are generic queries to return specific "tables".
+To be find, they have to be in a specific format.</p>
+<p>For the biologically interpretation of chemicals is used TMAP. The biological specificity score is calculated as a Jensen-Shannon divergence.
+1 means very specific chemical compound and 0 that they are ubquitous.
+The same is done in the opposit way (chemically interpretation of biology).
+Aim to make more and better data available.</p>
+<h4 id="links"><a aria-hidden="true" class="anchor-heading icon-link" href="#links"></a>Link's</h4>
+<p><a href="/commons-dws-public/">KNAPSAck</a> 50'000+ structures and 100'000+ structure-organism pairs<br>
+<a href="/commons-dws-public/">NAPRA-LERT dataset</a> well documented database but not available for free<br>
+<a href="/commons-dws-public/">NPAtlas</a> specificly for microbial NPs.<br>
+<a href="/commons-dws-public/">COCONUT</a> COlleCtion of Open NatUral products (similar to LOTUS)<br>
+<a href="https://naturalproducts.net/">natural products online</a> - Host for Lotus, Coconut ...  </p>
+<h3 id="mines-open-access-databases-of-computationally-predicted-enzyme-promiscuity-products-for-untargeted-metabolomics"><a aria-hidden="true" class="anchor-heading icon-link" href="#mines-open-access-databases-of-computationally-predicted-enzyme-promiscuity-products-for-untargeted-metabolomics"></a><a href="https://doi.org/10.1186/s13321-015-0087-1">MINEs: open access databases of computationally predicted enzyme promiscuity products for untargeted metabolomics</a></h3>
+<p>MINEs are an extension for metabolites database, which have been not observed, but very likely can occure. Based on the Biochemical Network Integrated Computational Explorer and enzyme reaction rules it will be calculated. The website is userfriendly and also available as an API: <a href="https://minedatabase.mcs.anl.gov/#/home">https://minedatabase.mcs.anl.gov/#/home</a></p>
+<p>This database includes structures for use in untargeted metabolomics. This resulting compounds are rarely found in PubChem but are structurally similar to natural products.</p>
+<p>As an input you can give an MS/MS file, structure, name.... As an output you will get information about the reaction, validated compounds...</p>
+<h3 id="molecular-structure-discovery-for-untargeted-metabolomics-using-biotransformation-rules-and-global-molecular-networking"><a aria-hidden="true" class="anchor-heading icon-link" href="#molecular-structure-discovery-for-untargeted-metabolomics-using-biotransformation-rules-and-global-molecular-networking"></a><a href="https://doi.org/10.1101/2024.02.04.578795">Molecular structure discovery for untargeted metabolomics using biotransformation rules and global molecular networking</a></h3>
+<p>A big part of the MS/MS spectras are unidentified (exp. GNPS/MassIVE).
+For this problem they developed BAM (Biotransformation-based Annotation Method).
+It has the potential to identified new molecules based on previously unknown MS/MS spectra.
+The predictionrate for the right assignment is 24.x %.  </p>
+<p>BAM concist of three steps:</p>
+<ol>
+<li>
+<p>determine an annotated anchor spectrum based on high spectral similarity.  </p>
+</li>
+<li>
+<p>Apply biotranformation rules that match the observed mass difference and generate candidate structures<br>
+The rules are sourced from RetroRules, KEGG or Metacyc. Out of that, PROXIMALE 2 was employed.</p>
+</li>
+<li>
+<p>Rank the derivatives based on the likelihods of the applied biotransformation.
+GNN-SOM predicts the likelyhood of each atom in a molecule.</p>
+</li>
+</ol>
+<h4 id="coding"><a aria-hidden="true" class="anchor-heading icon-link" href="#coding"></a>Coding</h4>
+<p><a href="https://github.com/HassounLab/BAM">Github - HassounLab</a>
+PROXIMAL2<br>
+GNN-SOM tool (graph neural network-based tool)</p>
+<h3 id="pickaxe"><a aria-hidden="true" class="anchor-heading icon-link" href="#pickaxe"></a><a href="https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05149-8">Pickaxe...</a></h3>
+<ul>
+<li>prepackaged ruleset (JN1224min - metacyc) with UniProt IDs of enzyms</li>
+<li>rules provided on Pickaxe do not utilize stereochemistry</li>
+<li>RDKit: Cheminformatics program applies the SMARTS rules.</li>
+<li>compounds and reactions can be filtered in the same run.</li>
+</ul>
+<p>Filters:</p>
+<ul>
+<li>
+<p>Similarity Filtering (Tanimoto):
+Info: filters out the samples, which are not higher than the given similarity treshhold. Similarity is calculated with the Tanimoto distance of the targets and new made molecules.
+Input:<br>
+cutoff_fingerprint_method = "Morgan"
+cutoff_similarity_method = "Tanimoto"
+similarity_threshold = [0, 0.9]
+Output:  </p>
+</li>
+<li>
+<p>Similarity Sampling Filter:
+Info: samples a specific amount of a given samplespace (made by the simlarity filter). The similarity filter has to be activated!!!
+Input:
+cutoff_fingerprint_method = "Morgan"
+cutoff_similarity_method = "Tanimoto"
+similarity_threshold = [0, 0.9]
+Output:
+n-samples</p>
+</li>
+<li>
+<p>Metabolomics filter:
+Input: list of experimental mass-to-charge (m/z), list of possible adducts
+Output: compares the two lists by the m/z values and give back all compounds with a specific treshhold</p>
+</li>
+<li>
+<p>Thermodynamic filter:
+Info: eQuilator (module) biochemical thermodynamic calculator
+Input: </p>
+</li>
+<li>
+<p>Feasibility filter:
+Info: DeepRFC (<a href="https://%E2%80%8Bdoi.%E2%80%8Borg/%E2%80%8B10.%E2%80%8B1002/%E2%80%8Bbiot.%E2%80%8B20200%E2%80%8B0605">https://​doi.​org/​10.​1002/​biot.​20200​0605</a>) DeepRFC utilizes substrate-product pairs within KEGG reactions to train a deep neural net to predict a reaction’s feasibility.</p>
+</li>
+</ul>
+<p><img src="/commons-dws-public/expanded-np-chemspace.distancemeters_chemical_moleculs.png" alt=" distancemeters "><br>
+<em>distancemeters <a href="https://www.sciencedirect.com/science/article/pii/S1046202314002631?via%3Dihub">https://www.sciencedirect.com/science/article/pii/S1046202314002631?via%3Dihub</a></em></p>
+<h3 id="a-deep-learning-approach-to-evaluate-the-feasibility-of-enzymatic-reactions-generated-by-retrobiosynthesis"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-deep-learning-approach-to-evaluate-the-feasibility-of-enzymatic-reactions-generated-by-retrobiosynthesis"></a><a href="https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/biot.202000605">A deep learning approach to evaluate the feasibility of enzymatic reactions generated by retrobiosynthesis</a></h3>
+<p>enzymatic reactions generated by retrobiosynthesis
+DOI: 10.1002/biot.202000605</p>
+<h3 id="rdp---filter"><a aria-hidden="true" class="anchor-heading icon-link" href="#rdp---filter"></a><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4920114/">RDP - Filter</a></h3>
+<p>10.1093/bioinformatics/btw096</p>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>
+<hr>
+<strong>Backlinks</strong>
+<ul>
+<li><a href="/commons-dws-public/notes/0vbuzuauxdhmsbckhc0pye0">Information</a></li>
+<li><a href="/commons-dws-public/notes/qy0iqvyrj0me4co8u8d25nh">2024-02-21</a></li>
+<li><a href="/commons-dws-public/notes/oxoker8doqq8gxa0e16wnp1">2024-02-22</a></li>
+<li><a href="/commons-dws-public/notes/wn10dc3l535y60u8yb9iq2d">2024-02-23</a></li>
+</ul>
