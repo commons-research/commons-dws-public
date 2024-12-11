@@ -80,7 +80,7 @@ Q : how did you annotate the compounds ? Which software ? Which DB ?
 
 [Coleus forskohlii](https://en.wikipedia.org/wiki/Coleus_barbatus "Coleus barbatus, also known by the synonyms Plectranthus barbatus and incorrectly Coleus forskalaei \(and other spellings of this epithet\), is a tropical perennial plant related to the typical coleus species.  It produces forskolin, an extract useful for pharmaceutical preparations and research in cell biology. ")
 
-[forskolin](https://en.wikipedia.org/wiki/Forskolin "Forskolin \(coleonol\) is a labdane diterpene produced by the plant Coleus barbatus \(Blue Spur Flower\). Other names include pashanabhedi, Indian coleus, makandi, HL-362, mao hou qiao rui hua. As with other members of the large diterpene class of plant metabolites, forskolin is derived from geranylgeranyl pyrophosphate \(GGPP\). Forskolin contains some unique functional elements, including the presence of a tetrahydropyran-derived heterocyclic ring. Forskolin is commonly used in laboratory research to increase levels of cyclic AMP by stimulation of adenylate cyclase.")
+[forskolin](https://en.wikipedia.org/wiki/Forskolin "Forskolin \(coleonol\) is a labdane diterpene produced by the plant Coleus barbatus \(Blue Spur Flower\). Other names include pashanabhedi, Indian coleus, makandi, HL-362, mao hou qiao rui hua. As with other members of the large diterpene class of plant metabolites, forskolin is derived from geranylgeranyl pyrophosphate \(GGPP\). Forskolin contains some unique functional elements, including the presence of a tetrahydropyran-derived heterocyclic ring. Forskolin is commonly used in laboratory research to increase levels of 
 
 which gave the name to the plant ?
 
