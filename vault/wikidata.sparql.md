@@ -2,7 +2,7 @@
 id: qcUnyE9eaS2PVPPngKeB1
 title: Sparql
 desc: ''
-updated: 1727799648242
+updated: 1734430748726
 created: 1611593110381
 ---
 
@@ -72,7 +72,8 @@ https://w.wiki/xMJ
 
 This SPAQRL query is based on a proposition of Jakub Galgonek <jakub.galgonek@uochb.cas.cz> (https://idsm.elixir-czech.cz/) and adapted by Pierre-Marie Allard (pierre-marie.allard@unige.ch)
 It returns an order list of organisms known to produce chemical compounds having an indolic moiety.
-The organisms are aggregated at the parent taxon level, and the list is ordered by number of compound occurence in the parent t
+The organisms are aggregated at the parent taxon level
+and the list is ordered by number of compound occurence in the parent t
 
 https://w.wiki/xMN
 
@@ -510,7 +511,18 @@ https://www.wikidata.org/wiki/Wikidata:Lists/SPARQL_endpoints
 # Pay attention to edge cases
 SELECT DISTINCT ?n_formatted
 (CONCAT(
-REPLACE(STR(?i), ".*Q", "Q"), "|P921|", REPLACE(STR(?ta), ".*Q", "Q"), "|P1932|", (CONCAT("\"", ?a, "\"")), "|S887|Q69652283") AS ?QuickStatements)
+REPLACE(STR(?i)
+".*Q"
+"Q")
+"|P921|"
+REPLACE(STR(?ta)
+".*Q"
+"Q")
+"|P1932|"
+(CONCAT("\""
+?a
+"\""))
+"|S887|Q69652283") AS ?QuickStatements)
 WITH {
 SELECT DISTINCT ?ta WHERE {
 SERVICE bd:sample { ?ta wdt:P31 wd:Q11173 . bd:serviceParam bd:sample.limit 5 }
@@ -539,17 +551,31 @@ mwapi:gsrlimit "max".
 ?i wdt:P1476 ?ti .
 #MINUS {?i wdt:P921 ?ta }
 #MINUS {?i wdt:P921 [wdt:P171* ?ta ] } 
-FILTER (REGEX(LCASE(?ti), LCASE(CONCAT( "\\", "b", ?n_formatted ,"\\", "b"))))
-FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( ?n_formatted ,"-"))))
-FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( ?n_formatted ,"(.)virus"))))
-FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( "pseudo(.?)", ?n_formatted))))
+FILTER (REGEX(LCASE(?ti)
+LCASE(CONCAT( "\\"
+"b"
+?n_formatted ,"\\"
+"b"))))
+FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( ?n_formatted ,"-"))))
+FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( ?n_formatted ,"(.)virus"))))
+FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( "pseudo(.?)"
+?n_formatted))))
 }
 }
 AS %i
 WHERE {
 INCLUDE %i
 INCLUDE %t
-BIND (SUBSTR(?ti, STRLEN(STRBEFORE(REPLACE(?ti, ?n, "=HELP=", "i"), "=HELP=")) +1, STRLEN(?n_formatted)) AS ?a)
+BIND (SUBSTR(?ti
+STRLEN(STRBEFORE(REPLACE(?ti
+?n
+"=HELP="
+"i")
+"=HELP=")) +1
+STRLEN(?n_formatted)) AS ?a)
 }       
 
 
@@ -558,7 +584,18 @@ No error but no results neither
 
 SELECT DISTINCT ?n_formatted
 (CONCAT(
-REPLACE(STR(?i), ".*Q", "Q"), "|P921|", REPLACE(STR(?ta), ".*Q", "Q"), "|P1932|", (CONCAT("\"", ?a, "\"")), "|S887|Q69652283") AS ?QuickStatements)
+REPLACE(STR(?i)
+".*Q"
+"Q")
+"|P921|"
+REPLACE(STR(?ta)
+".*Q"
+"Q")
+"|P1932|"
+(CONCAT("\""
+?a
+"\""))
+"|S887|Q69652283") AS ?QuickStatements)
 WITH {
 SELECT DISTINCT ?ta ?n_formatted WHERE {
 SERVICE bd:sample { ?ta wdt:P31 wd:Q11173 . bd:serviceParam bd:sample.limit 5000 }
@@ -590,17 +627,31 @@ mwapi:gsrlimit "max".
 ?i wdt:P1476 ?ti .
 #MINUS {?i wdt:P921 ?ta }
 #MINUS {?i wdt:P921 [wdt:P171* ?ta ] } 
-FILTER (REGEX(LCASE(?ti), LCASE(CONCAT( "\\", "b", ?n_formatted ,"\\", "b"))))
-FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( ?n_formatted ,"-"))))
-FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( ?n_formatted ,"(.)virus"))))
-FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( "pseudo(.?)", ?n))))
+FILTER (REGEX(LCASE(?ti)
+LCASE(CONCAT( "\\"
+"b"
+?n_formatted ,"\\"
+"b"))))
+FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( ?n_formatted ,"-"))))
+FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( ?n_formatted ,"(.)virus"))))
+FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( "pseudo(.?)"
+?n))))
 }
 }
 AS %i
 WHERE {
 INCLUDE %i
 INCLUDE %t
-BIND (SUBSTR(?ti, STRLEN(STRBEFORE(REPLACE(?ti, ?n_formatted, "=HELP=", "i"), "=HELP=")) +1, STRLEN(?n_formatted)) AS ?a)
+BIND (SUBSTR(?ti
+STRLEN(STRBEFORE(REPLACE(?ti
+?n_formatted
+"=HELP="
+"i")
+"=HELP=")) +1
+STRLEN(?n_formatted)) AS ?a)
 }
 
 
@@ -612,7 +663,18 @@ Works !!!
 # adapted from Daniel Mietchen https://w.wiki/5a7K
 SELECT DISTINCT ?n_formatted
 (CONCAT(
-REPLACE(STR(?i), ".*Q", "Q"), "|P921|", REPLACE(STR(?ta), ".*Q", "Q"), "|P1932|", (CONCAT("\"", ?a, "\"")), "|S887|Q69652283") AS ?QuickStatements)
+REPLACE(STR(?i)
+".*Q"
+"Q")
+"|P921|"
+REPLACE(STR(?ta)
+".*Q"
+"Q")
+"|P1932|"
+(CONCAT("\""
+?a
+"\""))
+"|S887|Q69652283") AS ?QuickStatements)
 WITH {
 SELECT DISTINCT ?ta ?n_formatted WHERE {
 SERVICE bd:sample { ?ta wdt:P31 wd:Q11173 . bd:serviceParam bd:sample.limit 5000 }
@@ -640,17 +702,31 @@ mwapi:gsrlimit "max".
 ?i wdt:P1476 ?ti .
 MINUS {?i wdt:P921 ?ta }
 #MINUS {?i wdt:P921 [wdt:P171* ?ta ] } 
-#FILTER (REGEX(LCASE(?ti), LCASE(CONCAT( "\\", "b", ?n_formatted ,"\\", "b"))))
-#FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( ?n_formatted ,"-"))))
-#FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( ?n_formatted ,"(.)virus"))))
-#FILTER (!REGEX(LCASE(?ti), LCASE(CONCAT( "pseudo(.?)", ?n))))
+#FILTER (REGEX(LCASE(?ti)
+LCASE(CONCAT( "\\"
+"b"
+?n_formatted ,"\\"
+"b"))))
+#FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( ?n_formatted ,"-"))))
+#FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( ?n_formatted ,"(.)virus"))))
+#FILTER (!REGEX(LCASE(?ti)
+LCASE(CONCAT( "pseudo(.?)"
+?n))))
 }
 }
 AS %i
 WHERE {
 INCLUDE %i
 INCLUDE %t
-BIND (SUBSTR(?ti, STRLEN(STRBEFORE(REPLACE(?ti, ?n_formatted, "=HELP=", "i"), "=HELP=")) +1, STRLEN(?n_formatted)) AS ?a)
+BIND (SUBSTR(?ti
+STRLEN(STRBEFORE(REPLACE(?ti
+?n_formatted
+"=HELP="
+"i")
+"=HELP=")) +1
+STRLEN(?n_formatted)) AS ?a)
 }
 
 
@@ -665,7 +741,18 @@ with taxa and compound
 # Adapted from Daniel Mietchen https://w.wiki/5a7K
 SELECT DISTINCT
 (CONCAT(
-REPLACE(STR(?i), ".*Q", "Q"), "|P921|", REPLACE(STR(?ta), ".*Q", "Q"), "|P1932|", (CONCAT("\"", ?a, "\"")), "|S887|Q69652283") AS ?QuickStatements)
+REPLACE(STR(?i)
+".*Q"
+"Q")
+"|P921|"
+REPLACE(STR(?ta)
+".*Q"
+"Q")
+"|P1932|"
+(CONCAT("\""
+?a
+"\""))
+"|S887|Q69652283") AS ?QuickStatements)
 WITH {
 SELECT DISTINCT ?ta ?n_formatted WHERE {
 SERVICE bd:sample { ?ta wdt:P31 wd:Q11173 . bd:serviceParam bd:sample.limit 5000 }
@@ -716,7 +803,13 @@ WHERE {
 INCLUDE %i
 INCLUDE %j
 INCLUDE %t
-BIND (SUBSTR(?ti, STRLEN(STRBEFORE(REPLACE(?ti, ?n_formatted, "=HELP=", "i"), "=HELP=")) +1, STRLEN(?n_formatted)) AS ?a)
+BIND (SUBSTR(?ti
+STRLEN(STRBEFORE(REPLACE(?ti
+?n_formatted
+"=HELP="
+"i")
+"=HELP=")) +1
+STRLEN(?n_formatted)) AS ?a)
 }
 
 
@@ -733,7 +826,17 @@ Curating query
 # Adapted from Daniel Mietchen https://w.wiki/5a7K
 SELECT DISTINCT ?taxa ?taxaLabel ?taxa_chem ?taxa_chemLabel ?ta ?taLabel ?ti 
 (CONCAT(
-REPLACE(STR(?ta), ".*Q", "Q"), "|P703|", REPLACE(STR(?taxa), ".*Q", "Q"), "|S248|", REPLACE(STR(?i), ".*Q", "Q")) AS ?QuickStatements)
+REPLACE(STR(?ta)
+".*Q"
+"Q")
+"|P703|"
+REPLACE(STR(?taxa)
+".*Q"
+"Q")
+"|S248|"
+REPLACE(STR(?i)
+".*Q"
+"Q")) AS ?QuickStatements)
 WITH {
 SELECT DISTINCT ?ta ?n_formatted ?taxa_chem WHERE {
 SERVICE bd:sample { ?ta wdt:P31 wd:Q11173 . bd:serviceParam bd:sample.limit 25000 }
@@ -768,7 +871,13 @@ AS %i
 WHERE {
 INCLUDE %i
 INCLUDE %t
-BIND (SUBSTR(?ti, STRLEN(STRBEFORE(REPLACE(?ti, ?n_formatted, "=HELP=", "i"), "=HELP=")) +1, STRLEN(?n_formatted)) AS ?a)
+BIND (SUBSTR(?ti
+STRLEN(STRBEFORE(REPLACE(?ti
+?n_formatted
+"=HELP="
+"i")
+"=HELP=")) +1
+STRLEN(?n_formatted)) AS ?a)
 SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
 
@@ -822,7 +931,17 @@ https://w.wiki/5it$
 # Adapted from Daniel Mietchen https://w.wiki/5a7K
 SELECT DISTINCT *
 #(CONCAT(
-#REPLACE(STR(?ta), ".*Q", "Q"), "|P703|", REPLACE(STR(?taxa), ".*Q", "Q"), "|S248|", REPLACE(STR(?i), ".*Q", "Q")) AS ?QuickStatements)
+#REPLACE(STR(?ta)
+".*Q"
+"Q")
+"|P703|"
+REPLACE(STR(?taxa)
+".*Q"
+"Q")
+"|S248|"
+REPLACE(STR(?i)
+".*Q"
+"Q")) AS ?QuickStatements)
 WITH {
 SELECT DISTINCT ?ta ?n_formatted ?taxa_chem WHERE {
 #SERVICE bd:sample { ?ta wdt:P31 wd:Q11173 . bd:serviceParam bd:sample.limit 1000 }
@@ -867,7 +986,13 @@ AS %i
 WHERE {
 INCLUDE %i
 INCLUDE %t
-BIND (SUBSTR(?ti, STRLEN(STRBEFORE(REPLACE(?ti, ?n_formatted, "=HELP=", "i"), "=HELP=")) +1, STRLEN(?n_formatted)) AS ?a)
+BIND (SUBSTR(?ti
+STRLEN(STRBEFORE(REPLACE(?ti
+?n_formatted
+"=HELP="
+"i")
+"=HELP=")) +1
+STRLEN(?n_formatted)) AS ?a)
 SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
 
@@ -896,7 +1021,8 @@ https://w.wiki/65F4
 
 SMILES CC1=CCN2CCC(O)C12
 
-## Aggregate producing organisms at the superior taxa level, count and order descending
+## Aggregate producing organisms at the superior taxa level
+count and order descending
 https://w.wiki/6w6J
 ## Return all referenced pairs metadata
 https://w.wiki/6w7R
@@ -907,7 +1033,8 @@ https://w.wiki/6w7S = 369
 
 SMILES CC1=CCN2CCC(O)(O)C12
 
-## Aggregate producing organisms at the superior taxa level, count and order descending
+## Aggregate producing organisms at the superior taxa level
+count and order descending
 https://w.wiki/6w6R
 ## Return all referenced pairs metadata
 https://w.wiki/6w7L
@@ -918,7 +1045,8 @@ https://w.wiki/6w7N = 0
 
 SMILES CC1=CCN2C(O)CC(O)C12
 
-## Aggregate producing organisms at the superior taxa level, count and order descending
+## Aggregate producing organisms at the superior taxa level
+count and order descending
 https://w.wiki/6w6T
 ## Return all referenced pairs metadata
 https://w.wiki/6w7G
@@ -929,7 +1057,8 @@ https://w.wiki/6w7H = 0
 
 SMILES CC1=CC[N+]2([O-])CCC(O)C12
 
-## Aggregate producing organisms at the superior taxa level, count and order descending
+## Aggregate producing organisms at the superior taxa level
+count and order descending
 https://w.wiki/6w6a
 ## Return all referenced pairs metadata
 https://w.wiki/6w73
@@ -946,8 +1075,10 @@ SELECT  ?compound ?InChIKey ?taxon ?taxonLabel ?reference ?referenceLabel WITH {
     VALUES ?queryKey {
       "KWIUHFFTVRNATP"
     }
-    BIND (CONCAT(substr($queryKey,1,14), " haswbstatement:P235") AS ?srsearch)
-    BIND (CONCAT("^", substr($queryKey,1,14)) AS ?filter)
+    BIND (CONCAT(substr($queryKey,1,14)
+" haswbstatement:P235") AS ?srsearch)
+    BIND (CONCAT("^"
+substr($queryKey,1,14)) AS ?filter)
   }
 } AS %comps WITH {
   SELECT ?compound ?InChIKey WHERE {
@@ -960,7 +1091,8 @@ SELECT  ?compound ?InChIKey ?taxon ?taxonLabel ?reference ?referenceLabel WITH {
               ?compound wikibase:apiOutputItem mwapi:title.
             }
     ?compound wdt:P235 ?InChIKey .
-    FILTER (REGEX(STR(?InChIKey), ?filter))
+    FILTER (REGEX(STR(?InChIKey)
+?filter))
   }
 } AS %compounds
 WHERE {
@@ -984,8 +1116,10 @@ SELECT  ?compound ?InChIKey ?taxon ?taxonLabel ?reference ?referenceLabel WITH {
     VALUES ?queryKey {
       "KWIUHFFTVRNATP"
     }
-    BIND (CONCAT(substr($queryKey,1,14), " haswbstatement:P235") AS ?srsearch)
-    BIND (CONCAT("^", substr($queryKey,1,14)) AS ?filter)
+    BIND (CONCAT(substr($queryKey,1,14)
+" haswbstatement:P235") AS ?srsearch)
+    BIND (CONCAT("^"
+substr($queryKey,1,14)) AS ?filter)
   }
 } AS %comps WITH {
   SELECT ?compound ?InChIKey WHERE {
@@ -998,7 +1132,8 @@ SELECT  ?compound ?InChIKey ?taxon ?taxonLabel ?reference ?referenceLabel WITH {
               ?compound wikibase:apiOutputItem mwapi:title.
             }
     ?compound wdt:P235 ?InChIKey .
-    FILTER (REGEX(STR(?InChIKey), ?filter))
+    FILTER (REGEX(STR(?InChIKey)
+?filter))
   }
 } AS %compounds
 WHERE {
@@ -1066,7 +1201,9 @@ same with refs
 https://w.wiki/9AAe
 
 
-## Genome, proteome, metabolome
+## Genome
+proteome
+metabolome
 
 https://w.wiki/9qZT
 
@@ -1117,3 +1254,91 @@ https://qlever.cs.uni-freiburg.de/wikidata/f0F9Y4
 
 
 
+
+```rust
+#[cfg(feature = "64-column-tables")]
+diesel::table! {
+    #[sql_name = "Field_Data"] public.field_data(id) { id -> diesel::sql_types::Integer,
+    status -> diesel::sql_types::Text
+user_created -> diesel::sql_types::Nullable <
+    diesel::sql_types::Uuid >
+date_created -> diesel::sql_types::Nullable <
+    diesel::sql_types::Timestamptz >
+user_updated -> diesel::sql_types::Nullable <
+    diesel::sql_types::Uuid >
+date_updated -> diesel::sql_types::Nullable <
+    diesel::sql_types::Timestamptz >
+sample_name -> diesel::sql_types::Nullable <
+    diesel::sql_types::Text >
+sample_id -> diesel::sql_types::Text
+picture_panel ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+picture_general ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+picture_detail ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+picture_cut ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+picture_panel_label ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+x_coord ->
+    diesel::sql_types::Nullable < diesel::sql_types::Float >
+y_coord ->
+    diesel::sql_types::Nullable < diesel::sql_types::Float >
+#[sql_name =
+    "herbivory_(percent)"] herbivory_percent -> diesel::sql_types::Nullable <
+    diesel::sql_types::Float >
+#[sql_name = "temperature_(°C)"] temperature_celsius ->
+    diesel::sql_types::Nullable < diesel::sql_types::Float >
+geometry ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+latitude ->
+    diesel::sql_types::Nullable < diesel::sql_types::Float >
+longitude ->
+    diesel::sql_types::Nullable < diesel::sql_types::Float >
+match_name ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+ott_id ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+rank ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+#[sql_name = "wikidataID"]
+    wikidata_id -> diesel::sql_types::Nullable < diesel::sql_types::Text >
+unknown ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+qfield_project ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+collector_fullname ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+picture_free ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+no_name_on_list ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+name_proposition ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+comment_eco ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+soil_type ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+weather ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+comment_env ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+observation_subject ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+collector_inat ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+collector_orcid ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+date ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+taxon_name ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text >
+is_wild ->
+    diesel::sql_types::Nullable < diesel::sql_types::Integer >
+inat_upload ->
+    diesel::sql_types::Nullable < diesel::sql_types::Integer >
+ipen ->
+    diesel::sql_types::Nullable < diesel::sql_types::Text > }
+}
+```
