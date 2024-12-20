@@ -1,0 +1,81 @@
+<h1 id="2024-06-21"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-06-21"></a>2024-06-21</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<pre><code>      || visible in terminal ||   visible in file   || existing
+</code></pre>
+<p>  Syntax  ||  StdOut  |  StdErr  ||  StdOut  |  StdErr  ||   file<br>
+==========++==========+==========++==========+==========++===========</p>
+<pre><code>>     ||    no    |   yes    ||   yes    |    no    || overwrite
+>>    ||    no    |   yes    ||   yes    |    no    ||  append
+      ||          |          ||          |          ||
+</code></pre>
+<p>   2>     ||   yes    |    no    ||    no    |   yes    || overwrite
+2>>    ||   yes    |    no    ||    no    |   yes    ||  append
+||          |          ||          |          ||
+&#x26;>     ||    no    |    no    ||   yes    |   yes    || overwrite
+&#x26;>>    ||    no    |    no    ||   yes    |   yes    ||  append
+||          |          ||          |          ||
+| tee    ||   yes    |   yes    ||   yes    |    no    || overwrite
+| tee -a ||   yes    |   yes    ||   yes    |    no    ||  append
+||          |          ||          |          ||
+n.e. (<em>) ||   yes    |   yes    ||    no    |   yes    || overwrite
+n.e. (</em>) ||   yes    |   yes    ||    no    |   yes    ||  append
+||          |          ||          |          ||
+|&#x26; tee    ||   yes    |   yes    ||   yes    |   yes    || overwrite
+|&#x26; tee -a ||   yes    |   yes    ||   yes    |   yes    ||  append</p>
+<p>test:
+--RAY--
+(read-MINEs) [pamrein@login8 read-MINE-results]$ srun --partition=pibu_el8 --cpus-per-task=5 --mem=800G --time=10:00:00 --pty /bin/bash
+2024-06-21 09:42:33,117	INFO worker.py:1770 -- Started a local Ray instance.
+shape: (0, 8)
+┌─────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐
+│ ID  ┆ predicted_r ┆ predicted_r ┆ predicted_r ┆ predicted_r ┆ predicted_c ┆ predicted_c ┆ predicted_c │
+│ --- ┆ eaction_ID  ┆ eaction_SMI ┆ eaction_Rxn ┆ eaction_Rea ┆ ompounds_Fo ┆ ompounds_In ┆ ompounds_SM │
+│ str ┆ equation    ┆ LES equa…   ┆ hash        ┆ ction ru…   ┆ rmula       ┆ ChIKey      ┆ ILES        │
+│     ┆ ---         ┆ ---         ┆ ---         ┆ ---         ┆ ---         ┆ ---         ┆ ---         │
+│     ┆ str         ┆ str         ┆ str         ┆ str         ┆ str         ┆ str         ┆ str         │
+╞═════╪═════════════╪═════════════╪═════════════╪═════════════╪═════════════╪═════════════╪═════════════╡
+└─────┴─────────────┴─────────────┴─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘
+time used:
+read_in_and_processed_time: 1218.27sec 	show_time: 1.72sec</p>
+<p>second try:
+generated tabel: shape: (1_827, 8)
+read_in_and_processed_time: 1503.29sec (25min) 	show_time: 1.72sec</p>
+<p>--DASK--</p>
+<ol>
+<li>
+<p>srun --partition=pibu_el8 --cpus-per-task=5 --mem=200G --time=5:00:00 --pty /bin/bash
+read_in_time: 0.14sec   filtered_time: 0.01sec  show_time: 1992.17sec (33min)</p>
+</li>
+<li>
+<p>srun --partition=pibu_el8 --cpus-per-task=5 --mem=400G --time=5:00:00 --pty /bin/bash
+read_in_time: 0.07sec   filtered_time: 0.00sec  show_time: 1976.15sec</p>
+</li>
+<li>
+<p>srun --partition=pibu_el8 --cpus-per-task=5 --mem=800G --time=5:00:00 --pty /bin/bash
+read_in_time: 0.11sec   filtered_time: 0.01sec  show_time: 1923.53sec</p>
+</li>
+</ol>
+<p>all the results where empty tables. So something with the ID went wrong...</p>
+<p>second try:</p>
+<ol>
+<li>
+<p>srun --partition=pibu_el8 --cpus-per-task=5 --mem=200G --time=5:00:00 --pty /bin/bash
+rread_in_time: 0.02sec   filtered_time: 0.00sec  show_time: 3381.82sec (56min)</p>
+</li>
+<li>
+<p>srun --partition=pibu_el8 --cpus-per-task=5 --mem=400G --time=5:00:00 --pty /bin/bash
+read_in_time: 0.02sec   filtered_time: 0.00sec  show_time: 3622.37sec (60min)</p>
+</li>
+<li>
+<p>srun --partition=pibu_el8 --cpus-per-task=5 --mem=800G --time=5:00:00 --pty /bin/bash
+read_in_time: 0.01sec   filtered_time: 0.00sec  show_time: 3524.00sec (42min)</p>
+</li>
+</ol>
+<p>we can see, that It can takes at least 25 min for searching for a specific ID. This is very long, specially when you like to use it as a service. The way to go is using a DB (database), which can generate indexes and use them. This has the advantage to be faster in finding a specific word, but will increase the memorysize. In this case it is also important, to be able to work parallel. Because the big ammount of data can end up in a oom (out of memory) error.</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>
