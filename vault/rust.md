@@ -2,7 +2,7 @@
 id: 0h57aw0be2jnc3dxcpn3ajn
 title: Rust
 desc: ''
-updated: 1737789794423
+updated: 1737817847324
 created: 1737625384436
 ---
 
@@ -241,3 +241,159 @@ Rules of references.
 - at any given time you can have either one mutable reference or any number of immutable references.
 - references must always be valid.
 
+## Structs
+
+Structs are similar to Tuples.
+Like tuples pieces of a struct can be different.
+Unlioke tuples, in a Struct youll name each piece of data (these are called fields)
+
+Once created, structs can be instantiated.
+
+### Tuple structs
+
+e.g. 
+```rust 
+struct Color(i32, i32, i32);
+```
+
+### Unit-like structs
+
+Even simpler: they are things such as Unit-like structs.
+
+```rust
+struct AlwaysEqual;
+
+fn main() {
+    let subject = AlwaysEqual;
+}
+```
+
+## Method syntax
+
+Methods are like functions but unlike functions they are defined within the context of a _struct_ (or an **enum** or a **trait** object). 
+There first parameter is always self, which respresnets the instance of the struct the method is beeing called on.
+
+```rust
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+    fn can_hold(&self, other: &Rectangle) -> bool {
+       self.width > other.width && self.height > other.height
+    }
+}
+```
+
+These methods are called **associated functions**, they are indeed associated to the struct Rectangle. 
+We can define associated function that DO NOT have self as their first parameters (they are thus not methods.9 because they do not need an instance of the type to work with.
+
+These associated functions which are not methods are often used for constructors that will return a new instance of the structs.
+
+
+
+
+
+
+## Enums
+
+_Enums_ allow to define a type by enumerating its possible _variants._
+Option is a particularly usefull enum. Encodes that a value can be either something or nothing.
+Pattern matching using match makes it easy to run different code for different values of an enum.
+
+One very common enum in rust is Option
+
+```rust
+enum Option<T> {
+    None,
+    Some(T),
+}
+```
+
+You can even directly 
+
+```rust
+let some_number = Some(5);
+let absent_number: Option<i32> = None;
+```
+
+Option has a large number of associated methods that can be checked at https://doc.rust-lang.org/std/option/enum.Option.html
+
+### match control flow construct
+
+You can thing of match as a coin sorting machine. The coins slide down a ramp with holes of incresaing size. The first hole fitting size sorts the condition.
+think of it as conditional expression with if. But the big difference is that it doesnt need to be a boolean.
+
+
+Remeber that the match arms are made by two parts :
+
+- a pattern 
+- some code
+
+separtaed by => 
+
+```rust
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+```
+
+Combining mathc and enums is extremely frequent pattern in rust programming.
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
+}
+
+fn main() {
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+
+    println!("six is {:#?} and none is {:#?}", six, none);
+}
+
+Matches in Rust are _exhaustive_: all the cases must be covered.
+
+
+### catch all patterns and the _ placeholder
+
+
+This is usefull when you which to aplly and action to some patterns but then apply the same action for the rest of the cases (i.e. a default action)
+
+```rust
+let config_max = Some(3u8);
+match config_max {
+    Some(max) => println!("The maximum is configured to be {max}"),
+    _ => (),
+}
+```
+
+The last arms catches all other possible cases. We are exhaustive and covered. The empty tuples means no action is taken.
+
+
+
+### if let (when match get's a bit wordy ...)
+
+```rust
+let config_max = Some(3u8);
+if let Some(max) = config_max {
+    println!("The maximum is configured to be {max}");
+}
+```
