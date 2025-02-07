@@ -2,7 +2,7 @@
 id: 0h57aw0be2jnc3dxcpn3ajn
 title: Rust
 desc: ''
-updated: 1737817847324
+updated: 1737829227442
 created: 1737625384436
 ---
 
@@ -397,3 +397,63 @@ if let Some(max) = config_max {
     println!("The maximum is configured to be {max}");
 }
 ```
+
+### Pattern syntax
+
+Patterns can be used to destructure struct, enums and tuples and use differents parts of these values.
+
+```rust
+fn main() {
+    let p = Point { x: 0, y: 7 };
+
+    match p {
+        Point { x, y: 0 } => println!("On the x axis at {x}"),
+        Point { x: 0, y } => println!("On the y axis at {y}"),
+        Point { x, y } => {
+            println!("On neither axis: ({x}, {y})");
+        }
+    }
+}
+```
+
+
+Destructuring can work on nested object (here enums)
+
+```rust
+enum Color {
+    Rgb(i32, i32, i32),
+    Hsv(i32, i32, i32),
+}
+
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(Color),
+}
+
+fn main() {
+    let msg = Message::ChangeColor(Color::Hsv(0, 160, 255));
+
+    match msg {
+        Message::ChangeColor(Color::Rgb(r, g, b)) => {
+            println!("Change color to red {r}, green {g}, and blue {b}");
+        }
+        Message::ChangeColor(Color::Hsv(h, s, v)) => {
+            println!("Change color to hue {h}, saturation {s}, value {v}")
+        }
+        _ => (),
+    }
+}
+```
+
+If you are not going to use a variable yet but want to ignore it. you prefix by _
+
+fn main() {
+    let _x = 5;
+    let y = 10;
+}
+
+### Extra conditionals with Match guards.
+
+A match guards is and additional if condition specified after the pattern in a match arms.Usefull to express complex logic when patterns are not enough.
