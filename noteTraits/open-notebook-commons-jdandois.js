@@ -26,7 +26,7 @@ module.exports = {
      * Dendron workspace.
      */
     setTemplate: () => {
-      return "templates.open-notebook-pma";
+      return "templates.open-notebook.commons.jdandois";
     },
   },
 };

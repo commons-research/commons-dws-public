@@ -2,7 +2,7 @@
 id: jsw0l6y1mgi7si2i2rv37yg
 title: Jdandois
 desc: ''
-updated: 1739198050583
+updated: 1739198523134
 created: 1739198024012
 ---
 
@@ -14,10 +14,6 @@ Today is {{ CURRENT_YEAR }}.{{ CURRENT_MONTH }}.{{ CURRENT_DAY }}
 
 ### Have a look at the COMMONS research discussion forum
     - https://github.com/orgs/commons-research/discussions
-
-### Daily work on the Open Science for natural products research Viewpoint
-
-See [[viewpoint]]
 
 
 ###
