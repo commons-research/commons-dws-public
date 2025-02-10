@@ -2,7 +2,7 @@
 id: cuecza1fobnnr7pkvepz5vf
 title: '2025-02-10'
 desc: ''
-updated: 1739199092472
+updated: 1739202699811
 created: 1739198549992
 traitIds:
   - open-notebook-commons-jdandois
@@ -22,6 +22,7 @@ Today is 2025.02.10
 ###
 
 ## Doing
+test 
 
 Creating my first note in dendron 
 
