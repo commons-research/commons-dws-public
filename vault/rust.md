@@ -2,7 +2,7 @@
 id: 0h57aw0be2jnc3dxcpn3ajn
 title: Rust
 desc: ''
-updated: 1737829227442
+updated: 1739279925118
 created: 1737625384436
 ---
 
@@ -457,3 +457,15 @@ fn main() {
 ### Extra conditionals with Match guards.
 
 A match guards is and additional if condition specified after the pattern in a match arms.Usefull to express complex logic when patterns are not enough.
+
+## Strings
+
+`String` is actually implemented as a wrapper around a vector of bytes with some extra guarantees, restrictions and capabilities.
+
+
+## Traits
+
+
+Shared functionalities across data types.
+Similar to "interfaces" in other languages
+
