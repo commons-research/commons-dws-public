@@ -2,7 +2,7 @@
 id: spcjavj3vg70loxndmjroo2
 title: Setup
 desc: ''
-updated: 1693043762046
+updated: 1739346547481
 created: 1693042918607
 ---
 
@@ -18,7 +18,7 @@ I resume below the followed recipe.
 #### Set the Notes trait
 
 1. Create a new Note Trait
-Run the command Dendron: Configure Note Traits. Give your new trait a unique name. In this example, we'll call the trait open-notebook-pma. Hit Enter and a open-notebook-pma.js file will appear in your editor. This is where you define your custom trait logic.
+Run the command `Dendron: Configure Note Traits`. Give your new trait a unique name. In this example, we'll call the trait `open-notebook-commons-pmallard`. Hit Enter and a `open-notebook-commons-pmallard.js` file will appear in your editor. This is where you define your custom trait logic.
 
 2. Add the trait behavior
 Add in Javascript code to have custom settings when creating the note name and the note title.
@@ -36,7 +36,7 @@ module.exports = {
       // This example sets a prefix of 'planning', and then adds a date
       // hierarchy using the luxon module.
       return {
-        name: "open-notebook-commons.pma." + luxon.DateTime.local().toFormat("yyyy.MM.dd"),
+        name: "open-notebook.commons.pma." + luxon.DateTime.local().toFormat("yyyy.MM.dd"),
         promptUserForModification: true,
       };
     },
@@ -54,7 +54,7 @@ module.exports = {
      * Dendron workspace.
      */
     setTemplate: () => {
-      return "templates.open-notebook-pma";
+      return "templates.open-notebook.commons.pmallard";
     },
   },
 };
@@ -71,12 +71,15 @@ This template can be modified according to your needs.
 I added a keyboard shortcut for it. But this needs to be done locally in your VSCode preferences (its not part of the published Dendron)
 For this you can
 
-1. Run the VSCode Command Preferences: Open Keyboard Shortcuts (JSON) (Cmd+Shift + P)
+1. Run the VSCode Command `Preferences: Open Keyboard Shortcuts (JSON)` (Cmd+Shift + P)
 2. Add the following entry to the bottom of your keybindings.json file, with the shortcut key combo of your choice:
+
+```json
   {
     "key": "cmd+o cmd+n",
-    "command": "dendron.customCommand.open-notebook-pmallard"
+    "command": "dendron.customCommand.open-notebook-commons-pmallard"
   }
+```
 
 For example :
 
