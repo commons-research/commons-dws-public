@@ -1,0 +1,50 @@
+<h1 id="2024-07-15"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-07-15"></a>2024-07-15</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<p>Today I checked the script for cleaning. It was not worth to do it.
+Maybe I also did a mistake in the script. </p>
+<p>original reaction rows: 1_209_846_743
+original compound rows: 1_066_531_079
+cleaned reaction rows: 1_209_846_743 (not one removed line)
+cleaned compound rows: 1_014_766_986 (95% of original compounds)</p>
+<p>original files
+---reactions---
+amount of files:        45
+total size (byte):      134_415_376_995</p>
+<h2 id="average-size-byte----2_987_008_378"><a aria-hidden="true" class="anchor-heading icon-link" href="#average-size-byte----2_987_008_378"></a>average size (byte):    2_987_008_378</h2>
+<p>---compounds---
+amount of files:        45
+total size (byte):      57_967_518_441</p>
+<h2 id="average-size-byte----1_288_167_076"><a aria-hidden="true" class="anchor-heading icon-link" href="#average-size-byte----1_288_167_076"></a>average size (byte):    1_288_167_076</h2>
+<p>cleaned files
+---reactions---
+amount of files:        45
+total size (byte):      135_488_568_545</p>
+<h2 id="average-size-byte----3_010_857_079"><a aria-hidden="true" class="anchor-heading icon-link" href="#average-size-byte----3_010_857_079"></a>average size (byte):    3_010_857_079</h2>
+<p>---compounds---
+amount of files:        45
+total size (byte):      55_868_259_143</p>
+<h2 id="average-size-byte----1_241_516_870"><a aria-hidden="true" class="anchor-heading icon-link" href="#average-size-byte----1_241_516_870"></a>average size (byte):    1_241_516_870</h2>
+<p>Also I looked at the reactions to see, if some rules appears more often than others. Witout separating multiple rules, I got this results:
+┌───────────────────────────────────────────────────────┬───────────┬────────────┐
+│ Reaction rules                                        ┆ count     ┆ frequency  │
+│ ---                                                   ┆ ---       ┆ ---        │
+│ str                                                   ┆ u32       ┆ f64        │
+╞═══════════════════════════════════════════════════════╪═══════════╪════════════╡
+│ rule0822                                              ┆ 187090387 ┆ 0.15464    │
+│ rule0028                                              ┆ 125538598 ┆ 0.103764   │
+│ rule0126                                              ┆ 68651569  ┆ 0.056744   │
+│ rule0918                                              ┆ 34774787  ┆ 0.028743   │
+│ rule0264                                              ┆ 28080779  ┆ 0.02321    │
+│ …                                                     ┆ …         ┆ …          │
+│ rule0124;rule0006;rule0604;rule0029;rule0001;rule1088 ┆ 1         ┆ 8.2655e-10 │</p>
+<p><a href="https://smarts.plus/">https://smarts.plus/</a> we can analyse the reaction, which appears most often:
+rule0822	Any;WATER	([#6:1]-[#6:2].[#6:3]-[#6:4]).[#8:5]>>([#6:1].[#6:2]-[#6:3].[#6:4]-[#8:5])	Any	</p>
+<p>from: 2938937046
+to:   2955526557</p>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>
