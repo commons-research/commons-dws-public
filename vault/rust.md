@@ -2,7 +2,7 @@
 id: 0h57aw0be2jnc3dxcpn3ajn
 title: Rust
 desc: ''
-updated: 1739279925118
+updated: 1739695775910
 created: 1737625384436
 ---
 
@@ -468,4 +468,39 @@ A match guards is and additional if condition specified after the pattern in a m
 
 Shared functionalities across data types.
 Similar to "interfaces" in other languages
+
+
+## Modules
+
+## Hash Maps
+
+these are equivalent to Python's dictionnaries, also called associative arrays in other languages.
+
+HashMap<K, V> 
+Stored on the heap.
+
+Like Vectors, HashMaps are homegeneous, all of the keys miust have the same 
+
+The HashMaps takes owner ship of the values insert inside.
+You put them there by hashmap.insert(k, v)
+
+
+#### Overwritting a value
+
+if we 
+hashmap.insert(k, v1)
+hashmap.insert(k, v2)
+
+v1 is overwritten
+
+#### Adding value only if absent
+
+hashmap.insert(k, v1)
+
+hashmap.entry(k1).or_insert(v2)
+hashmap.entry(k).or_insert(v2)
+
+v1 is not overwritten because its already present
+
+
 
