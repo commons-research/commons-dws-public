@@ -2,7 +2,7 @@
 id: 56uuhtnpup2ckd6pdd9ysbn
 title: '2025-03-05'
 desc: ''
-updated: 1741186085931
+updated: 1741186531862
 created: 1741185019407
 traitIds:
   - open-notebook-commons-jdandois
@@ -13,7 +13,8 @@ traitIds:
 Today is 2025.03.05
 
 ## Todo today
-- 
+recolt 
+understand dendron 
 ### Have a look at the COMMONS research discussion forum
     - https://github.com/orgs/commons-research/discussions
 
