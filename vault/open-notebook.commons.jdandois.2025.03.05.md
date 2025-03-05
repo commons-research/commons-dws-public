@@ -1,31 +1,27 @@
 ---
-id: cuecza1fobnnr7pkvepz5vf
-title: '2025-02-10'
+id: 56uuhtnpup2ckd6pdd9ysbn
+title: '2025-03-05'
 desc: ''
-updated: 1741175793498
-created: 1739198549992
+updated: 1741186085931
+created: 1741185019407
 traitIds:
   - open-notebook-commons-jdandois
 ---
 
 # This is Jade's COMMONS Lab daily Open Notebook.
 
-Today is 2025.02.10
+Today is 2025.03.05
 
 ## Todo today
-
+- 
 ### Have a look at the COMMONS research discussion forum
     - https://github.com/orgs/commons-research/discussions
 
 
 ###
-
 ###
 
 ## Doing
-test 
-
-Creating my first note in dendron 
 
 ## Paused
 
@@ -33,10 +29,8 @@ Creating my first note in dendron
 
 ## Notes
 
+
 ## Todo tomorrow, one day ... or never 
-check https://www.dendron.so
-
-
 
 
 ###
