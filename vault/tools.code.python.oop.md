@@ -2,7 +2,7 @@
 id: iUJ8ouDaIyDccSkSgCe8E
 title: Oop
 desc: ''
-updated: 1696600773439
+updated: 1740907390165
 created: 1639235161151
 ---
 # Object Oriented Programming
@@ -33,3 +33,12 @@ https://www.geeksforgeeks.org/data-classes-in-python-an-introduction/
 https://www.pythontutorial.net/python-oop/python-abstract-class/
 
 
+
+
+##  Everything Is an Object in Python
+
+We’ll tell you a secret: you’ve been using OOP all the time without noticing it.
+
+Even when using other paradigms in Python, you still use objects to do almost everything.
+
+That’s because, in Python, everything is an object.
