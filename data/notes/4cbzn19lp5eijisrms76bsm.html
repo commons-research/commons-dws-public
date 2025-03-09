@@ -1,0 +1,63 @@
+<h1 id="2024-04-17"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-04-17"></a>2024-04-17</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<p>Change from website to ssh (for this you need a ssh key and also saved it on github):</p>
+<ol>
+<li>git remote -w      # check if remote is set to https</li>
+<li>git remote set-url origin <repository></repository></li>
+</ol>
+<p>Further analysisi of ./MINE-Database/mine_database/data/metacyc_rules/
+metacyc_intermediate_rules.tsv - 7359 lines
+metacyc_generalized_rules.tsv - 1225 lines </p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">comm</span> -12 metacyc_generalized_rules_sorted.tsv metacyc_intermediate_rules_sorted.tsv <span class="token operator">|</span> <span class="token function">wc</span>
+    <span class="token number">426</span>     <span class="token number">852</span>    <span class="token number">8896</span>
+<span class="token function">comm</span> -31 metacyc_generalized_rules_sorted.tsv metacyc_intermediate_rules_sorted.tsv <span class="token operator">|</span> <span class="token function">wc</span>
+   <span class="token number">6933</span>   <span class="token number">13866</span>  <span class="token number">171744</span>
+<span class="token function">comm</span> -23 metacyc_generalized_rules_sorted.tsv metacyc_intermediate_rules_sorted.tsv <span class="token operator">|</span> <span class="token function">wc</span>
+    <span class="token number">799</span>    <span class="token number">1598</span>   <span class="token number">16695</span>
+<span class="token function">comm</span> -3 metacyc_generalized_rules_sorted.tsv metacyc_intermediate_rules_sorted.tsv <span class="token operator">|</span> <span class="token function">wc</span>
+   <span class="token number">7732</span>   <span class="token number">15464</span>  <span class="token number">195372</span>
+</code></pre>
+<p>-1     suppress column 1 (lines unique to FILE1)
+-2     suppress column 2 (lines unique to FILE2)
+-3     suppress column 3 (lines that appear in both files)</p>
+<p>unique in <strong>generalized</strong> rules: 799
+unique in <strong>intermediate</strong> rules: 6933
+unique entries total: 7732
+found in both files:  426</p>
+<p>To check further, I asked for the rulename and the "reactioncomment":</p>
+<ul>
+<li>Because it had some rulenames with underscore, I was wondering what this could be</li>
+</ul>
+<pre class="language-bash"><code class="language-bash"><span class="token function">cut</span> -f1,5 metacyc_intermediate_rules.tsv <span class="token operator">|</span> <span class="token function">grep</span> -v -E <span class="token string">"[a-z]*_[a-zA-Z0-9]*"</span> <span class="token operator">|</span> <span class="token function">wc</span>
+</code></pre>
+<p>He found <strong>91 lines</strong> with this rulename and following structure (example):
+rule0945	metacyc:RXN-17975;metacyc:RXN-17988<br>
+rule0906	kegg:R07039;kegg:R07043;metacyc:RXN-14948;metacyc:RXN-14952
+rule0323	RXN-17679;RXN-527;RXN-7686;RXN-7687;RXN-8379;RXN-8450;RXN1F-93<br>
+rule1260	N-ACETYLHEXOSAMINE-1-DEHYDROGENASE-RXN  </p>
+<p>It looks like, that almost all the time "RXN" is involved. To check that:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">cut</span> -f1,5 metacyc_intermediate_rules.tsv <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">":RXN-"</span> <span class="token operator">|</span> wc*" <span class="token operator">|</span> <span class="token function">wc</span>
+<span class="token comment"># 3598 lines</span>
+</code></pre>
+<pre class="language-bash"><code class="language-bash"><span class="token function">cut</span> -f1,5 metacyc_intermediate_rules.tsv <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"metacyc:RXN-"</span> <span class="token operator">|</span> <span class="token function">wc</span>
+<span class="token comment"># 3598 lines</span>
+</code></pre>
+<pre class="language-bash"><code class="language-bash"><span class="token function">cut</span> -f1,5 metacyc_intermediate_rules.tsv <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"RXN"</span> <span class="token operator">|</span> <span class="token function">wc</span>
+<span class="token comment"># 5291 lines</span>
+</code></pre>
+<p>Other Databases are followed distributed:
+(exp.: <code>cut -f1,5 metacyc_intermediate_rules.tsv | grep "kegg" | grep "metacyc" -c</code>)</p>
+<p>Kegg: 4198
+Brenda: 5656
+metacyc: 5258
+Kegg &#x26; Brenda: 3250
+Kegg &#x26; metacyc: 3783
+Brenda &#x26; metacyc: 3756
+Brenda &#x26; metacyc &#x26; Kegg: 3002</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>
