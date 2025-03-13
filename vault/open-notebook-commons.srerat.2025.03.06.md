@@ -2,7 +2,7 @@
 id: n4lc8wdkcqekgzgokfyi3uz
 title: '2025-03-06'
 desc: ''
-updated: 1741293048299
+updated: 1741642760145
 created: 1741292787333
 traitIds:
   - open-notebook-commons-srerat
@@ -30,6 +30,7 @@ Today is 2025.03.06
 Cut my thummb open while sampling a stupid date palm.
 Almost all plants in the orangerie have been sampled.
 Only the last row, and the a few pots in the middle of the first row are still left.
+Mixed up an empty tube with a full one => should pay a pint to Jade for cleaning up
 ## Notes
 
 ## Todo tomorrow, one day ... or never 
