@@ -2,7 +2,7 @@
 id: 0l59idsztsk8u02k8ovzit2
 title: jdandois-2025-checklist
 desc: ''
-updated: 1742216918969
+updated: 1742218033872
 created: 1742216828044
 traitIds:
   - open-notebook-commons-jdandois
@@ -20,13 +20,13 @@ traitIds:
 
 
 ### git et Github 
-[] Check https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github
-[] Check https://carpentries-incubator.github.io/git-novice-branch-pr/
+- [] Check https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github
+- [] Check https://carpentries-incubator.github.io/git-novice-branch-pr/
 
 ### python 
-[] Check https://openclassrooms.com/fr/courses/7168871-apprenez-les-bases-du-langage-python 
-[] Check https://realpython.com/python-first-steps/ 
+- [] Check https://openclassrooms.com/fr/courses/7168871-apprenez-les-bases-du-langage-python 
+- [] Check https://realpython.com/python-first-steps/ 
 
 ### Linux 
-[] Check https://openclassrooms.com/fr/courses/7170491-initiez-vous-a-linux/7251641-tirez-un-maximum-de-ce-cours-22 
+- [] Check https://openclassrooms.com/fr/courses/7170491-initiez-vous-a-linux/7251641-tirez-un-maximum-de-ce-cours-22 
 
