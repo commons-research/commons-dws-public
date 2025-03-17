@@ -2,7 +2,7 @@
 id: 0l59idsztsk8u02k8ovzit2
 title: jdandois-2025-checklist
 desc: ''
-updated: 1742218033872
+updated: 1742220542751
 created: 1742216828044
 traitIds:
   - open-notebook-commons-jdandois
@@ -10,9 +10,13 @@ traitIds:
 
 # This is Jade's COMMONS Lab checklist 
 
+## Bachelor project 
+- [] Learn python 
+- [] Make python script with excel list (550 molecules)
+- [] Isolating Name of the molecule, SMILES & Molecular Formule 
 
 ### Have a look at the COMMONS research discussion forum
-    - https://github.com/orgs/commons-research/discussions
+- [] https://github.com/orgs/commons-research/discussions
 
 ### Ligne de Commande 
 - [X] Check https://openclassrooms.com/fr/courses/6173491-apprenez-a-utiliser-la-ligne-de-commande-dans-un-terminal 
