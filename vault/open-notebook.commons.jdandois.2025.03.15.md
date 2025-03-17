@@ -2,7 +2,7 @@
 id: f085pxgllh7c82gp5hn3zyc
 title: '2025-03-15'
 desc: ''
-updated: 1742070309664
+updated: 1742124761900
 created: 1742070284314
 traitIds:
   - open-notebook-commons-jdandois
@@ -35,6 +35,7 @@ Today is 2025.03.15
 [X]Check https://openclassrooms.com/fr/courses/6173491-apprenez-a-utiliser-la-ligne-de-commande-dans-un-terminal 
 [X] Check https://fribash.netlify.ap 
 [] Check https://www.codecademy.com/learn/learn-the-command-line 
+--> Site payant ? 
 
 ### git et Github 
 [] Check https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github
