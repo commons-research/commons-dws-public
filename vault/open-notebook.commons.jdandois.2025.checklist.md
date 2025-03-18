@@ -2,7 +2,7 @@
 id: 0l59idsztsk8u02k8ovzit2
 title: jdandois-2025-checklist
 desc: ''
-updated: 1742220542751
+updated: 1742293956991
 created: 1742216828044
 traitIds:
   - open-notebook-commons-jdandois
@@ -24,7 +24,7 @@ traitIds:
 
 
 ### git et Github 
-- [] Check https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github
+- [X] Check https://openclassrooms.com/fr/courses/7162856-gerez-du-code-avec-git-et-github
 - [] Check https://carpentries-incubator.github.io/git-novice-branch-pr/
 
 ### python 
