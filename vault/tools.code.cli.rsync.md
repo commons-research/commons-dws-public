@@ -2,7 +2,7 @@
 id: SS0rQYcsKz30tWG5tQVOB
 title: Rsync
 desc: ''
-updated: 1732205446304
+updated: 1742485858834
 created: 1609680294356
 ---
 
@@ -47,6 +47,7 @@ rsync -rvz -e 'ssh' --progress ./ allardpm@biolpc045600:/home/allardpm/cfm/bash_
 rsync -rvz -e 'ssh' --progress ./Downloads/forticlient_vpn_7.0.7.0246_amd64.deb allardpm@biolpc045600:/home/allardpm/Downloads/
 rsync -rvz -e 'ssh' --progress ./Downloads/structures_metadata.db allardpm@biolpc045600:/home/ENPKG/data/structures_db/
 
+rsync -rvz -e 'ssh' --progress /Users/pma/Downloads/2025_03_mzML_data/pos allardpm@commons-server:/msdata/mapp_project_00055/mapp_batch_00153
 ```
 
 
