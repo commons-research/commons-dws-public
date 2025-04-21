@@ -2,7 +2,7 @@
 id: 0h57aw0be2jnc3dxcpn3ajn
 title: Rust
 desc: ''
-updated: 1739695775910
+updated: 1745169550689
 created: 1737625384436
 ---
 
@@ -469,6 +469,10 @@ A match guards is and additional if condition specified after the pattern in a m
 Shared functionalities across data types.
 Similar to "interfaces" in other languages
 
+### The orphan rule
+
+Other crates that depend on the aggregator crate can also bring the Summary trait into scope to implement Summary on their own types. One restriction to note is that we can implement a trait on a type only if either the trait or the type, or both, are local to our crate. For example, we can implement standard library traits like Display on a custom type like Tweet as part of our aggregator crate functionality because the type Tweet is local to our aggregator crate. We can also implement Summary on Vec<T> in our aggregator crate because the trait Summary is local to our aggregator crate.
+**But we can’t implement external traits on external types**. For example, we can’t implement the Display trait on Vec<T> within our aggregator crate because Display and Vec<T> are both defined in the standard library and aren’t local to our aggregator crate. This restriction is part of a property called coherence, and more specifically the orphan rule, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust wouldn’t know which implementation to use.
 
 ## Modules
 
