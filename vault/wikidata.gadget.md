@@ -2,9 +2,15 @@
 id: cfty88t52bo6eiiymlozz35
 title: Gadget
 desc: ''
-updated: 1663419956357
+updated: 1745241448251
 created: 1663419864269
 ---
+
+
+The Gadgets are setup on the commons.js page of a WD user
+
+see for ex for Adriano https://www.wikidata.org/wiki/User:AdrianoRutz/common.js
+
 
 
 <!DOCTYPE html>
