@@ -2,7 +2,7 @@
 id: 0h57aw0be2jnc3dxcpn3ajn
 title: Rust
 desc: ''
-updated: 1745169550689
+updated: 1745582188038
 created: 1737625384436
 ---
 
@@ -505,6 +505,47 @@ hashmap.entry(k1).or_insert(v2)
 hashmap.entry(k).or_insert(v2)
 
 v1 is not overwritten because its already present
+
+
+## Iterators
+
+Iterators are lazy. They do not do anything until you call a method that consumes the iterator.
+This is called _consuming an iterator_.
+The iterator trait is called Iterator. It has a method called next() which returns an Option<T>.
+
+```rust
+let v = vec![1, 2, 3];
+let mut iter = v.iter();
+assert_eq!(iter.next(), Some(&1));
+assert_eq!(iter.next(), Some(&2));
+assert_eq!(iter.next(), Some(&3));
+assert_eq!(iter.next(), None);
+```
+
+Closure and map on iterators
+
+```rust
+let v = vec![1, 2, 3];
+let mut iter = v.iter();
+let plus_one = |x| x + 1;
+let mut iter = iter.map(plus_one);
+assert_eq!(iter.next(), Some(2));
+assert_eq!(iter.next(), Some(3));
+assert_eq!(iter.next(), Some(4));
+assert_eq!(iter.next(), None);
+```
+
+collect() is a method that consumes the iterator and returns a collection.
+
+```rust
+let v = vec![1, 2, 3];
+let mut iter = v.iter();
+let plus_one = |x| x + 1;
+let mut iter = iter.map(plus_one);
+let v: Vec<_> = iter.collect();
+assert_eq!(v, vec![2, 3, 4]);
+```
+The collect() method is a powerful way to transform an iterator into a collection. It can be used to create a vector, a hash map, or any other collection type that implements the FromIterator trait.
 
 
 
