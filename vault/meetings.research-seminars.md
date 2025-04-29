@@ -2,9 +2,23 @@
 id: c3zmpqyuw6gcbct4hu38ti4
 title: Research Seminars
 desc: ''
-updated: 1709821877226
+updated: 1745920357858
 created: 1698934659450
 ---
+
+
+# Tuesday 29 April 2025
+
+https://mbu.cas.cz/employee/zdenek-kamenik
+
+https://mbu.cas.cz/en/research/laboratory-of-antibiotic-resistance-and-microbial-metabolomics/research/cluseek
+
+
+Lucentamycin A https://www.wikidata.org/wiki/Q104937391
+
+
+
+Lucentamycin
 
 #  Thursday 07 March 2024
 
