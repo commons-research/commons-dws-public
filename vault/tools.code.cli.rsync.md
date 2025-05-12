@@ -2,7 +2,7 @@
 id: SS0rQYcsKz30tWG5tQVOB
 title: Rsync
 desc: ''
-updated: 1742485858834
+updated: 1746989975127
 created: 1609680294356
 ---
 
@@ -122,6 +122,8 @@ rsync -rvz -e 'ssh' --progress --rsync-path="sudo rsync" ~/Downloads/wetransfer-
 
 rsync -rvz -e 'ssh' --progress  pma@metabomaps:/home/pma/.ssh ~/02_tmp/backup_metabomaps
 rsync -rvz -e 'ssh' --progress  --rsync-path="sudo rsync" pma@metabomaps:/home/bjo/scrappers ~/02_tmp/backup_metabomaps
+
+rsync -rvz -e 'ssh' --progress pmallard@kimsufi:/home/pmallard/arxiv/gbif-20250501-occurrence-data.torrent ~/02_tmp/torrent
 
 
 # local > metabomaps
