@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1747679899642
+updated: 1747744747422
 created: 1741185232433
 ---
 # Abstract 
@@ -14,6 +14,10 @@ Geophytes are perennial plants that are resilient both during periods of severe 
 
 
 ## Materials and methods 
+
+* billes en métal (4 mm) 
+
+## prespectives 
 
 # DMSO Project 
 
@@ -42,6 +46,7 @@ Plusieurs différences notables ont été observées entre les échantillons ext
 
 Les 20 échantillons ont été ainsi transférés dans les viales pour le passage en spectrométrie de masse. 
 
+--> + format 96 puits ? 
  
 
 * *Erythroxylum coca*
@@ -52,6 +57,8 @@ Les 20 échantillons ont été ainsi transférés dans les viales pour le passag
 * *Cannabis sativa*
 
 ### Results 
+
+![dd](dd)
 
 ### Discussion and perspectives
 
@@ -64,3 +71,4 @@ L'hypothèse de base émise est que le DMSO combiné à la sonication donne des 
 
 Balakin, K. v., Ivanenkov, Y. A., Skorenko, A. v., Nikolsky, Y. v., Savchuk, N. P., & Ivashchenko, A. A. (2004). In silico estimation of DMSO solubility of organic compounds for bioscreening. Journal of Biomolecular Screening, 9(1), 22–31. https://doi.org/10.1177/1087057103260006
 Rodríguez-Dévora, J. I., Shi, Z. D., & Xu, T. (2011). Direct assembling methodologies for high-throughput bioscreening. In Biotechnology Journal (Vol. 6, Issue 12, pp. 1454–1465). https://doi.org/10.1002/biot.201100100 
+Allard, P.-M. (2023). The Digital Botanical Gardens Initiative repository. https://doi.org/10.5281/zenodo.7662428 

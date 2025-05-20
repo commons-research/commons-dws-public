@@ -2,7 +2,7 @@
 id: y30in8vwg20pt8vynjaykia
 title: '2025-03-18'
 desc: ''
-updated: 1742294002257
+updated: 1747745279671
 created: 1742288174198
 traitIds:
   - open-notebook-commons-jdandois
@@ -21,9 +21,14 @@ Today is 2025.03.18
 ###
 ###
 
+![](assets/images/chromato.png)
+
+
+
+
 ## Doing
 
-Learning Python 
+Learning Python [^1] and citing [^2]
 
 ## Paused
 
@@ -36,4 +41,10 @@ Learning Python
 
 ## Today I learned that
 
-- 
+
+----
+# References
+
+[^1] https://codefinity.com/get-started/spa/v8_new_brl?utm_source=google&utm_medium=cpc&utm_campaign=21435973810&utm_content=163793080723&utm_term=learning%20python&dki=Learning%20Python&gad_source=1&gad_campaignid=21435973810&gbraid=0AAAAABTeUgTiJp_rfgOunPW09KksdE-PH&gclid=EAIaIQobChMIq9v_0YmyjQMVzamDBx2LOB7TEAAYAiAAEgLMHvD_BwE
+
+[^2] Allard, P.-M. (2023). The Digital Botanical Gardens Initiative repository. https://doi.org/10.5281/zenodo.7662428
