@@ -321,3 +321,8 @@ List key bindings(shortcuts)
 
 tmux info
 Show every session, window, pane, etc...
+
+
+### Scrolling
+
+Ctrl-b then [ then you can use your normal navigation keys to scroll around (eg. Up Arrow or PgDn). Press q to quit scroll mode.
