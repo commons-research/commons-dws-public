@@ -2,7 +2,7 @@
 id: SS0rQYcsKz30tWG5tQVOB
 title: Rsync
 desc: ''
-updated: 1746989975127
+updated: 1748260635104
 created: 1609680294356
 ---
 
@@ -62,6 +62,8 @@ rsync -rvz -e 'ssh' --progress allardpm@biolpc045600:/home/allardpm/sandbox/GNPS
 rsync -rvz -e 'ssh' --progress allardpm@biolpc045600:/home/allardpm/Downloads/wetransfer_rhino_2022-01-10_0411.zip ./ 
 
 rsync -rvz -e 'ssh' --progress allardpm@biolpc045600:/home/allardpm/graphdb-import ./graphdb-import 
+
+rsync -rvz -e 'ssh' --progress allardpm@commons-server:/msdata/mapp_project_00051/mapp_batch_00169 ~/02_tmp/mapp_project_00051/mapp_batch_00169 
 
 
 # to fetch all file with a given extension. See https://stackoverflow.com/a/11111793 for details
