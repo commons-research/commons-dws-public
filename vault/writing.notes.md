@@ -2,7 +2,7 @@
 id: PdtgxGErwDuyOX5EyZFIO
 title: Notes
 desc: ''
-updated: 1613998700250
+updated: 1748328142213
 created: 1610657396412
 ---
 
@@ -15,4 +15,9 @@ https://nesslabs.com/from-note-taking-to-note-making?ck_subscriber_id=1121227337
 
 
 https://www.scotthyoung.com/blog/2021/01/11/how-to-take-notes/
+
+
+# File over  app
+
+https://stephango.com/vault
 
