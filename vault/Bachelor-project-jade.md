@@ -38,14 +38,27 @@ Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, w
 
 # Introduction 
 
+A large number of databases are currently available to the public for biological elements such as proteins (UniProt, https://www.uniprot.org), RNA (Rfam, https://rfam.org/), DNA (NCBI GenBank, https://www.ncbi.nlm.nih.gov/genbank/) or genomes (Ensembl, https://www.ensembl.org/). 
+However, the databases currently available for metabolomics are very limited, focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/).
+
+The Earth Metabolome Initiative (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data. With remarkable foresight, the initiative set out to build a database designed to profile the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI distinguishes itself through its explicit commitment to cross-kingdom coverage and global scale.
+
 ## Earth Metabolome Initiative 
+
+[^1]
+
+
+--> va mettre des millions d'années = projet pilote 
+
+
+
 ## Digital Botanical Gardens Initiative 
 
 
 
 
 
-# Collection of Geophytes - DBGI Project 
+# Collection of Geophytes - Digital Botanical Gardens Initiative 
 
 Geophytes are perennial plants that are resilient both during periods of severe drought and extreme cold, thanks in particular to the nutrient reserves they store in their underground organs (tubers, bulbs, rhizomes). These reserves allow them to enter a state of dormancy while waiting for more favorable conditions to emerge from the soil and grow.
 
@@ -55,7 +68,9 @@ Geophytes are perennial plants that are resilient both during periods of severe 
 
 * billes en métal (4 mm) 
 
-## prespectives 
+## Conclusion 
+
+## Perspectives 
 
 # DMSO Project 
 
@@ -108,5 +123,7 @@ L'hypothèse de base émise est que le DMSO combiné à la sonication donne des 
 # Bibliography 
 
 Balakin, K. v., Ivanenkov, Y. A., Skorenko, A. v., Nikolsky, Y. v., Savchuk, N. P., & Ivashchenko, A. A. (2004). In silico estimation of DMSO solubility of organic compounds for bioscreening. Journal of Biomolecular Screening, 9(1), 22–31. https://doi.org/10.1177/1087057103260006
+
 Rodríguez-Dévora, J. I., Shi, Z. D., & Xu, T. (2011). Direct assembling methodologies for high-throughput bioscreening. In Biotechnology Journal (Vol. 6, Issue 12, pp. 1454–1465). https://doi.org/10.1002/biot.201100100 
-Allard, P.-M. (2023). The Digital Botanical Gardens Initiative repository. https://doi.org/10.5281/zenodo.7662428 
+
+[^1] : Allard, P.-M. (2023). The Digital Botanical Gardens Initiative repository. https://doi.org/10.5281/zenodo.7662428 
