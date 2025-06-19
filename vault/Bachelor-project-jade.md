@@ -2,11 +2,49 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1747744747422
+updated: 1750247760497
 created: 1741185232433
 ---
+<p align="left">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Universit%C3%A4t_Freiburg_%28Schweiz%29_logo.svg" width="100">
+</p>
+
+<p align="center"><strong>UNIVERSITÉ DE FRIBOURG</strong></p>
+<p align="center"><strong>COMMONS LAB</strong></p>
+<p align="center"><strong>DEPARTMENT OF BIOLOGY</strong></p>
+
+<br><br><br>
+
+<h1 align="center">
+Geophytes collection, comparison of extraction solvents  
+and modeling of data loss in mass spectrometry
+</h1>
+
+<br><br>
+
+<em>Author :</em> <strong style="color:#800000">Jade Dandois</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Supervisor :</em> <strong style="color:#800000">Dr. Pierre–Marie Allard</strong>
+
+<br><br><br><br>
+
+<p align="center"><strong>Submitted in fulfillment of the requirements for the Bachelor's degree.</strong></p>
+
+# Acknowledgements 
+
+I would like to extend my heartfelt thanks to Pierre-Marie Allard, my professor and supervisor during these three months of academic work. I am deeply grateful for his unwavering dedication, his genuine interest in this remarkable project, and the invaluable guidance he has provided throughout. I hold great admiration for both his work and the inspiring project he initiated and continues to nurture with such commitment.
+
+Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, who greatly supported me during the collection of geophytes and extraction processes—your help and our shared moments of collaboration were truly appreciated. Edouard Brülhart, thank you for patiently introducing me to the sampling techniques and the functioning of the laboratory. Colin Volet, for your guidance with the technical aspects of mass spectrometry, your expertise was essential. And finally, Marco Visani, for your remarkable patience and guidance in bioinformatics—thanks to you, I was able to significantly deepen my understanding of coding, an invaluable tool for the work I was entrusted with.
+
 # Abstract 
+
 # Introduction 
+
+## Earth Metabolome Initiative 
+## Digital Botanical Gardens Initiative 
+
+
+
+
+
 # Collection of Geophytes - DBGI Project 
 
 Geophytes are perennial plants that are resilient both during periods of severe drought and extreme cold, thanks in particular to the nutrient reserves they store in their underground organs (tubers, bulbs, rhizomes). These reserves allow them to enter a state of dormancy while waiting for more favorable conditions to emerge from the soil and grow.
@@ -65,7 +103,7 @@ Les 20 échantillons ont été ainsi transférés dans les viales pour le passag
 L'hypothèse de base émise est que le DMSO combiné à la sonication donne des sorties en spectrométrie de masse d'aussi haute qualité qu'avec le solvant à base de méthanol, puisque la sonication permet d'endommager les cellules et ainsi en récupérer un maximum de composants pour l'analyse. Le DMSO uniquement pourrait cependant être de moins bonne qualité (????). 
 
 
-# Known extract project 
+# Fake extract project 
 
 # Bibliography 
 
