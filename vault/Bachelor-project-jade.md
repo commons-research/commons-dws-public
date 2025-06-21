@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750247760497
+updated: 1750547094728
 created: 1741185232433
 ---
 <p align="left">
@@ -81,21 +81,23 @@ The harvest from the geophyte section proved particularly relevant, as this sect
 
 Geophytes are perennial plants that are resilient both during periods of severe drought and extreme cold, thanks in particular to the nutrient reserves they store in their underground organs (tubers, bulbs, rhizomes). These reserves allow them to enter a state of dormancy while waiting for more favorable conditions to emerge from the soil and grow.
 
+![alt text](image-7.png)
+*Figure 1 – Map of Fribourg botanical garden. The location of the geophyte sector is indicated by point number 10*
+
 Several plant families were collected, including Amaryllidaceae, Liliaceae, Iridaceae and many others, enabling metabolomic patterns to be drawn up for these families, and for all geophyte-type plants.
 
-With the help of Héloïse Coen, we collected xxx species, focusing primarily on sampling flowers and leaves. xxx species remain to be collected (%), meaning that a substantial portion of the target species has already been covered for this part of the project. (Mettre le lien des csv). 
+With the help of Héloïse Coen, we collected 185 samples (including leaves and flowers) from 150 species. 128 species remain to be collected (46%), meaning that a substantial portion of the target species has already been covered for this part of the project. 
+
+Below are the respective lists of samples collected by myself and Héloïse Coen, as well as the complete list of species in the geophyte section of the Fribourg Botanical Garden. 
+
+[text](<../../../Desktop/DGBI /geophytes_extrait.csv>)
 
 To cover this sector, a dedicated protocol for sample collection, extraction, and analysis was required.
 
-## Materials and methods 
+## Materials and methods
 
 ### Collect 
 
-
-
-
-![alt text](image-7.png)
-*Figure 1 – Map of Fribourg botanical garden. The location of the geophyte sector is indicated by point number 10*
 
 
 
