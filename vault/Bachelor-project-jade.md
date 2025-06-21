@@ -91,7 +91,12 @@ To cover this sector, a dedicated protocol for sample collection, extraction, an
 
 ### Collect 
 
-![Texte alternatif](/Users/jadedandois/Desktop/image_test.jpeg)
+
+
+
+![alt text](image-7.png)
+*Figure 1 – Map of Fribourg botanical garden. The location of the geophyte sector is indicated by point number 10*
+
 
 
 
