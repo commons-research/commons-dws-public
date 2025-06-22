@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750547094728
+updated: 1750549022147
 created: 1741185232433
 ---
 <p align="left">
@@ -81,22 +81,30 @@ The harvest from the geophyte section proved particularly relevant, as this sect
 
 Geophytes are perennial plants that are resilient both during periods of severe drought and extreme cold, thanks in particular to the nutrient reserves they store in their underground organs (tubers, bulbs, rhizomes). These reserves allow them to enter a state of dormancy while waiting for more favorable conditions to emerge from the soil and grow.
 
+--> référence pour les géophytes 
+
 ![alt text](image-7.png)
 *Figure 1 – Map of Fribourg botanical garden. The location of the geophyte sector is indicated by point number 10*
 
 Several plant families were collected, including Amaryllidaceae, Liliaceae, Iridaceae and many others, enabling metabolomic patterns to be drawn up for these families, and for all geophyte-type plants.
 
-With the help of Héloïse Coen, we collected 185 samples (including leaves and flowers) from 150 species. 128 species remain to be collected (46%), meaning that a substantial portion of the target species has already been covered for this part of the project. 
+With the help of Héloïse Coen, 185 samples were collected (including leaves and flowers samples) from 150 species. 128 species remain to be collected (46%), meaning that a substantial portion of the target species has already been covered for this part of the project. 
 
 Below are the respective lists of samples collected by myself and Héloïse Coen, as well as the complete list of species in the geophyte section of the Fribourg Botanical Garden. 
 
-[text](<../../../Desktop/DGBI /geophytes_extrait.csv>)
+[Geophytes collected by Jade Dandois](<../../../Desktop/DGBI /field_data_trimmed.csv>)
+[Geophytes collected by Heloïse Coen](<../../../Desktop/DGBI /Field_Data 20250618-12257.numbers>)
+[Complete list of geophytes](<../../../Desktop/DGBI /geophytes_extrait.csv>)
 
 To cover this sector, a dedicated protocol for sample collection, extraction, and analysis was required.
 
 ## Materials and methods
 
 ### Collect 
+
+La méthode de collecte standard de DBGI a été suivie. 
+Les échantillons (feuille ou fleur) ont été collectés directement sur l'espèce concernée. L'échantillon coupé et prélevé a été conservé dans un papier de filtre a café, inséré dans un falcon tube et plongé dans l'azote liquide à -196 °C jusqu'à la fin de la collecte, puis mis au congélateur à -80°C, jusqu'à lyophilisation ultérieure. Chaque falcon tube est pré-étiqueté avec un code qr unique assigné à l'échantillon et aux données qui lui sont associées sur l'application Qfield (https://qfield.org). Chaque échantillon collecté est rapporté en un point sur la carte qfield, avec les données importantes pour la reconnaissance de la plante, tels que localisation précise, le taxon name, le sample ID (associé au QR code unique sur le falcon tube) ainsi qu'au minimum 5 photos descriptives, respectivement le panneau d'identification de l'espèce, puis une seconde fois avec le falcon tube labélé, une phot générale, puis détaillée de la plante, et finalement une photo de la zone de découpe avec le scalpel. 
+
 
 
 
