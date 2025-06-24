@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750676146377
+updated: 1750784185327
 created: 1741185232433
 ---
 <p align="left">
@@ -40,9 +40,10 @@ Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, w
 # Introduction 
 
 A large number of databases are currently available to the public for biological elements such as proteins (UniProt, https://www.uniprot.org), RNA (Rfam, https://rfam.org/), DNA (NCBI GenBank, https://www.ncbi.nlm.nih.gov/genbank/) or genomes (Ensembl, https://www.ensembl.org/). 
-However, the databases currently available for metabolomics are very limited, focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/).
 
-The Earth Metabolome Initiative (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data. With remarkable foresight, the initiative set out to build a database designed to profile the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI distinguishes itself through its explicit commitment to cross-kingdom coverage and global scale.
+However, the databases currently available for metabolomics  remain quite limited , focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes and centered on known metabolites, or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/). Another accessible database in metabolomics is the Global Natural Products Social Molecular Networking (GNPS), a collaborative platform for the processing and analysis of mass spectrometry data. GNPS includes both known metabolites and unknown metabolomic profiles (reference: Aron).
+
+The Earth Metabolome Initiative (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data. The initiative set out to build a database designed to profile the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly incorporating detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.
 
 ## Earth Metabolome Initiative 
 
@@ -65,6 +66,8 @@ The first project falls within the scope of the Digital Botanical Gardens Initia
 
 The Earth Metabolome Initiative (EMI) is a globally oriented project, and as such, required the development of a pilot version—a scaled-down implementation designed to be applied to nearby, easily accessible, and manipulable living organisms. The Digital Botanical Gardens Initiative was conceived precisely with this objective in mind. 
 
+![alt text](bachelor_project_jade/E31D72E1-F056-4554-A0E7-D976B920E21E_1_105_c.jpeg)
+
 The initiative aims to digitize the chemical diversity of Swiss botanical gardens by creating extract libraries, analyzing them via mass spectrometry, and organizing the data into accessible, interoperable knowledge systems. It also seeks to develop scalable workflows and provide molecular insights to support biodiversity conservation and open science. 
 These aspects of DGBI are fundamental for ensuring reproducibility of laboratory processes and facilitating automatisation, both of which are critical for the large-scale EMI project, which will handle millions of samples.
 
@@ -80,7 +83,8 @@ The harvest from the geophyte section proved particularly relevant, as this sect
 
 Geophytes are perennial plants that exhibit resilience to both severe drought and extreme cold, primarily due to nutrient reserves stored in their underground organs (tubers, bulbs, rhizomes). These reserves enable them to enter a dormant state and persist in the soil until environmental conditions become favorable for growth. <sup><a href="#ref3" id="note3">3</a></sup>
 
-![Map Botanical Garden Fribourg](vault/bachelor_project_jade/E31D72E1-F056-4554-A0E7-D976B920E21E_1_105_c.jpeg)
+
+![Map Botanical Garden Fribourg](/bachelor_project_jade/E31D72E1-F056-4554-A0E7-D976B920E21E_1_105_c.jpeg)
 *Figure 1 – Map of Fribourg botanical garden. The location of the geophyte sector is indicated by point number 10*
 
 Several plant families were collected, including Amaryllidaceae, Liliaceae, Iridaceae and many others, enabling metabolomic patterns to be drawn up for these families, and for all geophyte-type plants.
@@ -88,10 +92,9 @@ Several plant families were collected, including Amaryllidaceae, Liliaceae, Irid
 With the help of Héloïse Coen, 185 samples were collected (including leaves and flowers samples) from 150 species. 128 species remain to be collected (46%), meaning that a substantial portion of the target species has already been covered for this part of the project. 
 
 Below are the respective lists of samples collected by myself and Héloïse Coen, as well as the complete list of species in the geophyte section of the Fribourg Botanical Garden. 
-
-[Geophytes collected by Jade Dandois](vault/bachelor_project_jade/field_data_trimmed.csv)
-[Geophytes collected by Heloïse Coen](vault/bachelor_project_jade/geophytes_heloise.csv)
-[Complete list of geophytes](vault/bachelor_project_jade/geophytes_extrait.csv)
+[Geophytes collected by Jade Dandois](https://github.com/jade147/jade_bachelor_work_repo/blob/a4491cbe601b38fbaab3b5437008505f01ea06e1/field_data_trimmed.csv)
+[Geophytes collected by Heloïse Coen](https://github.com/jade147/jade_bachelor_work_repo/blob/fe70e103e4634caacbb3a798a4f7b7fe4c3beaef/Field_Data%2020250618-12257.csv)
+[Complete list of geophytes](https://github.com/jade147/jade_bachelor_work_repo/blob/fe70e103e4634caacbb3a798a4f7b7fe4c3beaef/geophytes_extrait.csv)
 
 To cover this sector, a dedicated protocol for sample collection, extraction, and analysis was required.
 
@@ -142,7 +145,7 @@ The extraction mixture currently used as a solvent for molecule extraction in th
 
 However, the solvent currently used in the DGBI project is not compatible with downstream analyses in biological or biochemical laboratories, as methanol can damage cells and formic acid can inhibit enzymatic reactions.
 
-## An alternativ to methanol-based extraction 
+## An alternative to methanol-based extraction 
 
 Another solvent currently widely used in biology laboratories is dimethyl sulfoxide (DMSO), a highly stable, soluble, polar, aprotic, and low-toxicity compound, compatible with biological systems<sup><a href="#ref5" id="note5">5</a></sup>. These properties make DMSO an excellent solvent for biological applications.
 
@@ -162,9 +165,9 @@ The resulting 20 samples were then transferred to vials for mass spectrometry an
 
 ## Results 
 
---> est-ce que je met tous les pics ? 
-que les pics les plus beaux ? 
+As previously mentioned, the chromatograms of the samples tested using the three different methods were analyzed. However, given that the sonicated DMSO method did not yield significantly improved results compared to the simple DMSO extraction, only the chromatograms obtained from the methanol–water and simple DMSO methods are presented here for clarity.
 
+Chromatograms for the six species are shown, with two colors representing the methanol–water and DMSO extraction methods. For each species, data from both positive and negative ionization modes are displayed. A single blank chromatogram is included for each ionization mode, serving as a reference for both extraction methods.
 
 ## Discussion and perspectives
 
@@ -174,7 +177,6 @@ Plusieurs différences notables ont été observées entre les échantillons ext
 L'hypothèse de base émise est que le DMSO combiné à la sonication donne des sorties en spectrométrie de masse d'aussi haute qualité qu'avec le solvant à base de méthanol, puisque la sonication permet d'endommager les cellules et ainsi en récupérer un maximum de composants pour l'analyse. Le DMSO uniquement pourrait cependant être de moins bonne qualité (????). 
 
 --> + format 96 puits ? 
-
 
 # Fake extract project 
 
@@ -225,3 +227,5 @@ En premier lieu, l'utilisation d'une plante modèle bien caractérisée de la bi
 <p id="ref5">5. : Balakin, K. v., Ivanenkov, Y. A., Skorenko, A. v., Nikolsky, Y. v., Savchuk, N. P., & Ivashchenko, A. A. (2004). In silico estimation of DMSO solubility of organic compounds for bioscreening. Journal of Biomolecular Screening, 9(1), 22–31. https://doi.org/10.1177/1087057103260006
 
 <p id="ref6">6. : Annesley, T. M. (2003). Ion Suppression in Mass Spectrometry. Clinical Chemistry, 49(7), 1041–1044. https://doi.org/10.1373/49.7.1041
+
+Aron, A. T., Gentry, E. C., McPhail, K. L., Nothias, L. F., Nothias-Esposito, M., Bouslimani, A., Petras, D., Gauglitz, J. M., Sikora, N., Vargas, F., van der Hooft, J. J. J., Ernst, M., Kang, K. bin, Aceves, C. M., Caraballo-Rodríguez, A. M., Koester, I., Weldon, K. C., Bertrand, S., Roullier, C., … Dorrestein, P. C. (2020). Reproducible molecular networking of untargeted mass spectrometry data using GNPS. Nature Protocols, 15(6), 1954–1991. https://doi.org/10.1038/s41596-020-0317-5
