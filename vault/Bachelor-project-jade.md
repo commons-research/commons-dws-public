@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750885873249
+updated: 1750892273431
 created: 1741185232433
 ---
 <p align="left">
@@ -276,19 +276,27 @@ First, we considered using a well-characterized model plant from plant biology, 
 
 To this end, a natural product library from ApexBio ([DiscoveryProbe™ Natural Product Library](https://www.apexbt.com/discoveryprobetm-natural-product-library.html)), comprising 550 compounds, was selected. An accompanying Excel file containing key chemical properties was provided. Before using this library for our analyses and mixture preparation, we first verified the accuracy of the provided data, an essential step for reliable downstream work. In metabolomics, precise knowledge of molecular properties such as exact mass, SMILES, and other associated chemical data is crucial, as molecule detection and identification rely heavily on these parameters.
 
-
 ## Material and methods 
+
+### Data cleaning with python 
+
+
+
+--> Mentionner la classe et le code intéressant 
+--> inclure les 3 csv 
+--> inclure la plaque 3 qui a été choisie comme pilote 
+
+
+Due to the significant amount of time required to clean our molecular data, and the notable inconsistencies in the associated chemical information, we only had time to analyze a single plate. This experiment therefore served as a pilot for the "fake extract project," allowing us to test the planned methodologies and dilutions, and refine them if necessary.
+
+For this purpose, a plate with accurate and reliable associated data was selected, here [plate number 3](https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/plate_3_targets.csv), whose information proved to be correct. While a standard 96-well plate contains 88 molecules (with one column left empty), 89 molecules were analyzed in total, as picrotoxin is an equimolar mixture of two compounds. These molecules were first detected individually. Then, a mixture of the 89 molecules was created and designated as the "fake extract."
+
+### Dilutions and manipulations for single molecules and mixtures
 
 --> détailler les dilutions et les puits (A1, B2, ...)
 --> 2 transfert consécutifs avec la multipipette 
 --> dilution 1 pour le mix 
 --> dilution 2 pour les molécules individuelles 
-
-### Data cleaning with python 
-
---> Mentionner la classe et le code intéressant 
---> inclure les 3 csv 
---> inclure la plaque 3 qui a été choisie comme pilote 
 
 ### Targeted mass spectrometry 
 
@@ -296,13 +304,11 @@ The samples (both individual compounds and the mixture of 89 molecules) were ana
 
 ### Evaluation of extractions
 
-
+For the detection of specific individual molecules and the mixture, the raw data files generated from the mass spectrometry runs were processed using MZmine, applying the appropriate mzBatch configurations for both [positive](https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/rt_extraction_pos_new.mzbatch) and [negative](https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/rt_extraction_neg_new.mzbatch) ionization modes.
 
 ## Results 
 
 --> inclure le diagramme de Venn 
---> que le mix ou pics individuels aussi ? 
---> en méthode, que expliquer la spectrométrie de masse ou aussi les settings sur mzmine ? (Marco a fait et juste envoyé les résultats, j'ai pas les settings)
 
 ## Discussions 
 
