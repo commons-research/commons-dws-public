@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750864488011
+updated: 1750885873249
 created: 1741185232433
 ---
 <p align="left">
@@ -45,7 +45,7 @@ A large number of databases are currently available to the public for biological
 
 However, the databases currently available for metabolomics  remain quite limited , focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes and centered on known metabolites, or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/). Another accessible database in metabolomics is the Global Natural Products Social Molecular Networking (GNPS), a collaborative platform for the processing and analysis of mass spectrometry data. GNPS includes both known metabolites and unknown metabolomic profiles (reference: Aron).
 
-The Earth Metabolome Initiative (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data. The initiative set out to build a database designed to profile the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly incorporating detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.
+The Earth Metabolome Initiative (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data. The initiative set out to build a database designed to profile the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly recovering detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.
 
 ## Earth Metabolome Initiative 
 
@@ -83,7 +83,6 @@ The harvest from the geophyte section proved particularly relevant, as this sect
 
 Geophytes are perennial plants that exhibit resilience to both severe drought and extreme cold, primarily due to nutrient reserves stored in their underground organs (tubers, bulbs, rhizomes). These reserves enable them to enter a dormant state and persist in the soil until environmental conditions become favorable for growth. <sup><a href="#ref3" id="note3">3</a></sup>
 
-
 ![Map Botanical Garden Fribourg](/bachelor_project_jade/E31D72E1-F056-4554-A0E7-D976B920E21E_1_105_c.jpeg)
 *Figure 1 – Map of Fribourg botanical garden. The location of the geophyte sector is indicated by point number 10*
 
@@ -120,23 +119,32 @@ From the previously prepared vials, 120 microlitres of liquid extract were trans
 
 ### Untargeted mass spectrometry 
 
+Untargeted mass spectrometry was used, as we did not know the contents of the extract in advance. Therefore, no specific molecules were targeted. The aim was to analyze as many compounds as possible in the extract and recover as much data as possible.
+
+Samples were first analyzed using High-Performance Liquid Chromatography (HPLC), which separates components based on their polarity and hydrophobicity, employing a non-polar stationary phase and a polar mobile phase. The separated molecules then undergo ionization via electrospray ionization (ESI) in either positive or negative mode, before being detected by an Orbitrap mass spectrometer, offering high mass resolution and accuracy. All molecules are initially detected in MS1, followed by data-dependent acquisition (DDA) where the most intense ions are fragmented in MS2 to generate fragmentation spectra for molecular identification.
+
+--> Référencer l'article correspondant 
+
 ![alt text](bachelor_project_jade/8C3C38C9-A936-43D3-BBB6-FE08B5C6EFF8_4_5005_c.jpeg)
 
-* Figure 2 : Schematic representation of the sample analysis workflow using mass spectrometry.*
-*The process includes separation via High-Performance Liquid Chromatography (HPLC), ionization and detection using an Orbitrap high-resolution mass analyzer, followed by Data-Dependent Acquisition (DDA) for MS/MS fragmentation. The diagram was created using MZmine, with parameters configured through the integrated mWizard assistant.*
-
---> préciser que c'est untargeted 
---> trouver un papier pour l'explication du processus + untargeted 
+*Figure 2 : Schematic representation of the sample analysis workflow using mass spectrometry.*
+*The process includes separation via High-Performance Liquid Chromatography (HPLC), ionization and detection using an Orbitrap high-resolution mass analyzer, followed by Data-Dependent Acquisition (DDA) for MS/MS fragmentation. The diagram was created using MZmine, with parameters configured through the integrated mWizard assistant.* 
 
 ### Inaturalist 
 
 Photographs associated with each collected species, taken during the field collection process, are uploaded to the iNaturalist platform (https://www.inaturalist.org/). This allows the iNaturalist community—including taxonomic experts—to verify species identities based on detailed images, and provides an opportunity to revise any incorrect or incomplete identifications. In turn, the community also benefits from these data, contributing to the ongoing expansion of the iNaturalist database. [The following map delineates the geographic range corresponding to the geolocated geophyte observations recorded on iNaturalist.](https://www.inaturalist.org/observations?nelat=46.79293526196035&nelng=7.156343175796218&subview=map&swlat=46.792731427890715&swlng=7.155914022353835&user_id=dbgi&verifiable=any)
 
-## Conclusion and Perspectives 
+## Conclusion 
+
+I was therefore able to contribute to the progress of the DGBI pilot by collecting a number of samples from the geophyte sector. Although 46% of this sector still remains to be sampled, metabolomic profiles can already be generated for many of the collected species, with more to follow once sampling is complete. This may eventually enable the identification of metabolomic patterns specific to geophyte plants, and help uncover links or characteristic natural product signatures within certain plant families.
  
-Comme dit précédemment... regarder si les jardins botaniques des autres uni ont aussi été impliqués dans DBGI ou pas encore, et les mettre dans perspectives si c'est pas encore le cas. 
---> Regarder avec PMA 
---> attendre le mail de Neuchâtel 
+## Perspectives 
+
+The initial objective of the Swiss Digital Botanical Gardens Initiative (DGBI) was to establish metabolomic profiles of plant species growing in Swiss botanical gardens. To this end, species from the [Botanical Garden of Fribourg](https://www.unifr.ch/jardin-botanique/fr/) were first collected. Since then, several other botanical gardens in Switzerland have expressed interest in participating in the initiative, including the [Botanical Garden of Neuchâtel](https://www.jbneuchatel.ch)—where a number of species have already been sampled—as well as the [Conservatory and Botanical Garden of Geneva](https://www.cjbg.ch/) and the [Alpine Botanical Garden Flore-Alpe in Champex-Lac](https://www.flore-alpe.ch/fr/).
+
+Although DGBI began in Switzerland, the project is designed to expand internationally. It will remain open as an open science database, not solely as an EMI pilot project. The initiative has already started extending beyond Switzerland, notably with the involvement of the [Royal Botanic Gardens, Kew](https://www.kew.org)—a significant development, given that Kew holds around 68,000 specimens representing approximately 18,000 species.
+
+--> attendre le mail de Neuchâtel pour les chiffres exactes (pas encore reçu de réponse)
 
 # DMSO Project 
 
@@ -173,7 +181,7 @@ The resulting 20 samples were then transferred to vials for mass spectrometry an
 
 ### Evaluation of extractions
 
-The files generated from mass spectrometry analysis of the samples were processed using MZmine for the interpretation of the resulting chromatograms, applying the following mzBatch configuration : 
+The files generated from mass spectrometry analysis of the samples were processed using MZmine for the interpretation of the resulting chromatograms, applying the [following mzBatch configuration](https://github.com/digital-botanical-gardens-initiative/dmso-meoh-extraction-evaluation/blob/9d98ba18332c9316a3f8d11c8f3bf25549dc62b8/docs/mapp_project_00067/mapp_batch_00173/results/mzmine/mapp_batch_00173_maclocal.mzbatch)
 
 ## Results 
 
@@ -256,13 +264,18 @@ The comparison of chromatograms obtained from the two extraction methods enabled
 
 --> Revoir la définition avec le projet lotus. 
 
+L’un des objectifs à long terme de l’Earth Metabolome Initiative (EMI) est de prédire la chimie encore inexplorée de la vie sur Terre. Actuellement, lorsqu’un extrait naturel est analysé par spectrométrie de masse non ciblée, le profil moléculaire obtenu ne permet pas de déterminer avec certitude si certains composés ont été perdus au cours du processus. En effet, l’ionisation en spectrométrie de masse est intrinsèquement compétitive : seules les molécules présentant des propriétés physico-chimiques favorables — telles que la polarité, la basicité, l’acidité, la masse moléculaire ou certaines caractéristiques structurales — s’ionisent efficacement. D’autres peuvent être fortement désavantagées par des phénomènes comme la suppression d’ionisation<sup><a href="#ref6" id="note6">6</a></sup>, ce qui entraîne une diminution, voire une absence, de signal dans des mélanges naturels complexes.
+
 One of the long-term goals of the Earth Metabolome Initiative (EMI) is to predict the yet unexplored chemistry of life on Earth. At present, when a natural extract is subjected to untargeted mass spectrometry, the resulting molecular profile does not allow us to determine with certainty whether certain compounds were lost during the process. Indeed, ionization in mass spectrometry is inherently competitive: only molecules with favorable physicochemical properties—such as polarity, basicity, acidity, molecular weight, or structural features—ionize efficiently. Others may be significantly disadvantaged by phenomena such as ion suppression<sup><a href="#ref6" id="note6">6</a></sup>, leading to a reduced or even absent signal in complex natural mixtures.
 
 To model these losses and anticipate the missing chemistry within natural extracts, we designed the *Fake Extract Project*. This approach relies on the analysis of an artificial mixture composed of 89 well-characterized reference compounds, processed through mass spectrometry. By comparing the output signal to the known initial composition, it becomes possible to quantify compound-specific detection losses. This strategy allows for the calibration and correction of experimental outputs by accounting for ionization biases, with the ultimate aim of more faithfully approximating the complete chemical composition of natural extracts.
 
 ## Bibliothèque de produits naturels ApexBio
 
-En premier lieu, l'utilisation d'une plante modèle bien caractérisée de la biologie végétale a été envisagée, telle que Arabidopsis thaliana. Cependant, .. 
+First, we considered using a well-characterized model plant from plant biology, such as Arabidopsis thaliana. However, we realized that even the metabolome of such a plant is neither well characterized nor well understood. Moreover, it is very complex. To overcome this problem, we created a "fake extract": a mixture of well-cataloged natural products whose chemical characteristics are known. This allows us to obtain an exact result of what was lost during the mass spectrometry run since the exact composition of the mixture is known from the beginning.
+
+To this end, a natural product library from ApexBio ([DiscoveryProbe™ Natural Product Library](https://www.apexbt.com/discoveryprobetm-natural-product-library.html)), comprising 550 compounds, was selected. An accompanying Excel file containing key chemical properties was provided. Before using this library for our analyses and mixture preparation, we first verified the accuracy of the provided data, an essential step for reliable downstream work. In metabolomics, precise knowledge of molecular properties such as exact mass, SMILES, and other associated chemical data is crucial, as molecule detection and identification rely heavily on these parameters.
+
 
 ## Material and methods 
 
@@ -277,9 +290,13 @@ En premier lieu, l'utilisation d'une plante modèle bien caractérisée de la bi
 --> inclure les 3 csv 
 --> inclure la plaque 3 qui a été choisie comme pilote 
 
-### Chromatographie en phase liquide 
+### Targeted mass spectrometry 
 
---> comme en haut, mais préciser que c'est targeted 
+The samples (both individual compounds and the mixture of 89 molecules) were analyzed by mass spectrometry to determine which compounds were detected. The workflow was identical to that [described above](#untargeted-mass-spectrometry), using high-performance liquid chromatography (HPLC) coupled to high-resolution Orbitrap mass spectrometry with data-dependent acquisition (DDA). However, unlike the analysis of unknown natural product extracts, this process was performed in a targeted manner. In this case, the identities of the compounds present at the outset were already known, and the goal was specifically to assess whether these known molecules could be detected after the mass spectrometry run, hence the targeted approach.
+
+### Evaluation of extractions
+
+
 
 ## Results 
 
@@ -312,3 +329,5 @@ En premier lieu, l'utilisation d'une plante modèle bien caractérisée de la bi
 Aron, A. T., Gentry, E. C., McPhail, K. L., Nothias, L. F., Nothias-Esposito, M., Bouslimani, A., Petras, D., Gauglitz, J. M., Sikora, N., Vargas, F., van der Hooft, J. J. J., Ernst, M., Kang, K. bin, Aceves, C. M., Caraballo-Rodríguez, A. M., Koester, I., Weldon, K. C., Bertrand, S., Roullier, C., … Dorrestein, P. C. (2020). Reproducible molecular networking of untargeted mass spectrometry data using GNPS. Nature Protocols, 15(6), 1954–1991. https://doi.org/10.1038/s41596-020-0317-5
 
 Sonication: définition, principe, exemples d'applications. SinapTec, www.sinaptec.fr/sonication-definition-principe-exemples/. Accessed 25 June 2025.
+
+Hilaire, P. B. saint, Rousseau, K., Seyer, A., Dechaumet, S., Damont, A., Junot, C., & Fenaille, F. (2020). Comparative evaluation of data dependent and data independent acquisition workflows implemented on an orbitrap fusion for untargeted metabolomics. Metabolites, 10(4). https://doi.org/10.3390/metabo10040158
