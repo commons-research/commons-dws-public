@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750784185327
+updated: 1750864488011
 created: 1741185232433
 ---
 <p align="left">
@@ -37,6 +37,8 @@ Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, w
 
 # Abstract 
 
+--> à faire tout à la fin 
+
 # Introduction 
 
 A large number of databases are currently available to the public for biological elements such as proteins (UniProt, https://www.uniprot.org), RNA (Rfam, https://rfam.org/), DNA (NCBI GenBank, https://www.ncbi.nlm.nih.gov/genbank/) or genomes (Ensembl, https://www.ensembl.org/). 
@@ -65,8 +67,6 @@ The first project falls within the scope of the Digital Botanical Gardens Initia
 ## Digital Botanical Gardens Initiative 
 
 The Earth Metabolome Initiative (EMI) is a globally oriented project, and as such, required the development of a pilot version—a scaled-down implementation designed to be applied to nearby, easily accessible, and manipulable living organisms. The Digital Botanical Gardens Initiative was conceived precisely with this objective in mind. 
-
-![alt text](bachelor_project_jade/E31D72E1-F056-4554-A0E7-D976B920E21E_1_105_c.jpeg)
 
 The initiative aims to digitize the chemical diversity of Swiss botanical gardens by creating extract libraries, analyzing them via mass spectrometry, and organizing the data into accessible, interoperable knowledge systems. It also seeks to develop scalable workflows and provide molecular insights to support biodiversity conservation and open science. 
 These aspects of DGBI are fundamental for ensuring reproducibility of laboratory processes and facilitating automatisation, both of which are critical for the large-scale EMI project, which will handle millions of samples.
@@ -118,9 +118,15 @@ The weighed samples were ground using a Retsch shaker for 2.5 minutes at 25 Hz. 
 
 From the previously prepared vials, 120 microlitres of liquid extract were transferred into new vials equipped with inserts to create aliquots. The vials were carefully sealed using slipped caps. The resulting aliquots were then subjected to liquid chromatography–mass spectrometry (LC-MS), and the spectra were analyzed using appropriate tools and software (further details are provided in the subsequent sections of the project).
 
-### Chromatographie en phase liquide 
+### Untargeted mass spectrometry 
+
+![alt text](bachelor_project_jade/8C3C38C9-A936-43D3-BBB6-FE08B5C6EFF8_4_5005_c.jpeg)
+
+* Figure 2 : Schematic representation of the sample analysis workflow using mass spectrometry.*
+*The process includes separation via High-Performance Liquid Chromatography (HPLC), ionization and detection using an Orbitrap high-resolution mass analyzer, followed by Data-Dependent Acquisition (DDA) for MS/MS fragmentation. The diagram was created using MZmine, with parameters configured through the integrated mWizard assistant.*
 
 --> préciser que c'est untargeted 
+--> trouver un papier pour l'explication du processus + untargeted 
 
 ### Inaturalist 
 
@@ -130,6 +136,7 @@ Photographs associated with each collected species, taken during the field colle
  
 Comme dit précédemment... regarder si les jardins botaniques des autres uni ont aussi été impliqués dans DBGI ou pas encore, et les mettre dans perspectives si c'est pas encore le cas. 
 --> Regarder avec PMA 
+--> attendre le mail de Neuchâtel 
 
 # DMSO Project 
 
@@ -137,13 +144,11 @@ Comme dit précédemment... regarder si les jardins botaniques des autres uni on
 
 As outlined in the [introduction](#introduction), DGBI is a recent pilot project, one of whose objectives is to evaluate and refine current collection and extraction methodologies, with the aim of improving them where necessary.
 
-One of the long-term objectives of both EMI and DGBI is to generate libraries of molecules obtained through sample extractions, with the aim of enabling their reuse and distribution to other laboratories for high-throughput biological screening.
+One of the long-term objectives of both EMI and DGBI is to generate libraries of molecules obtained through sample extractions, with the aim of enabling their reuse and distribution to other laboratories for further bioanalysis, including high-throughput biological screening.
 
 High-throughput screening (HTS) enables the automated testing of compound libraries to assess their activity against various biological targets. HTS is now extensively used in drug discovery, medical diagnostics, stem cell research, and genetic studies<sup><a href="#ref4" id="note4">4</a></sup>.
 
-The extraction mixture currently used as a solvent for molecule extraction in the DGBI project consists of 80% methanol, 20% distilled water, and 0.1% formic acid, for a total volume of 200 mL. This composition has proven to be highly effective in extracting metabolites from our samples.
-
-However, the solvent currently used in the DGBI project is not compatible with downstream analyses in biological or biochemical laboratories, as methanol can damage cells and formic acid can inhibit enzymatic reactions.
+The extraction mixture currently used as a solvent for molecule extraction in the DGBI project consists of 80% methanol, 20% distilled water, and 0.1% formic acid, for a total volume of 200 mL. This composition has proven to be highly effective in extracting metabolites from our samples. However, the solvent currently used in the DGBI project for samples extraction is not compatible with downstream analyses in biological or biochemical laboratories, as methanol can damage cells and formic acid can inhibit enzymatic reactions.
 
 ## An alternative to methanol-based extraction 
 
@@ -157,28 +162,99 @@ This study therefore aims to assess whether DMSO could serve as a suitable alter
 
 The [standard DBGI extraction protocol](#extraction) described above was followed for this pilot study, with the exception of the extraction solvent, which was modified for comparative purposes.
 
-In this experiment, six well-documented plant samples (*Erythroxylum coca*, *Salvia officinalis*, *Nicotiana tabacum*, *Lavandula angustifolia*, *Echinacea purpurea*, and *Cannabis sativa*) were tested using three extraction methods: the standard DBGI protocol with its usual solvent (80% methanol, 20% distilled water, 0.1% formic acid), a pure DMSO extraction (99.8%), and a DMSO extraction followed by sonication (5 minutes of high-frequency sound wave pulses generating bubbles that promote cell lysis).
+In this experiment, six well-documented plant samples (*Valeriana officinalis*, *Echinacea purpurea*, *Cannabis sativa*, *Erythroxylum coca*, *Salvia officinalis*, and *Nicotiana tabacum*) were tested using three extraction methods: the standard DBGI protocol with its usual solvent (80% methanol, 20% distilled water, 0.1% formic acid), a pure DMSO extraction (99.8%), and a DMSO extraction followed by sonication (5 minutes of high-frequency sound wave pulses generating bubbles that promote cell lysis).
 
 For each method, one Eppendorf tube was prepared per sample. Two blanks were also included in the experiment, using the methanol-water-formic acid mixture and pure DMSO, respectively.
 
+![alt text](bachelor_project_jade/703ef64f-355e-430f-a742-e511a483a0db.jpg)
+*Figure 3 : Eppendorf tubes after centrifugation with supernatant ready for recovery. The 6 samples per extraction method (A, B, C) are shown. A: Methanol-water-formic acid extraction method; B: Simple DMSO extraction; C: DMSO extraction with sonication.* 
+
 The resulting 20 samples were then transferred to vials for mass spectrometry and subsequent analysis.
+
+### Evaluation of extractions
+
+The files generated from mass spectrometry analysis of the samples were processed using MZmine for the interpretation of the resulting chromatograms, applying the following mzBatch configuration : 
 
 ## Results 
 
 As previously mentioned, the chromatograms of the samples tested using the three different methods were analyzed. However, given that the sonicated DMSO method did not yield significantly improved results compared to the simple DMSO extraction, only the chromatograms obtained from the methanol–water and simple DMSO methods are presented here for clarity.
 
-Chromatograms for the six species are shown, with two colors representing the methanol–water and DMSO extraction methods. For each species, data from both positive and negative ionization modes are displayed. A single blank chromatogram is included for each ionization mode, serving as a reference for both extraction methods.
+Chromatographic profiles of extracts from the six species, obtained using methanol–water and DMSO extraction methods (represented by two colors), are superimposed to compare signal intensities and metabolic patterns as a function of retention time. The annotated peaks correspond to the majority compounds detected. 
+For each species, data from both positive and negative ionization modes are displayed. A single blank chromatogram is included for each ionization mode, serving as a reference for both extraction methods. 
+The annotated peaks correspond to the majority compounds detected. 
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 17.28.jpg>)
+*Figure 4 : Positive ionization chromatograms obtained for Valeriana officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002560_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002560_03_01.mzML (blue): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 18.00.jpg>)
+*Figure 5 : Negative ionization chromatograms obtained for Valeriana officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002560_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002560_03_01_neg.mzML (orange): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 17.32.jpg>)
+*Figure 6 : Positive ionization chromatograms obtained for Echinacea purpurea after extraction by two separate methods. 20250506_CVOL_dbgi_002976_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002976_03_01.mzML (blue): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 18.02.jpg>)
+*Figure 7 : Negative ionization chromatograms obtained for Echinacea purpurea after extraction by two separate methods. 20250506_CVOL_dbgi_002976_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002976_03_01_neg.mzML (orange): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 17.36.jpg>)
+*Figure 8 : Positive ionization chromatograms obtained for Cannabis sativa after extraction by two separate methods. 20250506_CVOL_dbgi_002251_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002251_03_01.mzML (blue): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 18.05 2.jpg>)
+*Figure 9 : Negative ionization chromatograms obtained for Cannabis sativa after extraction by two separate methods. 20250506_CVOL_dbgi_002251_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002251_03_01_neg.mzML (orange): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 17.42.jpg>)
+*Figure 10 : Positive ionization chromatograms obtained for Erythroxylum coca after extraction by two separate methods. 20250506_CVOL_dbqi_002893_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbqi_002893_03_01.mzML (blue): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 18.07.jpg>)
+*Figure 11 : Negative ionization chromatograms obtained for Erythroxylum coca after extraction by two separate methods. 20250506_CVOL_dbgi_002893_02_01_neq.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi002893_03_01_neg.mzML (orange): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 17.46.jpg>)
+*Figure 12 : Positive ionization chromatograms obtained for Salvia officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002605_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002605_03_01.mzML (blue): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 18.09.jpg>)
+*Figure 13 : Negative ionization chromatograms obtained for Salvia officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002605_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002605_03_01_neg.mzML (orange): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 17.52.jpg>)
+*Figure 14 : Positive ionization chromatograms obtained for Nicotiana tabacum after extraction by two separate methods. 20250506_CVOL_dbgi_002414_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002414_03_01.mzML (blue): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 18.14.jpg>)
+*Figure 15 : Negative ionization chromatograms obtained for Nicotiana tabacum after extraction by two separate methods. 20250506 CVOL dbgi 002414 02 01 neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002414_03_01_neg.mzML (orange): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 17.55.jpg>)
+*Figure 16 : Positive ionization chromatograms obtained for the blank.20250506_CVOL_dbgi_bk_MeOH-H20_53.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_bk_DMSO_58.mzML (yellow): DMSO extraction method.*
+
+![alt text](<bachelor_project_jade/Image 24.06.25 à 18.15.jpg>)
+*Figure 17 : Negative ionization chromatograms obtained for the blank.20250506_CVOL_dbgi_bk_MeOH-H20_53_neg.mzML (blue): methanol-water-formic acid method; 20250506 CVOL dbgi bk DMSO 58 neg.mzML (red): DMSO extraction method.*
+
+Comparative chromatograms of the two extraction methods show nearly superimposed results. In some cases, there are slight differences in detection; some peaks are better detected with the methanol extraction method, while others are better detected with the DMSO extraction method. Overall, the peaks are comparable and overlap with very high precision.
+
+The comparative chromatograms differ according to the ionization mode, revealing that different molecules were detected in positive and negative ionization modes.
 
 ## Discussion and perspectives
 
-Plusieurs différences notables ont été observées entre les échantillons extraits au DMSO et ceux extraits au méthanol. Tout d'abord, le DMSO gèle à -80°C, tandis que le méthanol reste à l'état liquide. De plus, les extraits obtenus avec le DMSO moussent après agitation au shaker, et leur couleur est nettement plus foncée. 
---> important de le mentionner ? 
+Several notable differences were observed between samples extracted with dimethyl sulfoxide (DMSO) and those extracted with methanol. First, DMSO freezes at 19°C and is solid at -80°C, whereas methanol freezes at around -98°C and remains liquid at -80°C. Using DMSO as the extraction liquid requires additional thawing time, since samples can only be handled in the liquid phase. Furthermore, extracts obtained with DMSO foam after shaking and are significantly darker in color. However, almost all of the foam disappears during centrifugation. This enables the correct extraction of the supernatant without aspirating foam along with it.
 
-L'hypothèse de base émise est que le DMSO combiné à la sonication donne des sorties en spectrométrie de masse d'aussi haute qualité qu'avec le solvant à base de méthanol, puisque la sonication permet d'endommager les cellules et ainsi en récupérer un maximum de composants pour l'analyse. Le DMSO uniquement pourrait cependant être de moins bonne qualité (????). 
+![alt text](<bachelor_project_jade/Image 25.06.25 à 12.05.jpg>)
+*Figure 18 : Eppendorf tubes before centrifugation containing 2 extracts of Erythroxylum coca by 2 extraction methods; Left: DMSO extraction: Right: methanol-water-formic acid extraction.*
 
---> + format 96 puits ? 
+Sonication was employed in combination with DMSO for the third extraction method, as it enables the release of intracellular metabolites by lysing cell membranes. It relies on ultrasonic waves to generate bubbles in a liquid, which, upon implosion, produce high localized pressures and temperatures, thereby disrupting biological structures such as cellular membranes.
+
+The initial hypothesis was that DMSO combined with sonication would yield mass spectrometry outputs of comparable quality to those obtained with methanol-based solvents, since sonication facilitates extensive cell disruption and maximizes compound recovery for analysis. However, sonicated DMSO produced results of similar—or even lower—quality than DMSO alone. This suggests, on one hand, that DMSO is highly effective as a standalone extraction solvent, and on the other hand, that combining sonication with DMSO may potentially damage biological structures beyond the cell membranes in our extracts. Further analyses or a reduction in sonication time could be considered for the protocol, to observe whether results are better, similar, or again of poorer quality.
+
+### Conversion of libraries to 96-well format
+
+In order to submit our natural product extracts to bioassay screening by external bioanalytical laboratories, it is essential to provide the samples in a format compatible with such analyses. To this end, we are currently reformatting our extract libraries in a 69-well configuration.
+
+This reformatting step will be integrated with our ongoing results on DMSO-based extraction, thereby enabling us to refine our methodologies and improve sample compatibility for downstream bioassays and bioactive compound discovery.
+
+The currently considered format for the 96-well libraries is the [AlteTube™ Screw Cap 2D Barcoded Tubes – External Thread – 96 SBS Rack](https://www.altemislab.com/2d-barcoded-tubes/external-thread-tubes-96-sbs-rack/). Further evaluation will determine its suitability for both our sample types and the subsequent bioanalytical workflows.
+
+## Conclusion 
+
+The comparison of chromatograms obtained from the two extraction methods enabled the evaluation of the compounds detected using both DMSO- and methanol-based protocols. The results are highly promising: the near-perfect overlap of peaks indicates that simple DMSO extraction is as effective as the conventional methanol/water/formic acid mixture in recovering the molecules in our extracts. This finding opens the possibility of replacing the current solvent with DMSO in the extraction protocol. Combined with a 96-well format, this approach would allow for the reuse of extracted samples in high-throughput screening and facilitate the sharing of these extracts with other laboratories for bioactive compound discovery, thus aligning with one of EMI’s key objectives.
 
 # Fake extract project 
+
+--> Revoir la définition avec le projet lotus. 
 
 One of the long-term goals of the Earth Metabolome Initiative (EMI) is to predict the yet unexplored chemistry of life on Earth. At present, when a natural extract is subjected to untargeted mass spectrometry, the resulting molecular profile does not allow us to determine with certainty whether certain compounds were lost during the process. Indeed, ionization in mass spectrometry is inherently competitive: only molecules with favorable physicochemical properties—such as polarity, basicity, acidity, molecular weight, or structural features—ionize efficiently. Others may be significantly disadvantaged by phenomena such as ion suppression<sup><a href="#ref6" id="note6">6</a></sup>, leading to a reduced or even absent signal in complex natural mixtures.
 
@@ -189,6 +265,11 @@ To model these losses and anticipate the missing chemistry within natural extrac
 En premier lieu, l'utilisation d'une plante modèle bien caractérisée de la biologie végétale a été envisagée, telle que Arabidopsis thaliana. Cependant, .. 
 
 ## Material and methods 
+
+--> détailler les dilutions et les puits (A1, B2, ...)
+--> 2 transfert consécutifs avec la multipipette 
+--> dilution 1 pour le mix 
+--> dilution 2 pour les molécules individuelles 
 
 ### Data cleaning with python 
 
@@ -229,3 +310,5 @@ En premier lieu, l'utilisation d'une plante modèle bien caractérisée de la bi
 <p id="ref6">6. : Annesley, T. M. (2003). Ion Suppression in Mass Spectrometry. Clinical Chemistry, 49(7), 1041–1044. https://doi.org/10.1373/49.7.1041
 
 Aron, A. T., Gentry, E. C., McPhail, K. L., Nothias, L. F., Nothias-Esposito, M., Bouslimani, A., Petras, D., Gauglitz, J. M., Sikora, N., Vargas, F., van der Hooft, J. J. J., Ernst, M., Kang, K. bin, Aceves, C. M., Caraballo-Rodríguez, A. M., Koester, I., Weldon, K. C., Bertrand, S., Roullier, C., … Dorrestein, P. C. (2020). Reproducible molecular networking of untargeted mass spectrometry data using GNPS. Nature Protocols, 15(6), 1954–1991. https://doi.org/10.1038/s41596-020-0317-5
+
+Sonication: définition, principe, exemples d'applications. SinapTec, www.sinaptec.fr/sonication-definition-principe-exemples/. Accessed 25 June 2025.
