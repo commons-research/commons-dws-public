@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750892273431
+updated: 1750920639746
 created: 1741185232433
 ---
 <p align="left">
@@ -31,7 +31,7 @@ and modeling of data loss in mass spectrometry
 
 # Acknowledgements 
 
-I would like to extend my heartfelt thanks to Pierre-Marie Allard, my professor and supervisor during these three months of academic work. I am deeply grateful for his unwavering dedication, his genuine interest in this remarkable project, and the invaluable guidance he has provided throughout. I hold great admiration for both his work and the inspiring project he initiated and continues to nurture with such commitment.
+I would like to extend my heartfelt thanks to Pierre-Marie Allard, my supervisor during these three months of academic work. I am deeply grateful for his unwavering dedication, his genuine interest in this remarkable project, and the invaluable guidance he has provided throughout. I hold great admiration for both his work and the inspiring project he initiated and continues to nurture with such commitment.
 
 Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, who greatly supported me during the collection of geophytes and extraction processes—your help and our shared moments of collaboration were truly appreciated. Edouard Brülhart, thank you for patiently introducing me to the sampling techniques and the functioning of the laboratory. Colin Volet, for your guidance with the technical aspects of mass spectrometry, your expertise was essential. And finally, Marco Visani, for your remarkable patience and guidance in bioinformatics—thanks to you, I was able to significantly deepen my understanding of coding, an invaluable tool for the work I was entrusted with.
 
@@ -44,8 +44,11 @@ Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, w
 A large number of databases are currently available to the public for biological elements such as proteins (UniProt, https://www.uniprot.org), RNA (Rfam, https://rfam.org/), DNA (NCBI GenBank, https://www.ncbi.nlm.nih.gov/genbank/) or genomes (Ensembl, https://www.ensembl.org/). 
 
 However, the databases currently available for metabolomics  remain quite limited , focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes and centered on known metabolites, or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/). Another accessible database in metabolomics is the Global Natural Products Social Molecular Networking (GNPS), a collaborative platform for the processing and analysis of mass spectrometry data. GNPS includes both known metabolites and unknown metabolomic profiles (reference: Aron).
+#TODO add ref to LOTUS !
 
-The Earth Metabolome Initiative (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data. The initiative set out to build a database designed to profile the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly recovering detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.
+#TODO add link whenever possible. E.g [Earth Metabolome Initiative](https://www.earthmetabolome.org/)
+
+The Earth Metabolome Initiative (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard and Emmanuel Defossez, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data for the species of our planet. The initiative set out to build a knowledge graph designed to gather the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly recovering detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.
 
 ## Earth Metabolome Initiative 
 
@@ -58,10 +61,11 @@ Establishing a comprehensive, publicly accessible database of species-specific m
 
 The establishment of a global metabolomic map by the Earth Metabolome Initiative (EMI) will also enable the integration of existing biological datasets with newly generated molecular data. This will facilitate the development of novel insights, such as evolutionary models of the metabolome, and may even allow for the prediction of the chemistry of yet-undiscovered organisms by identifying specific natural product patterns linked to molecular and ecological contexts.
 
-This project is highly ambitious, and although a significant amount of data has already been collected, the establishment of a global metabolomic database is likely to take many years to fully materialize. For this reason, several pilot projects have been initiated to test data acquisition methodologies and to focus on specific components of the broader initiative, avoiding unnecessary dispersion.
+This project is highly ambitious, and although a significant amount of data has already been collected, the establishment of a global metabolomic database is likely to take decades to fully materialize. For this reason, several pilot projects have been initiated to test data acquisition methodologies and to focus on specific components of the broader initiative, avoiding unnecessary dispersion.
 
 Three of these EMI pilot projects formed the core of my bachelor's thesis and were specifically designed to address key objectives of the Earth Metabolome Initiative.
 
+#TODO link DBGI
 The first project falls within the scope of the Digital Botanical Gardens Initiative, a botanical-scale precursor to EMI, in which I participated by collecting samples from the geophyte section of the Fribourg Botanical Garden. The second project aimed to refine our extraction methods by comparing the currently used methanol-based solvent with dimethyl sulfoxide (DMSO), thereby improving the biocompatibility of our extracts for subsequent bioassays. The third project is part of the PhD research of Marco Visani and focuses on modeling molecular data loss in mass spectrometry, with the goal of predicting the chemistry of living organisms based on unknown natural extracts.
 
 ## Digital Botanical Gardens Initiative 
@@ -71,6 +75,7 @@ The Earth Metabolome Initiative (EMI) is a globally oriented project, and as suc
 The initiative aims to digitize the chemical diversity of Swiss botanical gardens by creating extract libraries, analyzing them via mass spectrometry, and organizing the data into accessible, interoperable knowledge systems. It also seeks to develop scalable workflows and provide molecular insights to support biodiversity conservation and open science. 
 These aspects of DGBI are fundamental for ensuring reproducibility of laboratory processes and facilitating automatisation, both of which are critical for the large-scale EMI project, which will handle millions of samples.
 
+#TODO link to fribourg botanical gardens website
 One of the key advantages offered by Swiss botanical gardens—particularly the Fribourg Botanical Garden, on which I focused my work—is the remarkable diversity they host; approximately 5,000 plant are cultivated and conserved there. Proximity is another crucial factor, as the garden is located within the University of Fribourg campus, providing immediate access to laboratories where analytical work is conducted. The plants are also highly convenient for experimental work: they are stationary, easy to sample in sufficient quantity, and accessible for repeated collections from the same individuals or locations when needed.
 
 While the plants are cultivated rather than growing in their natural habitats—an aspect that may slightly influence their metabolic profiles—the primary objective here is not ecological fidelity, but rather the establishment of a solid reference framework. The garden setting provides an ideal platform for testing physical and bioinformatic tools involved in building a curated chemical library, and for evaluating the feasibility of a large-scale digitization project.
