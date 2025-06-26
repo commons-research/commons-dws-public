@@ -3,7 +3,7 @@ id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
 <<<<<<< HEAD
-updated: 1750920639746
+updated: 1750963066715
 =======
 updated: 1750952292015
 >>>>>>> 53155ed (update neuchatel dbgi)
@@ -70,6 +70,7 @@ This project is highly ambitious, and although a significant amount of data has 
 Three of these EMI pilot projects formed the core of my bachelor's thesis and were specifically designed to address key objectives of the Earth Metabolome Initiative.
 
 #TODO link DBGI
+
 The first project falls within the scope of the Digital Botanical Gardens Initiative, a botanical-scale precursor to EMI, in which I participated by collecting samples from the geophyte section of the Fribourg Botanical Garden. The second project aimed to refine our extraction methods by comparing the currently used methanol-based solvent with dimethyl sulfoxide (DMSO), thereby improving the biocompatibility of our extracts for subsequent bioassays. The third project is part of the PhD research of Marco Visani and focuses on modeling molecular data loss in mass spectrometry, with the goal of predicting the chemistry of living organisms based on unknown natural extracts.
 
 ## Digital Botanical Gardens Initiative 
@@ -80,6 +81,7 @@ The initiative aims to digitize the chemical diversity of Swiss botanical garden
 These aspects of DGBI are fundamental for ensuring reproducibility of laboratory processes and facilitating automatisation, both of which are critical for the large-scale EMI project, which will handle millions of samples.
 
 #TODO link to fribourg botanical gardens website
+
 One of the key advantages offered by Swiss botanical gardens—particularly the Fribourg Botanical Garden, on which I focused my work—is the remarkable diversity they host; approximately 5,000 plant are cultivated and conserved there. Proximity is another crucial factor, as the garden is located within the University of Fribourg campus, providing immediate access to laboratories where analytical work is conducted. The plants are also highly convenient for experimental work: they are stationary, easy to sample in sufficient quantity, and accessible for repeated collections from the same individuals or locations when needed.
 
 While the plants are cultivated rather than growing in their natural habitats—an aspect that may slightly influence their metabolic profiles—the primary objective here is not ecological fidelity, but rather the establishment of a solid reference framework. The garden setting provides an ideal platform for testing physical and bioinformatic tools involved in building a curated chemical library, and for evaluating the feasibility of a large-scale digitization project.
@@ -149,11 +151,29 @@ I was therefore able to contribute to the progress of the DGBI pilot by collecti
  
 ## Perspectives 
 
-The initial objective of the Swiss Digital Botanical Gardens Initiative (DGBI) was to establish metabolomic profiles of plant species growing in Swiss botanical gardens. To this end, species from the [Botanical Garden of Fribourg](https://www.unifr.ch/jardin-botanique/fr/) were first collected. Since then, several other botanical gardens in Switzerland have expressed interest in participating in the initiative, including the [Botanical Garden of Neuchâtel](https://www.jbneuchatel.ch)—where a number of species have already been sampled—as well as the [Conservatory and Botanical Garden of Geneva](https://www.cjbg.ch/) and the [Alpine Botanical Garden Flore-Alpe in Champex-Lac](https://www.flore-alpe.ch/fr/).
+The initial objective of the Swiss Digital Botanical Gardens Initiative (DGBI) was to establish metabolomic profiles of plant species growing in Swiss botanical gardens. To this end, species from the [Botanical Garden of Fribourg](https://www.unifr.ch/jardin-botanique/fr/) were first collected. Since then, several other botanical gardens in Switzerland have expressed interest in participating in the initiative, including the [Botanical Garden of Neuchâtel](https://www.jbneuchatel.ch)—where a number of species have already been sampled ([more details below](#progress-of-the-neuchâtel-botanical-garden-collection))—as well as the [Conservatory and Botanical Garden of Geneva](https://www.cjbg.ch/) and the [Alpine Botanical Garden Flore-Alpe in Champex-Lac](https://www.flore-alpe.ch/fr/).
 
 Although DGBI began in Switzerland, the project is designed to expand internationally. It will remain open as an open science database, not solely as an EMI pilot project. The initiative has already started extending beyond Switzerland, notably with the involvement of the [Royal Botanic Gardens, Kew](https://www.kew.org)—a significant development, given that Kew holds around 68,000 specimens representing approximately 18,000 species.
 
---> attendre le mail de Neuchâtel pour les chiffres exactes (pas encore reçu de réponse)
+### Progress of the Neuchâtel botanical garden collection
+
+Regarding the Neuchâtel Botanical Garden, a few figures can be mentioned. Currently 1,300 samples have been collected, of which 880 have been matched with the botanical garden's database. This has made it possible to link them to their IPEN (International Plant Exchange Network) codes.
+
+According to the database, the garden contains approximately 2,600 different plant species. At first glance, this may suggest a significant gap ; however, many of these plants are still under cultivation (in greenhouses or outdoors) and are therefore too small to be sampled. Others are not yet labeled, which also complicates the sampling process.
+
+Several of the diagrams below illustrate the situation of the Neuchâtel Botanic Garden in terms of diversity and in comparison with global diversity.
+
+![alt text](bachelor_project_jade/area_point_layer_directus.png)
+*Figure 3 : Location and organization of plant species in the Neuchâtel Botanical Garden. Each point represents a georeferenced individual plant, colored according to the garden zone to which it belongs.*
+
+![alt text](bachelor_project_jade/Barplot_genus_family_2025-06-26.png)
+*Figure 4 : Barplot showing the Neuchâtel garden's coverage of families, genus and species in relation to global diversity*
+
+![alt text](<bachelor_project_jade/Image 26.06.25 à 19.21.jpg>)
+*Figure 5 : Phylogenetic tree of plant families available at the Neuchâtel Botanic Garden*
+
+![alt text](bachelor_project_jade/whit_full_plot_2025-06-26.png)
+*Figure 6 : Whittaker diagram illustrating the environmental coverage of plant species sampled at the Neuchâtel Botanical Garden.*
 
 # DMSO Project 
 
@@ -184,7 +204,7 @@ In this experiment, six well-documented plant samples (*Valeriana officinalis*, 
 For each method, one Eppendorf tube was prepared per sample. Two blanks were also included in the experiment, using the methanol-water-formic acid mixture and pure DMSO, respectively.
 
 ![alt text](bachelor_project_jade/703ef64f-355e-430f-a742-e511a483a0db.jpg)
-*Figure 3 : Eppendorf tubes after centrifugation with supernatant ready for recovery. The 6 samples per extraction method (A, B, C) are shown. A: Methanol-water-formic acid extraction method; B: Simple DMSO extraction; C: DMSO extraction with sonication.* 
+*Figure 7 : Eppendorf tubes after centrifugation with supernatant ready for recovery. The 6 samples per extraction method (A, B, C) are shown. A: Methanol-water-formic acid extraction method; B: Simple DMSO extraction; C: DMSO extraction with sonication.* 
 
 The resulting 20 samples were then transferred to vials for mass spectrometry and subsequent analysis.
 
@@ -201,46 +221,46 @@ For each species, data from both positive and negative ionization modes are disp
 The annotated peaks correspond to the majority compounds detected. 
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 17.28.jpg>)
-*Figure 4 : Positive ionization chromatograms obtained for Valeriana officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002560_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002560_03_01.mzML (blue): DMSO extraction method.*
+*Figure 8 : Positive ionization chromatograms obtained for Valeriana officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002560_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002560_03_01.mzML (blue): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 18.00.jpg>)
-*Figure 5 : Negative ionization chromatograms obtained for Valeriana officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002560_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002560_03_01_neg.mzML (orange): DMSO extraction method.*
+*Figure 9 : Negative ionization chromatograms obtained for Valeriana officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002560_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002560_03_01_neg.mzML (orange): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 17.32.jpg>)
-*Figure 6 : Positive ionization chromatograms obtained for Echinacea purpurea after extraction by two separate methods. 20250506_CVOL_dbgi_002976_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002976_03_01.mzML (blue): DMSO extraction method.*
+*Figure 10 : Positive ionization chromatograms obtained for Echinacea purpurea after extraction by two separate methods. 20250506_CVOL_dbgi_002976_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002976_03_01.mzML (blue): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 18.02.jpg>)
-*Figure 7 : Negative ionization chromatograms obtained for Echinacea purpurea after extraction by two separate methods. 20250506_CVOL_dbgi_002976_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002976_03_01_neg.mzML (orange): DMSO extraction method.*
+*Figure 11 : Negative ionization chromatograms obtained for Echinacea purpurea after extraction by two separate methods. 20250506_CVOL_dbgi_002976_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002976_03_01_neg.mzML (orange): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 17.36.jpg>)
-*Figure 8 : Positive ionization chromatograms obtained for Cannabis sativa after extraction by two separate methods. 20250506_CVOL_dbgi_002251_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002251_03_01.mzML (blue): DMSO extraction method.*
+*Figure 12 : Positive ionization chromatograms obtained for Cannabis sativa after extraction by two separate methods. 20250506_CVOL_dbgi_002251_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002251_03_01.mzML (blue): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 18.05 2.jpg>)
-*Figure 9 : Negative ionization chromatograms obtained for Cannabis sativa after extraction by two separate methods. 20250506_CVOL_dbgi_002251_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002251_03_01_neg.mzML (orange): DMSO extraction method.*
+*Figure 13 : Negative ionization chromatograms obtained for Cannabis sativa after extraction by two separate methods. 20250506_CVOL_dbgi_002251_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002251_03_01_neg.mzML (orange): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 17.42.jpg>)
-*Figure 10 : Positive ionization chromatograms obtained for Erythroxylum coca after extraction by two separate methods. 20250506_CVOL_dbqi_002893_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbqi_002893_03_01.mzML (blue): DMSO extraction method.*
+*Figure 14 : Positive ionization chromatograms obtained for Erythroxylum coca after extraction by two separate methods. 20250506_CVOL_dbqi_002893_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbqi_002893_03_01.mzML (blue): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 18.07.jpg>)
-*Figure 11 : Negative ionization chromatograms obtained for Erythroxylum coca after extraction by two separate methods. 20250506_CVOL_dbgi_002893_02_01_neq.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi002893_03_01_neg.mzML (orange): DMSO extraction method.*
+*Figure 15 : Negative ionization chromatograms obtained for Erythroxylum coca after extraction by two separate methods. 20250506_CVOL_dbgi_002893_02_01_neq.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi002893_03_01_neg.mzML (orange): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 17.46.jpg>)
-*Figure 12 : Positive ionization chromatograms obtained for Salvia officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002605_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002605_03_01.mzML (blue): DMSO extraction method.*
+*Figure 16 : Positive ionization chromatograms obtained for Salvia officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002605_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002605_03_01.mzML (blue): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 18.09.jpg>)
-*Figure 13 : Negative ionization chromatograms obtained for Salvia officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002605_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002605_03_01_neg.mzML (orange): DMSO extraction method.*
+*Figure 17 : Negative ionization chromatograms obtained for Salvia officinalis after extraction by two separate methods. 20250506_CVOL_dbgi_002605_02_01_neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002605_03_01_neg.mzML (orange): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 17.52.jpg>)
-*Figure 14 : Positive ionization chromatograms obtained for Nicotiana tabacum after extraction by two separate methods. 20250506_CVOL_dbgi_002414_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002414_03_01.mzML (blue): DMSO extraction method.*
+*Figure 18 : Positive ionization chromatograms obtained for Nicotiana tabacum after extraction by two separate methods. 20250506_CVOL_dbgi_002414_02_01.mzML (magenta): methanol-water-formic acid method; 20250506_CVOL_dbgi_002414_03_01.mzML (blue): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 18.14.jpg>)
-*Figure 15 : Negative ionization chromatograms obtained for Nicotiana tabacum after extraction by two separate methods. 20250506 CVOL dbgi 002414 02 01 neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002414_03_01_neg.mzML (orange): DMSO extraction method.*
+*Figure 19 : Negative ionization chromatograms obtained for Nicotiana tabacum after extraction by two separate methods. 20250506 CVOL dbgi 002414 02 01 neg.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_002414_03_01_neg.mzML (orange): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 17.55.jpg>)
-*Figure 16 : Positive ionization chromatograms obtained for the blank.20250506_CVOL_dbgi_bk_MeOH-H20_53.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_bk_DMSO_58.mzML (yellow): DMSO extraction method.*
+*Figure 20 : Positive ionization chromatograms obtained for the blank.20250506_CVOL_dbgi_bk_MeOH-H20_53.mzML (green): methanol-water-formic acid method; 20250506_CVOL_dbgi_bk_DMSO_58.mzML (yellow): DMSO extraction method.*
 
 ![alt text](<bachelor_project_jade/Image 24.06.25 à 18.15.jpg>)
-*Figure 17 : Negative ionization chromatograms obtained for the blank.20250506_CVOL_dbgi_bk_MeOH-H20_53_neg.mzML (blue): methanol-water-formic acid method; 20250506 CVOL dbgi bk DMSO 58 neg.mzML (red): DMSO extraction method.*
+*Figure 21 : Negative ionization chromatograms obtained for the blank.20250506_CVOL_dbgi_bk_MeOH-H20_53_neg.mzML (blue): methanol-water-formic acid method; 20250506 CVOL dbgi bk DMSO 58 neg.mzML (red): DMSO extraction method.*
 
 Comparative chromatograms of the two extraction methods show nearly superimposed results. In some cases, there are slight differences in detection; some peaks are better detected with the methanol extraction method, while others are better detected with the DMSO extraction method. Overall, the peaks are comparable and overlap with very high precision.
 
@@ -251,7 +271,7 @@ The comparative chromatograms differ according to the ionization mode, revealing
 Several notable differences were observed between samples extracted with dimethyl sulfoxide (DMSO) and those extracted with methanol. First, DMSO freezes at 19°C and is solid at -80°C, whereas methanol freezes at around -98°C and remains liquid at -80°C. Using DMSO as the extraction liquid requires additional thawing time, since samples can only be handled in the liquid phase. Furthermore, extracts obtained with DMSO foam after shaking and are significantly darker in color. However, almost all of the foam disappears during centrifugation. This enables the correct extraction of the supernatant without aspirating foam along with it.
 
 ![alt text](<bachelor_project_jade/Image 25.06.25 à 12.05.jpg>)
-*Figure 18 : Eppendorf tubes before centrifugation containing 2 extracts of Erythroxylum coca by 2 extraction methods; Left: DMSO extraction: Right: methanol-water-formic acid extraction.*
+*Figure 22 : Eppendorf tubes before centrifugation containing 2 extracts of Erythroxylum coca by 2 extraction methods; Left: DMSO extraction: Right: methanol-water-formic acid extraction.*
 
 Sonication was employed in combination with DMSO for the third extraction method, as it enables the release of intracellular metabolites by lysing cell membranes. It relies on ultrasonic waves to generate bubbles in a liquid, which, upon implosion, produce high localized pressures and temperatures, thereby disrupting biological structures such as cellular membranes.
 
@@ -301,7 +321,6 @@ Subsequently, a [revised file](https://github.com/commons-research/apex_bio_data
 
 ### Dilutions and manipulations for single molecules and mixtures
 
-
 --> détailler les dilutions et les puits (A1, B2, ...)
 --> 2 transfert consécutifs avec la multipipette 
 --> dilution 1 pour le mix 
@@ -317,10 +336,12 @@ For the detection of specific individual molecules and the mixture, the raw data
 
 ## Results 
 
---> inclure le diagramme de Venn (générer un nouveau à partir des données fake extract sur github)
+The results for molecule detection in the mixture are presented here as a Venn diagram showing the molecules detected exclusively in positive ionization mode, exclusively in negative ionization mode, in both modes, or in neither. The corresponding [CSV file](https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/plate_3_targets_detected.csv), from which the Venn diagram was generated, is also provided.
 
-https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/plate_3_targets_detected.csv
+![alt text](bachelor_project_jade/output.png)
+*Figure 23. Venn diagram showing the number of molecules detected from the mix of 89 compounds across the two ionization modes. Thirty-four molecules were detected exclusively in positive ionization mode, seven exclusively in negative mode, and twenty-nine in both modes. Nineteen molecules were not detected in either mode.*
 
+The results show that, after analysis of the fake extract by mass spectrometry for natural product detection, 38.2% of the molecules were detected exclusively in positive ionization mode, 7.8% exclusively in negative mode, and 32.5% in both modes. A total of 21.5% of the molecules were not detected in either ionization mode. Overall, 78.5% of the compounds in the mix were detected at least once, depending on the ionization mode used during mass spectrometric analysis.
 
 ## Discussions 
 
@@ -349,3 +370,5 @@ Aron, A. T., Gentry, E. C., McPhail, K. L., Nothias, L. F., Nothias-Esposito, M.
 Sonication: définition, principe, exemples d'applications. SinapTec, www.sinaptec.fr/sonication-definition-principe-exemples/. Accessed 25 June 2025.
 
 Hilaire, P. B. saint, Rousseau, K., Seyer, A., Dechaumet, S., Damont, A., Junot, C., & Fenaille, F. (2020). Comparative evaluation of data dependent and data independent acquisition workflows implemented on an orbitrap fusion for untargeted metabolomics. Metabolites, 10(4). https://doi.org/10.3390/metabo10040158
+
+
