@@ -1,0 +1,90 @@
+name,detected_pos,detected_neg
+(-)-epicatechin,false,true
+(-)-epicatechin gallate,false,true
+10-Gingerol,true,false
+2-Deoxyinosine,true,false
+4-Hydroxybenzoic acid,false,false
+4-Methylumbelliferone (4-MU),true,false
+5-Methoxypsoralen,true,false
+6-gingerol,true,false
+"7,8-Dihydroxyflavone",true,true
+8-Methoxypsoralen,false,false
+Abscisic Acid (Dormin),true,true
+Alibiflorin,true,true
+Anisomycin,true,false
+Asiatic acid,true,true
+Asiaticoside,true,false
+Asperosaponin Ⅵ,true,true
+Berberine,true,false
+Bergenin,true,true
+Betulinaldehyde,false,false
+Biochanin A,false,false
+Brucine,true,false
+Calycosin-7-glucoside,true,true
+Catharanthine,false,false
+Cefsulodin (sodium salt),false,false
+Cellobiose,false,true
+Chelerythrine,false,false
+Chrysin,false,false
+Cinobufagin,true,false
+Clenbuterol (hydrochloride),false,false
+Clinodiside A,true,true
+Corticosterone,false,true
+Curdione,true,false
+D-Luciferin,true,false
+Dehydroandrographolide,true,false
+Dehydrodiisoeugenol,true,false
+Digoxin,true,true
+Dihydrotestosterone(DHT),false,false
+Diosmetin,true,true
+Ecdysterone,true,true
+Enoxolone,true,false
+Fraxinellone,true,false
+Fructose,false,false
+Fusidic Acid (sodium salt),true,true
+Geniposide,true,true
+Geniposidic acid,true,true
+Germacrone,true,false
+Ginsenoside Ro,true,false
+Glucosyl-vitexin,true,true
+Harpagoside,true,true
+Hydroxysafflor yellow A,true,false
+Irisflorentin,true,false
+Isoacteoside,false,false
+Isoliquiritigenin,false,true
+L-Glutathione Reduced,false,false
+Lathyrol,true,true
+Leonurine hydrochloride,true,false
+Linderane,true,false
+Magnolol,true,false
+Methylmalonate,false,false
+Morroniside,true,true
+Mulberroside A,true,true
+Myricetrin,true,false
+N6-methyladenosine (m6A),true,true
+Naringenin,true,false
+Nobiletin,true,false
+O-Phospho-L-serine,false,false
+Obacunone,true,false
+Oxysophocarpine,true,false
+Parthenolide,true,false
+Picrotoxin_0,true,true
+Picrotoxin_1,true,true
+Prostaglandin E2,true,true
+Psoralen,false,true
+Puromycin dihydrochloride,true,true
+Quinolinic acid,false,false
+Sec-O-Glucosylhamaudol,true,true
+Sesamin,true,false
+Solamargine,false,true
+Spermidine trihydrochloride,false,false
+Syringin,true,true
+Theophylline,true,false
+Troxerutin,true,true
+Typhaneoside,true,true
+Urea,false,false
+Vindoline,true,false
+Vitexicarpin,true,true
+Wogonin,true,false
+myo-Inositol,true,false
+α-Estradiol,false,false

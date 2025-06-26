@@ -2,7 +2,11 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
+<<<<<<< HEAD
 updated: 1750920639746
+=======
+updated: 1750952292015
+>>>>>>> 53155ed (update neuchatel dbgi)
 created: 1741185232433
 ---
 <p align="left">
@@ -285,18 +289,18 @@ To this end, a natural product library from ApexBio ([DiscoveryProbe™ Natural 
 
 ### Data cleaning with python 
 
+The following [Excel file](https://github.com/jade147/jade_bachelor_work_repo/blob/c415e7ddad3ff961c79f32927e89771cff457f0c/apex_bio.xlsx) was provided to us, and an automated cleaning process using the Python programming language was necessary to ensure the accuracy of all chemical data associated with the molecules before further analysis.
 
-
---> Mentionner la classe et le code intéressant 
---> inclure les 3 csv 
---> inclure la plaque 3 qui a été choisie comme pilote 
-
+Initially, a [Molecule](https://github.com/commons-research/apex_bio_data_cleaning/blob/d5994545b8830bd76031a3fe6423795bff2624af/molecules.py) class was developed to compare the submitted data for each molecule against the [PubChem chemical database](https://pubchem.ncbi.nlm.nih.gov/ ), and to extract additional chemical information related to each compound of interest. This class was then imported in the [cleaned_dataframe.ipynb Jupyter Notebook](https://github.com/commons-research/apex_bio_data_cleaning/blob/d5994545b8830bd76031a3fe6423795bff2624af/cleaned_dataframe.ipynb) to generate TSV files corresponding to molecules that could not be retrieved from PubChem, specifically, [20 molecules not found using their CAS number](https://github.com/jade147/jade_bachelor_work_repo/blob/c415e7ddad3ff961c79f32927e89771cff457f0c/failed_cas.csv), [3 not found using their item name](https://github.com/jade147/jade_bachelor_work_repo/blob/c415e7ddad3ff961c79f32927e89771cff457f0c/failed_iname.csv), and [1 not found using its SMILES representation](https://github.com/jade147/jade_bachelor_work_repo/blob/c415e7ddad3ff961c79f32927e89771cff457f0c/failed_smiles.csv). These three identifiers were selected because they are considered to have the highest likelihood of matching a unique entry in the database.
 
 Due to the significant amount of time required to clean our molecular data, and the notable inconsistencies in the associated chemical information, we only had time to analyze a single plate. This experiment therefore served as a pilot for the "fake extract project," allowing us to test the planned methodologies and dilutions, and refine them if necessary.
 
-For this purpose, a plate with accurate and reliable associated data was selected, here [plate number 3](https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/plate_3_targets.csv), whose information proved to be correct. While a standard 96-well plate contains 88 molecules (with one column left empty), 89 molecules were analyzed in total, as picrotoxin is an equimolar mixture of two compounds. These molecules were first detected individually. Then, a mixture of the 89 molecules was created and designated as the "fake extract."
+For this purpose, a plate with accurate and reliable associated data was selected, here [plate number 3](https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/plate_3_targets.csv), whose information proved to be correct. While a standard 96-well plate contains 88 molecules (with one column left empty), 89 molecules were analyzed in total, as picrotoxin is an equimolar mixture of two compounds. These molecules were first detected individually. Then, a mixture of the 89 molecules was created and designated as the "fake extract." 
+
+Subsequently, a [revised file](https://github.com/commons-research/apex_bio_data_cleaning/blob/d5994545b8830bd76031a3fe6423795bff2624af/apex_bio_revised.tsv) was provided, from which the [apex_bio_cleaned.tsv](https://github.com/commons-research/apex_bio_data_cleaning/blob/d5994545b8830bd76031a3fe6423795bff2624af/apex_bio_cleaned.tsv) file was generated. The chemical data in this file are accurate and will serve as a reference for analyzing the other plates in the next stages of the project.
 
 ### Dilutions and manipulations for single molecules and mixtures
+
 
 --> détailler les dilutions et les puits (A1, B2, ...)
 --> 2 transfert consécutifs avec la multipipette 
@@ -313,7 +317,10 @@ For the detection of specific individual molecules and the mixture, the raw data
 
 ## Results 
 
---> inclure le diagramme de Venn 
+--> inclure le diagramme de Venn (générer un nouveau à partir des données fake extract sur github)
+
+https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/plate_3_targets_detected.csv
+
 
 ## Discussions 
 
