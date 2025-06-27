@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1751015933656
+updated: 1751016641620
 created: 1741185232433
 ---
 <p align="left">
@@ -381,11 +381,11 @@ The results show that, after analysis of the fake extract by mass spectrometry f
 
 ## Discussions 
 
-Les 21.5% de molécules n'ayant pas été détectées au moins une fois dans le mix confirment un effet de supression ionique important dans les extraits composés de plusieurs produits naturels. Un certain nombre de données est donc perdu dans le workflow pour l'extraction de molécules et la génération des profils métabolomiques associés, ce qui confirme le besoin d'une modélisation et de la caractérisation des données perdues, afin d'ajouter ce biais aux output finaux et ainsi s'approcher le plus fidèlement possible à la chimie des organismes vivants. 
+The 21.5% of molecules that were not detected even once in the mix confirm a significant ion suppression effect in extracts composed of multiple natural products. As a result, a certain amount of data is inevitably lost during the workflow for molecule extraction and metabolomic profiling, highlighting the need for modeling and characterization of these missing data. This would allow such biases to be integrated into the final outputs, bringing the predicted chemistry of living organisms closer to reality.
 
-Il faut cependant interpréter les résultats obtenus avec prudence, étant donné que plusieurs les résultats différaient énormément selon différents settings parameters testés sur mzmine, notamment en raison du seuil de tolérance, et des analyses plus poussées seront nécessaires pas la suite du projet afin de construire le mzbatch qui sera le plus précis possible pour la détection de molécules individuelles ainsi qu'en mix, et qui correspondera au mieux à la réalité du nombre de molécule détectées. 
+However, these results should be interpreted with caution, as considerable variability was observed depending on the different MzMine parameter settings tested—particularly due to tolerance thresholds. Further in-depth analyses will be required in the next steps of the project in order to construct a mzBatch pipeline that is as accurate as possible for the detection of individual molecules, both alone and in mixtures, and that best reflects the true number of detectable compounds.
 
-Une grande différence de détection est relevée selon le mode d'ionisation positif ou négatif, qui indique une nouvelle fois une meilleure détection des composés ionisés en charge positive, avec toutefois 7.8% des molécules détectées uniquement en mode négatif, qui reste donc essentiel pour couvrir la détection des composés au maximum. Cette observation est en accord avec les discussions abordées plus hautes concernant les résultats du "projet DMSO". 
+A major difference in detection was also observed between positive and negative ionization modes, again indicating a higher detection rate for positively ionized compounds (28.2%). Nonetheless, 7.8% of molecules were detected exclusively in negative mode, underlining its essential role in ensuring the broadest possible compound coverage. This observation is consistent with earlier discussions related to the results of the "[DMSO project](#chromatograms-comparison)."
 
 ## Conclusion 
 
