@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750987234196
+updated: 1751014074956
 created: 1741185232433
 ---
 <p align="left">
@@ -43,13 +43,9 @@ Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, w
 
 A large number of databases are currently available to the public for biological elements such as proteins (UniProt, https://www.uniprot.org), RNA (Rfam, https://rfam.org/), DNA (NCBI GenBank, https://www.ncbi.nlm.nih.gov/genbank/) or genomes (Ensembl, https://www.ensembl.org/). 
 
-However, the databases currently available for metabolomics  remain quite limited , focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes and centered on known metabolites, or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/). Another accessible database in metabolomics is the Global Natural Products Social Molecular Networking (GNPS), a collaborative platform for the processing and analysis of mass spectrometry data. GNPS includes both known metabolites and unknown metabolomic profiles (reference: Aron).
+However, some of the databases currently available for metabolomics remain quite limited , focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes and centered on known metabolites, or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/). Another accessible database in metabolomics is the Global Natural Products Social Molecular Networking ([GNPS](https://gnps.ucsd.edu/ProteoSAFe/static/gnps-splash.jsp?redirect=auth)), a collaborative platform for the processing and analysis of mass spectrometry data. GNPS includes both known metabolites and unknown metabolomic profiles (reference: Aron).
 
-#TODO add ref to LOTUS !
-
---> Je vais ajouter un paragraphe détaillé du projet lotus 
-
-https://lotus.naturalproducts.net/
+Natural products (NPs), defined as any chemical entity found in a living organism, are the focus of the open, interoperable, and interdisciplinary database [LOTUS](https://lotus.naturalproducts.net/), which is continuously expanding. To meet the goals of an open-source project for the research, storage, and sharing of data on natural products and their source organisms, the data are centralized on [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page). LOTUS serves as a reference resource, comprising over 750,000 referenced structure-organism pairs, standardized at the chemical (structure), biological (organism), and bibliographic (reference) levels. The project is fully aligned with open science principles and adheres to the FAIR guidelines (Findable, Accessible, Interoperable, Reusable) to promote data reuse and integration by the scientific community. (inclure la référence)
 
 The [Earth Metabolome Initiative](https://www.earthmetabolome.org/) (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard and Emmanuel Defossez, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data for the species of our planet. The initiative set out to build a knowledge graph designed to gather the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly recovering detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.
 
@@ -68,7 +64,7 @@ This project is highly ambitious, and although a significant amount of data has 
 
 Three of these EMI pilot projects formed the core of my bachelor's thesis and were specifically designed to address key objectives of the Earth Metabolome Initiative.
 
-The first project falls within the scope of the [Digital Botanical Gardens Initiative](https://www.dbgi.org), a botanical-scale precursor to EMI, in which I participated by collecting samples from the geophyte section of the Fribourg Botanical Garden. The second project aimed to refine our extraction methods by comparing the currently used methanol-based solvent with dimethyl sulfoxide (DMSO), thereby improving the biocompatibility of our extracts for subsequent bioassays. The third project is part of the PhD research of Marco Visani and focuses on modeling molecular data loss in mass spectrometry, with the goal of predicting the chemistry of living organisms based on unknown natural extracts.
+The first project falls within the scope of the [Digital Botanical Gardens Initiative](https://www.dbgi.org), a botanical-scale precursor to EMI, in which I participated by collecting samples from the geophyte section of the Fribourg Botanical Garden. The second project aimed to refine our extraction methods by comparing the currently used methanol-based solvent with dimethyl sulfoxide (DMSO), thereby improving the biocompatibility of our extracts for subsequent bioassays. The third project is part of the PhD research of Marco Visani and focuses on modeling molecular data loss in mass spectrometry, with the goal of predicting the chemistry of living organisms based on unknown natural extracts, aligned with [EMI](https://www.earthmetabolome.org/) and [LOTUS](https://lotus.naturalproducts.net/) objectives. 
 
 ## Digital Botanical Gardens Initiative 
 
@@ -391,7 +387,6 @@ Une grande différence de détection est relevée selon le mode d'ionisation pos
 
 ## Conclusion 
 
---> Test sur les autres plaques 
 --> modélisation de toutes les molécules pas détectées, pour ensuite anticiper le contenu chimique des êtres vivants et complémenter les résultats en anticipant le type de molécules perdues au cours du processus 
 --> complémentarité du projet PHD Marco et Lotus, dont EMI pourra également utiliser les résultats pour les objectifs à long terme du projet
 
@@ -422,4 +417,4 @@ Hilaire, P. B. saint, Rousseau, K., Seyer, A., Dechaumet, S., Damont, A., Junot,
 
 Warnes, B., Chihabi, J., & Manthorpe, J. (2023). Unveiling the Power of Negative Ion Mode ESI-MS: Identifying Species with Remarkable Signal Intensity and Collisional Stability. https://doi.org/10.26434/chemrxiv-2023-85mkn-v3
 
-Rutz, A., Sorokina, M., Galgonek, J., Galgonek, ·, Jgalgonek, ·, Willighagen, E., Graham, J. G., & Stephan, R. (n.d.). The LOTUS Initiative for Open Natural Products Research: Knowledge Management through Wikidata. https://lotus.naturalproducts.net. Acessed 27 June 2025. 
+Rutz, A., Sorokina, M., Galgonek, J., Mietchen, D., Willighagen, E., Gaudry, A., Graham, J. G., Stephan, R., Page, R., Vondrášek, J., Steinbeck, C., Pauli, G. F., Wolfender, J. L., Bisson, J., & Allard, P. M. (2022). The LOTUS initiative for open knowledge management in natural products research. ELife, 11. https://doi.org/10.7554/eLife.70780
