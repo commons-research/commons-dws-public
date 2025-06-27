@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1751025712575
+updated: 1751027927197
 created: 1741185232433
 ---
 <p align="left">
@@ -65,7 +65,9 @@ This project is highly ambitious, and although a significant amount of data has 
 
 Three of these EMI pilot projects formed the core of my bachelor's thesis and were specifically designed to address key objectives of the Earth Metabolome Initiative.
 
-The first project falls within the scope of the [Digital Botanical Gardens Initiative](https://www.dbgi.org), a botanical-scale precursor to EMI, in which I participated by collecting samples from the geophyte section of the Fribourg Botanical Garden. The second project aimed to refine our extraction methods by comparing the currently used methanol-based solvent with dimethyl sulfoxide (DMSO), thereby improving the biocompatibility of our extracts for subsequent bioassays. The third project is part of the PhD research of Marco Visani and focuses on modeling molecular data loss in mass spectrometry, with the goal of predicting the chemistry of living organisms based on unknown natural extracts, aligned with [EMI](https://www.earthmetabolome.org/) and [LOTUS](https://lotus.naturalproducts.net/) objectives. 
+- The first project falls within the scope of the [Digital Botanical Gardens Initiative](https://www.dbgi.org), a botanical-scale precursor to EMI, in which I participated by collecting samples from the geophyte section of the Fribourg Botanical Garden.
+- The second project aimed to refine our extraction methods by comparing the currently used methanol-based solvent with dimethyl sulfoxide (DMSO), thereby improving the biocompatibility of our extracts for subsequent bioassays.
+- The third project is part of the PhD research of Marco Visani and focuses on modeling molecular data loss in mass spectrometry, with the goal of predicting the chemistry of living organisms based on unknown natural extracts, aligned with [EMI](https://www.earthmetabolome.org/) and [LOTUS](https://lotus.naturalproducts.net/) objectives. 
 
 ## Digital Botanical Gardens Initiative 
 
@@ -96,15 +98,17 @@ Several plant families were collected, including Amaryllidaceae, Liliaceae, Irid
 With the help of Héloïse Coen, 185 samples were collected (including leaves and flowers samples) from 150 species. 128 species remain to be collected (46%), meaning that a substantial portion of the target species has already been covered for this part of the project. 
 
 Below are the respective lists of samples collected by myself and Héloïse Coen, as well as the complete list of species in the geophyte section of the Fribourg Botanical Garden. 
-[Geophytes collected by Jade Dandois](https://github.com/jade147/jade_bachelor_work_repo/blob/a4491cbe601b38fbaab3b5437008505f01ea06e1/field_data_trimmed.csv)
-[Geophytes collected by Heloïse Coen](https://github.com/jade147/jade_bachelor_work_repo/blob/fe70e103e4634caacbb3a798a4f7b7fe4c3beaef/Field_Data%2020250618-12257.csv)
-[Complete list of geophytes](https://github.com/jade147/jade_bachelor_work_repo/blob/fe70e103e4634caacbb3a798a4f7b7fe4c3beaef/geophytes_extrait.csv)
+- [Geophytes collected by Jade Dandois](https://github.com/jade147/jade_bachelor_work_repo/blob/a4491cbe601b38fbaab3b5437008505f01ea06e1/field_data_trimmed.csv)
+- [Geophytes collected by Heloïse Coen](https://github.com/jade147/jade_bachelor_work_repo/blob/fe70e103e4634caacbb3a798a4f7b7fe4c3beaef/Field_Data%2020250618-12257.csv)
+- [Complete list of geophytes](https://github.com/jade147/jade_bachelor_work_repo/blob/fe70e103e4634caacbb3a798a4f7b7fe4c3beaef/geophytes_extrait.csv)
 
 To cover this sector, a dedicated protocol for sample collection, extraction, and analysis was required.
 
 ## Materials and methods
 
-### Collect 
+### Collection 
+
+#TODO link to sample collection protocol in the DBGI dendron page 
 
 The standard DBGI sampling protocol was followed throughout the collection process. Leaf or flower tissues were directly sampled from the target individual. Each specimen was placed in a coffee filter paper, inserted into a pre-labelled Falcon tube, and immediately flash-frozen in liquid nitrogen at -196 °C. Samples remained in liquid nitrogen until the end of the field session, after which they were stored at -80 °C pending lyophilization.
 
@@ -374,6 +378,7 @@ For the detection of specific individual molecules and the mixture, the raw data
 The results for molecule detection in the mixture are presented here as a Venn diagram showing the molecules detected exclusively in positive ionization mode, exclusively in negative ionization mode, in both modes, or in neither. The corresponding [CSV file](https://github.com/commons-research/fake-extract-plate-3-mix/blob/31e0a5dc0a8b001220e97089405a5284476099be/plate_3_targets_detected.csv), from which the Venn diagram was generated, is also provided.
 
 ![alt text](bachelor_project_jade/output.png)
+
 *Figure 24. Venn diagram showing the number of molecules detected from the mix of 89 compounds across the two ionization modes. Thirty-four molecules were detected exclusively in positive ionization mode, seven exclusively in negative mode, and twenty-nine in both modes. Nineteen molecules were not detected in either mode.*
 
 The results show that, after analysis of the fake extract by mass spectrometry for natural product detection, 38.2% of the molecules were detected exclusively in positive ionization mode, 7.8% exclusively in negative mode, and 32.5% in both modes. A total of 21.5% of the molecules were not detected in either ionization mode. Overall, 78.5% of the compounds in the mix were detected at least once, depending on the ionization mode used during mass spectrometric analysis.
