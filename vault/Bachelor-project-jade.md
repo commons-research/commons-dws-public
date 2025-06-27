@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1751034206163
+updated: 1751060681051
 created: 1741185232433
 ---
 <p align="left">
@@ -30,6 +30,8 @@ and modeling of data loss in mass spectrometry
 <p align="center"><strong>June 27th, 2025</strong></p>
 
 # Acknowledgements 
+
+Test 
 
 I would like to extend my heartfelt thanks to Pierre-Marie Allard, my supervisor during these three months of academic work. I am deeply grateful for his unwavering dedication, his genuine interest in this remarkable project, and the invaluable guidance he has provided throughout. I hold great admiration for both his work and the inspiring project he initiated and continues to nurture with such commitment.
 
