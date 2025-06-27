@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750986410201
+updated: 1750987234196
 created: 1741185232433
 ---
 <p align="left">
@@ -46,6 +46,10 @@ A large number of databases are currently available to the public for biological
 However, the databases currently available for metabolomics  remain quite limited , focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes and centered on known metabolites, or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/). Another accessible database in metabolomics is the Global Natural Products Social Molecular Networking (GNPS), a collaborative platform for the processing and analysis of mass spectrometry data. GNPS includes both known metabolites and unknown metabolomic profiles (reference: Aron).
 
 #TODO add ref to LOTUS !
+
+--> Je vais ajouter un paragraphe détaillé du projet lotus 
+
+https://lotus.naturalproducts.net/
 
 The [Earth Metabolome Initiative](https://www.earthmetabolome.org/) (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard and Emmanuel Defossez, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data for the species of our planet. The initiative set out to build a knowledge graph designed to gather the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly recovering detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.
 
@@ -379,24 +383,22 @@ The results show that, after analysis of the fake extract by mass spectrometry f
 
 ## Discussions 
 
-Les 21.5% de molécules n'ayant pas été détectées au moins une fois dans le mix confirment l'effet de supression ionique mentionné plus haut dans l'introduction, qui reste important dans les extraits composés de plusieurs produits naturels. Un certain nombre de données est donc perdu dans le workflow pour l'extraction de molécules et la génération des profils métabolomiques associés, ce qui confirme le besoin d'une modélisation et de la caractérisation des données perdues, afin d'ajouter ce biais aux output finaux et ainsi s'approcher le plus fidèlement possible à la chimie des organismes vivants. 
+Les 21.5% de molécules n'ayant pas été détectées au moins une fois dans le mix confirment un effet de supression ionique important dans les extraits composés de plusieurs produits naturels. Un certain nombre de données est donc perdu dans le workflow pour l'extraction de molécules et la génération des profils métabolomiques associés, ce qui confirme le besoin d'une modélisation et de la caractérisation des données perdues, afin d'ajouter ce biais aux output finaux et ainsi s'approcher le plus fidèlement possible à la chimie des organismes vivants. 
 
-Il faut cependant interpréter les résultats obtenus avec prudence, étant donné que plusieurs les résultats différaient énormément selon différents settings parameters testés sur mzmine, notamment en raison du seuil de tolérance, et des analyses plus poussées seront nécessaires pas la suite du projet afin de construire le mzbatch qui sera le plus précis possible pour la détection de molécules individuelles ainsi qu'en mix. 
+Il faut cependant interpréter les résultats obtenus avec prudence, étant donné que plusieurs les résultats différaient énormément selon différents settings parameters testés sur mzmine, notamment en raison du seuil de tolérance, et des analyses plus poussées seront nécessaires pas la suite du projet afin de construire le mzbatch qui sera le plus précis possible pour la détection de molécules individuelles ainsi qu'en mix, et qui correspondera au mieux à la réalité du nombre de molécule détectées. 
 
-Une grande différence de détection est relevée selon le mode d'ionisation positif ou négatif, (... en accord avec les discussion plus hautes concernant le projet DMSO)
---> Différence ionisation positive et négative 
+Une grande différence de détection est relevée selon le mode d'ionisation positif ou négatif, qui indique une nouvelle fois une meilleure détection des composés ionisés en charge positive, avec toutefois 7.8% des molécules détectées uniquement en mode négatif, qui reste donc essentiel pour couvrir la détection des composés au maximum. Cette observation est en accord avec les discussions abordées plus hautes concernant les résultats du "projet DMSO". 
 
-(cf. DMSO comparaison des chromatogrammes en pos et neg) + modes d'ionisation 
-
-## Conclusion and perspectives 
+## Conclusion 
 
 --> Test sur les autres plaques 
 --> modélisation de toutes les molécules pas détectées, pour ensuite anticiper le contenu chimique des êtres vivants et complémenter les résultats en anticipant le type de molécules perdues au cours du processus 
---> symbiose Marco et Lotus  
+--> complémentarité du projet PHD Marco et Lotus, dont EMI pourra également utiliser les résultats pour les objectifs à long terme du projet
 
+## Perspectives 
 
-
-
+--> Test sur les autres plaques 
+--> modélisation complète 
 
 # Bibliography 
 
@@ -420,4 +422,4 @@ Hilaire, P. B. saint, Rousseau, K., Seyer, A., Dechaumet, S., Damont, A., Junot,
 
 Warnes, B., Chihabi, J., & Manthorpe, J. (2023). Unveiling the Power of Negative Ion Mode ESI-MS: Identifying Species with Remarkable Signal Intensity and Collisional Stability. https://doi.org/10.26434/chemrxiv-2023-85mkn-v3
 
-
+Rutz, A., Sorokina, M., Galgonek, J., Galgonek, ·, Jgalgonek, ·, Willighagen, E., Graham, J. G., & Stephan, R. (n.d.). The LOTUS Initiative for Open Natural Products Research: Knowledge Management through Wikidata. https://lotus.naturalproducts.net. Acessed 27 June 2025. 
