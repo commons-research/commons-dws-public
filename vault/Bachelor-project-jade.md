@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1750985889227
+updated: 1750986410201
 created: 1741185232433
 ---
 <p align="left">
@@ -379,12 +379,11 @@ The results show that, after analysis of the fake extract by mass spectrometry f
 
 ## Discussions 
 
-Les 21.5% de molécules n'ayant pas été détectées au moins une fois dans le mix confirment l'effet de supression ionique mentionné plus haut dans l'introduction, qui reste important dans les extraits composés de plusieurs produits naturels. 
+Les 21.5% de molécules n'ayant pas été détectées au moins une fois dans le mix confirment l'effet de supression ionique mentionné plus haut dans l'introduction, qui reste important dans les extraits composés de plusieurs produits naturels. Un certain nombre de données est donc perdu dans le workflow pour l'extraction de molécules et la génération des profils métabolomiques associés, ce qui confirme le besoin d'une modélisation et de la caractérisation des données perdues, afin d'ajouter ce biais aux output finaux et ainsi s'approcher le plus fidèlement possible à la chimie des organismes vivants. 
 
+Il faut cependant interpréter les résultats obtenus avec prudence, étant donné que plusieurs les résultats différaient énormément selon différents settings parameters testés sur mzmine, notamment en raison du seuil de tolérance, et des analyses plus poussées seront nécessaires pas la suite du projet afin de construire le mzbatch qui sera le plus précis possible pour la détection de molécules individuelles ainsi qu'en mix. 
 
-
---> attention avec les settings sur mzmine 
-
+Une grande différence de détection est relevée selon le mode d'ionisation positif ou négatif, (... en accord avec les discussion plus hautes concernant le projet DMSO)
 --> Différence ionisation positive et négative 
 
 (cf. DMSO comparaison des chromatogrammes en pos et neg) + modes d'ionisation 
