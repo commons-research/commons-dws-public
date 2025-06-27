@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1751016641620
+updated: 1751019727901
 created: 1741185232433
 ---
 <p align="left">
@@ -383,7 +383,7 @@ The results show that, after analysis of the fake extract by mass spectrometry f
 
 The 21.5% of molecules that were not detected even once in the mix confirm a significant ion suppression effect in extracts composed of multiple natural products. As a result, a certain amount of data is inevitably lost during the workflow for molecule extraction and metabolomic profiling, highlighting the need for modeling and characterization of these missing data. This would allow such biases to be integrated into the final outputs, bringing the predicted chemistry of living organisms closer to reality.
 
-However, these results should be interpreted with caution, as considerable variability was observed depending on the different MzMine parameter settings tested—particularly due to tolerance thresholds. Further in-depth analyses will be required in the next steps of the project in order to construct a mzBatch pipeline that is as accurate as possible for the detection of individual molecules, both alone and in mixtures, and that best reflects the true number of detectable compounds.
+However, these results should be interpreted with caution, as considerable variability was observed depending on the different MzMine parameter settings tested—particularly due to tolerance thresholds. Further in-depth analyses will be required in the next steps of the project in order to construct a mzBatch pipeline that is as accurate as possible for the detection of individual molecules, both alone and in mixtures, and that best reflects the true number of detectable compounds. A sufficiently high detection threshold is essential to ensure the detection of relevant compounds, but an excessively high threshold may result in the loss of weakly ionizable molecules.
 
 A major difference in detection was also observed between positive and negative ionization modes, again indicating a higher detection rate for positively ionized compounds (28.2%). Nonetheless, 7.8% of molecules were detected exclusively in negative mode, underlining its essential role in ensuring the broadest possible compound coverage. This observation is consistent with earlier discussions related to the results of the "[DMSO project](#chromatograms-comparison)."
 
@@ -394,8 +394,11 @@ A major difference in detection was also observed between positive and negative 
 
 ## Perspectives 
 
---> Test sur les autres plaques 
---> modélisation complète 
+Plate 3 and its 88 wells were analyzed in this study, enabling the quantification of data loss during the workflow for a mixture of 89 molecules. In the next stages of the project, it will be essential to analyze the remaining individual plates to continue assessing data loss. Initially, each plate will be analyzed separately; subsequently, a combined mixture of all samples will be prepared and analyzed to cover the entire ApexBio library received—comprising 550 molecules—and evaluate the behavior of the full mixture.
+
+In the future, a reliable and comprehensive characterization of data loss in mass spectrometry could allow for more precise identification of the types of molecules that systematically go undetected, particularly those that are weakly ionizable. This would pave the way for reconstructing the theoretical complete metabolomic profile of an extract—integrating not only the compounds that were detected but also those that may have been absent from the signal due to their physicochemical properties. Such an approach would make it possible to adjust and correct experimental profiles by incorporating the "missing" component, ultimately leading to a more accurate representation of the true chemical composition of organisms.
+
+The results of this pilot project, once finalized, could be reused in the context of Marco Visani’s doctoral thesis. Indeed, this more accurate evaluation of the metabolomic profiles of the studied organisms would significantly improve the ability to anticipate the chemical composition of living organisms across the tree of life. Complete metabolomic profiles would allow the development of predictive models: based on a detailed chemical profile of a given organism, it would be possible, through extrapolation, to predict the likely chemistry of phylogenetically related organisms, even if they have not yet been experimentally studied. These enriched data could subsequently be integrated into the EMI and LOTUS initiatives, to refine the association between natural products and their source organisms, and thus contribute to a more complete and realistic characterization of the chemistry of life.
 
 # Bibliography 
 
