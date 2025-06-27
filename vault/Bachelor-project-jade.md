@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1751019727901
+updated: 1751021550353
 created: 1741185232433
 ---
 <p align="left">
@@ -43,17 +43,17 @@ Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, w
 
 A large number of databases are currently available to the public for biological elements such as proteins (UniProt, https://www.uniprot.org), RNA (Rfam, https://rfam.org/), DNA (NCBI GenBank, https://www.ncbi.nlm.nih.gov/genbank/) or genomes (Ensembl, https://www.ensembl.org/). 
 
-However, some of the databases currently available for metabolomics remain quite limited , focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes and centered on known metabolites, or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/). Another accessible database in metabolomics is the Global Natural Products Social Molecular Networking ([GNPS](https://gnps.ucsd.edu/ProteoSAFe/static/gnps-splash.jsp?redirect=auth)), a collaborative platform for the processing and analysis of mass spectrometry data. GNPS includes both known metabolites and unknown metabolomic profiles (reference: Aron).
+However, some of the databases currently available for metabolomics remain quite limited , focusing mainly on specific types of organism, such as humans (HMDB, https://www.hmdb.ca), for medical purposes and centered on known metabolites, or simply on raw analytical data (MassBank, https://massbank.eu/MassBank/). Another accessible database in metabolomics is the Global Natural Products Social Molecular Networking ([GNPS](https://gnps.ucsd.edu/ProteoSAFe/static/gnps-splash.jsp?redirect=auth)), a collaborative platform for the processing and analysis of mass spectrometry data. GNPS includes both known metabolites and unknown metabolomic profiles. <sup><a href="#ref1" id="note1">1</a></sup>
 
-Natural products (NPs), defined as any chemical entity found in a living organism, are the focus of the open, interoperable, and interdisciplinary database [LOTUS](https://lotus.naturalproducts.net/), which is continuously expanding. To meet the goals of an open-source project for the research, storage, and sharing of data on natural products and their source organisms, the data are centralized on [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page). LOTUS serves as a reference resource, comprising over 750,000 referenced structure-organism pairs, standardized at the chemical (structure), biological (organism), and bibliographic (reference) levels. The project is fully aligned with open science principles and adheres to the FAIR guidelines (Findable, Accessible, Interoperable, Reusable) to promote data reuse and integration by the scientific community. (inclure la référence)
+Natural products (NPs), defined as any chemical entity found in a living organism, are the focus of the open, interoperable, and interdisciplinary database [LOTUS](https://lotus.naturalproducts.net/), which is continuously expanding. To meet the goals of an open-source project for the research, storage, and sharing of data on natural products and their source organisms, the data are centralized on [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page). LOTUS serves as a reference resource, comprising over 750,000 referenced structure-organism pairs, standardized at the chemical (structure), biological (organism), and bibliographic (reference) levels. The project is fully aligned with open science principles and adheres to the FAIR guidelines (Findable, Accessible, Interoperable, Reusable) to promote data reuse and integration by the scientific community. <sup><a href="#ref2" id="note2">2</a></sup>
 
-The [Earth Metabolome Initiative](https://www.earthmetabolome.org/) (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard and Emmanuel Defossez, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data for the species of our planet. The initiative set out to build a knowledge graph designed to gather the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly recovering detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.
+The [Earth Metabolome Initiative](https://www.earthmetabolome.org/) (EMI) consortium, conceived in 2022 and formally launched in 2024 by Pierre-Marie Allard and Emmanuel Defossez, is a collective open science endeavor aimed at addressing the critical lack of comprehensive metabolomic data for the species of our planet. The initiative set out to build a knowledge graph designed to gather the full spectrum of metabolites across all known living species—approximately 2.3 million—thus encompassing the entirety of life, from microbes to mammals, within an integrated and ecosystem-level perspective. Unlike existing databases, EMI stands out for its clear ambition to cover the full diversity of life across all kingdoms on a global scale. It focuses on the analysis of unknown metabolomic profiles from Earth’s organisms, while aiming to address gaps observed in existing resources such as GNPS, Massbank or HMDB. In particular, EMI sets itself apart by explicitly recovering detailed metadata associated with the profiled organisms—an aspect that remains a notable limitation in GNPS.<sup><a href="#ref3" id="note3">3</a></sup>
 
 ## Earth Metabolome Initiative 
 
-As mentioned above, the EMI consortium is an open science initiative with a global scope, whose aim is to draw up metabolomic profiles of all known species on this planet, with 3 main objectives, which are the protection of biodiversity, the benefit to human society and a deeper understanding of the chemical foundations of the biosphere. <sup><a href="#ref1" id="note1">1</a></sup>
+As mentioned above, the EMI consortium is an open science initiative with a global scope, whose aim is to draw up metabolomic profiles of all known species on this planet, with 3 main objectives, which are the protection of biodiversity, the benefit to human society and a deeper understanding of the chemical foundations of the biosphere. <sup><a href="#ref3" id="note3">3</a></sup>
 
-Biodiversity is currently facing an unprecedented crisis, primarily driven by the intensification of human activities over the past century. This decline has accelerated dramatically in recent decades. Alarmingly, the current rate of species extinction is estimated to be at least 100 times higher than the natural background rate, underscoring the severity of human impact on the planet's ecosystems. <sup><a href="#ref2" id="note2">2</a></sup> 
+Biodiversity is currently facing an unprecedented crisis, primarily driven by the intensification of human activities over the past century. This decline has accelerated dramatically in recent decades. Alarmingly, the current rate of species extinction is estimated to be at least 100 times higher than the natural background rate, underscoring the severity of human impact on the planet's ecosystems. <sup><a href="#ref4" id="note4">4</a></sup> 
 In this context, acquiring comprehensive metabolic data becomes critically important. Such data can provide molecular-level insights into ecosystem functioning and the roles of natural products within them. By deepening our understanding of molecular diversity and its ecological relevance, we can develop informed strategies for conserving biodiversity and sustaining the natural resources upon which human well-being depends.
 
 Establishing a comprehensive, publicly accessible database of species-specific metabolomic profiles is of paramount importance for advancing research across generations. Such a resource will provide open access to molecular-level data, facilitating a wide spectrum of scientific inquiry—from fundamental biological and biomedical research to the discovery of novel bioactive compounds and innovations in agri-food systems. By enabling a deeper understanding of natural metabolites that underpin ecosystem dynamics, nutritional quality, and agricultural resilience, this database will serve as a critical foundation for interdisciplinary efforts aimed at sustaining both human health and environmental integrity.
@@ -85,7 +85,7 @@ The current data from the Botanical Garden of the University of Fribourg record 
 
 The harvest from the geophyte section proved particularly relevant, as this sector had not yet been covered by DGBI. Moreover, collecting additional data from this group contributed meaningfully to the advancement of the project.
 
-Geophytes are perennial plants that exhibit resilience to both severe drought and extreme cold, primarily due to nutrient reserves stored in their underground organs (tubers, bulbs, rhizomes). These reserves enable them to enter a dormant state and persist in the soil until environmental conditions become favorable for growth. <sup><a href="#ref3" id="note3">3</a></sup>
+Geophytes are perennial plants that exhibit resilience to both severe drought and extreme cold, primarily due to nutrient reserves stored in their underground organs (tubers, bulbs, rhizomes). These reserves enable them to enter a dormant state and persist in the soil until environmental conditions become favorable for growth. <sup><a href="#ref5" id="note5">5</a></sup>
 
 ![Map Botanical Garden Fribourg](/bachelor_project_jade/E31D72E1-F056-4554-A0E7-D976B920E21E_1_105_c.jpeg)
 *Figure 1 – Map of Fribourg botanical garden. The location of the geophyte sector is indicated by point number 10*
@@ -125,9 +125,7 @@ From the previously prepared vials, 120 microlitres of liquid extract were trans
 
 Untargeted mass spectrometry was used, as we did not know the contents of the extract in advance. Therefore, no specific molecules were targeted. The aim was to analyze as many compounds as possible in the extract and recover as much data as possible.
 
-Samples were first analyzed using High-Performance Liquid Chromatography (HPLC), which separates components based on their polarity and hydrophobicity, employing a non-polar stationary phase and a polar mobile phase. The separated molecules then undergo ionization via electrospray ionization (ESI) in either positive or negative mode, before being detected by an Orbitrap mass spectrometer, offering high mass resolution and accuracy. All molecules are initially detected in MS1, followed by data-dependent acquisition (DDA) where the most intense ions are fragmented in MS2 to generate fragmentation spectra for molecular identification.
-
---> Référencer l'article correspondant 
+Samples were first analyzed using High-Performance Liquid Chromatography (HPLC), which separates components based on their polarity and hydrophobicity, employing a non-polar stationary phase and a polar mobile phase. The separated molecules then undergo ionization via electrospray ionization (ESI) in either positive or negative mode, before being detected by an Orbitrap mass spectrometer, offering high mass resolution and accuracy. All molecules are initially detected in MS1, followed by data-dependent acquisition (DDA) where the most intense ions are fragmented in MS2 to generate fragmentation spectra for molecular identification.<sup><a href="#ref6" id="note6">6</a></sup>
 
 ![alt text](bachelor_project_jade/8C3C38C9-A936-43D3-BBB6-FE08B5C6EFF8_4_5005_c.jpeg)
 
@@ -176,13 +174,13 @@ As outlined in the [introduction](#introduction), DGBI is a recent pilot project
 
 One of the long-term objectives of both EMI and DGBI is to generate libraries of molecules obtained through sample extractions, with the aim of enabling their reuse and distribution to other laboratories for further bioanalysis, including high-throughput biological screening.
 
-High-throughput screening (HTS) enables the automated testing of compound libraries to assess their activity against various biological targets. HTS is now extensively used in drug discovery, medical diagnostics, stem cell research, and genetic studies<sup><a href="#ref4" id="note4">4</a></sup>.
+High-throughput screening (HTS) enables the automated testing of compound libraries to assess their activity against various biological targets. HTS is now extensively used in drug discovery, medical diagnostics, stem cell research, and genetic studies<sup><a href="#ref7" id="note7">7</a></sup>.
 
 The extraction mixture currently used as a solvent for molecule extraction in the DGBI project consists of 80% methanol, 20% distilled water, and 0.1% formic acid, for a total volume of 200 mL. This composition has proven to be highly effective in extracting metabolites from our samples. However, the solvent currently used in the DGBI project for samples extraction is not compatible with downstream analyses in biological or biochemical laboratories, as methanol can damage cells and formic acid can inhibit enzymatic reactions.
 
 ## An alternative to methanol-based extraction 
 
-Another solvent currently widely used in biology laboratories is dimethyl sulfoxide (DMSO), a highly stable, soluble, polar, aprotic, and low-toxicity compound, compatible with biological systems<sup><a href="#ref5" id="note5">5</a></sup>. These properties make DMSO an excellent solvent for biological applications.
+Another solvent currently widely used in biology laboratories is dimethyl sulfoxide (DMSO), a highly stable, soluble, polar, aprotic, and low-toxicity compound, compatible with biological systems<sup><a href="#ref8" id="note8">8</a></sup>. These properties make DMSO an excellent solvent for biological applications.
 
 Within this context, an additional pilot study was conducted to explore potential enhancements to both the extraction protocol and the solvent used. Specifically, three extraction methods were tested and compared to address the following question: is the extraction method using dimethyl sulfoxide (DMSO) as effective as the methanol-based protocol for recovering our target metabolites?
 
@@ -192,7 +190,7 @@ This study therefore aims to assess whether DMSO could serve as a suitable alter
 
 The [standard DBGI extraction protocol](#extraction) described above was followed for this pilot study, with the exception of the extraction solvent, which was modified for comparative purposes.
 
-In this experiment, six well-documented plant samples (*Valeriana officinalis*, *Echinacea purpurea*, *Cannabis sativa*, *Erythroxylum coca*, *Salvia officinalis*, and *Nicotiana tabacum*) were tested using three extraction methods: the standard DBGI protocol with its usual solvent (80% methanol, 20% distilled water, 0.1% formic acid), a pure DMSO extraction (99.8%), and a DMSO extraction followed by sonication (5 minutes of high-frequency sound wave pulses generating bubbles that promote cell lysis).
+In this experiment, six well-documented plant samples (*Valeriana officinalis*, *Echinacea purpurea*, *Cannabis sativa*, *Erythroxylum coca*, *Salvia officinalis*, and *Nicotiana tabacum*) were tested using three extraction methods: the standard DBGI protocol with its usual solvent (80% methanol, 20% distilled water, 0.1% formic acid), a pure DMSO extraction (99.8%), and a DMSO extraction followed by sonication (5 minutes of high-frequency sound wave pulses generating bubbles that promote cell lysis).<sup><a href="#ref9" id="note9">9</a></sup>
 
 For each method, one Eppendorf tube was prepared per sample. Two blanks were also included in the experiment, using the methanol-water-formic acid mixture and pure DMSO, respectively.
 
@@ -280,7 +278,7 @@ The regions where peaks overlap indicate that the same molecules were extracted 
 
 Chromatograms obtained in positive and negative ionization modes are not directly comparable, as each mode favors the ionization of different molecules. Indeed, some molecules ionize better in positive mode, while others do so in negative mode, meaning that each mode detects a distinct subset of compounds present in the sample. 
 
-The detection of compounds is overall better in positive ionization mode, in terms of signal intensity , likely due to the nature of the molecules present, which often contain basic functional groups (such as amines) that favor positive ionization. However, negative mode should not be overlooked: although the signals are generally less intense, this mainly reflects a lower ionization efficiency rather than an intrinsically lower sensitivity of this mode. In addition, negative mode enables the detection of certain compounds absent in positive mode, highlighting the importance of using both ionization modes complementarily to obtain a complete and accurate profile of the molecules present in the extracts and achieve optimal metabolomic coverage.(citer la référence)
+The detection of compounds is overall better in positive ionization mode, in terms of signal intensity , likely due to the nature of the molecules present, which often contain basic functional groups (such as amines) that favor positive ionization. However, negative mode should not be overlooked: although the signals are generally less intense, this mainly reflects a lower ionization efficiency rather than an intrinsically lower sensitivity of this mode. In addition, negative mode enables the detection of certain compounds absent in positive mode, highlighting the importance of using both ionization modes complementarily to obtain a complete and accurate profile of the molecules present in the extracts and achieve optimal metabolomic coverage.<sup><a href="#ref10" id="note10">10</a></sup>
 
 ### Sample characteristics and preparation
 
@@ -289,7 +287,7 @@ Several notable differences were observed between samples extracted with dimethy
 ![alt text](<bachelor_project_jade/Image 25.06.25 à 12.05.jpg>)
 *Figure 23 : Eppendorf tubes before centrifugation containing 2 extracts of Erythroxylum coca by 2 extraction methods; Left: DMSO extraction: Right: methanol-water-formic acid extraction.*
 
-Sonication was employed in combination with DMSO for the third extraction method, as it enables the release of intracellular metabolites by lysing cell membranes. It relies on ultrasonic waves to generate bubbles in a liquid, which, upon implosion, produce high localized pressures and temperatures, thereby disrupting biological structures such as cellular membranes.
+Sonication was employed in combination with DMSO for the third extraction method, as it enables the release of intracellular metabolites by lysing cell membranes. It relies on ultrasonic waves to generate bubbles in a liquid, which, upon implosion, produce high localized pressures and temperatures, thereby disrupting biological structures such as cellular membranes.<sup><a href="#ref9" id="note9">9</a></sup>
 
 The initial hypothesis was that DMSO combined with sonication would yield mass spectrometry outputs of comparable quality to those obtained with methanol-based solvents, since sonication facilitates extensive cell disruption and maximizes compound recovery for analysis. However, sonicated DMSO produced results of similar—or even lower—quality than DMSO alone. This suggests, on one hand, that DMSO is highly effective as a standalone extraction solvent, and on the other hand, that combining sonication with DMSO may potentially damage biological structures beyond the cell membranes in our extracts. Further analyses or a reduction in sonication time could be considered for the protocol, to observe whether results are better, similar, or again of poorer quality.
 
@@ -313,7 +311,7 @@ The "Fake Extract Project" originated within the framework of Marco Visani’s d
 
 One of the major current challenges in metabolomic profiling of organisms within the EMI framework is that the molecular profile obtained by untargeted mass spectrometry from the natural extract does not allow for certainty regarding whether certain compounds were lost during the process. Without accurate, exhaustive, and well-referenced data throughout the extraction and profiling steps, it becomes difficult to anticipate the occurrences of natural products. This uncertainty limits the ability to model the chemical composition of living organisms according to their phylogenetic position.
 
-Ionization in mass spectrometry is intrinsically competitive: only molecules with favorable physicochemical properties—such as polarity, basicity, acidity, molecular weight, or certain structural features—ionize efficiently. Others may be strongly disadvantaged by phenomena like ion suppression<sup><a href="#ref6" id="note6">6</a></sup>, leading to decreased or even absent signals in complex natural mixtures.
+Ionization in mass spectrometry is intrinsically competitive: only molecules with favorable physicochemical properties—such as polarity, basicity, acidity, molecular weight, or certain structural features—ionize efficiently. Others may be strongly disadvantaged by phenomena like ion suppression<sup><a href="#ref11" id="note11">11</a></sup>, leading to decreased or even absent signals in complex natural mixtures.
 
 To model these losses and anticipate the missing chemistry within natural extracts, we designed the *Fake Extract Project*. This approach relies on the analysis of an artificial mixture composed of well-characterized reference compounds, processed through mass spectrometry. By comparing the output signal to the known initial composition, it becomes possible to quantify compound-specific detection losses. This strategy allows for the calibration and correction of experimental outputs by accounting for ionization biases, with the ultimate aim of more faithfully approximating the complete chemical composition of natural extracts.
 
@@ -379,18 +377,13 @@ The results for molecule detection in the mixture are presented here as a Venn d
 
 The results show that, after analysis of the fake extract by mass spectrometry for natural product detection, 38.2% of the molecules were detected exclusively in positive ionization mode, 7.8% exclusively in negative mode, and 32.5% in both modes. A total of 21.5% of the molecules were not detected in either ionization mode. Overall, 78.5% of the compounds in the mix were detected at least once, depending on the ionization mode used during mass spectrometric analysis.
 
-## Discussions 
+## Discussions and conclusion
 
 The 21.5% of molecules that were not detected even once in the mix confirm a significant ion suppression effect in extracts composed of multiple natural products. As a result, a certain amount of data is inevitably lost during the workflow for molecule extraction and metabolomic profiling, highlighting the need for modeling and characterization of these missing data. This would allow such biases to be integrated into the final outputs, bringing the predicted chemistry of living organisms closer to reality.
 
 However, these results should be interpreted with caution, as considerable variability was observed depending on the different MzMine parameter settings tested—particularly due to tolerance thresholds. Further in-depth analyses will be required in the next steps of the project in order to construct a mzBatch pipeline that is as accurate as possible for the detection of individual molecules, both alone and in mixtures, and that best reflects the true number of detectable compounds. A sufficiently high detection threshold is essential to ensure the detection of relevant compounds, but an excessively high threshold may result in the loss of weakly ionizable molecules.
 
 A major difference in detection was also observed between positive and negative ionization modes, again indicating a higher detection rate for positively ionized compounds (28.2%). Nonetheless, 7.8% of molecules were detected exclusively in negative mode, underlining its essential role in ensuring the broadest possible compound coverage. This observation is consistent with earlier discussions related to the results of the "[DMSO project](#chromatograms-comparison)."
-
-## Conclusion 
-
---> modélisation de toutes les molécules pas détectées, pour ensuite anticiper le contenu chimique des êtres vivants et complémenter les résultats en anticipant le type de molécules perdues au cours du processus 
---> complémentarité du projet PHD Marco et Lotus, dont EMI pourra également utiliser les résultats pour les objectifs à long terme du projet
 
 ## Perspectives 
 
@@ -402,24 +395,27 @@ The results of this pilot project, once finalized, could be reused in the contex
 
 # Bibliography 
 
-<p id="ref1">1. : Allard, P.-M. (2023). The Digital Botanical Gardens Initiative repository. https://doi.org/10.5281/zenodo.7662428 </p>
+<p id="ref1">1. : Aron, A. T., Gentry, E. C., McPhail, K. L., Nothias, L. F., Nothias-Esposito, M., Bouslimani, A., Petras, D., Gauglitz, J. M., Sikora, N., Vargas, F., van der Hooft, J. J. J., Ernst, M., Kang, K. bin, Aceves, C. M., Caraballo-Rodríguez, A. M., Koester, I., Weldon, K. C., Bertrand, S., Roullier, C., … Dorrestein, P. C. (2020). Reproducible molecular networking of untargeted mass spectrometry data using GNPS. Nature Protocols, 15(6), 1954–1991. https://doi.org/10.1038/s41596-020-0317-5
 
-<p id="ref2">2. : Shivanna, K. R. (2020). The Sixth Mass Extinction Crisis and its Impact on Biodiversity and Human Welfare. Resonance, 25(1), 93–109. https://doi.org/10.1007/s12045-019-0924-z </p>
+<p id="ref2">2. : Rutz, A., Sorokina, M., Galgonek, J., Mietchen, D., Willighagen, E., Gaudry, A., Graham, J. G., Stephan, R., Page, R., Vondrášek, J., Steinbeck, C., Pauli, G. F., Wolfender, J. L., Bisson, J., & Allard, P. M. (2022). The LOTUS initiative for open knowledge management in natural products research. ELife, 11. https://doi.org/10.7554/eLife.70780
 
-<p id="ref3">3. : Tribble, C. M., Martínez-Gómez, J., Howard, C. C., Males, J., Sosa, V., Sessa, E. B., Cellinese, N., & Specht, C. D. (2021). Get the shovel: morphological and evolutionary complexities of belowground organs in geophytes. In American Journal of Botany (Vol. 108, Issue 3, pp. 372–387). John Wiley and Sons Inc. https://doi.org/10.1002/ajb2.1623
+<p id="ref3">3. : Allard, P.-M. (2023). The Digital Botanical Gardens Initiative repository. https://doi.org/10.5281/zenodo.7662428 </p>
 
-<p id="ref4">4. :Rodríguez-Dévora, J. I., Shi, Z. D., & Xu, T. (2011). Direct assembling methodologies for high-throughput bioscreening. In Biotechnology Journal (Vol. 6, Issue 12, pp. 1454–1465). https://doi.org/10.1002/biot.201100100 
+<p id="ref4">4. : Shivanna, K. R. (2020). The Sixth Mass Extinction Crisis and its Impact on Biodiversity and Human Welfare. Resonance, 25(1), 93–109. https://doi.org/10.1007/s12045-019-0924-z </p>
 
-<p id="ref5">5. : Balakin, K. v., Ivanenkov, Y. A., Skorenko, A. v., Nikolsky, Y. v., Savchuk, N. P., & Ivashchenko, A. A. (2004). In silico estimation of DMSO solubility of organic compounds for bioscreening. Journal of Biomolecular Screening, 9(1), 22–31. https://doi.org/10.1177/1087057103260006
+<p id="ref5">5. : Tribble, C. M., Martínez-Gómez, J., Howard, C. C., Males, J., Sosa, V., Sessa, E. B., Cellinese, N., & Specht, C. D. (2021). Get the shovel: morphological and evolutionary complexities of belowground organs in geophytes. In American Journal of Botany (Vol. 108, Issue 3, pp. 372–387). John Wiley and Sons Inc. https://doi.org/10.1002/ajb2.1623
 
-<p id="ref6">6. : Annesley, T. M. (2003). Ion Suppression in Mass Spectrometry. Clinical Chemistry, 49(7), 1041–1044. https://doi.org/10.1373/49.7.1041
+<p id="ref6">6. : Hilaire, P. B. saint, Rousseau, K., Seyer, A., Dechaumet, S., Damont, A., Junot, C., & Fenaille, F. (2020). Comparative evaluation of data dependent and data independent acquisition workflows implemented on an orbitrap fusion for untargeted metabolomics. Metabolites, 10(4). https://doi.org/10.3390/metabo10040158
 
-Aron, A. T., Gentry, E. C., McPhail, K. L., Nothias, L. F., Nothias-Esposito, M., Bouslimani, A., Petras, D., Gauglitz, J. M., Sikora, N., Vargas, F., van der Hooft, J. J. J., Ernst, M., Kang, K. bin, Aceves, C. M., Caraballo-Rodríguez, A. M., Koester, I., Weldon, K. C., Bertrand, S., Roullier, C., … Dorrestein, P. C. (2020). Reproducible molecular networking of untargeted mass spectrometry data using GNPS. Nature Protocols, 15(6), 1954–1991. https://doi.org/10.1038/s41596-020-0317-5
+<p id="ref7">7. : Rodríguez-Dévora, J. I., Shi, Z. D., & Xu, T. (2011). Direct assembling methodologies for high-throughput bioscreening. In Biotechnology Journal (Vol. 6, Issue 12, pp. 1454–1465). https://doi.org/10.1002/biot.201100100 
 
-Sonication: définition, principe, exemples d'applications. SinapTec, www.sinaptec.fr/sonication-definition-principe-exemples/. Accessed 25 June 2025.
+<p id="ref8">8. : Balakin, K. v., Ivanenkov, Y. A., Skorenko, A. v., Nikolsky, Y. v., Savchuk, N. P., & Ivashchenko, A. A. (2004). In silico estimation of DMSO solubility of organic compounds for bioscreening. Journal of Biomolecular Screening, 9(1), 22–31. https://doi.org/10.1177/1087057103260006
 
-Hilaire, P. B. saint, Rousseau, K., Seyer, A., Dechaumet, S., Damont, A., Junot, C., & Fenaille, F. (2020). Comparative evaluation of data dependent and data independent acquisition workflows implemented on an orbitrap fusion for untargeted metabolomics. Metabolites, 10(4). https://doi.org/10.3390/metabo10040158
+<p id="ref9">9. : Sonication: définition, principe, exemples d'applications. SinapTec, www.sinaptec.fr/sonication-definition-principe-exemples/. Accessed 25 June 2025.
 
-Warnes, B., Chihabi, J., & Manthorpe, J. (2023). Unveiling the Power of Negative Ion Mode ESI-MS: Identifying Species with Remarkable Signal Intensity and Collisional Stability. https://doi.org/10.26434/chemrxiv-2023-85mkn-v3
+<p id="ref10">10. : Warnes, B., Chihabi, J., & Manthorpe, J. (2023). Unveiling the Power of Negative Ion Mode ESI-MS: Identifying Species with Remarkable Signal Intensity and Collisional Stability. https://doi.org/10.26434/chemrxiv-2023-85mkn-v3
 
-Rutz, A., Sorokina, M., Galgonek, J., Mietchen, D., Willighagen, E., Gaudry, A., Graham, J. G., Stephan, R., Page, R., Vondrášek, J., Steinbeck, C., Pauli, G. F., Wolfender, J. L., Bisson, J., & Allard, P. M. (2022). The LOTUS initiative for open knowledge management in natural products research. ELife, 11. https://doi.org/10.7554/eLife.70780
+<p id="ref11">11. : Annesley, T. M. (2003). Ion Suppression in Mass Spectrometry. Clinical Chemistry, 49(7), 1041–1044. https://doi.org/10.1373/49.7.1041
+
+
+
