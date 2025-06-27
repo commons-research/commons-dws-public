@@ -2,7 +2,7 @@
 id: 5o0tvzf4l6t6moau7en1v48
 title: Bachelor-project-jade
 desc: ''
-updated: 1751021550353
+updated: 1751025712575
 created: 1741185232433
 ---
 <p align="left">
@@ -37,7 +37,8 @@ Thank you to the entire COMMONS LAB team. My warm thanks go to Héloïse Coen, w
 
 # Abstract 
 
---> à faire tout à la fin 
+At a time when the molecular diversity and metabolomic references of living organisms remain largely under-characterized—despite being essential for understanding biodiversity and developing conservation strategies grounded in molecular evidence—existing databases are often fragmented, focused on model organisms or biomedical applications, and poorly suited to large-scale interdisciplinary and ecosystem-level integration. In this context, open initiatives such as LOTUS have emerged, aiming to reference, standardize, and interlink molecule–organism pairs via Wikidata, thereby making chemical knowledge of life more accessible, interoperable, and reusable. Aligned with this vision, the Earth Metabolome Initiative (EMI) sets out to map the entirety of Earth’s metabolome by generating molecular profiles for every known species. My Bachelor’s thesis contributes to this effort through three complementary axis: (1) the collection and metabolomic profiling of geophyte species from the Botanical Garden of Fribourg, as part of the Digital Botanical Gardens pilot initiative; (2) the evaluation of alternative extraction solvents, notably DMSO, to improve compatibility with downstream biological assays; and (3) the modeling of analytical data loss in mass spectrometry using a “fake extract” composed of reference metabolites. 
+By improving some of the key elements of existing workflows and, through the “false extract” project, laying the foundations for anticipating analytical losses in mass spectrometry, this work has helped to initiate a more accurate representation of the chemistry of natural extracts, as well as improving the reuse of extracts for the discovery of new bioactive compounds.
 
 # Introduction 
 
