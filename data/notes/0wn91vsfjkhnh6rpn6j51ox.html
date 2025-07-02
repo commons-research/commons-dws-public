@@ -1,0 +1,54 @@
+<h1 id="2024-03-08"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-03-08"></a>2024-03-08</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[] try to get in touch with mkdocs</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<p>None</p>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<h3 id="mkdocs"><a aria-hidden="true" class="anchor-heading icon-link" href="#mkdocs"></a>Mkdocs</h3>
+<p>Tool for documentation.</p>
+<ol>
+<li>Installation:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">pipx <span class="token function">install</span> mkdocs
+</code></pre>
+<ol start="2">
+<li>Create mkdocs in the projectfolder</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">mkdocs new <span class="token operator">&#x3C;</span>project_directory<span class="token operator">></span>
+</code></pre>
+<ol start="3">
+<li>Configurate the mkdocs.yml. In this file will be set all the settings and links.</li>
+</ol>
+<pre class="language-bash"><code class="language-bash"><span class="token function">vim</span> mkdocs.yml
+</code></pre>
+<p>The file can look like this (<a href="https://www.mkdocs.org/user-guide/configuration/">https://www.mkdocs.org/user-guide/configuration/</a>):</p>
+<pre class="language-bash"><code class="language-bash">The <span class="token function">file</span> can <span class="token function">look</span> like this:
+site_name: <span class="token string">"Dataset Extractor for LOTUS"</span>
+repo_url: <span class="token string">"https://github.com/commons-research/dataset-extractor-lotus"</span>
+site_author: <span class="token string">"Pascal Amrein"</span>
+site_description: <span class="token string">"Python script to extract data from the LOTUS Database"</span>
+copyright: <span class="token string">"commons-lab"</span>
+repo_name: <span class="token string">"GitHub"</span>
+nav:
+  - Home: <span class="token string">"index.md"</span>
+  - About: <span class="token string">"about.md"</span>
+not_in_nav:
+theme: <span class="token string">"readthedocs"</span>
+</code></pre>
+<ol start="4">
+<li>test your documentation</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">mkdocs serve
+</code></pre>
+<ol start="5">
+<li>publish it to github (the output will show you the link for the documentation)</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">mkdocs gh-deploy
+</code></pre>
+<p>It is recommended to ignore (.ignore file) the folder /site which will be the outputfile from mkdocs. It will inclute the <em>.html file, </em>.css and others.</p>
+<p>With the gh-deploy the following webpage went online <a href="https://commons-research.github.io/dataset-extractor-lotus/#information">https://commons-research.github.io/dataset-extractor-lotus/#information</a>.</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<p>how can it automatically include the functiondoc.</p>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>
