@@ -2,7 +2,7 @@
 id: qcUnyE9eaS2PVPPngKeB1
 title: Sparql
 desc: ''
-updated: 1734430748726
+updated: 1751830225283
 created: 1611593110381
 ---
 
@@ -1342,3 +1342,54 @@ ipen ->
     diesel::sql_types::Nullable < diesel::sql_types::Text > }
 }
 ```
+
+## Mind the famous WD graph split regarding scholarly articles  
+
+Why is that not working https://w.wiki/Eexo
+5 min
+
+eyes
+
+Antiviral chlorinated daphnane diterpenoid orthoesters from the bark and wood of Trigonostemon cherrieri
+scientific article published on 29 August 2012
+www.wikidata.org
+
+For https://www.wikidata.org/wiki/Q40275796
+5 min
+
+E
+
+Egon
+because all the scholarly articles moved to a different SPARQL endpoint #wikidataSplit
+4 min
+
+While that https://w.wiki/Eexs works
+4 min
+
+for https://www.wikidata.org/wiki/Q103883147
+4 min
+
+E
+
+Egon
+e.g. use https://w.wiki/Eext
+4 min
+
+heart
+
+ahhh the famous Split
+4 min
+
+Egon
+or...
+
+E
+
+https://w.wiki/Eexz
+2 min
+
++1
+
+Thanks, i'll  note these down once for all. Not the first time that I forget this split
+
+
