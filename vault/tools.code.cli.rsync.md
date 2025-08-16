@@ -2,7 +2,7 @@
 id: SS0rQYcsKz30tWG5tQVOB
 title: Rsync
 desc: ''
-updated: 1748260635104
+updated: 1755239578151
 created: 1609680294356
 ---
 
@@ -63,12 +63,23 @@ rsync -rvz -e 'ssh' --progress allardpm@biolpc045600:/home/allardpm/Downloads/we
 
 rsync -rvz -e 'ssh' --progress allardpm@biolpc045600:/home/allardpm/graphdb-import ./graphdb-import 
 
-rsync -rvz -e 'ssh' --progress allardpm@commons-server:/msdata/mapp_project_00051/mapp_batch_00169 ~/02_tmp/mapp_project_00051/mapp_batch_00169 
+rsync -rvz -e 'ssh' --progress allardpm@commons-server:/msdata/mapp_project_00051/mapp_batch_00169 ~/02_tmp/mapp_project_00051/mapp_batch_00169
+
+
+rsync -rvz -e 'ssh' --progress cronuser@commons-server:/media/data/nextcloud_data/emi/files/output/pictures/kew-botanical-gardens/kew-botanical-gardens /Users/pma/QField/cloud/kew-botanical-gardens/DCIM/kew-botanical-gardens
 
 
 # to fetch all file with a given extension. See https://stackoverflow.com/a/11111793 for details
 
 rsync -rvz -e 'ssh' --include="*/" --include="*.qza" --exclude="*" --progress allardpm@biolpc045600:/home/allardpm/sandbox/GNPS_output_Qemistree_set/ ./
+
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/kew-botanical-gardens/ \
+  /Users/pma/QField/cloud/kew-botanical-gardens/DCIM/kew-botanical-gardens/
+
+
 ```
 
 
