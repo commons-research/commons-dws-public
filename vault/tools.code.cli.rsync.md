@@ -2,7 +2,7 @@
 id: SS0rQYcsKz30tWG5tQVOB
 title: Rsync
 desc: ''
-updated: 1755239578151
+updated: 1755783716180
 created: 1609680294356
 ---
 
@@ -66,7 +66,127 @@ rsync -rvz -e 'ssh' --progress allardpm@biolpc045600:/home/allardpm/graphdb-impo
 rsync -rvz -e 'ssh' --progress allardpm@commons-server:/msdata/mapp_project_00051/mapp_batch_00169 ~/02_tmp/mapp_project_00051/mapp_batch_00169
 
 
-rsync -rvz -e 'ssh' --progress cronuser@commons-server:/media/data/nextcloud_data/emi/files/output/pictures/kew-botanical-gardens/kew-botanical-gardens /Users/pma/QField/cloud/kew-botanical-gardens/DCIM/kew-botanical-gardens
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/kew-botanical-gardens/ \
+  /Users/pma/QField/cloud/kew-botanical-gardens/DCIM/kew-botanical-gardens/
+
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/git_repos/cronjobs/qfieldcloud-fetcher/qfieldcloud_fetcher/exiftool/ \
+   /Users/pma/02_tmp/qfieldcloud_fetcher/exiftool/
+
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/git_repos/cronjobs/inaturalist-import-bot/inaturalist_import_bot/exiftool/ \
+   /Users/pma/02_tmp/inat_fetcher/exiftool/
+
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Iris_acutiloba_dbgi_008497_05.jpg \
+   /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Aillium_hymenorrhizum_dbgi_008497_01.jpg \
+   /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Aillium_hymenorrhizum_dbgi_008497_02.jpg \
+   /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Aillium_hymenorrhizum_dbgi_008497_03.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Aillium_hymenorrhizum_dbgi_008497_04.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Aillium_hymenorrhizum_dbgi_* \
+    /Users/pma/02_tmp/
+
+
+    
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Thymus_nitens_dbgi_008450_01.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Thymus_nitens_dbgi_008450_02.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Thymus_nitens_dbgi_008450_03.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Thymus_nitens_dbgi_008450_04.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Thymus_nitens_dbgi_008450_05.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Olearia_haastii_dbgi_008450_01.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Olearia_haastii_dbgi_008450_02.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Olearia_haastii_dbgi_008450_03.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Olearia_haastii_dbgi_008450_04.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Olearia_haastii_dbgi_008450_05.jpg \
+    /Users/pma/02_tmp/
+
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Triticum_aevistum_dbgi_008505_02.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Triticum_aevistum_dbgi_008505_03.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Triticum_aevistum_dbgi_008505_04.jpg \
+    /Users/pma/02_tmp/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Triticum_aevistum_dbgi_008505_05.jpg \
+    /Users/pma/02_tmp/
+
 
 
 # to fetch all file with a given extension. See https://stackoverflow.com/a/11111793 for details
