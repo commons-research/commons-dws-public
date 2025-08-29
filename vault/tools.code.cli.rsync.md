@@ -2,7 +2,7 @@
 id: SS0rQYcsKz30tWG5tQVOB
 title: Rsync
 desc: ''
-updated: 1755783716180
+updated: 1756410692211
 created: 1609680294356
 ---
 
@@ -164,7 +164,6 @@ rsync -avz -e 'ssh' --progress \
 rsync -avz -e 'ssh' --progress \
   --rsync-path="sudo -n -u cronuser rsync" \
   commons-server:/media/data/nextcloud_data/emi/files/output/pictures/jbc/jbc/Olearia_haastii_dbgi_008450_05.jpg \
-    /Users/pma/02_tmp/
 
 
 rsync -avz -e 'ssh' --progress \
@@ -200,6 +199,12 @@ rsync -avz -e 'ssh' --progress \
   /Users/pma/QField/cloud/kew-botanical-gardens/DCIM/kew-botanical-gardens/
 
 
+## fetch all dir under /media/data/qfieldcloud_data/data/inat_pictures
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/qfieldcloud_data/data/inat_pictures/ \
+  /Users/pma/02_tmp/inat_pictures/
 ```
 
 
@@ -278,3 +283,11 @@ rsync -rvz -e 'ssh' --progress /Volumes/COMMON\ FASIE-FATHO/PF_project/Graph_org
 
 
 https://ostechnix.com/how-to-resume-partially-downloaded-or-transferred-files-using-rsync/
+
+
+# local > vmunifr (allardpm@svx-uo7630dbgi)
+
+I move /Users/pma/git_repos/COMMONS_Lab/EMI/earth-metabolome-initiative.github.io/assets/img/emi_round_gold_simple.svg to /var/www/kg.earthmetabolome.org/emi_round_gold_simple.svg
+
+
+rsync -rvz -e 'ssh' --progress /Users/pma/git_repos/COMMONS_Lab/EMI/earth-metabolome-initiative.github.io/assets/img/emi_round_gold_simple.svg allardpm@svx-uo7630dbgi:/var/www/kg.earthmetabolome.org/emi_round_gold_simple.svg

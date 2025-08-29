@@ -2,9 +2,13 @@
 id: kjCZnMBrXYokZny7loss4
 title: Git
 desc: ''
-updated: 1709825573124
+updated: 1756196070895
 created: 1630424670253
 ---
+## Github Discussions template for questions
+
+https://github.blog/news-insights/product-news/github-discussions-just-got-better-with-category-forms/
+
 
 
 # Nice intro
@@ -86,3 +90,6 @@ https://stackoverflow.com/a/927386
 
 
 
+
+
+/Users/pma/02_tmp/
