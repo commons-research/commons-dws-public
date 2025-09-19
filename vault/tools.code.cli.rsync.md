@@ -2,7 +2,7 @@
 id: SS0rQYcsKz30tWG5tQVOB
 title: Rsync
 desc: ''
-updated: 1756410692211
+updated: 1756500651194
 created: 1609680294356
 ---
 
@@ -201,6 +201,37 @@ rsync -avz -e 'ssh' --progress \
 
 ## fetch all dir under /media/data/qfieldcloud_data/data/inat_pictures
 
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/qfieldcloud_data/data/inat_pictures/ \
+  /Users/pma/02_tmp/inat_pictures/
+
+
+## fetch all files under /media/data/qfieldcloud_data/data/formatted_csv/jbc
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/qfieldcloud_data/data/formatted_csv/jbc/ \
+  /Users/pma/02_tmp/jbc_formatted_csv/
+
+## fetch dir /media/data/qfieldcloud_data/data/inat_pictures/dbgi_008385 and dbgi_008572 and dbgi_001353 
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/qfieldcloud_data/data/inat_pictures/dbgi_008385/ \
+  /Users/pma/02_tmp/inat_pictures/dbgi_008385/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/qfieldcloud_data/data/inat_pictures/dbgi_008572/ \
+  /Users/pma/02_tmp/inat_pictures/dbgi_008572/
+
+rsync -avz -e 'ssh' --progress \
+  --rsync-path="sudo -n -u cronuser rsync" \
+  commons-server:/media/data/qfieldcloud_data/data/inat_pictures/dbgi_001353/ \
+  /Users/pma/02_tmp/inat_pictures/dbgi_001353/
+
+  
 rsync -avz -e 'ssh' --progress \
   --rsync-path="sudo -n -u cronuser rsync" \
   commons-server:/media/data/qfieldcloud_data/data/inat_pictures/ \
