@@ -1,0 +1,223 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><link rel="icon" href="/commons-dws-public/favicon.ico"/><title>Tmux</title><meta name="robots" content="index,follow"/><meta name="googlebot" content="index,follow"/><meta name="description" content="Personal knowledge space"/><meta property="og:title" content="Tmux"/><meta property="og:description" content="Personal knowledge space"/><meta property="og:url" content="https://commons-research.github.io/commons-dws-public/notes/NQYMosADQOZjknNMpqnTQ/"/><meta property="og:type" content="article"/><meta property="article:published_time" content="1/14/2022"/><meta property="article:modified_time" content="6/7/2024"/><link rel="canonical" href="https://commons-research.github.io/commons-dws-public/notes/NQYMosADQOZjknNMpqnTQ/"/><meta name="next-head-count" content="14"/><link rel="preload" href="/commons-dws-public/_next/static/css/47f58a23998994fc.css" as="style"/><link rel="stylesheet" href="/commons-dws-public/_next/static/css/47f58a23998994fc.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/commons-dws-public/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/commons-dws-public/_next/static/chunks/webpack-18f1eb2dd0aac0df.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/framework-28c999baf2863c3d.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/main-1bd061c8c8d18148.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/pages/_app-8bc9d81129a787a1.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/935-4dee79e80b8641c6.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/6-50972def09142ee2.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/pages/notes/%5Bid%5D-78d472fa3b924116.js" defer=""></script><script src="/commons-dws-public/_next/static/ilh4ComeLwDbrM8zcKyPY/_buildManifest.js" defer=""></script><script src="/commons-dws-public/_next/static/ilh4ComeLwDbrM8zcKyPY/_ssgManifest.js" defer=""></script></head><body><div id="__next" data-reactroot=""><section class="ant-layout" style="width:100%;min-height:100%"><header class="ant-layout-header" style="position:fixed;isolation:isolate;z-index:1;width:100%;border-bottom:1px solid #d4dadf;height:64px;padding:0 24px 0 2px"><div class="ant-row ant-row-center" style="max-width:992px;justify-content:space-between;margin:0 auto"><div style="display:flex" class="ant-col ant-col-xs-20 ant-col-sm-4"></div><div class="ant-col gutter-row ant-col-xs-0 ant-col-sm-20 ant-col-md-20 ant-col-lg-19"><div class="ant-select ant-select-lg ant-select-auto-complete ant-select-single ant-select-allow-clear ant-select-show-search" style="width:100%"><div class="ant-select-selector"><span class="ant-select-selection-search"><input type="search" autoComplete="off" class="ant-select-selection-search-input" role="combobox" aria-haspopup="listbox" aria-owns="undefined_list" aria-autocomplete="list" aria-controls="undefined_list" aria-activedescendant="undefined_list_0" value=""/></span><span class="ant-select-selection-placeholder">For full text search please use the &#x27;?&#x27; prefix. e.g. ? Onboarding</span></div></div></div><div style="display:none;align-items:center;justify-content:center" class="ant-col ant-col-xs-4 ant-col-sm-4 ant-col-md-0 ant-col-lg-0"><span role="img" aria-label="menu" style="font-size:24px" tabindex="-1" class="anticon anticon-menu"><svg viewBox="64 64 896 896" focusable="false" data-icon="menu" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"></path></svg></span></div></div></header><section class="ant-layout" style="margin-top:64px;display:flex;flex-direction:row"><div class="site-layout-sidebar" style="flex:0 0 auto;width:calc(max((100% - 992px) / 2, 0px) + 200px);min-width:200px;padding-left:calc((100% - 992px) / 2)"><aside class="ant-layout-sider ant-layout-sider-dark" style="position:fixed;overflow:auto;height:calc(100vh - 64px);background-color:transparent;flex:0 0 200px;max-width:200px;min-width:200px;width:200px"><div class="ant-layout-sider-children"></div></aside></div><main class="ant-layout-content side-layout-main" style="max-width:1200px;min-width:0;display:block"><div style="padding:0 24px"><div class="main-content" role="main"><div class="ant-row"><div class="ant-col ant-col-24"><div class="ant-row" style="margin-left:-10px;margin-right:-10px"><div style="padding-left:10px;padding-right:10px" class="ant-col ant-col-xs-24 ant-col-md-18"><div><h1 id="tmux"><a aria-hidden="true" class="anchor-heading icon-link" href="#tmux"></a>Tmux</h1>
+<p><a href="https://tmuxcheatsheet.com/">https://tmuxcheatsheet.com/</a></p>
+<p>Tmux Cheat Sheet
+Finally, we want to share a cheat sheet to use as a reference:</p>
+<p>Sessions</p>
+<p>Start a new Session:</p>
+<p><code>tmux</code></p>
+<p>Start a new session with a name:</p>
+<p><code>tmux new -s [name]</code></p>
+<p>Start an attached session:</p>
+<p><code>tmux a #</code></p>
+<p>If the Tmux session has a name:</p>
+<p><code>tmux attach -t [name]</code>
+%>%
+List all Tmux sessions:</p>
+<p><code>tmux ls</code></p>
+<p>Exit the utility:</p>
+<p><code>exit</code></p>
+<p>Kill session:</p>
+<p><code>tmux kill-session -t [name]</code></p>
+<h2 id="window-handling"><a aria-hidden="true" class="anchor-heading icon-link" href="#window-handling"></a>Window Handling</h2>
+<p>Note the Prefix is <strong>Ctrl + B</strong></p>
+<ul>
+<li>New window	<prefix>+c</prefix></li>
+<li>Next window	<prefix>+n</prefix></li>
+<li>List all windows	<prefix>+w</prefix></li>
+<li>Rename a window	<prefix>+,</prefix></li>
+<li>Previous window	<prefix>+p</prefix></li>
+<li>Find a window	<prefix>+f</prefix></li>
+<li>Kill a window	<prefix>+&#x26;</prefix></li>
+</ul>
+<h2 id="pane-handling"><a aria-hidden="true" class="anchor-heading icon-link" href="#pane-handling"></a>Pane Handling</h2>
+<ul>
+<li>Split panes vertically	<prefix>+%</prefix></li>
+<li>Split panes horizontally	<prefix>+“</prefix></li>
+<li>Toggle last active plane	<prefix>+;</prefix></li>
+<li>Swap panes	<prefix>+o</prefix></li>
+<li>Kill pane	<prefix>+x</prefix></li>
+<li>Show pane numbers	<prefix>+q</prefix></li>
+<li>Move plan left	<prefix>+{</prefix></li>
+<li>Move plan right	<prefix>+}</prefix></li>
+<li>Switching between panes	<prefix>+arrow key</prefix></li>
+</ul>
+<p>Sessions
+tmux
+tmux new
+tmux new-session
+new
+Start a new session</p>
+<p>tmux new -s mysession
+new -s mysession
+Start a new session with the name mysession</p>
+<p>tmux kill-ses -t mysession
+tmux kill-session -t mysession
+kill/delete session mysession</p>
+<p>tmux kill-session -a
+kill/delete all sessions but the current</p>
+<p>tmux kill-session -a -t mysession
+kill/delete all sessions but mysession</p>
+<p>Ctrl + b $
+Rename session</p>
+<p>Ctrl + b d
+Detach from session</p>
+<p>attach -d
+Detach others on the session (Maximize window by detach other clients)</p>
+<p>tmux ls
+tmux list-sessions
+Ctrl + b s
+Show all sessions</p>
+<p>tmux a
+tmux at
+tmux attach
+tmux attach-session
+Attach to last session</p>
+<p>tmux a -t mysession
+tmux at -t mysession
+tmux attach -t mysession
+tmux attach-session -t mysession
+Attach to a session with the name mysession</p>
+<p>Ctrl + b w
+Session and Window Preview</p>
+<p>Ctrl + b (
+Move to previous session</p>
+<p>Ctrl + b )
+Move to next session</p>
+<p>Windows
+tmux new -s mysession -n mywindow
+start a new session with the name mysession and window mywindow</p>
+<p>Ctrl + b c
+Create window</p>
+<p>Ctrl + b ,
+Rename current window</p>
+<p>Ctrl + b &#x26;
+Close current window</p>
+<p>Ctrl + b w
+List windows</p>
+<p>Ctrl + b p
+Previous window</p>
+<p>Ctrl + b n
+Next window</p>
+<p>Ctrl + b 0 ... 9
+Switch/select window by number</p>
+<p>Ctrl + b l
+Toggle last active window</p>
+<p>swap-window -s 2 -t 1
+Reorder window, swap window number 2(src) and 1(dst)</p>
+<p>swap-window -t -1
+Move current window to the left by one position</p>
+<p>Panes
+Ctrl + b ;
+Toggle last active pane</p>
+<p>Ctrl + b %
+Split pane with horizontal layout</p>
+<p>Ctrl + b "
+Split pane with vertical layout</p>
+<p>Ctrl + b {
+Move the current pane left</p>
+<p>Ctrl + b }
+Move the current pane right</p>
+<p>Ctrl + b
+Ctrl + b
+Ctrl + b
+Ctrl + b
+Switch to pane to the direction</p>
+<p>setw synchronize-panes
+Toggle synchronize-panes(send command to all panes)</p>
+<p>Ctrl + b Spacebar
+Toggle between pane layouts</p>
+<p>Ctrl + b o
+Switch to next pane</p>
+<p>Ctrl + b q
+Show pane numbers</p>
+<p>Ctrl + b q 0 ... 9
+Switch/select pane by number</p>
+<p>Ctrl + b z
+Toggle pane zoom</p>
+<p>Ctrl + b !
+Convert pane into a window</p>
+<p>Ctrl + b +
+Ctrl + b Ctrl +
+Ctrl + b +
+Ctrl + b Ctrl +
+Resize current pane height(holding second key is optional)</p>
+<p>Ctrl + b +
+Ctrl + b Ctrl +
+Ctrl + b +
+Ctrl + b Ctrl +
+Resize current pane width(holding second key is optional)</p>
+<p>Ctrl + b x
+Close current pane</p>
+<p>Copy Mode
+setw -g mode-keys vi
+use vi keys in buffer</p>
+<p>Ctrl + b [
+Enter copy mode</p>
+<p>Ctrl + b PgUp
+Enter copy mode and scroll one page up</p>
+<p>q
+Quit mode</p>
+<p>g
+Go to top line</p>
+<p>G
+Go to bottom line</p>
+<p>Scroll up</p>
+<p>Scroll down</p>
+<p>h
+Move cursor left</p>
+<p>j
+Move cursor down</p>
+<p>k
+Move cursor up</p>
+<p>l
+Move cursor right</p>
+<p>w
+Move cursor forward one word at a time</p>
+<p>b
+Move cursor backward one word at a time</p>
+<p>/
+Search forward</p>
+<p>?
+Search backward</p>
+<p>n
+Next keyword occurance</p>
+<p>N
+Previous keyword occurance</p>
+<p>Spacebar
+Start selection</p>
+<p>Esc
+Clear selection</p>
+<p>Enter
+Copy selection</p>
+<p>Ctrl + b ]
+Paste contents of buffer_0</p>
+<p>show-buffer
+display buffer_0 contents</p>
+<p>capture-pane
+copy entire visible contents of pane to a buffer</p>
+<p>list-buffers
+Show all buffers</p>
+<p>choose-buffer
+Show all buffers and paste selected</p>
+<p>save-buffer buf.txt
+Save buffer contents to buf.txt</p>
+<p>delete-buffer -b 1
+delete buffer_1</p>
+<p>Misc
+Ctrl + b :
+Enter command mode</p>
+<p>set -g OPTION
+Set OPTION for all sessions</p>
+<p>setw -g OPTION
+Set OPTION for all windows</p>
+<p>set mouse on
+Enable mouse mode</p>
+<p>Help
+tmux list-keys
+list-keys
+Ctrl + b ?
+List key bindings(shortcuts)</p>
+<p>tmux info
+Show every session, window, pane, etc...</p>
+<h3 id="scrolling"><a aria-hidden="true" class="anchor-heading icon-link" href="#scrolling"></a>Scrolling</h3>
+<p>Ctrl-b then [ then you can use your normal navigation keys to scroll around (eg. Up Arrow or PgDn). Press q to quit scroll mode.</p></div></div><div style="padding-left:10px;padding-right:10px" class="ant-col ant-col-xs-0 ant-col-md-6"><div><div class=""><div class="ant-anchor-wrapper dendron-toc" style="max-height:calc(100vh - 64px);z-index:1"><div class="ant-anchor"><div class="ant-anchor-ink"><span class="ant-anchor-ink-ball"></span></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#window-handling" title="Window Handling">Window Handling</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#pane-handling" title="Pane Handling">Pane Handling</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#scrolling" title="Scrolling">Scrolling</a></div></div></div></div></div></div></div></div></div></div></div><div class="ant-divider ant-divider-horizontal" role="separator"></div><footer class="ant-layout-footer" style="padding:0 24px 24px"></footer></main></section></section></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"note":{"id":"NQYMosADQOZjknNMpqnTQ","title":"Tmux","desc":"","updated":1717761328680,"created":1642180965235,"custom":{},"fname":"tools.cli.tmux","type":"note","vault":{"fsPath":"vault"},"contentHash":"66a34fdd5e5ca5d51a30074fcc8bb33a","links":[],"anchors":{"window-handling":{"type":"header","text":"Window Handling","value":"window-handling","line":44,"column":0,"depth":2},"pane-handling":{"type":"header","text":"Pane Handling","value":"pane-handling","line":56,"column":0,"depth":2},"scrolling":{"type":"header","text":"Scrolling","value":"scrolling","line":325,"column":0,"depth":3}},"children":[],"parent":"wbemq1zhb5gn4esm546xfx3","data":{}},"body":"\u003ch1 id=\"tmux\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#tmux\"\u003e\u003c/a\u003eTmux\u003c/h1\u003e\n\u003cp\u003e\u003ca href=\"https://tmuxcheatsheet.com/\"\u003ehttps://tmuxcheatsheet.com/\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eTmux Cheat Sheet\nFinally, we want to share a cheat sheet to use as a reference:\u003c/p\u003e\n\u003cp\u003eSessions\u003c/p\u003e\n\u003cp\u003eStart a new Session:\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003etmux\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eStart a new session with a name:\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003etmux new -s [name]\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eStart an attached session:\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003etmux a #\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eIf the Tmux session has a name:\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003etmux attach -t [name]\u003c/code\u003e\n%\u003e%\nList all Tmux sessions:\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003etmux ls\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eExit the utility:\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003eexit\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eKill session:\u003c/p\u003e\n\u003cp\u003e\u003ccode\u003etmux kill-session -t [name]\u003c/code\u003e\u003c/p\u003e\n\u003ch2 id=\"window-handling\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#window-handling\"\u003e\u003c/a\u003eWindow Handling\u003c/h2\u003e\n\u003cp\u003eNote the Prefix is \u003cstrong\u003eCtrl + B\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eNew window\t\u003cprefix\u003e+c\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eNext window\t\u003cprefix\u003e+n\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eList all windows\t\u003cprefix\u003e+w\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eRename a window\t\u003cprefix\u003e+,\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003ePrevious window\t\u003cprefix\u003e+p\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eFind a window\t\u003cprefix\u003e+f\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eKill a window\t\u003cprefix\u003e+\u0026#x26;\u003c/prefix\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"pane-handling\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#pane-handling\"\u003e\u003c/a\u003ePane Handling\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eSplit panes vertically\t\u003cprefix\u003e+%\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eSplit panes horizontally\t\u003cprefix\u003e+“\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eToggle last active plane\t\u003cprefix\u003e+;\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eSwap panes\t\u003cprefix\u003e+o\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eKill pane\t\u003cprefix\u003e+x\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eShow pane numbers\t\u003cprefix\u003e+q\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eMove plan left\t\u003cprefix\u003e+{\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eMove plan right\t\u003cprefix\u003e+}\u003c/prefix\u003e\u003c/li\u003e\n\u003cli\u003eSwitching between panes\t\u003cprefix\u003e+arrow key\u003c/prefix\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eSessions\ntmux\ntmux new\ntmux new-session\nnew\nStart a new session\u003c/p\u003e\n\u003cp\u003etmux new -s mysession\nnew -s mysession\nStart a new session with the name mysession\u003c/p\u003e\n\u003cp\u003etmux kill-ses -t mysession\ntmux kill-session -t mysession\nkill/delete session mysession\u003c/p\u003e\n\u003cp\u003etmux kill-session -a\nkill/delete all sessions but the current\u003c/p\u003e\n\u003cp\u003etmux kill-session -a -t mysession\nkill/delete all sessions but mysession\u003c/p\u003e\n\u003cp\u003eCtrl + b $\nRename session\u003c/p\u003e\n\u003cp\u003eCtrl + b d\nDetach from session\u003c/p\u003e\n\u003cp\u003eattach -d\nDetach others on the session (Maximize window by detach other clients)\u003c/p\u003e\n\u003cp\u003etmux ls\ntmux list-sessions\nCtrl + b s\nShow all sessions\u003c/p\u003e\n\u003cp\u003etmux a\ntmux at\ntmux attach\ntmux attach-session\nAttach to last session\u003c/p\u003e\n\u003cp\u003etmux a -t mysession\ntmux at -t mysession\ntmux attach -t mysession\ntmux attach-session -t mysession\nAttach to a session with the name mysession\u003c/p\u003e\n\u003cp\u003eCtrl + b w\nSession and Window Preview\u003c/p\u003e\n\u003cp\u003eCtrl + b (\nMove to previous session\u003c/p\u003e\n\u003cp\u003eCtrl + b )\nMove to next session\u003c/p\u003e\n\u003cp\u003eWindows\ntmux new -s mysession -n mywindow\nstart a new session with the name mysession and window mywindow\u003c/p\u003e\n\u003cp\u003eCtrl + b c\nCreate window\u003c/p\u003e\n\u003cp\u003eCtrl + b ,\nRename current window\u003c/p\u003e\n\u003cp\u003eCtrl + b \u0026#x26;\nClose current window\u003c/p\u003e\n\u003cp\u003eCtrl + b w\nList windows\u003c/p\u003e\n\u003cp\u003eCtrl + b p\nPrevious window\u003c/p\u003e\n\u003cp\u003eCtrl + b n\nNext window\u003c/p\u003e\n\u003cp\u003eCtrl + b 0 ... 9\nSwitch/select window by number\u003c/p\u003e\n\u003cp\u003eCtrl + b l\nToggle last active window\u003c/p\u003e\n\u003cp\u003eswap-window -s 2 -t 1\nReorder window, swap window number 2(src) and 1(dst)\u003c/p\u003e\n\u003cp\u003eswap-window -t -1\nMove current window to the left by one position\u003c/p\u003e\n\u003cp\u003ePanes\nCtrl + b ;\nToggle last active pane\u003c/p\u003e\n\u003cp\u003eCtrl + b %\nSplit pane with horizontal layout\u003c/p\u003e\n\u003cp\u003eCtrl + b \"\nSplit pane with vertical layout\u003c/p\u003e\n\u003cp\u003eCtrl + b {\nMove the current pane left\u003c/p\u003e\n\u003cp\u003eCtrl + b }\nMove the current pane right\u003c/p\u003e\n\u003cp\u003eCtrl + b\nCtrl + b\nCtrl + b\nCtrl + b\nSwitch to pane to the direction\u003c/p\u003e\n\u003cp\u003esetw synchronize-panes\nToggle synchronize-panes(send command to all panes)\u003c/p\u003e\n\u003cp\u003eCtrl + b Spacebar\nToggle between pane layouts\u003c/p\u003e\n\u003cp\u003eCtrl + b o\nSwitch to next pane\u003c/p\u003e\n\u003cp\u003eCtrl + b q\nShow pane numbers\u003c/p\u003e\n\u003cp\u003eCtrl + b q 0 ... 9\nSwitch/select pane by number\u003c/p\u003e\n\u003cp\u003eCtrl + b z\nToggle pane zoom\u003c/p\u003e\n\u003cp\u003eCtrl + b !\nConvert pane into a window\u003c/p\u003e\n\u003cp\u003eCtrl + b +\nCtrl + b Ctrl +\nCtrl + b +\nCtrl + b Ctrl +\nResize current pane height(holding second key is optional)\u003c/p\u003e\n\u003cp\u003eCtrl + b +\nCtrl + b Ctrl +\nCtrl + b +\nCtrl + b Ctrl +\nResize current pane width(holding second key is optional)\u003c/p\u003e\n\u003cp\u003eCtrl + b x\nClose current pane\u003c/p\u003e\n\u003cp\u003eCopy Mode\nsetw -g mode-keys vi\nuse vi keys in buffer\u003c/p\u003e\n\u003cp\u003eCtrl + b [\nEnter copy mode\u003c/p\u003e\n\u003cp\u003eCtrl + b PgUp\nEnter copy mode and scroll one page up\u003c/p\u003e\n\u003cp\u003eq\nQuit mode\u003c/p\u003e\n\u003cp\u003eg\nGo to top line\u003c/p\u003e\n\u003cp\u003eG\nGo to bottom line\u003c/p\u003e\n\u003cp\u003eScroll up\u003c/p\u003e\n\u003cp\u003eScroll down\u003c/p\u003e\n\u003cp\u003eh\nMove cursor left\u003c/p\u003e\n\u003cp\u003ej\nMove cursor down\u003c/p\u003e\n\u003cp\u003ek\nMove cursor up\u003c/p\u003e\n\u003cp\u003el\nMove cursor right\u003c/p\u003e\n\u003cp\u003ew\nMove cursor forward one word at a time\u003c/p\u003e\n\u003cp\u003eb\nMove cursor backward one word at a time\u003c/p\u003e\n\u003cp\u003e/\nSearch forward\u003c/p\u003e\n\u003cp\u003e?\nSearch backward\u003c/p\u003e\n\u003cp\u003en\nNext keyword occurance\u003c/p\u003e\n\u003cp\u003eN\nPrevious keyword occurance\u003c/p\u003e\n\u003cp\u003eSpacebar\nStart selection\u003c/p\u003e\n\u003cp\u003eEsc\nClear selection\u003c/p\u003e\n\u003cp\u003eEnter\nCopy selection\u003c/p\u003e\n\u003cp\u003eCtrl + b ]\nPaste contents of buffer_0\u003c/p\u003e\n\u003cp\u003eshow-buffer\ndisplay buffer_0 contents\u003c/p\u003e\n\u003cp\u003ecapture-pane\ncopy entire visible contents of pane to a buffer\u003c/p\u003e\n\u003cp\u003elist-buffers\nShow all buffers\u003c/p\u003e\n\u003cp\u003echoose-buffer\nShow all buffers and paste selected\u003c/p\u003e\n\u003cp\u003esave-buffer buf.txt\nSave buffer contents to buf.txt\u003c/p\u003e\n\u003cp\u003edelete-buffer -b 1\ndelete buffer_1\u003c/p\u003e\n\u003cp\u003eMisc\nCtrl + b :\nEnter command mode\u003c/p\u003e\n\u003cp\u003eset -g OPTION\nSet OPTION for all sessions\u003c/p\u003e\n\u003cp\u003esetw -g OPTION\nSet OPTION for all windows\u003c/p\u003e\n\u003cp\u003eset mouse on\nEnable mouse mode\u003c/p\u003e\n\u003cp\u003eHelp\ntmux list-keys\nlist-keys\nCtrl + b ?\nList key bindings(shortcuts)\u003c/p\u003e\n\u003cp\u003etmux info\nShow every session, window, pane, etc...\u003c/p\u003e\n\u003ch3 id=\"scrolling\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#scrolling\"\u003e\u003c/a\u003eScrolling\u003c/h3\u003e\n\u003cp\u003eCtrl-b then [ then you can use your normal navigation keys to scroll around (eg. Up Arrow or PgDn). Press q to quit scroll mode.\u003c/p\u003e","noteIndex":{"id":"QvYK9hGbCvPpEfSRYhV8j","title":"Welcome to the COMMONS Lab Open Dendron","desc":"","updated":1693056226815,"created":1630130450048,"custom":{"nav_order":0,"permalink":"/"},"fname":"root","type":"note","vault":{"fsPath":"vault"},"contentHash":"20f67df3dd870fc450a162c202c9ff41","links":[{"type":"wiki","from":{"fname":"root","id":"QvYK9hGbCvPpEfSRYhV8j","vaultName":"vault"},"value":"open-notebook.commons.setup","position":{"start":{"line":43,"column":118,"offset":1871},"end":{"line":43,"column":149,"offset":1902},"indent":[]},"xvault":false,"sameFile":false,"to":{"fname":"open-notebook.commons.setup"}}],"anchors":{"what-is-this-note":{"type":"header","text":"What is this note","value":"what-is-this-note","line":16,"column":0,"depth":2},"tutorial":{"type":"header","text":"Tutorial","value":"tutorial","line":20,"column":0,"depth":2},"dendron":{"type":"header","text":"Dendron.","value":"dendron","line":22,"column":0,"depth":3},"what-is-dendron-":{"type":"header","text":"What is Dendron ?","value":"what-is-dendron-","line":24,"column":0,"depth":4},"where-to-get-more-info-on-dendron-":{"type":"header","text":"Where to get more info on Dendron ?","value":"where-to-get-more-info-on-dendron-","line":30,"column":0,"depth":4},"concrete-steps-to-access-and-contribute-to-the-dbgi-dendron":{"type":"header","text":"Concrete steps to access and contribute to the DBGI Dendron","value":"concrete-steps-to-access-and-contribute-to-the-dbgi-dendron","line":35,"column":0,"depth":4},"questions-comments-suggestions-":{"type":"header","text":"Questions, comments, suggestions ?","value":"questions-comments-suggestions-","line":52,"column":0,"depth":2}},"children":["5o0tvzf4l6t6moau7en1v48","e4ul30admmxm9ilxfq275cq","h78qbvh1fd9bwcykmcm9uo3","6ooxuf27zzf3grb14o18qf2","tiqo5upbg6224t7i8p87iok","ltq8wcrabmq6mlescrdi4m0","bdq3suiz8yriznljea2zpug","ih6vyup3yre4m9woc9ldl7k","vDTgZL9UHWqYtBFdtD3vK","69ekb2qhuwukr0jwrzy6tnw","8us579vydjfskegndhvdzsl","373694o1o6ocqohko4um7c9","jldFUSJGjDf1mFH8c2yUI","dh2qp7w4tl6otf89xrmxitv","2rvdf4t5qnx5hqjj29bojcc","stj9lq0lxhfuk5ntomiozz0","gvdyfgvq0z08fcfaqzmhtjo","2rvclk21kfedpvxuzjpizi7","dcwgamgyghrlyau1avlh6ug","432qdutuo1i8h5pcuh39ytt","2npxodkvs5jk6p1eksi551b","h81rw16zzgh9kix8ti1mbam","lco50o42dfeph5i5f2k981w","46d1odkovrpdi6g16992phy","sw67lr6069gwhqmdym2l9na","s9gzk7nphtjzmpdqvk5y4vj","82ra6p4ykf814hp8yfw4wp6","hpnaglyhnb48vuiniqecnqf","y7nk7xmiht44neo0q7cl5cs","2cxr093kvrg4jojokwgqrbj","8vfu5h3617jbzy78xr2hlo1","w75krbmkkvla3hwd66hn5bh","40po5od17ekcr1e77dluxao","4pqppog2u66rx1tkc8jy5v9","ektni5nfulyro7dkrbtek7j","vfsp2aci6vy7kg2jsyy8tzu","0wm4geq40t6nscn88rcwu47","ib4jmxy1x3l1r0ewe6hln4j","0h57aw0be2jnc3dxcpn3ajn","4789z8f1dqdh5k3nmgr1m4z","p5dszyuhj1klgje0brtv0xj","sk4m9gq7vz2t9phcxlxvqpw","43p60vv8btyhaclugl93jok","zhc9hhpaobkbo4e2votv6wr","ylulfzi7ra5yv6ja7j78t6e","wj0i9czxvt4v0b674nb8501","ovslc641d0h00s16tf6kl8w","4zmlbmcp6q4q69ycvhavzr6","59ftsVxFXXM9bB43vfKwK","nmnpsy2e1rwqnqgurogi2u6","yi9sq691cas9eyjfx8x7atd","hmn2egle6t4foxe01xup7xt","3yysbx5aor30qd48lqaulbt","nq0iph4a21h5alnuip05j6z","y4t7h534eugai0bjr3mgfjn","zlbfl274tfdx3ix844jt5bm","ulasj276ktykjhdco456wan","au21tj497d981l8pdsily19","8zdzqjzai32lw7xbn30khlt","rjq88ar936t5kn7i86dnfb2","q1yxhdq1jqazej8hq8qzqrb","9mwhjkgi6lx9icrry5qwcg7","3j65st8vcb7mztobso4xk1m","t4z6dnhqmj5axvc2d1esbnn","quvftc4ygczckg0vfltkxbb","jka9lkt701hkbxyfs0qujnx","ivro3wr1xttk7fh7ikp0mvx","alwx9pow583s15xgx2gecjv"],"parent":null,"data":{},"body":"\n![](/assets/images/allard-lab.jpg)\n\nWelcome the the COMMONS Lab Open Dendron !\n\nIn the [COMMONS Lab](https://www.unifr.ch/bio/en/groups/allard/) we intent to follow the [Open Notebook Science](https://en.wikipedia.org/wiki/Open-notebook_science) approach to document our research.\n\nFor this we use the [Dendron](https://www.dendron.so/) system as a mean to efficiently capture notes and publish them.\n\n## What is this note\n\nThis note is a succinct tutorial note aiming to get you started in the use of the COMMONS Lab Dendron.\n\n## Tutorial\n\n### Dendron. \n\n#### What is Dendron ?\n\n\u003e Dendron is an open-source, local-first, markdown-based, note-taking tool. Think of it as a cache for everything that you care about - if you've spent more then five minutes solving a problem, you should never spent any more time solving the same exact problem.\n\u003e \n\u003e Dendron is a knowledge base built by and for developers and integrates natively with IDEs like VS Code and VSCodium.\n\n#### Where to get more info on Dendron ?\n\n- You can get more information in the Dendron system at the official website www.dendron.so\n- All the Dendron documentation is hosted here https://wiki.dendron.so/. It is, obviously, a Dendron itself.\n\n#### Concrete steps to access and contribute to the DBGI Dendron\n\n1. Install [VSCode](https://code.visualstudio.com/download)\n2. Install [Dendron](https://marketplace.visualstudio.com/items?itemName=dendron.dendron) from the VSCode marketplace \n3. Clone the COMMONS Dendron repo\n\n    In your terminal\n    ```\n    git clone https://github.com/commons-research/commons-dws-public.git\n    ```\n4. In VSCode open (File/Open) the cloned repository.\n5. Voila ! You should now be in the COMMONS Lab Open Dendron.\n\nFeel free to explore and contribute.\nA first, important step could be to configure VSCode so that you can easily add a daily note. See steps described at [[open-notebook.commons.setup]]\n\n\n## Questions, comments, suggestions ?\n\nFeel free to contribute here https://github.com/orgs/commons-research/discussions\n\n"},"collectionChildren":null,"customHeadContent":null,"config":{"version":5,"dev":{"enablePreviewV2":true},"commands":{"lookup":{"note":{"selectionMode":"extract","confirmVaultOnCreate":false,"leaveTrace":false,"bubbleUpCreateNew":true,"vaultSelectionModeOnCreate":"smart","fuzzThreshold":0.2}},"insertNote":{"initialValue":"templates"},"insertNoteLink":{"aliasMode":"none","enableMultiSelect":false},"insertNoteIndex":{"enableMarker":false},"randomNote":{},"copyNoteLink":{"aliasMode":"title"},"templateHierarchy":"template"},"workspace":{"vaults":[{"fsPath":"vault"}],"journal":{"dailyDomain":"daily","name":"journal","dateFormat":"y.MM.dd","addBehavior":"childOfDomain"},"scratch":{"name":"scratch","dateFormat":"y.MM.dd.HHmmss","addBehavior":"asOwnDomain"},"graph":{"zoomSpeed":1,"createStub":false},"enableAutoCreateOnDefinition":false,"enableXVaultWikiLink":false,"enableRemoteVaultInit":true,"workspaceVaultSyncMode":"noCommit","enableAutoFoldFrontmatter":false,"maxPreviewsCached":10,"maxNoteLength":204800,"task":{"name":"","dateFormat":"","addBehavior":"childOfCurrent","statusSymbols":{"":" ","wip":"w","done":"x","assigned":"a","moved":"m","blocked":"b","delegated":"l","dropped":"d","pending":"y"},"prioritySymbols":{"H":"high","M":"medium","L":"low"},"todoIntegration":false,"createTaskSelectionType":"selection2link","taskCompleteStatus":["done","x"]},"enableUserTags":true,"enableHashTags":true,"dendronVersion":"0.112.0","enableEditorDecorations":true,"enableFullHierarchyNoteTitle":false},"preview":{"enableFMTitle":true,"enableNoteTitleForLink":true,"enableMermaid":true,"enablePrettyRefs":true,"enableKatex":true,"automaticallyShowPreview":false,"enableFrontmatterTags":true,"enableHashesForFMTags":false},"publishing":{"enableFMTitle":true,"enableNoteTitleForLink":true,"enableMermaid":true,"enablePrettyRefs":true,"enableKatex":true,"assetsPrefix":"/commons-dws-public","copyAssets":true,"siteHierarchies":["root"],"enableSiteLastModified":true,"siteRootDir":"docs","siteUrl":"https://commons-research.github.io","enableFrontmatterTags":true,"enableHashesForFMTags":false,"enableRandomlyColoredTags":true,"duplicateNoteBehavior":{"action":"useVault","payload":["vault"]},"writeStubs":false,"seo":{"title":"COMMONS DWS Public","description":"Personal knowledge space"},"github":{"enableEditLink":true,"editLinkText":"Click here to edit this page on Github !","editBranch":"main","editViewMode":"edit","editRepository":"https://github.com/commons-research/commons-dws-public"},"enablePrettyLinks":true,"enableTaskNotes":true,"siteFaviconPath":"favicon.ico","siteIndex":"root","searchMode":"lookup"}}},"__N_SSG":true},"page":"/notes/[id]","query":{"id":"NQYMosADQOZjknNMpqnTQ"},"buildId":"ilh4ComeLwDbrM8zcKyPY","assetPrefix":"/commons-dws-public","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

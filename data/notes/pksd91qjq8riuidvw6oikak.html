@@ -1,0 +1,26 @@
+<h1 id="2024-03-12"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-03-12"></a>2024-03-12</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<p>Zenodo is just used as a "research google drive". It will provide a DOI number and you can upload your data (without proofing it).</p>
+<h3 id="zenodo_client"><a aria-hidden="true" class="anchor-heading icon-link" href="#zenodo_client"></a>zenodo_client</h3>
+<p>Today I tried out the package zenodo_client <a href="https://github.com/cthoyt/zenodo-client">https://github.com/cthoyt/zenodo-client</a>.
+For this you need to make an API token to access the zenodo webpage.
+API tokens are used for authentication and authorization purposes in API (Application Programming Interface) requests.
+This token has to be stored in the file <code>~/.config/zenodo.ini</code> (<a href="https://en.wikipedia.org/wiki/INI_file">.ini</a>) with the following entry:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token punctuation">[</span>zenodo<span class="token punctuation">]</span>
+api_token = &#x3C;your_token<span class="token punctuation">></span>
+</code></pre>
+<p>Unfortunately, I was not able to download my data specificly. Somehow I have to provide a name of the file, but I don't get it, how I would get the filename without knowing it. If I try the querys directly in the browser, I can see there is only one file to download. The package also needs the API_token, which doesn't makes it userfriendly.
+I will try to find another solution for it. </p>
+<h3 id="webscrapping"><a aria-hidden="true" class="anchor-heading icon-link" href="#webscrapping"></a>Webscrapping</h3>
+<p>It didn't worked out with the zenodo_client, so I tried to do it with webscrapping. I used beautifulsoup4 and selenium to get the links.
+The trick is, to open a webpage where all the versions are available, load them (javascript is activ what makes it more difficult to grap)
+and get the links for downloading. I tried to build my own package, but it didn't worked out until now. So I will do it in the next days.</p>
+<p>I learned a lot about webscrapping basics and some nice coding. I am looking forward to do my first package.</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<p>Ask PM for more advice</p>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>

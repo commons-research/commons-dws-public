@@ -1,0 +1,27 @@
+<h1 id="xan"><a aria-hidden="true" class="anchor-heading icon-link" href="#xan"></a>Xan</h1>
+<h3 id="filter-rows-with-empty-or-na-values-in-the-scientificname-column"><a aria-hidden="true" class="anchor-heading icon-link" href="#filter-rows-with-empty-or-na-values-in-the-scientificname-column"></a>Filter rows with empty or "NA" values in the ScientificName column</h3>
+<p><code>xan filter '(ScientificName eq "NA") or (len(trim(ScientificName)) eq 0)' taxon_name_gnverified_col.tsv</code></p>
+<h3 id="filter-rows-with-empty-taxonomicname-in-kew-species-listcsv-and-save-to-a-new-file"><a aria-hidden="true" class="anchor-heading icon-link" href="#filter-rows-with-empty-taxonomicname-in-kew-species-listcsv-and-save-to-a-new-file"></a>Filter rows with empty TaxonomicName in kew-species-list.csv and save to a new file</h3>
+<p><code>xan filter !'(len(trim(TaxonomicName)) eq 0)' kew-species-list.csv > kew-species-list-nona.csv</code></p>
+<h3 id="select-specific-columns-from-a-file"><a aria-hidden="true" class="anchor-heading icon-link" href="#select-specific-columns-from-a-file"></a>Select specific columns from a file</h3>
+<p><code>xan select TaxonomicName kew-species-list-nona.csv > taxon_names.csv</code></p>
+<h3 id="not-a-xan-command-use-gnverifier"><a aria-hidden="true" class="anchor-heading icon-link" href="#not-a-xan-command-use-gnverifier"></a>(not a xan command) Use gnverifier</h3>
+<p><code>gnverifier -f csv -s 1 taxon_names.csv > taxon_name_gnverified_col.csv</code></p>
+<h3 id="view-some-stats"><a aria-hidden="true" class="anchor-heading icon-link" href="#view-some-stats"></a>View some stats</h3>
+<p>xan stats taxon_name_gnverified_col.csv | xan v</p>
+<h4 id="deduplicate-rows-based-on-scientificname"><a aria-hidden="true" class="anchor-heading icon-link" href="#deduplicate-rows-based-on-scientificname"></a>Deduplicate rows based on ScientificName</h4>
+<p>xan dedup -s ScientificName taxon_name_gnverified_col.csv > taxon_name_gnverified_col_deduped.csv</p>
+<h3 id="left-join-two-files-on-scientificname"><a aria-hidden="true" class="anchor-heading icon-link" href="#left-join-two-files-on-scientificname"></a>Left join two files on ScientificName</h3>
+<p>xan join --left TaxonomicName kew-species-list-nona.csv ScientificName taxon_name_gnverified_col_deduped.csv > kew-species-list-nona-gnverified-col.csv</p>
+<h3 id="standardize-a-date-field"><a aria-hidden="true" class="anchor-heading icon-link" href="#standardize-a-date-field"></a>Standardize a date field</h3>
+<p>xan map 'strftime(datetime(col("Last Seen On"), "%d-%m-%Y"), "%Y-%m-%d")' LastSeenISO joined.csv > joined_standardized.csv</p>
+<p>xan map 'strftime(datetime(col("Last Seen On"), "%d-%m-%Y"), "%Y-%m-%d")' \
+LastSeenISO kew-species-list-nona-gnverified-col.csv > joined.tmp &#x26;&#x26; mv joined.tmp kew-species-list-nona-gnverified-col.csv</p>
+<h3 id="script"><a aria-hidden="true" class="anchor-heading icon-link" href="#script"></a>Script</h3>
+<p><code>xan filter !'(len(trim(TaxonomicName)) eq 0)' kew-species-list.csv > kew-species-list-nona.csv</code></p>
+<p><code>xan select TaxonomicName kew-species-list-nona.csv > taxon_names.csv</code></p>
+<p><code>gnverifier -f csv -s 1 taxon_names.csv > taxon_name_gnverified_col.csv</code></p>
+<p>xan dedup -s ScientificName taxon_name_gnverified_col.csv > taxon_name_gnverified_col_deduped.csv</p>
+<p>xan join --left TaxonomicName kew-species-list-nona.csv ScientificName taxon_name_gnverified_col_deduped.csv > kew-species-list-nona-gnverified-col.csv</p>
+<p>xan map 'strftime(datetime(col("Last Seen On"), "%d-%m-%Y"), "%Y-%m-%d")' \
+LastSeenISO kew-species-list-nona-gnverified-col.csv > joined.tmp &#x26;&#x26; mv joined.tmp kew-species-list-nona-gnverified-col.csv</p>

@@ -1,0 +1,374 @@
+<h1 id="rust"><a aria-hidden="true" class="anchor-heading icon-link" href="#rust"></a>Rust</h1>
+<h2 id="functions"><a aria-hidden="true" class="anchor-heading icon-link" href="#functions"></a>Functions</h2>
+<p>Rust is an expression based language.</p>
+<ul>
+<li><strong>Statements</strong> are instructions that perform some action but do not return a value.</li>
+</ul>
+<p>e.g. <code>let x = 6;</code></p>
+<ul>
+<li><strong>Expressions</strong> evaluate to a resulting value.</li>
+</ul>
+<p>e.g. <code>x + 1</code></p>
+<h2 id="crates"><a aria-hidden="true" class="anchor-heading icon-link" href="#crates"></a>Crates</h2>
+<p>They are collection of rust code files. They are binary crates and library crates. Library crates contains code to be used in other programs an not on its own.</p>
+<h2 id="doc"><a aria-hidden="true" class="anchor-heading icon-link" href="#doc"></a>Doc</h2>
+<p>If you don't remeber which traits and functions are available in your codebase you can run </p>
+<pre class="language-bash"><code class="language-bash">cargo doc --open
+</code></pre>
+<h2 id="shadowing"><a aria-hidden="true" class="anchor-heading icon-link" href="#shadowing"></a>Shadowing</h2>
+<p>This is convenient when you want to reuse a variable without having to come up with a new name. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> x <span class="token operator">=</span> x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="questions"><a aria-hidden="true" class="anchor-heading icon-link" href="#questions"></a>Questions</h2>
+<p>What exactly is a variant. How is that different from a trait ?</p>
+<p>Define </p>
+<ul>
+<li>type</li>
+<li>trait</li>
+<li>struct</li>
+<li>enum</li>
+<li>variant</li>
+<li>module</li>
+<li>crate</li>
+<li>arms: an arm consist of a pattern to be matched agaisnt and the code to be run if the pattern is matched.</li>
+</ul>
+<p>For example</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> guess<span class="token punctuation">:</span> <span class="token keyword">u32</span> <span class="token operator">=</span> <span class="token keyword">match</span> guess<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Ok</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">=></span> num<span class="token punctuation">,</span>
+    <span class="token class-name">Err</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">continue</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>This is also the case in an if statement. Each blocks of code associated to the if and else are called arms.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> number <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> number <span class="token operator">&#x3C;</span> <span class="token number">5</span> <span class="token punctuation">{</span>
+        <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"condition was true"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"condition was false"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="iif-expressions"><a aria-hidden="true" class="anchor-heading icon-link" href="#iif-expressions"></a>Iif Expressions</h2>
+<p>In rust, if should be associated to a boolean. </p>
+<p>When you have more than one <code>else if</code> expression you might want to refactor your code. Rust has a powerful branching construct called <code>match</code> for these cases.</p>
+<h2 id="data-types"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-types"></a>Data types</h2>
+<p>Two types of data types in Rust:</p>
+<ul>
+<li>scalar</li>
+<li>compound</li>
+</ul>
+<h3 id="scalar"><a aria-hidden="true" class="anchor-heading icon-link" href="#scalar"></a>Scalar</h3>
+<p>Represents a single value. Rust has four primary scalar types: integers, floating-point numbers, Booleans, and characters.</p>
+<h4 id="integers"><a aria-hidden="true" class="anchor-heading icon-link" href="#integers"></a>integers</h4>
+<p>Signed or unsigned. Signed can be negative or positive. Unsigned can only be positive.</p>
+<p>Char</p>
+<p>specified with single quote </p>
+<p>e.g <code>let c = 'z';</code>
+unlike strings which are specified with double quotes.</p>
+<h3 id="compound"><a aria-hidden="true" class="anchor-heading icon-link" href="#compound"></a>Compound</h3>
+<ul>
+<li>tuples
+cannot grow or shrink. fixed lenght.
+e.g. <code>let tup: (i32, f64, u8) = (500, 6.4, 1);</code></li>
+</ul>
+<p>To access values of the tuple we destructure it</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> tup <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">6.4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">)</span> <span class="token operator">=</span> tup<span class="token punctuation">;</span>
+
+<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"The value of y is: {}"</span><span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Another way to acess elements of the tupple is by using the index</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> x<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token keyword">i32</span><span class="token punctuation">,</span> <span class="token keyword">f64</span><span class="token punctuation">,</span> <span class="token keyword">u8</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">6.4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> five_hundred <span class="token operator">=</span> x<span class="token number">.0</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> six_point_four <span class="token operator">=</span> x<span class="token number">.1</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> one <span class="token operator">=</span> x<span class="token number">.2</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>arrays</li>
+</ul>
+<p>Unlike tupples, every element must be of the same type. They are fixed lenght. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<p>To acess elements of an array we use the index</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> first <span class="token operator">=</span> a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> second <span class="token operator">=</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="the-slice-type"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-slice-type"></a>The Slice type</h2>
+<h2 id="vectors"><a aria-hidden="true" class="anchor-heading icon-link" href="#vectors"></a>Vectors</h2>
+<p>These are similar to arrays but can grow or shrink in size.
+They are stored in the heap rather than the stack which is the case for arrays.</p>
+<p>Vectors can only store data of the same type.</p>
+<p>The vec! macro is used to create a vector.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> v <span class="token operator">=</span> <span class="token macro property">vec!</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="ownership"><a aria-hidden="true" class="anchor-heading icon-link" href="#ownership"></a>Ownership</h2>
+<p>Ownership is a set of rule governing how Rust manages memory.</p>
+<p>Three possibilities for programming languanges:</p>
+<ul>
+<li>their is garbage collection periodically </li>
+<li>the programmer must explicitily allocate and free memory</li>
+<li>memory is managed through a system of <strong>ownership</strong> with a set of rules checked by the compiler (rust)</li>
+</ul>
+<h3 id="stck-versus-heap"><a aria-hidden="true" class="anchor-heading icon-link" href="#stck-versus-heap"></a>Stck versus heap</h3>
+<p>Think of stack as a pile of plates. <em>last in, first out.</em> You dont remove stuff from in between.
+Yopu <em>push onto the stack</em> or <em>pop off the stack</em>. All data on the stack must have known, fixed size.</p>
+<p>On the hep, its different and less organized. The memory allocator check for a big enough spacem marks it as beeing in use and returns a <em>pointer.</em> This is called <em>allocating.</em> Because the pointer is know, fixed sized, you can in turn store it on the stack. </p>
+<p>Pushing on the stack is much quicker because you just have to add stuff on top. No time wasted in finding free space.
+Similarly acccessing data on the stack is quicker.</p>
+<h4 id="ownership-rules"><a aria-hidden="true" class="anchor-heading icon-link" href="#ownership-rules"></a>Ownership rules</h4>
+<ul>
+<li>each values in Rust as an owner.</li>
+<li>There can be only one owner at a time.</li>
+<li>When the owner goes out of scope, the value will be dropped.</li>
+</ul>
+<h4 id="variable-scope"><a aria-hidden="true" class="anchor-heading icon-link" href="#variable-scope"></a>Variable scope</h4>
+<p>The scope is the range within the programm for which an item is valid.</p>
+<pre class="language-rust"><code class="language-rust">    <span class="token punctuation">{</span>                      <span class="token comment">// s is not valid here, it’s not yet declared</span>
+        <span class="token keyword">let</span> s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>   <span class="token comment">// s is valid from this point forward</span>
+
+        <span class="token comment">// do stuff with s</span>
+    <span class="token punctuation">}</span>                      <span class="token comment">// this scope is now over, and s is no longer valid</span>
+</code></pre>
+<p>What happens behind the scenes is that rust's <code>drop</code> function is automatically runned at the closing opf the curly brackets.</p>
+<h2 id="references-and-borrowing"><a aria-hidden="true" class="anchor-heading icon-link" href="#references-and-borrowing"></a>References and borrowing</h2>
+<p>A reference is like a pointer in the sense that it is an adress to be followed to acess the data stored at this adress (data owned by another variable). But unlike a pointer, a reference is guaranteed to point to a valid value of a particular type for the life of that reference.</p>
+<p>The ampersands represent a reference e.g <code>&#x26;s1</code>. Here you refer to some value, without taking ownership.</p>
+<p><code>*</code>is the <em>dereferencing</em> operator.</p>
+<p>Because we nevere had ownership when using a reference, we do not need to return the values from a function to give back ownership.
+The creation of a reference is called <em>borrowing</em>.
+Like in real life, if a person owns something, you can, sometimes, borrow it. When you are done you give it back, because you dont own it.</p>
+<p>You cannot modify stuff you borrow if it is not mutable. However you can make mutable references.
+One big restriction: if you have a mutable reference to a value, you cannot meke another reference to that value.</p>
+<p>This allows rust to prevent data race condition.</p>
+<p>This happens in the three sceanrii:</p>
+<ul>
+<li>two or more pointers access the same data at the same time.</li>
+<li>at least one of the pointers is beeing used to write to the data</li>
+<li>no mechanism used to synchronize acess to the data.</li>
+</ul>
+<p>Rules of references.</p>
+<ul>
+<li>at any given time you can have either one mutable reference or any number of immutable references.</li>
+<li>references must always be valid.</li>
+</ul>
+<h2 id="structs"><a aria-hidden="true" class="anchor-heading icon-link" href="#structs"></a>Structs</h2>
+<p>Structs are similar to Tuples.
+Like tuples pieces of a struct can be different.
+Unlioke tuples, in a Struct youll name each piece of data (these are called fields)</p>
+<p>Once created, structs can be instantiated.</p>
+<h3 id="tuple-structs"><a aria-hidden="true" class="anchor-heading icon-link" href="#tuple-structs"></a>Tuple structs</h3>
+<p>e.g. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Color</span><span class="token punctuation">(</span><span class="token keyword">i32</span><span class="token punctuation">,</span> <span class="token keyword">i32</span><span class="token punctuation">,</span> <span class="token keyword">i32</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="unit-like-structs"><a aria-hidden="true" class="anchor-heading icon-link" href="#unit-like-structs"></a>Unit-like structs</h3>
+<p>Even simpler: they are things such as Unit-like structs.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">AlwaysEqual</span><span class="token punctuation">;</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> subject <span class="token operator">=</span> <span class="token class-name">AlwaysEqual</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="method-syntax"><a aria-hidden="true" class="anchor-heading icon-link" href="#method-syntax"></a>Method syntax</h2>
+<p>Methods are like functions but unlike functions they are defined within the context of a <em>struct</em> (or an <strong>enum</strong> or a <strong>trait</strong> object).
+There first parameter is always self, which respresnets the instance of the struct the method is beeing called on.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">area</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">u32</span> <span class="token punctuation">{</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>width <span class="token operator">*</span> <span class="token keyword">self</span><span class="token punctuation">.</span>height
+    <span class="token punctuation">}</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">width</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">bool</span> <span class="token punctuation">{</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>width <span class="token operator">></span> <span class="token number">0</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">can_hold</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">,</span> other<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token class-name">Rectangle</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">bool</span> <span class="token punctuation">{</span>
+       <span class="token keyword">self</span><span class="token punctuation">.</span>width <span class="token operator">></span> other<span class="token punctuation">.</span>width <span class="token operator">&#x26;&#x26;</span> <span class="token keyword">self</span><span class="token punctuation">.</span>height <span class="token operator">></span> other<span class="token punctuation">.</span>height
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>These methods are called <strong>associated functions</strong>, they are indeed associated to the struct Rectangle.
+We can define associated function that DO NOT have self as their first parameters (they are thus not methods.9 because they do not need an instance of the type to work with.</p>
+<p>These associated functions which are not methods are often used for constructors that will return a new instance of the structs.</p>
+<h2 id="enums"><a aria-hidden="true" class="anchor-heading icon-link" href="#enums"></a>Enums</h2>
+<p><em>Enums</em> allow to define a type by enumerating its possible <em>variants.</em>
+Option is a particularly usefull enum. Encodes that a value can be either something or nothing.
+Pattern matching using match makes it easy to run different code for different values of an enum.</p>
+<p>One very common enum in rust is Option</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">enum</span> <span class="token type-definition class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token class-name">None</span><span class="token punctuation">,</span>
+    <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>You can even directly </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> some_number <span class="token operator">=</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> absent_number<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">i32</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">None</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Option has a large number of associated methods that can be checked at <a href="https://doc.rust-lang.org/std/option/enum.Option.html">https://doc.rust-lang.org/std/option/enum.Option.html</a></p>
+<h3 id="match-control-flow-construct"><a aria-hidden="true" class="anchor-heading icon-link" href="#match-control-flow-construct"></a>match control flow construct</h3>
+<p>You can thing of match as a coin sorting machine. The coins slide down a ramp with holes of incresaing size. The first hole fitting size sorts the condition.
+think of it as conditional expression with if. But the big difference is that it doesnt need to be a boolean.</p>
+<p>Remeber that the match arms are made by two parts :</p>
+<ul>
+<li>a pattern </li>
+<li>some code</li>
+</ul>
+<p>separtaed by => </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">enum</span> <span class="token type-definition class-name">Coin</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Penny</span><span class="token punctuation">,</span>
+    <span class="token class-name">Nickel</span><span class="token punctuation">,</span>
+    <span class="token class-name">Dime</span><span class="token punctuation">,</span>
+    <span class="token class-name">Quarter</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">value_in_cents</span><span class="token punctuation">(</span>coin<span class="token punctuation">:</span> <span class="token class-name">Coin</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">u8</span> <span class="token punctuation">{</span>
+    <span class="token keyword">match</span> coin <span class="token punctuation">{</span>
+        <span class="token class-name">Coin</span><span class="token punctuation">::</span><span class="token class-name">Penny</span> <span class="token operator">=></span> <span class="token number">1</span><span class="token punctuation">,</span>
+        <span class="token class-name">Coin</span><span class="token punctuation">::</span><span class="token class-name">Nickel</span> <span class="token operator">=></span> <span class="token number">5</span><span class="token punctuation">,</span>
+        <span class="token class-name">Coin</span><span class="token punctuation">::</span><span class="token class-name">Dime</span> <span class="token operator">=></span> <span class="token number">10</span><span class="token punctuation">,</span>
+        <span class="token class-name">Coin</span><span class="token punctuation">::</span><span class="token class-name">Quarter</span> <span class="token operator">=></span> <span class="token number">25</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Combining mathc and enums is extremely frequent pattern in rust programming.</p>
+<p>fn plus_one(x: Option<i32>) -> Option<i32> {
+match x {
+None => None,
+Some(i) => Some(i + 1),
+}
+}</i32></i32></p>
+<p>fn main() {
+let five = Some(5);
+let six = plus_one(five);
+let none = plus_one(None);</p>
+<pre><code>println!("six is {:#?} and none is {:#?}", six, none);
+</code></pre>
+<p>}</p>
+<p>Matches in Rust are <em>exhaustive</em>: all the cases must be covered.</p>
+<h3 id="catch-all-patterns-and-the-_-placeholder"><a aria-hidden="true" class="anchor-heading icon-link" href="#catch-all-patterns-and-the-_-placeholder"></a>catch all patterns and the _ placeholder</h3>
+<p>This is usefull when you which to aplly and action to some patterns but then apply the same action for the rest of the cases (i.e. a default action)</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> config_max <span class="token operator">=</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token number">3u8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">match</span> config_max <span class="token punctuation">{</span>
+    <span class="token class-name">Some</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"The maximum is configured to be {max}"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    _ <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The last arms catches all other possible cases. We are exhaustive and covered. The empty tuples means no action is taken.</p>
+<h3 id="if-let-when-match-gets-a-bit-wordy-"><a aria-hidden="true" class="anchor-heading icon-link" href="#if-let-when-match-gets-a-bit-wordy-"></a>if let (when match get's a bit wordy ...)</h3>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> config_max <span class="token operator">=</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token number">3u8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token keyword">let</span> <span class="token class-name">Some</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span> <span class="token operator">=</span> config_max <span class="token punctuation">{</span>
+    <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"The maximum is configured to be {max}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="pattern-syntax"><a aria-hidden="true" class="anchor-heading icon-link" href="#pattern-syntax"></a>Pattern syntax</h3>
+<p>Patterns can be used to destructure struct, enums and tuples and use differents parts of these values.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> p <span class="token operator">=</span> <span class="token class-name">Point</span> <span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">7</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">match</span> p <span class="token punctuation">{</span>
+        <span class="token class-name">Point</span> <span class="token punctuation">{</span> x<span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token punctuation">}</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"On the x axis at {x}"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">Point</span> <span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y <span class="token punctuation">}</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"On the y axis at {y}"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token class-name">Point</span> <span class="token punctuation">{</span> x<span class="token punctuation">,</span> y <span class="token punctuation">}</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"On neither axis: ({x}, {y})"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Destructuring can work on nested object (here enums)</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">enum</span> <span class="token type-definition class-name">Color</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Rgb</span><span class="token punctuation">(</span><span class="token keyword">i32</span><span class="token punctuation">,</span> <span class="token keyword">i32</span><span class="token punctuation">,</span> <span class="token keyword">i32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token class-name">Hsv</span><span class="token punctuation">(</span><span class="token keyword">i32</span><span class="token punctuation">,</span> <span class="token keyword">i32</span><span class="token punctuation">,</span> <span class="token keyword">i32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">enum</span> <span class="token type-definition class-name">Message</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Quit</span><span class="token punctuation">,</span>
+    <span class="token class-name">Move</span> <span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token keyword">i32</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token class-name">Write</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token class-name">ChangeColor</span><span class="token punctuation">(</span><span class="token class-name">Color</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> msg <span class="token operator">=</span> <span class="token class-name">Message</span><span class="token punctuation">::</span><span class="token class-name">ChangeColor</span><span class="token punctuation">(</span><span class="token class-name">Color</span><span class="token punctuation">::</span><span class="token class-name">Hsv</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">160</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">match</span> msg <span class="token punctuation">{</span>
+        <span class="token class-name">Message</span><span class="token punctuation">::</span><span class="token class-name">ChangeColor</span><span class="token punctuation">(</span><span class="token class-name">Color</span><span class="token punctuation">::</span><span class="token class-name">Rgb</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Change color to red {r}, green {g}, and blue {b}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">Message</span><span class="token punctuation">::</span><span class="token class-name">ChangeColor</span><span class="token punctuation">(</span><span class="token class-name">Color</span><span class="token punctuation">::</span><span class="token class-name">Hsv</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span> s<span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Change color to hue {h}, saturation {s}, value {v}"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        _ <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>If you are not going to use a variable yet but want to ignore it. you prefix by _</p>
+<p>fn main() {
+let _x = 5;
+let y = 10;
+}</p>
+<h3 id="extra-conditionals-with-match-guards"><a aria-hidden="true" class="anchor-heading icon-link" href="#extra-conditionals-with-match-guards"></a>Extra conditionals with Match guards.</h3>
+<p>A match guards is and additional if condition specified after the pattern in a match arms.Usefull to express complex logic when patterns are not enough.</p>
+<h2 id="strings"><a aria-hidden="true" class="anchor-heading icon-link" href="#strings"></a>Strings</h2>
+<p><code>String</code> is actually implemented as a wrapper around a vector of bytes with some extra guarantees, restrictions and capabilities.</p>
+<h2 id="traits"><a aria-hidden="true" class="anchor-heading icon-link" href="#traits"></a>Traits</h2>
+<p>Shared functionalities across data types.
+Similar to "interfaces" in other languages</p>
+<h3 id="the-orphan-rule"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-orphan-rule"></a>The orphan rule</h3>
+<p>Other crates that depend on the aggregator crate can also bring the Summary trait into scope to implement Summary on their own types. One restriction to note is that we can implement a trait on a type only if either the trait or the type, or both, are local to our crate. For example, we can implement standard library traits like Display on a custom type like Tweet as part of our aggregator crate functionality because the type Tweet is local to our aggregator crate. We can also implement Summary on Vec<t> in our aggregator crate because the trait Summary is local to our aggregator crate.
+<strong>But we can’t implement external traits on external types</strong>. For example, we can’t implement the Display trait on Vec<t> within our aggregator crate because Display and Vec<t> are both defined in the standard library and aren’t local to our aggregator crate. This restriction is part of a property called coherence, and more specifically the orphan rule, so named because the parent type is not present. This rule ensures that other people’s code can’t break your code and vice versa. Without the rule, two crates could implement the same trait for the same type, and Rust wouldn’t know which implementation to use.</t></t></t></p>
+<h2 id="modules"><a aria-hidden="true" class="anchor-heading icon-link" href="#modules"></a>Modules</h2>
+<h2 id="hash-maps"><a aria-hidden="true" class="anchor-heading icon-link" href="#hash-maps"></a>Hash Maps</h2>
+<p>these are equivalent to Python's dictionnaries, also called associative arrays in other languages.</p>
+<p>HashMap&#x3C;K, V>
+Stored on the heap.</p>
+<p>Like Vectors, HashMaps are homegeneous, all of the keys miust have the same </p>
+<p>The HashMaps takes owner ship of the values insert inside.
+You put them there by hashmap.insert(k, v)</p>
+<h4 id="overwritting-a-value"><a aria-hidden="true" class="anchor-heading icon-link" href="#overwritting-a-value"></a>Overwritting a value</h4>
+<p>if we
+hashmap.insert(k, v1)
+hashmap.insert(k, v2)</p>
+<p>v1 is overwritten</p>
+<h4 id="adding-value-only-if-absent"><a aria-hidden="true" class="anchor-heading icon-link" href="#adding-value-only-if-absent"></a>Adding value only if absent</h4>
+<p>hashmap.insert(k, v1)</p>
+<p>hashmap.entry(k1).or_insert(v2)
+hashmap.entry(k).or_insert(v2)</p>
+<p>v1 is not overwritten because its already present</p>
+<h2 id="iterators"><a aria-hidden="true" class="anchor-heading icon-link" href="#iterators"></a>Iterators</h2>
+<p>Iterators are lazy. They do not do anything until you call a method that consumes the iterator.
+This is called <em>consuming an iterator</em>.
+The iterator trait is called Iterator. It has a method called next() which returns an Option<t>.</t></p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> v <span class="token operator">=</span> <span class="token macro property">vec!</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token keyword">mut</span> iter <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">None</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Closure and map on iterators</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> v <span class="token operator">=</span> <span class="token macro property">vec!</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token keyword">mut</span> iter <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> plus_one <span class="token operator">=</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>x<span class="token closure-punctuation punctuation">|</span></span> x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token keyword">mut</span> iter <span class="token operator">=</span> iter<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>plus_one<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>iter<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token class-name">None</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>collect() is a method that consumes the iterator and returns a collection.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> v <span class="token operator">=</span> <span class="token macro property">vec!</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token keyword">mut</span> iter <span class="token operator">=</span> v<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> plus_one <span class="token operator">=</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>x<span class="token closure-punctuation punctuation">|</span></span> x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token keyword">mut</span> iter <span class="token operator">=</span> iter<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>plus_one<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> v<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span>_<span class="token operator">></span> <span class="token operator">=</span> iter<span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token macro property">vec!</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>The collect() method is a powerful way to transform an iterator into a collection. It can be used to create a vector, a hash map, or any other collection type that implements the FromIterator trait.</p>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/commons-dws-public/notes/7sxubev4ydofbsuxl2y5v05">History</a></li>
+<li><a href="/commons-dws-public/notes/0yclga8bza62x1ip1wzgkie">Ressources</a></li>
+</ol>

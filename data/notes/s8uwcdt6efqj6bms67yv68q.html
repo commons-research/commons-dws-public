@@ -1,0 +1,35 @@
+<h1 id="2024-04-18"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-04-18"></a>2024-04-18</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<p><strong>How to use JupyterLab on the cluster</strong>  </p>
+<ol>
+<li>start the correct environment and jupyter lab (Maybe you want also activate a specific environment with <code>poetry shell</code>)</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">srun --partition<span class="token operator">=</span>pibu_el8 --cpus-per-task<span class="token operator">=</span><span class="token number">10</span> --mem<span class="token operator">=</span>30G --time<span class="token operator">=</span><span class="token number">10</span>:00:00 --pty /bin/bashun
+micromamba activate jup_lab
+jupyter lab --no-browser --ip<span class="token operator">=</span><span class="token number">0.0</span>.0.0 --port<span class="token operator">=</span><span class="token number">8879</span>
+</code></pre>
+<ol start="2">
+<li>start a new ssh connection from your pc</li>
+</ol>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ssh</span> -N -f -L localhost:4000:binfservas22:8879 pamrein@login8.hpc.binf.unibe.ch
+</code></pre>
+<ol start="3">
+<li>login with a browser (localhost:4000). The first time, you will be asked for a token. This you can find on the terminal (cluster), where the "server" is running. [my current password: jupyterlab]</li>
+</ol>
+<ol start="4">
+<li>close jupyter-lab</li>
+</ol>
+<pre class="language-bash"><code class="language-bash"><span class="token function">lsof</span> -ti:4000 <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">kill</span> -9   <span class="token comment">#for the pc-terminal</span>
+</code></pre>
+<p>With <code>Ctrl + C</code> you can close the jupyter-lab session on the cluster.</p>
+<p>total generelized rules: 1224
+total indermediate: 7358
+intermediat with underline: 6746
+Intermediat without underline should be: 612</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>

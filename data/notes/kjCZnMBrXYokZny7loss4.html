@@ -1,0 +1,58 @@
+<h1 id="git"><a aria-hidden="true" class="anchor-heading icon-link" href="#git"></a>Git</h1>
+<h2 id="github-discussions-template-for-questions"><a aria-hidden="true" class="anchor-heading icon-link" href="#github-discussions-template-for-questions"></a>Github Discussions template for questions</h2>
+<p><a href="https://github.blog/news-insights/product-news/github-discussions-just-got-better-with-category-forms/">https://github.blog/news-insights/product-news/github-discussions-just-got-better-with-category-forms/</a></p>
+<h1 id="nice-intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#nice-intro"></a>Nice intro</h1>
+<p>Looks good for tuto and convince of git adoption Version Control with Git</p>
+<p><a href="https://carpentries-incubator.github.io/git-novice-branch-pr/">https://carpentries-incubator.github.io/git-novice-branch-pr/</a></p>
+<h1 id="get-info-of-the-git-remote"><a aria-hidden="true" class="anchor-heading icon-link" href="#get-info-of-the-git-remote"></a>Get info of the git remote</h1>
+<p><code>git config --get remote.origin.url</code></p>
+<h1 id="get-history-as-a-graph"><a aria-hidden="true" class="anchor-heading icon-link" href="#get-history-as-a-graph"></a>Get history as a graph</h1>
+<pre><code>git fetch
+git log --all --decorate --oneline --graph
+</code></pre>
+<h1 id="pull"><a aria-hidden="true" class="anchor-heading icon-link" href="#pull"></a>Pull</h1>
+<p><a href="https://stackoverflow.com/a/4924044">https://stackoverflow.com/a/4924044</a></p>
+<p>So I imagine you want to do something like:</p>
+<p><code>git pull origin dev</code></p>
+<p>To set it up so that it does this by default while you're on the dev branch:</p>
+<p><code>git branch --set-upstream-to dev origin/dev</code></p>
+<h1 id="reset-to-specific-commit-and-push-to-master"><a aria-hidden="true" class="anchor-heading icon-link" href="#reset-to-specific-commit-and-push-to-master"></a>Reset to specific commit and push to master</h1>
+<p> git reset --hard <commit-hash>
+git push -f origin main</commit-hash></p>
+<h1 id="what-should-you-do-when-you-get-the-infamous-you-have-divergent-branches-and-need-to-specify-how-to-reconcile-them"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-should-you-do-when-you-get-the-infamous-you-have-divergent-branches-and-need-to-specify-how-to-reconcile-them"></a>What should you do when you get the infamous "You have divergent branches and need to specify how to reconcile them."</h1>
+<pre><code>hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+</code></pre>
+<p><a href="https://stackoverflow.com/a/62653400/4908629">https://stackoverflow.com/a/62653400/4908629</a></p>
+<h2 id="what-is-the-git-fast-forward-option-"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-is-the-git-fast-forward-option-"></a>What is the git fast-forward option ?</h2>
+<p><a href="https://blog.mergify.com/what-is-a-git-merge-fast-forward/">https://blog.mergify.com/what-is-a-git-merge-fast-forward/</a></p>
+<blockquote>
+<p>When Git detects that your commit is about to be merged into your project's main branch without the main branch having been modified since your feature branch was first made, it chooses to use a fast-forward merge instead of a three-way merge. Fast-forward merges literally move your main branch's tip forward to the end of your feature branch. This keeps all commits created in your feature branch sequential while integrating it neatly back into your main branch.</p>
+</blockquote>
+<h2 id="for-git-sensitive-information-removal"><a aria-hidden="true" class="anchor-heading icon-link" href="#for-git-sensitive-information-removal"></a>For git sensitive information removal</h2>
+<p><a href="https://rtyley.github.io/bfg-repo-cleaner/">https://rtyley.github.io/bfg-repo-cleaner/</a></p>
+<h1 id="undo-a-git-commit--redo"><a aria-hidden="true" class="anchor-heading icon-link" href="#undo-a-git-commit--redo"></a>Undo a git commit &#x26; redo</h1>
+<p>$ git commit -m "Something terribly misguided" # (0: Your Accident)
+$ git reset HEAD~                              # (1)
+[ edit files as necessary ]                    # (2)
+$ git add .                                    # (3)
+$ git commit -c ORIG_HEAD                      # (4)</p>
+<p><a href="https://stackoverflow.com/a/927386">https://stackoverflow.com/a/927386</a></p>
+<p>/Users/pma/02_tmp/</p>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/commons-dws-public/notes/o6r0qsm82zs9ivcb936qn9r">Emojis</a></li>
+<li><a href="/commons-dws-public/notes/kAzwy6gvby2YW0uOoXCmc">Gitignore</a></li>
+<li><a href="/commons-dws-public/notes/k6GJJUBkwmavHJcW5ianH">Mainmaster</a></li>
+<li><a href="/commons-dws-public/notes/9iwc30wnu6adlq0aou7uzph">Merge</a></li>
+</ol>

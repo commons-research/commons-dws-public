@@ -1,0 +1,33 @@
+<h1 id="2024-04-30"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-04-30"></a>2024-04-30</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<p>Pierre Marie tried to register for an account on BNICE.</p>
+<p>We started againg mongodb and I had some problems.
+I had to change authorisation for some files. <a href="https://askubuntu.com/questions/823288/mongodb-loads-but-breaks-returning-status-14">https://askubuntu.com/questions/823288/mongodb-loads-but-breaks-returning-status-14</a></p>
+<p>how to recover git commited files:</p>
+<ol>
+<li>clone the repo (so nothing bad can happen)</li>
+<li>get the hash - commit file</li>
+</ol>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> log -S cfm_id
+<span class="token function">git</span> log --all --full-history -- <span class="token operator">&#x3C;</span>path_to_script<span class="token operator">></span>
+<span class="token function">git</span> show <span class="token operator">&#x3C;</span>commit_hash<span class="token operator">></span>
+</code></pre>
+<ol start="3">
+<li>recover it</li>
+</ol>
+<pre class="language-bash"><code class="language-bash"><span class="token function">git</span> revert <span class="token operator">&#x3C;</span>commit_hash<span class="token operator">></span>
+</code></pre>
+<p>cfm is a module to transfer SMILES into a spectra file.</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<ul>
+<li>different fraction 0.1, 0.2, 0.5</li>
+<li>save files as datawarior file</li>
+<li>script to calculate overlap between different datavases or different fractions with </li>
+<li>upset plot (optional)</li>
+</ul>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>

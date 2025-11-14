@@ -1,0 +1,62 @@
+<h1 id="2024-02-15"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-02-15"></a>2024-02-15</h1>
+<h1 id="this-is-pmass-commons-lab-daily-open-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-pmass-commons-lab-daily-open-notebook"></a>This is PMAS's COMMONS Lab daily Open Notebook.</h1>
+<p>Today is 2024.02.15</p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<h3 id="have-a-look-at-the-commons-research-discussion-forum"><a aria-hidden="true" class="anchor-heading icon-link" href="#have-a-look-at-the-commons-research-discussion-forum"></a>Have a look at the COMMONS research discussion forum</h3>
+<pre><code>- https://github.com/orgs/commons-research/discussions
+</code></pre>
+<h3 id="daily-work-on-the-open-science-for-natural-products-research-viewpoint"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-work-on-the-open-science-for-natural-products-research-viewpoint"></a>Daily work on the Open Science for natural products research Viewpoint</h3>
+<p>See <a href="/commons-dws-public/notes/43p60vv8btyhaclugl93jok">Viewpoint</a></p>
+<h3 id=""><a aria-hidden="true" class="anchor-heading icon-link" href="#"></a></h3>
+<h3 id="-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#-1"></a></h3>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<p>Adpating tutorial at<a href="/commons-dws-public/notes/delq7f2o12q3feeyxictk3h">Datasette</a> to an inat exported data set</p>
+<p>sqlite-utils insert inat.db locations \
+2024_02_14_inat_output.csv --csv -d</p>
+<p>sqlite-utils schema inat.db</p>
+<p>sqlite-utils tables inat.db --counts</p>
+<p>sqlite-utils tables inat.db --counts -t</p>
+<p>sqlite-utils inat.db "select * from locations limit 4"</p>
+<p>sqlite-utils inat.db "select * from observations limit 1"</p>
+<p>sqlite-utils inat.db -t \
+"select id, captive, uri, location from observations limit 10"</p>
+<p>sqlite-utils convert inat.db observations location \
+'bits = value.split(",")
+return {
+"latitude": float(bits[0]),
+"longitude": float(bits[1]),
+}' --multi</p>
+<h2 id="paused"><a aria-hidden="true" class="anchor-heading icon-link" href="#paused"></a>Paused</h2>
+<h2 id="done"><a aria-hidden="true" class="anchor-heading icon-link" href="#done"></a>Done</h2>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes</h2>
+<p><a href="https://simonwillison.net/2023/Jun/18/symbex/">https://simonwillison.net/2023/Jun/18/symbex/</a></p>
+<p>Created <a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">resources.datasette (Private)</a></p>
+<p>Assisting <a href="https://www.spettrometriadimassa.it/Congressi/4MSNatMed/index.html">https://www.spettrometriadimassa.it/Congressi/4MSNatMed/index.html</a></p>
+<p>Presented <a href="https://doi.org/10.5281/zenodo.10663625">https://doi.org/10.5281/zenodo.10663625</a></p>
+<p>Notes : </p>
+<ul>
+<li>Valorisation of tomato leaves phytochemicals
+They use a "Natural products workflow" from Compound Discoverer, this apparently comes with FoodDB included </li>
+</ul>
+<h2 id="todo-tomorrow-one-day--or-never"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-tomorrow-one-day--or-never"></a>Todo tomorrow, one day ... or never</h2>
+<h3 id="-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#-2"></a></h3>
+<h3 id="-3"><a aria-hidden="true" class="anchor-heading icon-link" href="#-3"></a></h3>
+<h2 id="today-i-learned-that"><a aria-hidden="true" class="anchor-heading icon-link" href="#today-i-learned-that"></a>Today I learned that</h2>
+<ul>
+<li><a href="https://llm.datasette.io/en/stable/index.html">https://llm.datasette.io/en/stable/index.html</a> allows you to run LLM locally </li>
+</ul>
+<p>See ex :</p>
+<pre><code>cat inat_fetcher.py | llm summarize
+</code></pre>
+<ul>
+<li>
+<p><a href="https://kagi.com/">https://kagi.com/</a> is a mind-blowing search engine</p>
+</li>
+<li>
+<p><a href="https://book.mwmbl.org/page/progress/">https://book.mwmbl.org/page/progress/</a> they are building the best search engine in the world .... and they are 1.2134 % task completed ! Thk Adriano  <a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">@adafede (Private)</a> (checking what happens if I mention a github user from a Dendron note .... most likely nothing) for the pointer</p>
+</li>
+<li>
+<p><a href="https://tapas.knowledgepixels.com/tapas.html?api=knowledgepixels/nanopub-query-api&#x26;op=/get-subj-refs&#x26;autosubmit=on&#x26;param_subj=https://doi.org/10.1038/sdata.2016.18">https://tapas.knowledgepixels.com/tapas.html?api=knowledgepixels/nanopub-query-api&#x26;op=/get-subj-refs&#x26;autosubmit=on¶m_subj=https://doi.org/10.1038/sdata.2016.18</a></p>
+</li>
+</ul>
+<p><a href="https://tapas.knowledgepixels.com/tapas.html?api=knowledgepixels/nanopub-query-api">https://tapas.knowledgepixels.com/tapas.html?api=knowledgepixels/nanopub-query-api</a></p>

@@ -1,0 +1,16 @@
+<h1 id="expanded-np-chemspace-pickaxe"><a aria-hidden="true" class="anchor-heading icon-link" href="#expanded-np-chemspace-pickaxe"></a>expanded-np-chemspace-pickaxe</h1>
+<h1 id="pickaxe-a-python-library-for-the-prediction-of-novel-metabolic-reactions"><a aria-hidden="true" class="anchor-heading icon-link" href="#pickaxe-a-python-library-for-the-prediction-of-novel-metabolic-reactions"></a>Pickaxe: a Python library for the prediction of novel metabolic reactions</h1>
+<p>current Pickaxe: <a href="https://doi.org/10.1186/s12859-023-05149-8">https://doi.org/10.1186/s12859-023-05149-8</a>
+olk Pickaxe: <a href="https://github.com/JamesJeffryes/kb_pickaxe/tree/master">https://github.com/JamesJeffryes/kb_pickaxe/tree/master</a></p>
+<h2 id="reaction-rules"><a aria-hidden="true" class="anchor-heading icon-link" href="#reaction-rules"></a>Reaction rules</h2>
+<h2 id="filters"><a aria-hidden="true" class="anchor-heading icon-link" href="#filters"></a>Filters</h2>
+<p>Pickaxe provide some filters by default. After the expanding the filters can be used to reduce the large output of possible reactions.
+Mostly this filters will need a target list (which has the same structure as the input list). </p>
+<h3 id="target"><a aria-hidden="true" class="anchor-heading icon-link" href="#target"></a>Target</h3>
+<p>If the targets are the same as the inputdata, you will not see them in the outputfile ("compounds.tsv").
+If the targets are different from the inputdata, the target compounds will be written to the outputfile and labeled.
+If the inputdata are a subclass of the targets, the targets will not be written to the outputfile and labeled. But new molecules will be predicted.
+If the targets are a subclass of the inputdata, the targets will not be written to the outputfile and labeled. But new molecules will be predicted.</p>
+<p>.react_targets = False   # This would expand the molecules, because targets are found. (exp. similarity.py, line 856 - 864)</p>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>

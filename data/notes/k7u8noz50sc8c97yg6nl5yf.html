@@ -1,0 +1,41 @@
+<h1 id="2024-03-15"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-03-15"></a>2024-03-15</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<h3 id="docstrings-in-python"><a aria-hidden="true" class="anchor-heading icon-link" href="#docstrings-in-python"></a>Docstrings (in Python)</h3>
+<p>Docstring helps by the documentation of python modules. It can be added just under the function name with <code>"""</code>or <code>'''</code>.   </p>
+<p>It can be called in two ways:</p>
+<pre class="language-py"><code class="language-py"><span class="token comment"># import your model</span>
+<span class="token keyword">import</span> zenodo_downloader <span class="token keyword">as</span> zd
+
+<span class="token comment"># using variable __doc__</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Using __doc__:"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>zd<span class="token punctuation">.</span>doi_info<span class="token punctuation">.</span>__doc__<span class="token punctuation">)</span>
+ 
+<span class="token comment"># using help function</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Using help:"</span><span class="token punctuation">)</span>
+<span class="token builtin">help</span><span class="token punctuation">(</span>zd<span class="token punctuation">.</span>doi_info<span class="token punctuation">)</span>
+</code></pre>
+<p>For the documentation it exist different "styles" of docstring. One which I will prefer is google-style which is the following:</p>
+<pre class="language-py"><code class="language-py"><span class="token keyword">def</span> <span class="token function">multiply_numbers</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""
+    Multiplies two numbers and returns the result.
+ 
+    Args:
+        a (int): The first number.
+        b (int): The second number.
+ 
+    Returns:
+        int: The product of a and b.
+    """</span>
+    <span class="token keyword">return</span> a <span class="token operator">*</span> b
+<span class="token keyword">print</span><span class="token punctuation">(</span>multiply_numbers<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>Now I am working with the <code>pip install inquirerpy</code> package. It is a package for creating interactive command line interfaces.
+<a href="https://inquirerpy.readthedocs.io/en/latest/pages/prompts/rawlist.html">https://inquirerpy.readthedocs.io/en/latest/pages/prompts/rawlist.html</a>.<br>
+Attention: It also exist 'pyinquirer` which is not the same!</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>

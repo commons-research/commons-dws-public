@@ -1,0 +1,24 @@
+<h1 id="2024-06-14"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-06-14"></a>2024-06-14</h1>
+<h1 id="pamreins-daily-open-notebook-commons-lab"><a aria-hidden="true" class="anchor-heading icon-link" href="#pamreins-daily-open-notebook-commons-lab"></a>PAMREIN's daily Open Notebook (COMMONS Lab)</h1>
+<h2 id="todo---check-github"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo---check-github"></a>Todo - <a href="https://github.com/orgs/commons-research/projects/2/views/1">Check Github</a></h2>
+<p>-[]</p>
+<h2 id="meetings"><a aria-hidden="true" class="anchor-heading icon-link" href="#meetings"></a>Meetings</h2>
+<h2 id="daily-report-what-did-i-learn"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-report-what-did-i-learn"></a>Daily report (What did I learn?)</h2>
+<p>scontrol show partition - Check the hardware and possible cpus / memory...</p>
+<p>sacct -j 12820165 --format=JobID,JobName%30,MaxRSS,Elapsed    - will check the memory and cpu use of a running job
+seff 12820165                                                 - more comprehensive description of memory and cpu use of this job-id </p>
+<p>The size of all the predicted files (n45) is arround 771.22Gb. Because of storage problems after taking out the important columns (all columns) I have to reduce storage.
+The main idea was to make a gzip command. </p>
+<p>But for comparison reason, I will do ones a <em>.gzip and ones a </em>.paquet (polats binary) file.</p>
+<p>Filename: compounds<em>1_generalized_230106_frozen_metadata_for_MINES_split_14.csv_85718.53</em>
+shape: (24_035_930, 6)
+<em>.tsv:      4.7G
+</em>.gzip:     1.4G
+*.parquet:  1.3G</p>
+<p>Filename: reactions<em>1_generalized_230106_frozen_metadata_for_MINES_split_14.csv_85718.53</em>
+<em>.tsv:      13G
+</em>.gzip:     3.1G
+*.parquet:  2.9G</p>
+<h2 id="future-perspective"><a aria-hidden="true" class="anchor-heading icon-link" href="#future-perspective"></a>Future perspective</h2>
+<h2 id="keywords"><a aria-hidden="true" class="anchor-heading icon-link" href="#keywords"></a>Keywords</h2>
+<p><a href="/commons-dws-public/notes/3ca85tg6eqf78kgql1mj3vl">Abbreviations</a></p>

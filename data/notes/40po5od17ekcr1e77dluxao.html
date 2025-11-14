@@ -1,0 +1,8 @@
+<h1 id="poetry"><a aria-hidden="true" class="anchor-heading icon-link" href="#poetry"></a>Poetry</h1>
+<h3 id="in-case-poetry-doesnt-detect-the-active-pyenv"><a aria-hidden="true" class="anchor-heading icon-link" href="#in-case-poetry-doesnt-detect-the-active-pyenv"></a>In case poetry doesn't detect the active pyenv</h3>
+<p><code>poetry env use $(pyenv which python)</code></p>
+<p>As per <a href="https://github.com/python-poetry/poetry/issues/651#issuecomment-1073213937">https://github.com/python-poetry/poetry/issues/651#issuecomment-1073213937</a></p>
+<h3 id="in-case-poetry-is-not-getting-the-latest-pypi-package"><a aria-hidden="true" class="anchor-heading icon-link" href="#in-case-poetry-is-not-getting-the-latest-pypi-package"></a>In case Poetry is not getting the latest pypi package</h3>
+<p>poetry cache list</p>
+<p>poetry cache clear PyPI --all</p>
+<p>poetry cache clear _default_cache --all</p>
