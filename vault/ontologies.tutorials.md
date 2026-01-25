@@ -1,0 +1,49 @@
+---
+id: sagavu9s3l1h1tpwsmazudc
+title: Tutorial
+desc: ''
+updated: 1769119530104
+created: 1769117895276
+---
+
+https://oboacademy.github.io/obook/howto/create-ontology-from-scratch/?h=scrat
+
+https://www.youtube.com/watch?v=RE1hFm8lvJA&t=2s
+
+
+
+
+### Minimal conditions for building an ontology¶
+
+Before reading on, there are three simple rules for when NOT to build an ontology everyone interested in ontologies should master, like a mantra:
+
+Do not build a new ontology if:
+
+one in scope already exists (none-in-scope condition).
+something simpler than a full-fledged OWL ontology can do the job (something-simpler-works condition).
+there is not at least one glass-clear use case written down which could be addressed by the existence of the ontology (killer-use-case condition).
+
+#### None-in-scope condition¶
+
+Scope is one of the hardest and most debated subjects in the OBO Foundry operation calls. There are essentially two aspects to scope:
+
+The entities you intended to model belong to some specific biological categories. For example phenotype, disease, anatomical entity, assay, environmental exposure, biological process, chemical entity. Before setting out to build an ontology, you should get a rough sense of what kind of entities you need to describe your domain. However, this is an iterative process and more entities will be revealed later on.
+The subject domain you intend to model. For example, you may want to provide an ontology to describe the domain of Alzheimer's Disease, which will need many different kinds of biological entities (like anatomical entity and disease classes).
+As a rule of thumb, you should NOT create a term if another OBO ontology has a branch of for entities of the same kind. For example, if you have to add terms for assays, you should work with the Ontology for Biomedical Investigations to add these to their assay branch.
+
+Remember, the vision of OBO is to build a semantically coherent ontology for all of biology, and the individual ontologies in the OBO Foundry should be considered "modules" of this super ontology. You will find that while collaboration is always hard the only way for our community to be sustainable and compete with commercial solutions is to take that hard route and work together.
+
+#### Something-simpler-works condition¶
+
+There are many kinds of semantic artefacts that can work for your use case:
+
+Controlled vocabularies: Creating identifiers for concepts in your domain and without too much concern for logical reasoning. Some examples can be are Linked Open Data Vocabularies (LOV) or schema.org vocabularies. Sometimes a table of identifiers in an SQL database is enough.
+Thesauri: Describe the synonyms used in your domain in a standardised fashion.
+Taxonomies: Create a hierarchical categorisations for concepts in your domain, without any specific regards for semantics. You just create a hierarchy that "makes some sense" for your use case. Examples: ICD10, United Nations Standard Products and Services Code (UNSPSC).
+Semantic data models: If you need to define how terms in your database should be constrained in a semantic way (similar to a database schema), then Shape languages like SHEX or SHACL may be much more suitable for your use case. See LinkML tutorials to get a sense of this: you will build a semantic data model in Yaml which can then be exported to SHACL, OWL or JSON Schema (great tutorial, useful to do no matter what).
+Ontologies: Sets of logical axioms. If you require formal reasoning (and only then!) does it make sense to jump in the deep pit of ontology engineering. This is, by far, the hardest to build of the bunch. You will have to wrestle with Logic, Open World Assumption and many more arcane subjects.
+Think of it in terms of cost. Building a simple vocabulary with minimal axiomatisation is 10x cheaper than building a full fledged domain model in OWL, and helps solving your use case just the same. Do not start building an ontology unless you have some understanding of these alternatives first.
+
+#### Killer-use-case condition¶
+
+Do not build an ontology because someone tells you to or because you "think it might be useful". Write out a proper use case description, for example in the form of an agile user story, convince two or three colleagues this is worthwhile and only then get to work. Many ontologies are created for very vague use cases, and not only do they cost you time to build, they also cost the rest of the community time - time it takes them to figure out that they do not want to use your ontology. Often, someone you trust tells you to build one and you believe they know what they are doing - do not do that. Question the use of building the ontology until you are convinced it is the right thing to do. If you do not care about reasoning (either for validation or for your application), do not build an ontology.
