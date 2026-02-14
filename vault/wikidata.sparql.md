@@ -2,7 +2,7 @@
 id: qcUnyE9eaS2PVPPngKeB1
 title: Sparql
 desc: ''
-updated: 1751830225283
+updated: 1770987499973
 created: 1611593110381
 ---
 
@@ -1252,97 +1252,6 @@ https://qlever.cs.uni-freiburg.de/wikidata/f0F9Y4
 "37461"^^<http://www.w3.org/2001/XMLSchema#int>
 
 
-
-
-
-```rust
-#[cfg(feature = "64-column-tables")]
-diesel::table! {
-    #[sql_name = "Field_Data"] public.field_data(id) { id -> diesel::sql_types::Integer,
-    status -> diesel::sql_types::Text
-user_created -> diesel::sql_types::Nullable <
-    diesel::sql_types::Uuid >
-date_created -> diesel::sql_types::Nullable <
-    diesel::sql_types::Timestamptz >
-user_updated -> diesel::sql_types::Nullable <
-    diesel::sql_types::Uuid >
-date_updated -> diesel::sql_types::Nullable <
-    diesel::sql_types::Timestamptz >
-sample_name -> diesel::sql_types::Nullable <
-    diesel::sql_types::Text >
-sample_id -> diesel::sql_types::Text
-picture_panel ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-picture_general ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-picture_detail ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-picture_cut ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-picture_panel_label ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-x_coord ->
-    diesel::sql_types::Nullable < diesel::sql_types::Float >
-y_coord ->
-    diesel::sql_types::Nullable < diesel::sql_types::Float >
-#[sql_name =
-    "herbivory_(percent)"] herbivory_percent -> diesel::sql_types::Nullable <
-    diesel::sql_types::Float >
-#[sql_name = "temperature_(°C)"] temperature_celsius ->
-    diesel::sql_types::Nullable < diesel::sql_types::Float >
-geometry ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-latitude ->
-    diesel::sql_types::Nullable < diesel::sql_types::Float >
-longitude ->
-    diesel::sql_types::Nullable < diesel::sql_types::Float >
-match_name ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-ott_id ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-rank ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-#[sql_name = "wikidataID"]
-    wikidata_id -> diesel::sql_types::Nullable < diesel::sql_types::Text >
-unknown ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-qfield_project ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-collector_fullname ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-picture_free ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-no_name_on_list ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-name_proposition ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-comment_eco ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-soil_type ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-weather ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-comment_env ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-observation_subject ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-collector_inat ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-collector_orcid ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-date ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-taxon_name ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text >
-is_wild ->
-    diesel::sql_types::Nullable < diesel::sql_types::Integer >
-inat_upload ->
-    diesel::sql_types::Nullable < diesel::sql_types::Integer >
-ipen ->
-    diesel::sql_types::Nullable < diesel::sql_types::Text > }
-}
-```
-
 ## Mind the famous WD graph split regarding scholarly articles  
 
 Why is that not working https://w.wiki/Eexo
@@ -1393,3 +1302,152 @@ https://w.wiki/Eexz
 Thanks, i'll  note these down once for all. Not the first time that I forget this split
 
 
+### Count molecule-taxon-ref tuples in LOTUS
+
+https://qlever.dev/wikidata/q3SRt7
+
+### List molecule-taxon-ref tuples in LOTUS
+
+https://qlever.dev/wikidata/HqZC6p
+
+### MetrinKG
+
+Tripartie interaction with Betula + wd lookup
+
+https://qlever.earthmetabolome.org/metrin-kg/swBuop
+
+Same with Taxonomy lookup
+
+https://qlever.earthmetabolome.org/metrin-kg/WayY7B
+
+
+Same no wd taxon retrioeval
+
+https://qlever.earthmetabolome.org/metrin-kg/BBQxuv
+
+
+2) All direct interactions involving Betula (everything, no tripartite constraint)
+This answers: “Do I have all interaction records that touch Betula at all?”
+(Useful to compare against what subset ends up in tripartite chains.)
+
+
+https://qlever.earthmetabolome.org/metrin-kg/5PGcG8
+
+
+### Directional Interaction Type Summary for a Fixed Taxon (Local Aggregation Only)
+Short Description
+This query summarizes all direct interactions involving a fixed taxon in the EMI knowledge graph. It counts interaction statements grouped by interaction type and explicitly separates cases where the fixed taxon acts as source versus target. The query runs entirely locally (no federated Wikidata calls), ensuring fast execution while providing a directional interaction profile of the selected taxon.
+
+https://qlever.earthmetabolome.org/metrin-kg/ORAG5S
+
+https://qlever.earthmetabolome.org/metrin-kg/?query=PREFIX+wd%3A++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+emi%3A+%3Chttps%3A%2F%2Fw3id.org%2Femi%23%3E%0A%0ASELECT%0A++%3Fdirection%0A++%3FintxnType%0A++%28SAMPLE%28%3Flbl%29+AS+%3FintxnTypeLabel%29%0A++%28COUNT%28%2A%29+AS+%3FnInteractions%29%0AWHERE+%7B%0A++VALUES+%3Ffixed_WD+%7B+wd%3AQ156895+%7D%0A++%3FfixedNode+emi%3AinTaxon+%3Ffixed_WD+.%0A%0A++%7B+%3Fintxn+emi%3AhasSource+%3FfixedNode+%3B%0A++++++++++emi%3AisClassifiedWith+%3FintxnType+.%0A++++BIND%28%22fixed_is_source%22+AS+%3Fdirection%29%0A+%7D+UNION+%7B+%3Fintxn+emi%3AhasTarget+%3FfixedNode+%3B%0A++++++++++emi%3AisClassifiedWith+%3FintxnType+.%0A++++BIND%28%22fixed_is_target%22+AS+%3Fdirection%29%0A+%7D%0A%0A++OPTIONAL+%7B+%3FintxnType+rdfs%3Alabel+%3Flbl+.+%7D%0A%7D%0AGROUP+BY+%3Fdirection+%3FintxnType%0AORDER+BY+DESC%28%3FnInteractions%29%0A
+
+
+### MetrinkG
+
+https://qlever.earthmetabolome.org/metrin-kg/0tB2id
+
+Which plants eat plants ?
+
+### Directional Interaction Network of a Fixed Taxon with Taxonomic Enrichment
+Short Description
+This query retrieves all direct interactions involving a fixed taxon, explicitly indicating for each row whether the fixed taxon acts as source or target in the interaction. It returns the interaction type label, the interacting partner taxon, and the taxon-level source/target assignments. Both the fixed and partner taxa are enriched via federated Wikidata queries with taxonomic metadata (scientific name P225, family, and domain), enabling directional ecological network analysis with hierarchical taxonomic context.
+https://qlever.earthmetabolome.org/metrin-kg/YRhcG1
+
+
+https://qlever.earthmetabolome.org/metrin-kg/?query=PREFIX+wd%3A++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wdt%3A+%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+emi%3A+%3Chttps%3A%2F%2Fw3id.org%2Femi%23%3E%0A%0ASELECT+DISTINCT%0A++%23+fixed+taxon%0A++%3Ffixed_WD+%3FfixedName+%3FfixedFamilyName+%3FfixedDomainName%0A%0A++%23+direction+%2B+interaction+type%0A++%3Fdir%0A++%3FintxnTypeLabel%0A%0A++%23+explicit+source%2Ftarget+%28taxon-level%29+per+row%0A++%23+%3Fsource_WD+%3Ftarget_WD%0A%0A++%23+partner+taxon+%28the+%22other%22+one+in+the+interaction%29%0A++%3Fpartner_WD+%3FpartnerName+%3FpartnerFamilyName+%3FpartnerDomainName%0AWHERE+%7B%0A++VALUES+%3Ffixed_WD+%7B+wd%3AQ2715913+%7D%0A%0A++%3FfixedNode+emi%3AinTaxon+%3Ffixed_WD+.%0A%0A++%7B+%23+fixed+is+source%0A++++%3Fintxn+emi%3AhasSource+%3FfixedNode+%3B%0A++++++++++emi%3AhasTarget+%3FpartnerNode+%3B%0A++++++++++emi%3AisClassifiedWith+%3FintxnType+.%0A++++BIND%28%22fixed_is_source%22+AS+%3Fdir%29%0A%0A++++%3FfixedNode+++emi%3AinTaxon+%3Fsource_WD+.%0A++++%3FpartnerNode+emi%3AinTaxon+%3Ftarget_WD+.%0A+%7D+UNION+%7B+%23+fixed+is+target%0A++++%3Fintxn+emi%3AhasSource+%3FpartnerNode+%3B%0A++++++++++emi%3AhasTarget+%3FfixedNode+%3B%0A++++++++++emi%3AisClassifiedWith+%3FintxnType+.%0A++++BIND%28%22fixed_is_target%22+AS+%3Fdir%29%0A%0A++++%3FpartnerNode+emi%3AinTaxon+%3Fsource_WD+.%0A++++%3FfixedNode+++emi%3AinTaxon+%3Ftarget_WD+.%0A+%7D%0A%0A++%23+partner+is+always+the+non-fixed+node%0A++%3FpartnerNode+emi%3AinTaxon+%3Fpartner_WD+.%0A++FILTER%28%3Fpartner_WD+%21%3D+%3Ffixed_WD%29%0A%0A++OPTIONAL+%7B+%3FintxnType+rdfs%3Alabel+%3FintxnTypeLabel+.+%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+Wikidata+taxonomy+for+FIXED+taxon+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Ffixed_WD+%7B+wd%3AQ2715913+%7D%0A%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP225+%3FfixedName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP171%2A+%3FfixedFamily+.%0A++++++++%3FfixedFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FfixedFamily+wdt%3AP225+%3FfixedFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP171%2A+%3FfixedDomain+.%0A++++++++%3FfixedDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FfixedDomain+wdt%3AP225+%3FfixedDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+Wikidata+taxonomy+for+PARTNER+taxon+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fpartner_WD+%7B+UNDEF+%7D%0A%0A++++++OPTIONAL+%7B+%3Fpartner_WD+wdt%3AP225+%3FpartnerName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Fpartner_WD+wdt%3AP171%2A+%3FpartnerFamily+.%0A++++++++%3FpartnerFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FpartnerFamily+wdt%3AP225+%3FpartnerFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Fpartner_WD+wdt%3AP171%2A+%3FpartnerDomain+.%0A++++++++%3FpartnerDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FpartnerDomain+wdt%3AP225+%3FpartnerDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%7D%0A
+
+
+
+### Fix taxon - all interactions - all targets -eats - plants
+
+This query allows to fix a taxon (using WDQID) retrieve all interacting organisms and all plants connected to the interacting organisms by a eat relationship.
+https://qlever.earthmetabolome.org/metrin-kg/7kz9Uf
+
+
+### Tripartite Ecological Interaction and Plant Metabolite Retrieval for a Fixed Taxon
+Short Description
+
+This query retrieves a multi-level ecological network centered on a fixed taxon. It:
+- Identifies all taxa interacting with the fixed taxon (any interaction type).
+- Retrieves taxa eaten by those interacting taxa (RO_0002470).
+- Filters the eaten taxa to a specified clade (currently Archaeplastida / plants).
+- Enriches all taxa (fixed, interacting, eaten) with taxonomic metadata from Wikidata (taxon name, family, domain).
+- Retrieves all chemical compounds (wdt:P703) reported to be produced by the eaten taxa, including their Wikidata QID, English label, canonical SMILES (P233), and mass (P2067).
+The query combines local ecological interaction data (EMI graph) with federated Wikidata queries using role-separated SERVICE blocks to optimize performance and avoid timeouts.
+
+https://qlever.earthmetabolome.org/metrin-kg/sDLjL0
+
+### Frequency Ranking of Sub-400 Da Plant Metabolites in the Trophic Network of a Fixed Taxon
+Short Description
+This query constructs a two-step ecological network centered on a fixed taxon:
+(1) it retrieves all taxa interacting with the fixed taxon (any interaction type), and
+(2) identifies taxa they eat via RO_0002470 (eats).
+The eaten taxa are restricted to a specified clade (currently Archaeplastida / plants). For each such plant taxon, the query retrieves chemical compounds reported as produced by that taxon (wdt:P703), filters compounds with molecular mass (P2067) below 400 Da, and aggregates results by compound QID.
+The output ranks compounds by the number of distinct producing plant taxa, thereby identifying the most taxonomically widespread low-molecular-weight metabolites within the trophic neighborhood of the fixed taxon_ref.
+
+
+https://qlever.earthmetabolome.org/metrin-kg/5pioIC
+
+### Directional Interaction–Herbivory Chain with Plant Metabolite Enrichment for a Fixed Taxon
+Short Description
+This query constructs a two-step ecological interaction chain centered on a fixed taxon:
+any taxon → (any interaction where fixed taxon is target) → fixed taxon → (eats) → plant taxon
+The left-hand taxa are not restricted to parasitoids; they include all taxa that interact with the fixed taxon as a target, regardless of interaction type.
+The query:
+Retrieves all taxa interacting with the fixed taxon as target (any relation type)
+Identifies plant taxa eaten by the fixed taxon (RO_0002470)
+Restricts eaten taxa to plants (Archaeplastida lineage)
+Enriches all taxa (left, fixed, plant) with Wikidata taxonomy (scientific name P225, family, domain)
+Retrieves chemical compounds (P703) produced by the eaten plant taxa, including canonical SMILES (P233) and molecular mass (P2067)
+This enables analysis of interaction context and downstream herbivory–metabolite networks centered on a chosen intermediary taxon.
+
+https://qlever.earthmetabolome.org/metrin-kg/hwyrI9
+
+https://qlever.earthmetabolome.org/metrin-kg/?query=PREFIX+wd%3A+++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wdt%3A++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+emi%3A++%3Chttps%3A%2F%2Fw3id.org%2Femi%23%3E%0A%0ASELECT+DISTINCT%0A++%23+any+taxon+%28source+of+left+interaction%29%0A++%3Fany_WD+%3FanyName+%3FanyFamilyName+%3FanyDomainName%0A%0A++%23+left+interaction+%28any+type%2C+fixed+taxon+is+TARGET%29%0A++%3FleftIntxnLabel%0A%0A++%23+fixed+intermediary+taxon%0A++%3Ffixed_WD+%3FfixedName+%3FfixedFamilyName+%3FfixedDomainName%0A%0A++%23+right+interaction%3A+eats%0A++%3FeatsLabel%0A%0A++%23+eaten+plant+taxon+%28target+of+eats%29%0A++%3Fplant_WD+%3FplantName+%3FplantFamilyName+%3FplantDomainName%0A%0A++%23+compounds+produced+by+eaten+plant%0A++%3Fchem_WD+%3FchemLabel+%3Fchem_WD_canonical_SMILES+%3Fchem_WD_mass%0AWHERE+%7B%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28A%29+Local+chain+at+TAXON+level%3A%0A++%23+++++any+--%28any+interaction%2C+fixed+is+target%29--%3E+fixed%0A++%23+++++fixed+--eats--%3E+plant%0A++%23+++++%28allow+different+sample+nodes+for+fixed%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%7B%0A++++SELECT+DISTINCT%0A++++++%3Ffixed_WD+%3Fany_WD+%3Fplant_WD+%3FleftIntxnLabel%0A++++WHERE+%7B%0A++++++VALUES+%3Ffixed_WD+%7B+wd%3AQ2715913+%7D+++%23+%3C--+FIX+TAXON+HERE%0A%0A++++++%23+LEFT%3A+fixed+taxon+is+target+%28use+a+fixed-node+instance+for+this+leg%29%0A++++++%3FfixedNode_left+emi%3AinTaxon+%3Ffixed_WD+.%0A++++++%3Fi_left+emi%3AhasSource+%3FanyNode+%3B%0A++++++++++++++emi%3AhasTarget+%3FfixedNode_left+%3B%0A++++++++++++++emi%3AisClassifiedWith+%3FleftIntxnType+.%0A++++++OPTIONAL+%7B+%3FleftIntxnType+rdfs%3Alabel+%3FleftIntxnLabel+.+%7D%0A%0A++++++%3FanyNode+emi%3AinTaxon+%3Fany_WD+.%0A++++++FILTER%28%3Fany_WD+%21%3D+%3Ffixed_WD%29%0A%0A++++++%23+RIGHT%3A+fixed+taxon+eats+plant+%28use+potentially+different+fixed-node+instance%29%0A++++++%3FfixedNode_right+emi%3AinTaxon+%3Ffixed_WD+.%0A++++++%3Fi_right+emi%3AhasSource+%3FfixedNode_right+%3B%0A+++++++++++++++emi%3AhasTarget+%3FplantNode+%3B%0A+++++++++++++++emi%3AisClassifiedWith+%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+.%0A%0A++++++%3FplantNode+emi%3AinTaxon+%3Fplant_WD+.%0A++++++FILTER%28%3Fplant_WD+%21%3D+%3Ffixed_WD%29%0A++++%7D%0A++++%23+paginate+if+needed%3A%0A++++%23+LIMIT+5000%0A++++%23+OFFSET+0%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B0%29+Keep+only+plants+for+the+eaten+taxon+%28Archaeplastida%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A++++%3Fplant_WD+wdt%3AP171%2A+wd%3AQ879246+.%0A++%7D%0A%0A++%23+label+for+eats%0A++%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+rdfs%3Alabel+%3FeatsLabel+.%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C1%29+any+taxon+taxonomy+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fany_WD+%7B+UNDEF+%7D%0A++++++OPTIONAL+%7B+%3Fany_WD+wdt%3AP225+%3FanyName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Fany_WD+wdt%3AP171%2A+%3FanyFamily+.%0A++++++++%3FanyFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FanyFamily+wdt%3AP225+%3FanyFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Fany_WD+wdt%3AP171%2A+%3FanyDomain+.%0A++++++++%3FanyDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FanyDomain+wdt%3AP225+%3FanyDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C2%29+fixed+taxon+taxonomy+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Ffixed_WD+%7B+wd%3AQ2715913+%7D%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP225+%3FfixedName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP171%2A+%3FfixedFamily+.%0A++++++++%3FfixedFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FfixedFamily+wdt%3AP225+%3FfixedFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP171%2A+%3FfixedDomain+.%0A++++++++%3FfixedDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FfixedDomain+wdt%3AP225+%3FfixedDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C3%29+plant+taxonomy+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP225+%3FplantName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP171%2A+%3FplantFamily+.%0A++++++++%3FplantFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FplantFamily+wdt%3AP225+%3FplantFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP171%2A+%3FplantDomain+.%0A++++++++%3FplantDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FplantDomain+wdt%3AP225+%3FplantDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C4%29+Compounds+produced+by+eaten+plant+%28P703%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A%0A++++++%3Fchem_WD+wdt%3AP703+%3Fplant_WD+%3B%0A++++++++++++++wdt%3AP233+%3Fchem_WD_canonical_SMILES+%3B%0A++++++++++++++wdt%3AP2067+%3Fchem_WD_mass+.%0A%0A++++++OPTIONAL+%7B+%3Fchem_WD+rdfs%3Alabel+%3FchemLabel+.%0A++++++++FILTER%28LANG%28%3FchemLabel%29+%3D+%22en%22%29%0A+%7D%0A++++%7D%0A++%7D%0A%7D%0A
+
+### Configurable Interaction–Herbivory Chain with Plant Metabolite Enrichment
+Short Description
+This query constructs a directional ecological chain centered on a fixed intermediary taxon:
+any taxon → (selected interaction types, fixed taxon as target) → fixed taxon → (eats) → plant taxon
+The left interaction is configurable via a VALUES block, allowing restriction to specific RO relations (e.g., pathogenOf, allelopathOf, parasiteOf, preysOn).
+The query:
+Retrieves taxa interacting with the fixed taxon under selected relation types
+Identifies plant taxa eaten by the fixed taxon (RO_0002470)
+Filters eaten taxa to Archaeplastida (plants)
+Enriches all taxa (left, fixed, plant) with Wikidata taxonomy (scientific name P225, family, domain)
+Retrieves chemical compounds (P703) produced by the eaten plant taxa, including canonical SMILES and molecular mass
+This enables targeted analysis of specific ecological interaction classes and their downstream herbivory–metabolite networks.
+
+https://qlever.earthmetabolome.org/metrin-kg/dcnZT3
+
+https://qlever.earthmetabolome.org/metrin-kg/?query=PREFIX+wd%3A+++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wdt%3A++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+emi%3A++%3Chttps%3A%2F%2Fw3id.org%2Femi%23%3E%0A%0ASELECT+DISTINCT%0A++%23+left+taxon+%28source+of+left+interaction%29%0A++%3Fany_WD+%3FanyName+%3FanyFamilyName+%3FanyDomainName%0A%0A++%23+left+interaction+label+%28restricted+via+VALUES%29%0A++%3FleftIntxnLabel%0A%0A++%23+fixed+intermediary+taxon%0A++%3Ffixed_WD+%3FfixedName+%3FfixedFamilyName+%3FfixedDomainName%0A%0A++%23+right+interaction%3A+eats%0A++%3FeatsLabel%0A%0A++%23+eaten+plant+taxon+%28target+of+eats%29%0A++%3Fplant_WD+%3FplantName+%3FplantFamilyName+%3FplantDomainName%0A%0A++%23+compounds+produced+by+eaten+plant%0A++%3Fchem_WD+%3FchemLabel+%3Fchem_WD_canonical_SMILES+%3Fchem_WD_mass%0AWHERE+%7B%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28A%29+Local+chain+at+TAXON+level%3A%0A++%23+++++any+--%28filtered+interaction%2C+fixed+is+target%29--%3E+fixed%0A++%23+++++fixed+--eats--%3E+plant%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%7B%0A++++SELECT+DISTINCT%0A++++++%3Ffixed_WD+%3Fany_WD+%3Fplant_WD+%3FleftIntxnLabel%0A++++WHERE+%7B%0A++++++VALUES+%3Ffixed_WD+%7B+wd%3AQ2715913+%7D+++%23+%3C--+FIX+TAXON+HERE%0A%0A++++++%23+----+choose+which+left+interactions+you+want+here+----%0A++++++VALUES+%3FleftIntxnType+%7B%0A++++++++%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002555%3E++%23+allelopathOf%0A++++++++%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002556%3E++%23+pathogenOf%0A++++++%7D%0A%0A++++++%23+LEFT%3A+fixed+taxon+is+target%2C+left+interaction+restricted%0A++++++%3FfixedNode_left+emi%3AinTaxon+%3Ffixed_WD+.%0A++++++%3Fi_left+emi%3AhasSource+%3FanyNode+%3B%0A++++++++++++++emi%3AhasTarget+%3FfixedNode_left+%3B%0A++++++++++++++emi%3AisClassifiedWith+%3FleftIntxnType+.%0A%0A++++++OPTIONAL+%7B+%3FleftIntxnType+rdfs%3Alabel+%3FleftIntxnLabel+.+%7D%0A%0A++++++%3FanyNode+emi%3AinTaxon+%3Fany_WD+.%0A++++++FILTER%28%3Fany_WD+%21%3D+%3Ffixed_WD%29%0A%0A++++++%23+RIGHT%3A+fixed+taxon+eats+plant+%28allow+different+fixed-node+instance%29%0A++++++%3FfixedNode_right+emi%3AinTaxon+%3Ffixed_WD+.%0A++++++%3Fi_right+emi%3AhasSource+%3FfixedNode_right+%3B%0A+++++++++++++++emi%3AhasTarget+%3FplantNode+%3B%0A+++++++++++++++emi%3AisClassifiedWith+%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+.%0A%0A++++++%3FplantNode+emi%3AinTaxon+%3Fplant_WD+.%0A++++++FILTER%28%3Fplant_WD+%21%3D+%3Ffixed_WD%29%0A++++%7D%0A++++%23+paginate+if+needed%3A%0A++++%23+LIMIT+5000%0A++++%23+OFFSET+0%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B0%29+Keep+only+plants+for+the+eaten+taxon+%28Archaeplastida%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A++++%3Fplant_WD+wdt%3AP171%2A+wd%3AQ879246+.%0A++%7D%0A%0A++%23+label+for+eats%0A++%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+rdfs%3Alabel+%3FeatsLabel+.%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C1%29+left+taxon+taxonomy+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fany_WD+%7B+UNDEF+%7D%0A++++++OPTIONAL+%7B+%3Fany_WD+wdt%3AP225+%3FanyName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Fany_WD+wdt%3AP171%2A+%3FanyFamily+.%0A++++++++%3FanyFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FanyFamily+wdt%3AP225+%3FanyFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Fany_WD+wdt%3AP171%2A+%3FanyDomain+.%0A++++++++%3FanyDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FanyDomain+wdt%3AP225+%3FanyDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C2%29+fixed+taxon+taxonomy+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Ffixed_WD+%7B+wd%3AQ2715913+%7D%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP225+%3FfixedName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP171%2A+%3FfixedFamily+.%0A++++++++%3FfixedFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FfixedFamily+wdt%3AP225+%3FfixedFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Ffixed_WD+wdt%3AP171%2A+%3FfixedDomain+.%0A++++++++%3FfixedDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FfixedDomain+wdt%3AP225+%3FfixedDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C3%29+plant+taxonomy+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP225+%3FplantName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP171%2A+%3FplantFamily+.%0A++++++++%3FplantFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FplantFamily+wdt%3AP225+%3FplantFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP171%2A+%3FplantDomain+.%0A++++++++%3FplantDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FplantDomain+wdt%3AP225+%3FplantDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C4%29+Compounds+produced+by+eaten+plant+%28P703%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A%0A++++++%3Fchem_WD+wdt%3AP703+%3Fplant_WD+%3B%0A++++++++++++++wdt%3AP233+%3Fchem_WD_canonical_SMILES+%3B%0A++++++++++++++wdt%3AP2067+%3Fchem_WD_mass+.%0A%0A++++++OPTIONAL+%7B+%3Fchem_WD+rdfs%3Alabel+%3FchemLabel+.%0A++++++++FILTER%28LANG%28%3FchemLabel%29+%3D+%22en%22%29%0A+%7D%0A++++%7D%0A++%7D%0A%7D%0A
+
+
+
+### Plants Eaten by a Fixed Taxon with Plant Taxonomy and Produced Compounds
+Short description
+This simplified query fixes one consumer taxon, retrieves all plant taxa it eats (RO_0002470), filters eaten taxa to Archaeplastida, enriches the consumer + plant taxa with Wikidata upper taxonomy (taxon name P225, family, domain), and returns all compounds produced by each eaten plant (P703) including label, canonical SMILES (P233), and mass (P2067).
+
+
+[Q2715913](https://qlever.earthmetabolome.org/metrin-kg/kcW6tc)
+
+https://qlever.earthmetabolome.org/metrin-kg/?query=PREFIX+wd%3A+++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wdt%3A++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+emi%3A++%3Chttps%3A%2F%2Fw3id.org%2Femi%23%3E%0A%0ASELECT+DISTINCT%0A++%23+fixed+%28consumer%29+taxon%0A++%3Fconsumer_WD+%3FconsumerName+%3FconsumerFamilyName+%3FconsumerDomainName%0A%0A++%23+interaction+label%0A++%3FeatsLabel%0A%0A++%23+eaten+plant+taxon%0A++%3Fplant_WD+%3FplantName+%3FplantFamilyName+%3FplantDomainName%0A%0A++%23+compounds+produced+by+eaten+plant%0A++%3Fchem_WD+%3FchemLabel+%3Fchem_WD_canonical_SMILES+%3Fchem_WD_mass%0AWHERE+%7B%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28A%29+Local%3A+consumer+eats+plant+%28taxon-level+join%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%7B%0A++++SELECT+DISTINCT+%3Fconsumer_WD+%3Fplant_WD%0A++++WHERE+%7B%0A++++++VALUES+%3Fconsumer_WD+%7B+wd%3AQ2715913+%7D+++%23+%3C--+SET+CONSUMER+TAXON+HERE%0A%0A++++++%23+allow+multiple+sample+nodes+per+taxon%0A++++++%3FconsumerNode+emi%3AinTaxon+%3Fconsumer_WD+.%0A%0A++++++%3FeatIntxn+emi%3AhasSource+%3FconsumerNode+%3B%0A+++++++++++++++emi%3AhasTarget+%3FplantNode+%3B%0A+++++++++++++++emi%3AisClassifiedWith+%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+.%0A%0A++++++%3FplantNode+emi%3AinTaxon+%3Fplant_WD+.%0A++++++FILTER%28%3Fplant_WD+%21%3D+%3Fconsumer_WD%29%0A++++%7D%0A++++%23+paginate+if+needed%3A%0A++++%23+LIMIT+5000%0A++++%23+OFFSET+0%0A++%7D%0A%0A++%23+label+for+eats%0A++%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+rdfs%3Alabel+%3FeatsLabel+.%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B0%29+Keep+only+plants+for+the+eaten+taxon+%28Archaeplastida%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A++++%3Fplant_WD+wdt%3AP171%2A+wd%3AQ879246+.%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B1%29+Consumer+taxonomy+%28role-split%3B+single+fixed+value%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fconsumer_WD+%7B+wd%3AQ2715913+%7D%0A%0A++++++OPTIONAL+%7B+%3Fconsumer_WD+wdt%3AP225+%3FconsumerName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Fconsumer_WD+wdt%3AP171%2A+%3FconsumerFamily+.%0A++++++++%3FconsumerFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FconsumerFamily+wdt%3AP225+%3FconsumerFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Fconsumer_WD+wdt%3AP171%2A+%3FconsumerDomain+.%0A++++++++%3FconsumerDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FconsumerDomain+wdt%3AP225+%3FconsumerDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B2%29+Plant+taxonomy+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP225+%3FplantName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP171%2A+%3FplantFamily+.%0A++++++++%3FplantFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FplantFamily+wdt%3AP225+%3FplantFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP171%2A+%3FplantDomain+.%0A++++++++%3FplantDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FplantDomain+wdt%3AP225+%3FplantDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B3%29+Compounds+produced+by+eaten+plant+%28P703%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A%0A++++++%3Fchem_WD+wdt%3AP703+%3Fplant_WD+%3B%0A++++++++++++++wdt%3AP233+%3Fchem_WD_canonical_SMILES+%3B%0A++++++++++++++wdt%3AP2067+%3Fchem_WD_mass+.%0A%0A++++++OPTIONAL+%7B+%3Fchem_WD+rdfs%3Alabel+%3FchemLabel+.%0A++++++++FILTER%28LANG%28%3FchemLabel%29+%3D+%22en%22%29%0A+%7D%0A++++%7D%0A++%7D%0A%7D%0A
+
+
+### Sub-400 Da Metabolites from Plants Eaten by a Fixed Taxon (Ranked by Producing Plant Count)
+Short description
+This query fixes a consumer taxon, retrieves all plant taxa it eats (RO_0002470), restricts eaten taxa to Archaeplastida, and fetches chemical compounds produced by those plants (P703). It filters compounds with molecular mass (P2067) below 400 Da, aggregates by compound QID, and counts the number of distinct producing plant taxa to rank the most widespread low-molecular-weight metabolites in the trophic neighborhood of the fixed taxon.
+
+https://qlever.earthmetabolome.org/metrin-kg/mixIFs
+
+https://qlever.earthmetabolome.org/metrin-kg/?query=PREFIX+wd%3A+++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wdt%3A++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+emi%3A++%3Chttps%3A%2F%2Fw3id.org%2Femi%23%3E%0A%0ASELECT%0A++%3Fchem_WD%0A++%28SAMPLE%28%3FchemLabel_raw%29+AS+%3FchemLabel%29%0A++%28SAMPLE%28%3Fchem_WD_canonical_SMILES%29+AS+%3FSMILES%29%0A++%28SAMPLE%28%3Fchem_WD_mass%29+AS+%3Fmass%29%0A++%28COUNT%28DISTINCT+%3Fplant_WD%29+AS+%3FnProducingPlants%29%0AWHERE+%7B%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28A%29+Local%3A+fixed+consumer+eats+plant+%28taxon-level+join%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%7B%0A++++SELECT+DISTINCT+%3Fplant_WD%0A++++WHERE+%7B%0A++++++VALUES+%3Fconsumer_WD+%7B+wd%3AQ2715913+%7D+++%23+%3C--+SET+CONSUMER+TAXON+HERE%0A%0A++++++%3FconsumerNode+emi%3AinTaxon+%3Fconsumer_WD+.%0A%0A++++++%3FeatIntxn+emi%3AhasSource+%3FconsumerNode+%3B%0A+++++++++++++++emi%3AhasTarget+%3FplantNode+%3B%0A+++++++++++++++emi%3AisClassifiedWith+%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+.%0A%0A++++++%3FplantNode+emi%3AinTaxon+%3Fplant_WD+.%0A++++++FILTER%28%3Fplant_WD+%21%3D+%3Fconsumer_WD%29%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B0%29+Restrict+eaten+taxa+to+plants+%28Archaeplastida%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A++++%3Fplant_WD+wdt%3AP171%2A+wd%3AQ879246+.%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B1%29+Retrieve+compounds+%2B+filter+mass+%3C+400%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A%0A++++%3Fchem_WD+wdt%3AP703+%3Fplant_WD+%3B%0A+++++++++++++wdt%3AP233+%3Fchem_WD_canonical_SMILES+%3B%0A+++++++++++++wdt%3AP2067+%3Fchem_WD_mass+.%0A%0A++++FILTER%28%3Fchem_WD_mass+%3C+400%29%0A%0A++++OPTIONAL+%7B+%3Fchem_WD+rdfs%3Alabel+%3FchemLabel_raw+.%0A++++++FILTER%28LANG%28%3FchemLabel_raw%29+%3D+%22en%22%29%0A+%7D%0A++%7D%0A%7D%0AGROUP+BY+%3Fchem_WD%0AORDER+BY+DESC%28%3FnProducingPlants%29%0ALIMIT+50%0A
+
+
+### Tripartite Parasitoid–Herbivory–Plant Chains with Wikidata Taxonomy (Taxon-Level Join)
+Short description
+This query extracts tripartite ecological chains where a taxon A is parasitoidOf taxon B (RO_0002208), and B eats a taxon C (RO_0002470), with C restricted to plants (Archaeplastida lineage via wdt:P171* wd:Q879246). The interaction graph is queried locally (EMI KG) and joined at the taxon level via emi:inTaxon to handle multiple sample nodes per taxon. The result table is enriched using role-split federated Wikidata lookups to return scientific name (P225), family, and domain for A, B, and the plant taxon.
+
+https://qlever.earthmetabolome.org/metrin-kg/uXLCRi
+
+https://qlever.earthmetabolome.org/metrin-kg/?query=PREFIX+wd%3A+++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2F%3E%0APREFIX+rdfs%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E%0APREFIX+wdt%3A++%3Chttp%3A%2F%2Fwww.wikidata.org%2Fprop%2Fdirect%2F%3E%0APREFIX+emi%3A++%3Chttps%3A%2F%2Fw3id.org%2Femi%23%3E%0A%0ASELECT+DISTINCT%0A++%23+A+%28parasitoid+taxon%29%0A++%3FA_WD+%3FA_Name+%3FA_FamilyName+%3FA_DomainName%0A%0A++%23+interaction+1+label%0A++%3FparasitoidOfLabel%0A%0A++%23+B+%28host+taxon%29%0A++%3FB_WD+%3FB_Name+%3FB_FamilyName+%3FB_DomainName%0A%0A++%23+interaction+2+label%0A++%3FeatsLabel%0A%0A++%23+eaten+plant+taxon%0A++%3Fplant_WD+%3FplantName+%3FplantFamilyName+%3FplantDomainName%0AWHERE+%7B%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28A%29+Local+taxon-level+chain%3A+A+--parasitoidOf--%3E+B+--eats--%3E+plant%0A++%23+++++%28allow+different+sample+nodes+for+B+across+legs%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%7B%0A++++SELECT+DISTINCT+%3FA_WD+%3FB_WD+%3Fplant_WD%0A++++WHERE+%7B%0A++++++%23+parasitoidOf%3A+A+-%3E+B%0A++++++%3Fintxn1+emi%3AhasSource+%3FA_node+%3B%0A+++++++++++++emi%3AhasTarget+%3FB_node_left+%3B%0A+++++++++++++emi%3AisClassifiedWith+%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002208%3E+.%0A%0A++++++%3FA_node++++++emi%3AinTaxon+%3FA_WD+.%0A++++++%3FB_node_left+emi%3AinTaxon+%3FB_WD+.%0A%0A++++++%23+eats%3A+B+-%3E+plant+%28use+a+%28possibly+different%29+B+node+instance%29%0A++++++%3FB_node_right+emi%3AinTaxon+%3FB_WD+.%0A++++++%3Fintxn2+emi%3AhasSource+%3FB_node_right+%3B%0A+++++++++++++emi%3AhasTarget+%3Fplant_node+%3B%0A+++++++++++++emi%3AisClassifiedWith+%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+.%0A%0A++++++%3Fplant_node+emi%3AinTaxon+%3Fplant_WD+.%0A%0A++++++FILTER%28%3FA_WD+%21%3D+%3FB_WD%29%0A++++++FILTER%28%3Fplant_WD+%21%3D+%3FB_WD%29%0A++++++FILTER%28%3Fplant_WD+%21%3D+%3FA_WD%29%0A++++%7D%0A++++%23+paginate+if+needed%3A%0A++++%23+LIMIT+5000%0A++++%23+OFFSET+0%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B0%29+Keep+only+plants+for+the+eaten+taxon+%28Archaeplastida%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A%09VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A++++%3Fplant_WD+wdt%3AP171%2A+wd%3AQ879246+.%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28B-intxn+labels%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002208%3E+rdfs%3Alabel+%3FparasitoidOfLabel+.%0A++%3Chttp%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FRO_0002470%3E+rdfs%3Alabel+%3FeatsLabel+.%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C1%29+Wikidata+taxonomy+for+A+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3FA_WD+%7B+UNDEF+%7D%0A%0A++++++OPTIONAL+%7B+%3FA_WD+wdt%3AP225+%3FA_Name+.+%7D%0A%0A++++++OPTIONAL+%7B+%3FA_WD+wdt%3AP171%2A+%3FA_Family+.%0A++++++++%3FA_Family+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FA_Family+wdt%3AP225+%3FA_FamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3FA_WD+wdt%3AP171%2A+%3FA_Domain+.%0A++++++++%3FA_Domain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FA_Domain+wdt%3AP225+%3FA_DomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C2%29+Wikidata+taxonomy+for+B+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3FB_WD+%7B+UNDEF+%7D%0A%0A++++++OPTIONAL+%7B+%3FB_WD+wdt%3AP225+%3FB_Name+.+%7D%0A%0A++++++OPTIONAL+%7B+%3FB_WD+wdt%3AP171%2A+%3FB_Family+.%0A++++++++%3FB_Family+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FB_Family+wdt%3AP225+%3FB_FamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3FB_WD+wdt%3AP171%2A+%3FB_Domain+.%0A++++++++%3FB_Domain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FB_Domain+wdt%3AP225+%3FB_DomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++%23+%28C3%29+Wikidata+taxonomy+for+plant+%28role-split%29%0A++%23+%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%0A++OPTIONAL+%7B%0A++++SERVICE+%3Chttps%3A%2F%2Fqlever.dev%2Fapi%2Fwikidata%3E+%7B%0A++++++VALUES+%3Fplant_WD+%7B+UNDEF+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP225+%3FplantName+.+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP171%2A+%3FplantFamily+.%0A++++++++%3FplantFamily+wdt%3AP105+wd%3AQ35409+.%0A++++++++%3FplantFamily+wdt%3AP225+%3FplantFamilyName+.%0A+%7D%0A%0A++++++OPTIONAL+%7B+%3Fplant_WD+wdt%3AP171%2A+%3FplantDomain+.%0A++++++++%3FplantDomain+wdt%3AP105+wd%3AQ36732+.%0A++++++++%3FplantDomain+wdt%3AP225+%3FplantDomainName+.%0A+%7D%0A++++%7D%0A++%7D%0A%7D%0A
