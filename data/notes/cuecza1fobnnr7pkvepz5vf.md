@@ -1,0 +1,39 @@
+
+# This is Jade's COMMONS Lab daily Open Notebook.
+
+Today is 2025.02.10
+
+## Todo today
+
+### Have a look at the COMMONS research discussion forum
+    - https://github.com/orgs/commons-research/discussions
+
+
+###
+
+###
+
+## Doing
+test 
+
+Creating my first note in dendron 
+
+## Paused
+
+## Done
+
+## Notes
+
+## Todo tomorrow, one day ... or never 
+check https://www.dendron.so
+
+
+
+
+###
+###
+
+
+## Today I learned that
+
+- 

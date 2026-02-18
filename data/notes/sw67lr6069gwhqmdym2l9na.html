@@ -1,0 +1,232 @@
+<h1 id="mcp"><a aria-hidden="true" class="anchor-heading icon-link" href="#mcp"></a>Mcp</h1>
+<p><a href="https://modelcontextprotocol.io/docs/getting-started/intro">source</a></p>
+<h1 id="what-is-the-model-context-protocol-mcp"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-is-the-model-context-protocol-mcp"></a>What is the Model Context Protocol (MCP)?</h1>
+<ul>
+<li>open source standard</li>
+<li>connects AI applications to external systems</li>
+<li>Can connect an LLM to a data source (such as db), tools, etc, and access key info and do tasks
+<blockquote>
+No note with name Pasted image 20251029195911.png found in cache during parsing.
+</blockquote></li>
+</ul>
+<h2 id="what-can-mcp-enable"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-can-mcp-enable"></a>What can MCP enable?</h2>
+<ul>
+<li>agents can access your google calendar and notion</li>
+<li>generate web app using figma</li>
+</ul>
+<h2 id="why-does-mcp-matter"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-does-mcp-matter"></a>Why does MCP matter?</h2>
+<ul>
+<li>can reduce development time</li>
+<li>enhance apps and user experience</li>
+</ul>
+<h1 id="architecture-overview"><a aria-hidden="true" class="anchor-heading icon-link" href="#architecture-overview"></a>Architecture Overview</h1>
+<h2 id="scope"><a aria-hidden="true" class="anchor-heading icon-link" href="#scope"></a>Scope</h2>
+<ul>
+<li><strong>MCP Specification</strong>: specification for MPC</li>
+<li><strong>SDK</strong>s: SDKs for programming languages to implement the MCP</li>
+<li><strong>MCP Development Tools</strong>: tools for development</li>
+<li><strong>MCP Reference Server Implementations</strong>: Reference implementation of MCP servers</li>
+</ul>
+<h2 id="concepts-of-mcp"><a aria-hidden="true" class="anchor-heading icon-link" href="#concepts-of-mcp"></a>Concepts of MCP</h2>
+<h3 id="participants"><a aria-hidden="true" class="anchor-heading icon-link" href="#participants"></a>Participants</h3>
+<ul>
+<li>follows a client-server model. 
+<pre><code>- MCP host - the LLM
+- MCP Client - component that connects to MCP server and gets context for MCP host
+- MCP Server - Program that provides context to client
+</code></pre>
+Example: VS Code (Host), connects to Sentry MCP Server (server)</li>
+</ul>
+<div class="mermaid">
+  flowchart TB
+	A[MCP Client 1]-- One-to-one connection --->B[MCP Server 1]
+	C[MCP Client 2]-- One-to-one connection --->D[MCP Server 2]
+	E[MCP Client 3]-- One-to-one connection --->F[MCP Server 3]
+</div>
+<p><strong>server</strong> is the name for the program, regardless of runtime (local/remote). </p>
+<h3 id="layers"><a aria-hidden="true" class="anchor-heading icon-link" href="#layers"></a>Layers</h3>
+<p>Consists of 2 layers:
+1) Data Layer: defines the json-rpc protocol for client-server communication
+2) Transport layer: Defines the communication and channels for data exchange between client and server</p>
+<h4 id="data-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-layer"></a>Data Layer</h4>
+<p>includes:</p>
+<ul>
+<li>Lifecycle management: handles connection initialization, capability negotiation, and connection termination </li>
+<li>Server Features: tools for AI actions, context data, prompts for interaction templates</li>
+<li>Client features: enables servers to ask client to sample from host LLM, elicit input from user, log messages to client</li>
+<li>utility features: notifications etc</li>
+</ul>
+<h4 id="transport-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#transport-layer"></a>Transport Layer</h4>
+<p>Handles communication/authentication between clients and servers.
+Transport mechanisms:</p>
+<ul>
+<li>Stdio transport: uses i/o stream for direct process communication between local processes on same machine</li>
+<li>Streamable HTTP transport: Uses HTTP POST for clinet-to-server messages with optional Server-Sent Events for streaming capabilities. This transport enables rmeote server communication. Supports HTTP standard authentication methods</li>
+</ul>
+<h4 id="data-layer-protocol"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-layer-protocol"></a>Data Layer Protocol</h4>
+<p>Uses <a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">JSON-RPC 2.0 (Private)</a> for RPC protocol. </p>
+<h5 id="lifecycle-management"><a aria-hidden="true" class="anchor-heading icon-link" href="#lifecycle-management"></a>Lifecycle management</h5>
+<p>MCP is stateful protocol, requires lifecycle management. </p>
+<h5 id="primitives"><a aria-hidden="true" class="anchor-heading icon-link" href="#primitives"></a>Primitives</h5>
+<p>Three core primitives that a server can expose:
+1) tools: executable functions that ai apps can invoke to perform actions
+2) resources: data sources that give context to AI apps
+3) prompts: reusable templates that help structure interactions with language models
+Each primitive has associated methods for discovery, retrieval, sometimes execution. The <code>*/list</code> method is used to discover available primitives. </p>
+<p>Primitives that the client can expose:
+1) sampling: allows servers to request language model completions from the client's AI application.
+2) Elicitation: allows servers to request additional information from users.
+3) Logging: enables servers to send log messages to clients for debugging and monitoring purposes. </p>
+<h5 id="notifications"><a aria-hidden="true" class="anchor-heading icon-link" href="#notifications"></a>Notifications</h5>
+<p>the protocol supports real time notifications to enable dynamic updates between servers and clients. e.g. server tools change (new features added etc). </p>
+<h3 id="example"><a aria-hidden="true" class="anchor-heading icon-link" href="#example"></a>Example:</h3>
+<p>1) <code>initialize</code> handshake to establish connection and negotiate supported features.
+Request:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"jsonrpc"</span><span class="token operator">:</span> <span class="token string">"2.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token property">"method"</span><span class="token operator">:</span> <span class="token string">"initialize"</span><span class="token punctuation">,</span>
+  <span class="token property">"params"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"protocolVersion"</span><span class="token operator">:</span> <span class="token string">"2025-06-18"</span><span class="token punctuation">,</span>
+    <span class="token property">"capabilities"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"elicitation"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"clientInfo"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"example-client"</span><span class="token punctuation">,</span>
+      <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Response:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"jsonrpc"</span><span class="token operator">:</span> <span class="token string">"2.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"id"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token property">"result"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"protocolVersion"</span><span class="token operator">:</span> <span class="token string">"2025-06-18"</span><span class="token punctuation">,</span>
+    <span class="token property">"capabilities"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"tools"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"listChanged"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"resources"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"serverInfo"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"example-server"</span><span class="token punctuation">,</span>
+      <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>After handshake client notifies readiness:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"jsonrpc"</span><span class="token operator">:</span> <span class="token string">"2.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"method"</span><span class="token operator">:</span> <span class="token string">"notifications/initialized"</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>2) Tool discovered - get the list of tools available from server
+3) Tool execution (primitives) - client now able to execute tools
+4) Real-time updates (notifications) - notifications allow server to inform clients about changes without receiving a request. Why this matters:
+1) dynamic environment: tools may come and go based on server state ect
+2) efficiency: clients don't need to poll for changes
+3) consistency: ensures clients always have accurate info about server capabilities
+4) real-time collaboration: makes ai apps responsive and adaptive to changing contexts</p>
+<h1 id="understanding-mcp-servers"><a aria-hidden="true" class="anchor-heading icon-link" href="#understanding-mcp-servers"></a>Understanding MCP servers</h1>
+<p>MCP servers expose specific capabilities to AI applications through standardized protocol interfaces.</p>
+<ul>
+<li>file system servers</li>
+<li>database servers</li>
+<li>GitHub servers </li>
+<li>Slack server</li>
+<li>calendar server</li>
+</ul>
+<h2 id="core-server-features"><a aria-hidden="true" class="anchor-heading icon-link" href="#core-server-features"></a>Core Server Features</h2>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Feature</th><th>Explanation</th><th>Examples</th><th>Who Controls It</th></tr></thead><tbody><tr><td>Tools</td><td>functions that LLM can call and use</td><td>Search, Send mesasges, create calendar events</td><td>Model</td></tr><tr><td>Resources</td><td>Passive data source, read-only access, such as files or db schemas</td><td>retrieve documents access knowledge bases</td><td>application</td></tr><tr><td>Prompts</td><td>pre-built instruction templates to tell model what to do with tools and resources</td><td>plan vacation,</td><td>user</td></tr></tbody></table></div>
+<h3 id="tools"><a aria-hidden="true" class="anchor-heading icon-link" href="#tools"></a>Tools</h3>
+<p>Tools allow ai models to perform actions. Each tool defines specific operation. </p>
+<h4 id="how-tools-work"><a aria-hidden="true" class="anchor-heading icon-link" href="#how-tools-work"></a>How Tools Work</h4>
+<p>Tools are schema-defined. They are interfaces LLM can invoke. Uses the JSON schema for validation. </p>
+<ul>
+<li>may require user consent prior to execution</li>
+</ul>
+<h5 id="protocol-operations"><a aria-hidden="true" class="anchor-heading icon-link" href="#protocol-operations"></a>Protocol Operations:</h5>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Method</th><th>Purpose</th><th>Returns</th></tr></thead><tbody><tr><td><code>tools/list</code></td><td>Discover available tools</td><td>array of tool definitions</td></tr><tr><td><code>tools/call</code></td><td>Execute specific tool</td><td>tool execution result</td></tr></tbody></table></div>
+<h5 id="example-of-tool-definition"><a aria-hidden="true" class="anchor-heading icon-link" href="#example-of-tool-definition"></a>Example of TooL Definition:</h5>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">"searchFlights"</span><span class="token punctuation">,</span>
+  description<span class="token operator">:</span> <span class="token string">"Search for available flights"</span><span class="token punctuation">,</span>
+  inputSchema<span class="token operator">:</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">"object"</span><span class="token punctuation">,</span>
+    properties<span class="token operator">:</span> <span class="token punctuation">{</span>
+      origin<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span> description<span class="token operator">:</span> <span class="token string">"Departure city"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      destination<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span> description<span class="token operator">:</span> <span class="token string">"Arrival city"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      date<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span> format<span class="token operator">:</span> <span class="token string">"date"</span><span class="token punctuation">,</span> description<span class="token operator">:</span> <span class="token string">"Travel date"</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    required<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"origin"</span><span class="token punctuation">,</span> <span class="token string">"destination"</span><span class="token punctuation">,</span> <span class="token string">"date"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h5 id="example-travel-booking"><a aria-hidden="true" class="anchor-heading icon-link" href="#example-travel-booking"></a>Example: Travel Booking:</h5>
+<p>Tools enable AI apps to perform actions on user's behalf. </p>
+<h6 id="flight-search"><a aria-hidden="true" class="anchor-heading icon-link" href="#flight-search"></a>Flight Search</h6>
+<p><code>searchFlights(origin: "NYC", destination: "Barcelona", date: "2024-06-15")</code></p>
+<h3 id="user-interaction-model"><a aria-hidden="true" class="anchor-heading icon-link" href="#user-interaction-model"></a>User Interaction Model</h3>
+<p>Tools are <strong>model</strong> controlled. But they are on guard rails. user controls can be implemented through:</p>
+<ul>
+<li>displaying tools in UI, so users can define tool availability</li>
+<li>approval dialogs for individual tools</li>
+<li>permission sesttings for pre-approving operations</li>
+<li>activity logs to show all tool execution</li>
+</ul>
+<h4 id="resources"><a aria-hidden="true" class="anchor-heading icon-link" href="#resources"></a>Resources</h4>
+<p>provide structured access to information for AI apps</p>
+<h5 id="how-resources-work"><a aria-hidden="true" class="anchor-heading icon-link" href="#how-resources-work"></a>How resources work</h5>
+<p><a href="https://modelcontextprotocol.io/docs/learn/server-concepts">https://modelcontextprotocol.io/docs/learn/server-concepts</a></p>
