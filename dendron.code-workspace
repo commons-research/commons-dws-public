@@ -2,9 +2,6 @@
     "folders": [
         {
             "path": "vault"
-        },
-        {
-            "path": "../commons-dws-public-arx"
         }
     ],
     "settings": {
