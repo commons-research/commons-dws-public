@@ -1,0 +1,135 @@
+<h1 id="to-curate"><a aria-hidden="true" class="anchor-heading icon-link" href="#to-curate"></a>To Curate</h1>
+<h1 id="sparql-queries-and-material-to-curate"><a aria-hidden="true" class="anchor-heading icon-link" href="#sparql-queries-and-material-to-curate"></a>SPARQL queries and material to curate</h1>
+<p>This note lists the remaining query bundles and scratch materials that still need curation before they can be added to the cleaned query index.</p>
+<h2 id="curation-instructions"><a aria-hidden="true" class="anchor-heading icon-link" href="#curation-instructions"></a>Curation instructions</h2>
+<p>For each item below:</p>
+<ol>
+<li>Decide the endpoint first: <code>Wikidata Query Service</code>, <code>Qlever Wikidata</code>, <code>Qlever Metrin KG</code>, <code>IDSM/Sachem</code>, or <code>other</code>.</li>
+<li>Give the query a stable title in sentence case.</li>
+<li>Write a one-line description that states the input, the filter, and the main output.</li>
+<li>Keep the short query link if one exists. Remove raw embedded <code>?query=</code> URLs from the curated note unless the full text must be preserved.</li>
+<li>Record whether the item is a <code>query</code>, <code>query family</code>, <code>endpoint note</code>, <code>draft SPARQL block</code>, or <code>presentation/scratch material</code>.</li>
+<li>Deduplicate variants. If multiple links differ only by output format or a small filter, keep one parent title and list the variants under it.</li>
+<li>If the item is still exploratory or broken, keep it in this note and add a short reason.</li>
+</ol>
+<h2 id="moved-to-cleaned-for-manual-review"><a aria-hidden="true" class="anchor-heading icon-link" href="#moved-to-cleaned-for-manual-review"></a>Moved to cleaned for manual review</h2>
+<ul>
+<li><code>IDSM-assisted compound occurrence lookup</code></li>
+<li><code>Referenced structure-organism pairs on Wikidata</code></li>
+<li><code>ChEBI substructure search through Sachem</code></li>
+</ul>
+<h2 id="queries-and-material-requiring-curation"><a aria-hidden="true" class="anchor-heading icon-link" href="#queries-and-material-requiring-curation"></a>Queries and material requiring curation</h2>
+<h3 id="idsm-and-sachem-material"><a aria-hidden="true" class="anchor-heading icon-link" href="#idsm-and-sachem-material"></a>IDSM and Sachem material</h3>
+<ul>
+<li>
+<p><code>Sachem non-permanent endpoint note</code>
+Source material: <a href="https://idsm.elixir-czech.cz:2443/sachem/#/search">https://idsm.elixir-czech.cz:2443/sachem/#/search</a>.
+Curation instruction: keep only if the endpoint is still relevant as a manual search tool; otherwise move it to a tools/endpoints note instead of the query index.</p>
+</li>
+<li>
+<p><code>Sachem grand parents</code>
+Source material: <a href="https://w.wiki/32Wz">https://w.wiki/32Wz</a>.
+Curation instruction: determine whether this is a structure-search query, a taxonomic summarisation query, or both; rename accordingly and note required inputs.</p>
+</li>
+</ul>
+<h3 id="generic-lotus-query-bundle"><a aria-hidden="true" class="anchor-heading icon-link" href="#generic-lotus-query-bundle"></a>Generic LOTUS query bundle</h3>
+<ul>
+<li><code>Unnamed LOTUS query family</code>
+Source material: <a href="https://w.wiki/$Q$">https://w.wiki/$Q$</a>, <a href="https://w.wiki/$R3">https://w.wiki/$R3</a>, <a href="https://w.wiki/$RD">https://w.wiki/$RD</a>, <a href="https://w.wiki/$RR">https://w.wiki/$RR</a>, <a href="https://w.wiki/$RU">https://w.wiki/$RU</a>, and <a href="https://w.wiki/$SF">https://w.wiki/$SF</a>.
+Curation instruction: open each link, identify what changes between the variants, group them under one parent title if they are the same query family, and keep only the variants that add a distinct result view or filter.</li>
+</ul>
+<h3 id="taxon-and-occurrence-curation-prototypes"><a aria-hidden="true" class="anchor-heading icon-link" href="#taxon-and-occurrence-curation-prototypes"></a>Taxon and occurrence curation prototypes</h3>
+<ul>
+<li>
+<p><code>Quest / Daniel Mietchen prototype family</code>
+Source material: <a href="https://w.wiki/5a7K">https://w.wiki/5a7K</a>, <a href="https://w.wiki/5a8b">https://w.wiki/5a8b</a>, <a href="https://w.wiki/5a8g">https://w.wiki/5a8g</a>, <a href="https://w.wiki/5a8t">https://w.wiki/5a8t</a>, <a href="https://w.wiki/5a9B">https://w.wiki/5a9B</a>, <a href="https://w.wiki/5a9T">https://w.wiki/5a9T</a>, and <a href="https://w.wiki/5a9g">https://w.wiki/5a9g</a>, plus the raw SPARQL blocks in <code>wikidata.sparql.md</code>.
+Curation instruction: split this family into clearly named subgroups such as <code>main-subject curation</code>, <code>QuickStatements generation</code>, and <code>taxon-compound literature matching</code>; mark which variants are working, experimental, or superseded.</p>
+</li>
+<li>
+<p><code>Not working / no results prototypes</code>
+Source material: the <code>quest query mod from Mietchen to compounds (not working)</code> and <code>No error but no results neither</code> blocks in <code>wikidata.sparql.md</code>.
+Curation instruction: do not add these to the cleaned query list yet; instead summarise why they fail, what was tried, and which working variant replaced them.</p>
+</li>
+<li>
+<p><code>Curating query</code>
+Source material: the raw SPARQL block under <code>Curating query</code> and links <a href="https://w.wiki/5a9T">https://w.wiki/5a9T</a> and <a href="https://w.wiki/5a9g">https://w.wiki/5a9g</a>.
+Curation instruction: title it based on outcome rather than process, for example by the property being curated (<code>P703</code> / <code>main subject</code>), and keep the QuickStatements output behaviour explicit in the description.</p>
+</li>
+</ul>
+<h3 id="scholarly-article-graph-split-notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#scholarly-article-graph-split-notes"></a>Scholarly-article graph split notes</h3>
+<ul>
+<li><code>Wikidata scholarly article split reminders</code>
+Source material: <a href="https://w.wiki/Eexo">https://w.wiki/Eexo</a>, <a href="https://w.wiki/Eexs">https://w.wiki/Eexs</a>, <a href="https://w.wiki/Eext">https://w.wiki/Eext</a>, and <a href="https://w.wiki/Eexz">https://w.wiki/Eexz</a>, plus the discussion excerpt in <code>wikidata.sparql.md</code>.
+Curation instruction: rewrite this as a short reference note explaining the graph split, when to use Qlever instead of WDQS, and which example query demonstrates the fix.</li>
+</ul>
+<h3 id="embedded-full-query-urls"><a aria-hidden="true" class="anchor-heading icon-link" href="#embedded-full-query-urls"></a>Embedded full query URLs</h3>
+<ul>
+<li>
+<p><code>Embedded query.wikidata.org URLs</code>
+Source material: long <code>query.wikidata.org/index.html#...</code> and <code>query.wikidata.org/embed.html#...</code> URLs in <code>wikidata.sparql.md</code>.
+Curation instruction: replace each embedded URL with a short title and, if possible, a <code>w.wiki</code> short link; keep the embedded form only in a dedicated archive note if the exact serialized query text matters.</p>
+</li>
+<li>
+<p><code>Embedded qlever ?query= URLs</code>
+Source material: long <code>https://qlever.../?query=...</code> URLs in the Qlever section of <code>wikidata.sparql.md</code>.
+Curation instruction: keep the stable short Qlever permalink as the curated link; archive the expanded URL only when it contains annotations or a version not represented by the short permalink.</p>
+</li>
+</ul>
+<h3 id="raw-inline-sparql-blocks"><a aria-hidden="true" class="anchor-heading icon-link" href="#raw-inline-sparql-blocks"></a>Raw inline SPARQL blocks</h3>
+<ul>
+<li>
+<p><code>Drug-protein interaction draft</code>
+Source material: inline SPARQL block under <code>## drug-prot interaction</code>.
+Curation instruction: convert this into a titled query entry only after confirming scope, expected output columns, and whether the cancer restriction is intentional or example-only.</p>
+</li>
+<li>
+<p><code>VIT / JLW federated query blocks</code>
+Source material: the two raw SPARQL blocks joining Wikidata with <code>sinergiawolfender.org</code> namespaces in <code>wikidata.sparql.md</code>.
+Curation instruction: decide whether these belong in a separate federated-query note; if kept, document the external dataset dependency, required taxon input, and matching logic on molecular formula.</p>
+</li>
+<li>
+<p><code>InChIKey occurrence lookup drafts</code>
+Source material: the <code>containing taxa + ref for a given IK</code> section with two raw SPARQL blocks and embedded URLs.
+Curation instruction: merge duplicate variants, name them by purpose (<code>all taxa for an InChIKey prefix</code>, <code>taxon-restricted InChIKey lookup</code>), and keep only one canonical version per use case.</p>
+</li>
+</ul>
+<h3 id="endpoint-and-reference-material"><a aria-hidden="true" class="anchor-heading icon-link" href="#endpoint-and-reference-material"></a>Endpoint and reference material</h3>
+<ul>
+<li><code>Endpoint inventory</code>
+Source material: <a href="https://www.wikidata.org/wiki/Wikidata:Lists/SPARQL_endpoints">https://www.wikidata.org/wiki/Wikidata:Lists/SPARQL_endpoints</a>.
+Curation instruction: move this out of the query index unless it is needed as a reference note; it is endpoint documentation rather than a query.</li>
+</ul>
+<h3 id="presentation-and-scratch-material"><a aria-hidden="true" class="anchor-heading icon-link" href="#presentation-and-scratch-material"></a>Presentation and scratch material</h3>
+<ul>
+<li>
+<p><code>To tweet</code>
+Source material: the <code># to tweet</code> section in <code>wikidata.sparql.md</code>.
+Curation instruction: harvest any actual useful query links from the section and merge them into stable query families; discard the presentation framing.</p>
+</li>
+<li>
+<p><code>Presentation example: UniFr</code>
+Source material: <code># example for prsenattion UniFr</code> with links <a href="https://w.wiki/4EMf">https://w.wiki/4EMf</a> and <a href="https://w.wiki/4EMo">https://w.wiki/4EMo</a>.
+Curation instruction: keep the underlying queries only if they are not already covered by an existing curated family; otherwise remove the presentation-specific label.</p>
+</li>
+<li>
+<p><code>Manager</code>
+Source material: the standalone <code>Manager</code> marker in <code>wikidata.sparql.md</code>.
+Curation instruction: remove unless it refers to a recoverable query context elsewhere in the source note.</p>
+</li>
+<li>
+<p><code>mail_jakub</code>
+Source material: <code>[[mail_jakub|scratch.2021.02.02.150258.mail_jakub]]</code>.
+Curation instruction: treat this as provenance for the indole-substructure idea, not as a query entry; move citation context to a note if useful.</p>
+</li>
+</ul>
+<h2 id="suggested-output-format-after-curation"><a aria-hidden="true" class="anchor-heading icon-link" href="#suggested-output-format-after-curation"></a>Suggested output format after curation</h2>
+<p>Use this template when promoting an item into the cleaned note:</p>
+<ul>
+<li><code>Title</code>: one-sentence description. Query: <code>&#x3C;short link></code>. Variant: <code>&#x3C;second link if genuinely distinct></code>.</li>
+</ul>
+<p>If a full SPARQL block must be preserved:</p>
+<ol>
+<li>Create a dedicated note for the block.</li>
+<li>Give it the same stable title.</li>
+<li>In the cleaned index, link only the short query URL and mention that the full SPARQL is archived separately.</li>
+</ol>
