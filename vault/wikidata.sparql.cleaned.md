@@ -2,7 +2,7 @@
 id: jojavy273dpihgfkaxbkf0u
 title: Cleaned
 desc: ''
-updated: 1773876606565
+updated: 1775849014113
 created: 1773783721333
 ---
 
@@ -37,6 +37,8 @@ This note separates curated query links by endpoint. Wikidata Query Service and 
 - `Compounds and references for example taxa`: Compact presentation examples around *Streptomyces* and related species. Queries: https://w.wiki/33V$, https://w.wiki/33WG, https://w.wiki/33WA, https://w.wiki/4EMf, and https://w.wiki/4EMo.
 - `Images of taxa for which no chemical has been reported`: https://w.wiki/JyNC and https://tinyurl.com/22qgukqr (Qlever based endpoint - 1 pic per taxon)
 - `Count taxon for which no chemistry is reported` : https://qlever.dev/wikidata/vBJNhg 
+- `N-containing compounds in a given taxon` : https://w.wiki/L37H
+
 
 ### Authors, articles, and roles
 
