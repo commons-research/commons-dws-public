@@ -1,6 +1,6 @@
 ---
 id: sa9u2vc86itbuv170awvw7v
-title: Scalability Of Mass Spectrometry Based Metabolomics
+title: Scalability of Mass Spectrometry Based Metabolomics
 desc: ''
 updated: 1781525621267
 created: 1781525542901
