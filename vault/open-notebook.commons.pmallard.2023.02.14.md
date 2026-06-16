@@ -161,6 +161,6 @@ glimpse(df)
 ```
 is a great way to peak into a df
 
-Added to [[R]]
+Added to [[r]]
 
 
