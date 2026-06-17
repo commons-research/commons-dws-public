@@ -4,7 +4,7 @@ title: >-
   Self Supervised Learning Of Molecular Representations From Millions Of Tandem
   Mass Spectra Using Dreams
 desc: ''
-updated: 1781685912295
+updated: 1781686056801
 created: 1781685904868
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -76,3 +76,5 @@ For self-supervised training, used for masked _m/z_ reconstruction and retention
 ---
 #### Fluorine detection
 Used spectra from MoNA and NIST and used Murcko histograms to split the training/validation. Compared against SIRIUS  5.6.3. DreaMS reported a value of 0.91 accuracy vs SIRIUS' value of 0.51. 
+
+[MSnLib library](https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=676a38e2dd574a15905e807d78cf1e57)
