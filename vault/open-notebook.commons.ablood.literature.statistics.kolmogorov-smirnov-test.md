@@ -1,8 +1,8 @@
 ---
 id: 7t2goai3fsslyotk6l7ga4l
-title: Kolmogoroc Smirnov Test
+title: Kolmogorov Smirnov Test
 desc: ''
-updated: 1781594523906
+updated: 1781765239840
 created: 1781594522504
 traitIds:
   - open-notebook-commons-ablood-literature
