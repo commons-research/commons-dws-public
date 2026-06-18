@@ -1,6 +1,6 @@
 ---
 id: 5o0tvzf4l6t6moau7en1v48
-title: Bachelor-project-jade
+title: Bachelor Project Jade
 desc: ''
 updated: 1751064833087
 created: 1741185232433
