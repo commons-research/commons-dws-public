@@ -1,6 +1,6 @@
 ---
 id: 46d1odkovrpdi6g16992phy
-title: Lod
+title: Linked Open Data
 desc: ''
 updated: 1746191434556
 created: 1663408054119

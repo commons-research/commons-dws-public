@@ -1,6 +1,6 @@
 ---
 id: vfaozqplm9dyfc3mcdkgc6s
-title: Property Graph
+title: Property Graphs
 desc: ''
 updated: 1746279822810
 created: 1746279161031

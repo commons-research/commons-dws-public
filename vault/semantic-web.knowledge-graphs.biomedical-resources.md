@@ -1,6 +1,6 @@
 ---
 id: o4vyqs1dmdz6umqfkc2iwwt
-title: Ressources
+title: Biomedical Resources
 desc: ''
 updated: 1663411939645
 created: 1663408071043

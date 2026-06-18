@@ -1,6 +1,6 @@
 ---
 id: v2vccrt1f3cynwm60cv8g3v
-title: To Curate
+title: Queries to Curate
 desc: ''
 updated: 1773784628606
 created: 1773784628606

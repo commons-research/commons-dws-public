@@ -1,6 +1,6 @@
 ---
 id: rcptvwmgw2tselzkyzzaj29
-title: Nmdc
+title: Nmdc Schema
 desc: ''
 updated: 1746287754142
 created: 1746287750325

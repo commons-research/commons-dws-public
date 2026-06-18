@@ -1,6 +1,6 @@
 ---
 id: CVuPQv8R3vmHQHwrNlyZF
-title: Apps
+title: Apps and Bots
 desc: ''
 updated: 1629958316433
 created: 1629958297114

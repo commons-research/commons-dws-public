@@ -1,6 +1,6 @@
 ---
 id: tm7aowrchkg92ohz49hytuh
-title: Formats
+title: Scientific Data Standards
 desc: ''
 updated: 1746191498202
 created: 1746191439770

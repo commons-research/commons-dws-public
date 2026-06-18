@@ -1,6 +1,6 @@
 ---
 id: cfty88t52bo6eiiymlozz35
-title: Gadget
+title: Gadgets
 desc: ''
 updated: 1745241448251
 created: 1663419864269

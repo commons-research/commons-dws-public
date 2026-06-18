@@ -1,6 +1,6 @@
 ---
 id: u8thntm3nn9rb5sr8h555nq
-title: Biolink
+title: Biolink Model
 desc: ''
 updated: 1746281083797
 created: 1746281053075
