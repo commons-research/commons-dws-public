@@ -1,8 +1,6 @@
 ---
 id: qrgkft7bj9xleety3tst288
-title: >-
-  Self Supervised Learning Of Molecular Representations From Millions Of Tandem
-  Mass Spectra Using Dreams
+title: Self Supervised Learning of Molecular Representations from Dreams
 desc: ''
 updated: 1781686056801
 created: 1781685904868

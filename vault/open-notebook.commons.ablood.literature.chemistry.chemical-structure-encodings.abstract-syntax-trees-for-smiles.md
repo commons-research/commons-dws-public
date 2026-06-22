@@ -1,6 +1,6 @@
 ---
 id: xgbssbwprc8t5kk43dv0ep5
-title: Abstract Syntax Trees For Smiles
+title: Abstract Syntax Trees for Smiles
 desc: ''
 updated: 1781525771297
 created: 1781525745699
