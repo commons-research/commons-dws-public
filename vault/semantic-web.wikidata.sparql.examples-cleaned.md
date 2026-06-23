@@ -84,6 +84,10 @@ This note separates curated query links by endpoint. Wikidata Query Service and 
 - `LOTUS molecule-taxon-reference tuple count`: Count molecule-taxon-reference tuples in LOTUS. Query: https://qlever.dev/wikidata/q3SRt7.
 - `LOTUS molecule-taxon-reference tuple list`: Inspect molecule-taxon-reference tuples in LOTUS. Query: https://qlever.dev/wikidata/HqZC6p.
 - `Gather chemicals from ingredients of a dish`: Retrieve chemicals linked to dish ingredients through the Qlever Wikidata service. Query: https://qlever.dev/wikidata/9NZJ4w.
+- `Report ratio of chemical coverage for the main kingdoms` : https://qlever.dev/wikidata/f5C9Lb
+- `LOTUS most studied organisms` : Returns the most described organisms from the chemical point of view : https://qlever.dev/wikidata/A2GXri
+
+
 
 ### Metrin KG ecological interaction queries
 
