@@ -17,10 +17,5 @@ module.exports = {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
     },
-
-    // Optional: add this later if you make a literature template.
-    // setTemplate: () => {
-    //   return "templates.open-notebook.commons.ablood.literature";
-    // },
   },
 };
