@@ -2,7 +2,7 @@
 id: kicxxszi4nu8oublxck6dsz
 title: Supervised Learning
 desc: ''
-updated: 1782135714389
+updated: 1782705156813
 created: 1782135713136
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -38,3 +38,53 @@ Gradient descent and other optimization algorithms can be used to train a large 
 - [Support vector machine (SVM)](https://www.ibm.com/think/topics/support-vector-machine): Useful for data classification and regression, separating the classes of data points with a decision boundary or *hyperplane*; The SVM plots the hyperplane that can maximize the distance between the data point groupings. 
 - [K-nearest neighbor](https://www.ibm.com/think/topics/knn): *nonparametric* algorithm to classify data points based on proximity to other available data. Assumes similar data points can be found near each other when plotted mathematically. 
 - [Random forest](https://www.ibm.com/think/topics/knn): Forest references a collection of uncorrelated [decision trees](https://www.ibm.com/think/topics/decision-trees) that are merged to increase accuracy and cut back on variance/deviation. 
+## Supervised learning versus other learning  methods
+Other types of learning include:
+1) unsupervised learning
+2) semi-supervised learning
+3) self supervised learning
+4) reinforcement learning
+### Supervised versus unsupervised learning
+Unsupervised learning uses data that hasn't been labeled and has no "ground truth". The model discovers patterns and relationships on its own within the data set. Generative AI models are trained in this fashion. 
+#### Pros of unsupervised learning
+- exploratory analysis
+- no data labeling
+- flexible
+- scalable
+#### Cons of unsupervised learning
+- imprecise
+- sensitive
+- requires *good data*
+### Supervised versus semi-supervised learning
+Semi-supervised uses labeled data for a small part of the learning and unlabeled for the rest. Good where labeled data is costly. 
+#### Pros of semi-supervised learning
+- less reliant on labeling
+- hidden pattern discovery
+- more flexible
+#### Cons of semi-supervised learning
+- sensitive
+- bias
+- complexity
+### Supervised vs self-supervised learning
+Self supervised use unlabeled data and generate their own supervisory signals (its own labels basically). And ground truth is an emergent property of this process. Loss function uses the emergent labels for assessing performance. 
+#### Pros of self-supervised learning
+- efficient
+- scalable
+- low need for labels
+- versatile
+#### Cons of self-supervised learning
+- intensive
+- complex
+- unreliable
+#### Supervised versus reinforcement learning
+Useful for training autonomous agents such as cars. Does not use labeled data, but teaches the model through trial and error, rather than finding patterns from a dataset. 
+#### pros of reinforcement
+- applies to complex tasks
+- no labels needed
+- self correcting
+- adaptable
+#### cons of reinforcement learning
+- inconsistent results
+- needs data from environment ( a lot)
+- rewards hacking - models exploit loopholes
+- task-specific 
