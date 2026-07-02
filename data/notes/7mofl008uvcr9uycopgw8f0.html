@@ -1,0 +1,34 @@
+<h1 id="clustr-a-database-of-clusters-of-swiss-prot-trembl-proteins"><a aria-hidden="true" class="anchor-heading icon-link" href="#clustr-a-database-of-clusters-of-swiss-prot-trembl-proteins"></a>Clustr A Database Of Clusters Of Swiss Prot Trembl Proteins</h1>
+<h1 id="clustr-a-database-of-clusters-of-swiss-prottrembl-proteins"><a aria-hidden="true" class="anchor-heading icon-link" href="#clustr-a-database-of-clusters-of-swiss-prottrembl-proteins"></a><a href="https://academic.oup.com/nar/article/29/1/33/1116052">CluSTr: a database of clusters of SWISS-PROT+TrEMBL proteins</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>CluSTr</strong>: Database that automatically clusters proteins based on sequence similarity.</li>
+<li><strong>Homology</strong>: Similarity between proteins due to shared evolutionary ancestry.</li>
+<li><strong>Smith-Waterman algorithm</strong>: Local sequence alignment algorithm used to compare protein sequences.</li>
+<li><strong>Z-score</strong>: Statistical measure of sequence similarity significance, independent of database size.</li>
+<li><strong>Single-linkage clustering</strong>: Hierarchical clustering method where clusters merge if any pair of members are sufficiently similar.</li>
+<li><strong>InterPro</strong>: Integrated database of protein families, domains and functional sites.</li>
+<li><strong>Pfam</strong>: Database of protein families represented by profile Hidden Markov Models (HMMs).</li>
+</ul>
+<h2 id="clustr"><a aria-hidden="true" class="anchor-heading icon-link" href="#clustr"></a>CluSTr</h2>
+<p>CluSTr automatically groups SWISS-PROT and TrEMBL proteins into clusters of homologous proteins using pairwise sequence similarity. Instead of relying on manual classification, the database performs an all-against-all comparison and builds clusters at multiple similarity thresholds, producing a hierarchical organization of protein families. They propose CluSTr as a resource for function prediction, automatic annotation, redundancy reduction, comparative genomics and phylogenetic analysis.</p>
+<h2 id="clustering-approach"><a aria-hidden="true" class="anchor-heading icon-link" href="#clustering-approach"></a>Clustering approach</h2>
+<p>The clustering pipeline has two main steps. First, every protein sequence is compared against every other sequence using the Smith-Waterman algorithm. Sequence similarity is converted into a statistically meaningful Z-score using Monte Carlo simulations with shuffled sequences. The resulting similarity matrix is then clustered using single-linkage clustering. Clusters are generated at different similarity thresholds, allowing users to examine protein relationships at multiple levels of granularity.</p>
+<h2 id="hierarchical-clustering"><a aria-hidden="true" class="anchor-heading icon-link" href="#hierarchical-clustering"></a>Hierarchical clustering</h2>
+<p>Different protein families evolve at different rates, making a single similarity cutoff insufficient. CluSTr therefore generates clusters at many similarity levels rather than producing one fixed clustering.  They also notes that multidomain proteins can incorrectly merge otherwise unrelated families, making hierarchical clustering more robust than a single global threshold.</p>
+<h2 id="database-design"><a aria-hidden="true" class="anchor-heading icon-link" href="#database-design"></a>Database design</h2>
+<p>CluSTr stores proteins, pairwise similarities and cluster relationships in a relational database. The database was designed for incremental updates, allowing only new or modified proteins to be compared rather than recomputing every similarity score. This significantly reduces the computational cost as SWISS-PROT and TrEMBL continue to grow.</p>
+<h2 id="interpro-integration"><a aria-hidden="true" class="anchor-heading icon-link" href="#interpro-integration"></a>InterPro integration</h2>
+<p>Each cluster is linked to InterPro, allowing users to examine shared domains, protein families and functional sites across all proteins in the cluster.Additional links to HSSP and PDB connect sequence clusters to structural information.</p>
+<h2 id="applications"><a aria-hidden="true" class="anchor-heading icon-link" href="#applications"></a>Applications</h2>
+<p>They proposes several applications including:</p>
+<ul>
+<li>automatic protein function prediction</li>
+<li>automatic annotation of newly sequenced proteins</li>
+<li>protein family discovery</li>
+<li>redundancy reduction</li>
+<li>comparative proteomics</li>
+<li>phylogenetic analysis</li>
+</ul>
+<h2 id="relevance"><a aria-hidden="true" class="anchor-heading icon-link" href="#relevance"></a>Relevance</h2>
+<p>Although CluSTr is sequence-based rather than graph-based, it demonstrates how biological knowledge can be represented as relationships between proteins, domains, structures and annotations. The InterPro links are relevant for knowledge graphs because they connect proteins to domains, functional sites and protein families. This is an example of integrating multiple biological databases into a richer semantic representation. </p>

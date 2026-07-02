@@ -1,0 +1,89 @@
+<h1 id="2024-03-29"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-03-29"></a>2024-03-29</h1>
+<h1 id="this-is-pmass-commons-lab-daily-open-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-pmass-commons-lab-daily-open-notebook"></a>This is PMAS's COMMONS Lab daily Open Notebook.</h1>
+<p>Today is 2024.03.29</p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<h3 id="have-a-look-at-the-commons-research-discussion-forum"><a aria-hidden="true" class="anchor-heading icon-link" href="#have-a-look-at-the-commons-research-discussion-forum"></a>Have a look at the COMMONS research discussion forum</h3>
+<pre><code>- https://github.com/orgs/commons-research/discussions
+</code></pre>
+<h3 id="daily-work-on-the-open-science-for-natural-products-research-viewpoint"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-work-on-the-open-science-for-natural-products-research-viewpoint"></a>Daily work on the Open Science for natural products research Viewpoint</h3>
+<p>See <a href="/commons-dws-public/notes/43p60vv8btyhaclugl93jok">Viewpoint</a></p>
+<h3 id=""><a aria-hidden="true" class="anchor-heading icon-link" href="#"></a></h3>
+<h3 id="-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#-1"></a></h3>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<p>Struglling to serialize a .yaml, hash the contents, and save the hash + serialized contents to  a tsv file.</p>
+<p>Lets work with minimal examples</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">mapp_project</span> <span class="token punctuation">:</span> mapp_project_00017
+
+<span class="token key atrule">options</span><span class="token punctuation">:</span>
+  <span class="token key atrule">gnps_column_for_boxplots</span> <span class="token punctuation">:</span> 
+    <span class="token key atrule">factor_name</span> <span class="token punctuation">:</span> <span class="token string">'process'</span>
+
+<span class="token key atrule">filter_sample_type</span> <span class="token punctuation">:</span>
+  <span class="token key atrule">mode</span> <span class="token punctuation">:</span> <span class="token string">'include'</span>
+  <span class="token key atrule">factor_name</span> <span class="token punctuation">:</span> <span class="token string">'sample_type'</span>
+  <span class="token key atrule">levels</span> <span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token string">'BK'</span> 
+   <span class="token punctuation">-</span> <span class="token string">'BLANK'</span>
+</code></pre>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">mapp_project</span> <span class="token punctuation">:</span> mapp_project_00017
+
+<span class="token key atrule">options</span><span class="token punctuation">:</span>
+  <span class="token key atrule">gnps_column_for_boxplots</span> <span class="token punctuation">:</span> 
+    <span class="token key atrule">factor_name</span> <span class="token punctuation">:</span> <span class="token string">'process'</span>
+
+<span class="token key atrule">filter_sample_type</span> <span class="token punctuation">:</span>
+  <span class="token key atrule">mode</span> <span class="token punctuation">:</span> <span class="token string">'include'</span>
+  <span class="token key atrule">factor_name</span> <span class="token punctuation">:</span> <span class="token string">'sample_type'</span>
+  <span class="token key atrule">levels</span> <span class="token punctuation">:</span>
+   <span class="token punctuation">-</span> <span class="token string">'BK'</span> 
+   <span class="token punctuation">-</span> <span class="token string">'QC'</span>
+</code></pre>
+<p>Should yield as tsv</p>
+<p>mapp_project	options.gnps_column_for_boxplots.factor_name	filter_sample_type.mode	filter_sample_type.factor_name	filter_sample_type.levels	hash
+mapp_project_00017	process	include	sample_type	BK, BLANK	<hash>
+mapp_project_00017	process	include	sample_type	BK, QC	<hash></hash></hash></p>
+<p>Please propose me a mechansim in R to do this.</p>
+<pre class="language-r"><code class="language-r">
+library<span class="token punctuation">(</span>yaml<span class="token punctuation">)</span>
+library<span class="token punctuation">(</span>digest<span class="token punctuation">)</span>
+
+<span class="token comment"># Read the yaml files</span>
+
+yaml1 <span class="token operator">&#x3C;-</span> yaml<span class="token operator">::</span>read_yaml<span class="token punctuation">(</span><span class="token string">'file1.yaml'</span><span class="token punctuation">)</span>
+yaml2 <span class="token operator">&#x3C;-</span> yaml<span class="token operator">::</span>read_yaml<span class="token punctuation">(</span><span class="token string">'file2.yaml'</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Serialize the yaml files</span>
+
+yaml1_serialized <span class="token operator">&#x3C;-</span> yaml<span class="token operator">::</span>as.yaml<span class="token punctuation">(</span>yaml1<span class="token punctuation">)</span>
+yaml2_serialized <span class="token operator">&#x3C;-</span> yaml<span class="token operator">::</span>as.yaml<span class="token punctuation">(</span>yaml2<span class="token punctuation">)</span>
+
+<span class="token comment"># Hash the serialized yaml files</span>
+
+hash1 <span class="token operator">&#x3C;-</span> digest<span class="token operator">::</span>digest<span class="token punctuation">(</span>yaml1_serialized<span class="token punctuation">)</span>
+hash2 <span class="token operator">&#x3C;-</span> digest<span class="token operator">::</span>digest<span class="token punctuation">(</span>yaml2_serialized<span class="token punctuation">)</span>
+
+<span class="token comment"># Save the hash and the serialized yaml files to a tsv</span>
+
+
+ 
+
+
+
+
+<span class="token comment">## Paused</span>
+
+<span class="token comment">## Done</span>
+
+<span class="token comment">## Notes</span>
+
+<span class="token comment">## Todo tomorrow, one day ... or never </span>
+
+
+<span class="token comment">###</span>
+<span class="token comment">###</span>
+
+
+<span class="token comment">## Today I learned that</span>
+
+<span class="token operator">-</span> o
+</code></pre>

@@ -1,0 +1,39 @@
+<h1 id="webgraph-the-next-generation-is-in-rust"><a aria-hidden="true" class="anchor-heading icon-link" href="#webgraph-the-next-generation-is-in-rust"></a>Webgraph The Next Generation Is In Rust</h1>
+<p><a href="https://github.com/vigna/webgraph-rs">repo</a>
+<a href="https://dl.acm.org/doi/pdf/10.1145/3589335.3651581">source</a></p>
+<h1 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h1>
+<ul>
+<li><strong>Merkle graph</strong>: graph representation used in Software Heritage for tracking software provenance</li>
+<li><strong>graph compression</strong>: storing graph structure in compact form while preserving traversal/query capability</li>
+<li><strong>memory mapping (mmap)</strong>: OS feature that maps file contents into virtual memory for on-demand access</li>
+<li><strong>zero-copy serialization</strong>: accessing serialized data without fully deserializing it into new memory</li>
+<li><strong>JVM garbage collection (GC)</strong>: automatic memory management in Java that introduces runtime unpredictability</li>
+<li><strong>JNI (Java Native Interface)</strong>: mechanism for calling native code from Java, slow/complex</li>
+<li><strong>monomorphization (Rust)</strong>: compile-time specialization of generic code → enables inlining, zero-cost abstractions</li>
+<li><strong>dynamic dispatch</strong>: runtime method resolution via vtables (avoided in Rust implementation)</li>
+<li><strong>succinct data structure</strong>: compressed representation supporting efficient rank/select queries</li>
+<li><strong>Elias-Fano encoding</strong>: compressed representation of monotone sequences used for graph adjacency lists</li>
+<li><strong>bitstream encoding</strong>: compact binary representation used for storing compressed graph edges</li>
+<li><strong>labeling system (graph labels)</strong>: metadata attached to edges/nodes, redesigned as composable structures in Rust version</li>
+</ul>
+<h1 id="content"><a aria-hidden="true" class="anchor-heading icon-link" href="#content"></a>Content</h1>
+<p>WebGraph is a <strong>graph compression + traversal framework</strong> used for huge real-world graphs.</p>
+<h2 id="experimental-results"><a aria-hidden="true" class="anchor-heading icon-link" href="#experimental-results"></a>Experimental results</h2>
+<p>Graphs tested:</p>
+<ul>
+<li>Wikipedia graph</li>
+<li>.eu web graph</li>
+<li>Software Heritage graph (tens of billions of nodes)
+Operations:</li>
+<li>random successor access</li>
+<li>BFS traversal
+Results:</li>
+<li>1.4x to 3.2x speedup vs Java</li>
+</ul>
+<p>Speedups come from:</p>
+<ul>
+<li>fewer abstraction leaks</li>
+<li>better cache locality</li>
+<li>better inlining</li>
+<li>mmap-first design</li>
+</ul>

@@ -1,0 +1,20 @@
+<h1 id="2023-05-17"><a aria-hidden="true" class="anchor-heading icon-link" href="#2023-05-17"></a>2023-05-17</h1>
+<h1 id="this-is-marcos-daily-open-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-marcos-daily-open-notebook"></a>This is Marco's daily open-notebook.</h1>
+<p>Today is 2023.05.17</p>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes</h2>
+<h3 id="markov-random-fields"><a aria-hidden="true" class="anchor-heading icon-link" href="#markov-random-fields"></a>Markov random fields</h3>
+<p>If we have a tree structure we can do either do "loopy belief propagation" which is updating all node one at a time. This is garanteed to converge to correct marginals but it is wasteful. There is an other way : "collect and distribute schedule". The idea is to pick one node as the "root" fo the tree, find all the leaves of the graph and compute messages to their parents. Continue until you reach the root. <strong>If the graph is a tree, any node can be a root.</strong> We then backpropagate back to the leaves. Advantage : we only do one update per message.  See explanation <a href="https://www.youtube.com/watch?v=meBWAboEWQk">here</a> at 11min34sec. This is very similar to an HMM and its forward-backward algorithm. </p>
+<p>Now the problem for our model is that we have to combine two trees. The one from species and the one from molecules. We could think of each node as a combination of each molecule with each species. </p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<ul>
+<li>look definition of loopy back propagation. </li>
+<li>Check out <a href="https://medium.com/@philipyunsoocho/image-denoising-by-gibbs-sampling-67d1ad3d7344">this blog</a>. For more explanations. I think this new approach could really work for our case. </li>
+<li><a href="https://towardsdatascience.com/image-denoising-with-gibbs-sampling-mcmc-concepts-and-code-implementation-11d42a90e153">Here</a> is an implementation on an image. Could this be applied to our model ?</li>
+<li></li>
+</ul>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<h2 id="done"><a aria-hidden="true" class="anchor-heading icon-link" href="#done"></a>Done</h2>
+<ul>
+<li></li>
+</ul>
+<h2 id="todo-tomorrow"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-tomorrow"></a>Todo tomorrow</h2>
