@@ -4,12 +4,11 @@ title: >-
   Bert Pre Training Of Deep Bidirectional Transformers For Language
   Understanding
 desc: ''
-updated: 1783058764859
+updated: 1783058843148
 created: 1783058763946
 traitIds:
   - open-notebook-commons-ablood-literature
 ---
-[[BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding.pdf]]
 
 # [BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/html/1810.04805v2)
 ## Terms
