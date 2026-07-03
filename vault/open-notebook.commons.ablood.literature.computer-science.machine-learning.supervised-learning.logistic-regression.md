@@ -2,7 +2,7 @@
 id: 8wf4wj6infen1uw9mjyckd7
 title: Logistic Regression
 desc: ''
-updated: 1782803459332
+updated: 1783065953556
 created: 1782802063911
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -43,6 +43,17 @@ becomes:
 $$
 odds(x_1+1) = e^{\beta_0+\beta_1\cdot{(x_1+1)}}=e^{\beta_0+\beta_1x_1}\cdot{e^{\beta_1}}
 $$
+## Coefficients of logistic regression
+### Continuous predictors
+Logistic regression models the *y* value through the probability of y through the log-odds. So the x to y translation is not 1 to 1 (increase x by 1 does not necessarily result in y increase of 1). For logistic regression, the probability must be interpreted:
+- **positive coefficient**: log-odds of outcome increases as input increases. Which corresponds to increase in probability
+- **negative coefficient**: log-odds decrease as the input increases. Corresponds to decrease in probability
+- **zero coefficient**: variable has no effect on the outcome. 
+### Categorical predictors
+For working with categorical (discrete) variables, can use *feature engineering* to convert these variables into binary format and apply logistic regression. 
+
+## Maximum Likelihood Estimate
+*Maximum likelihood estimation* is used to estimate the logistic regression coefficients $(\beta{0},\beta{1})$ . MLE finds the parameters that can make the observed data become the most likely prediction using logistic regression. 
 
 # [Logistic Regression (Wikipedia)](https://en.wikipedia.org/wiki/Logistic_regression)
 - **Logistic model**: statistical model that models the *log-odds* of an event as a linear combination of one or more independent variables. 
