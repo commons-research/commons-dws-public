@@ -2,7 +2,7 @@
 id: kicxxszi4nu8oublxck6dsz
 title: Supervised Learning
 desc: ''
-updated: 1782705156813
+updated: 1783492023659
 created: 1782135713136
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -88,3 +88,10 @@ Useful for training autonomous agents such as cars. Does not use labeled data, b
 - needs data from environment ( a lot)
 - rewards hacking - models exploit loopholes
 - task-specific 
+## Challenges of supervised learning
+- Personnel limitations: requires expertise in domain use
+- human involvement: Similar to personnel, requires *supervision*
+- time requirements: data must be manually labelled
+- inflexibility: struggles labeling data outside of training dataset
+- bias: more likely for bias to emerge
+- overfit: can become too closely tailored to training dataset. 
