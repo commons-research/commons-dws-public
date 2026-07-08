@@ -2,7 +2,7 @@
 id: newfyt6rc5h9oo0lefvc781
 title: Feature Engineering
 desc: ''
-updated: 1783348274199
+updated: 1783493612121
 created: 1783348266542
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -10,6 +10,7 @@ traitIds:
 # [What is feature engineering (IBM)](https://www.ibm.com/think/topics/feature-engineering)
 - **Feature Engineering (feature extraction):** process of transforming raw data into relevant information for use by ML models. 
 - **[Multicollinearity](https://www.ibm.com/think/topics/feature-engineering)**: The situation where independent variables in a linear regression equation are correlated, multi as there are more than 2. 
+- **Cross validation**: tests a model on unseen data
 Feature engineering creates predictive model features. As ML training rests on the quality of the data being used during training, feature engineering is an important part of the training process. Feature engineering is the process of selecting subset of variables to create a new model, with the goal of reducing *multicollinearity*
 ## The benefits of feature selection
 Identifies the most important and impactful features that are not redundant, boosting performance:
@@ -48,3 +49,25 @@ These filter methods are usually used as data preprocessing tools, and are fast 
 7) **Missing value ratio:** Calculates percentages of each instance in the dataset where a certain feature is missing or has a null value. If a feature has a low percentage its likely a bad candidate. 
 8) **Dispersion ratio**: Variance ratio for the mean value of a feature. Higher ratio value means more information
 9) **ANOVA (Analysis of variance)**: Determines if different feature values affect the value of a target variable. 
+### Wrapper methods
+These methods train the algorithm  using subsets of features, and adds/removes features then tests the results. If the wrapper method tests all combinations of features, it is known as a *greedy algorithm*. These are computationally intensive and time consuming. Works well for datasets with smaller number of features.
+Wrapper methods include:
+1) **Forward selection**: start with an empty feature set and gradually add new features until an optimal set is found. 
+2) **Backward selection**: trains the model with a set of features and then removes each feature and only the most relevant are aloud to remain.
+3) **Exhaustive feature selection**: Tests all combos of features and finds the best fitting one against a performance metric. A logistic regression model that uses exhaustive feature selection would try every possible combo of all features
+4) **Recursive feature elimination (RFE)**: backward selection type that bases addition/removal of features based on relative importance of the feature. 
+5) **Recursive feature elimination with cross-validation**: RFE variation that uses cross-validation. 
+### Embedded methods
+Folds/embeds feature selection into the model training process. Uses metrics to identify under performing features and discard them. Methods include:
+1) **LASSO regression:** L1 - adds a penalty to the loss function for high-value correlated coefficients, which moves towards 0. If feature coefficient reaches 0 it is removed. 
+2) **Random forest importance**: Builds decision trees that are a random selection of data points and features. Each tree is then assessed on how well it divides the data points. Better results indicate a more important feature. 
+3) **Gradient boosting**: Adds predictors at each iteration that correct errors from the previous iteration. Helping find the the features that lead to the most optimal results. 
+## Unsupervised feature selection methods
+Since unsupervised models figure out the patterns/relationships on their own, tailoring the inputs isn't feasible. But other methods are used to simplify the feature space. 
+- **Principal component analysis (PCA)**: Reduces dimensionality of large datasets by transforming possibly correlated variables into a smaller set of variables. 
+## Choosing a feature selection method
+Feature selection use depends on the nature of the input and output variables. Problem spaces: 
+- **Numerical input, numerical output:** Inputs and outputs are numeric so a regression predictive problem.
+- **Numerical input, categorical output:** [Logistic regression](https://www.ibm.com/think/topics/logistic-regression) models classify inputs into binary values. true/false
+- **Categorical input, numerical output:** Correlation methods work here
+- **Categorical input, categorical output:** Chi-squared methods and information gain techniques work well here.
