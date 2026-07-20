@@ -1,8 +1,8 @@
 ---
 id: uc19yr0abesaebkxcjaks0l
-title: github-repos-spectra-profiler-rs
+title: spectra-profiler-rs
 desc: ''
-updated: 1782291262942
+updated: 1784557493353
 created: 1782291070616
 traitIds:
   - open-notebook-commons-ablood
