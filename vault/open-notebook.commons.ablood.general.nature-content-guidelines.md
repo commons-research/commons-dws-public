@@ -1,8 +1,8 @@
 ---
 id: tycqludy0p9qmdmyc8g195t
-title: ablood-general-nature-content-guidelines
+title: nature-content-guidelines
 desc: ''
-updated: 1783494595879
+updated: 1784540052483
 created: 1783494173662
 traitIds:
   - open-notebook-commons-ablood
