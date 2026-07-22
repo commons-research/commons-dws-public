@@ -2,7 +2,7 @@
 id: 3ku2zfznne5ytcgrdpt7thd
 title: Neural Networks And Deep Learning Web Book
 desc: ''
-updated: 1784643087730
+updated: 1784728352212
 created: 1784643081497
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -37,6 +37,11 @@ $\eta$ is the learning rate for the model.
 **Weighted input**: While computing $\sigma(v)$ the weighted input is computed: $z^l \equiv w^la^{l-1}+b^l$ , and thus $a^l$ can also be written as $a^l = \sigma(z^l)$ 
 **elementwise product**: Where each element is multiplied by the corresponding element in another matrix
 **Hadamard product:** Elementwise multiplication of two vectors: $s\odot t$ , so $(s\odot{t})_j = s_jt_j$ 
-**Error in output layer:** $\delta^L$ contains these components: $\delta_j^L = \frac{\partial C}{\partial a_j^L}\sigma'(z_j^L)$ . Where $\frac{\partial C}{\partial a_j^L}$ measures the rate the cost is changing as a function of the $j^{th}$ output activation. And $\sigma'(z_j^L)$ measures rate of activation function $\sigma$ is changing at $z_j^L$. Rewritten in the matrix basic form: $\delta^L = \nabla_a C \odot \sigma'(z^L)$, where $\nabla_a C$ expresses the rate of change of $C$. 
+**Error in output layer:** $\delta^L$ contains these components: $\delta_j^L = \frac{\partial C}{\partial a_j^L}\sigma'(z_j^L)$ . Where $\frac{\partial C}{\partial a_j^L}$ measures the rate the cost is changing as a function of the $j^{th}$ output activation. And $\sigma'(z_j^L)$ measures rate of activation function $\sigma$ is changing at $z_j^L$. Rewritten in the matrix basic form: $\delta^L = \nabla_a C \odot \sigma'(z^L)$, where $\nabla_a C$ expresses the rate of change of $C$. Changes propagate through later layers and cause the cost to change by: $\frac{\partial C}{\partial z^l_j} \Delta z^l_j$ . 
 
-http://neuralnetworksanddeeplearning.com/chap2.html#the_two_assumptions_we_need_about_the_unexaminedcost_function (in the an equation for the error... part)
+The error $\delta^l_j$ for neuron $j$ in layer $l$: $\delta^l_j\equiv \frac{\partial{C}}{\partial{z^l_j}}$, so that $\delta^l$ are the errors associate with layer $l$. The back propagation will allow for computing the $\delta^l$ for every layer. 
+**Plan of attack:** using back propagation's 4 equations, can compute the error for each level and therefore the gradient cost function. 
+
+**An equation for the error in the output layer**: so $\delta^L$ has:
+$$\delta^L_j=\frac{\partial{C}}{\partial{a^L_j}}\sigma^`(z^L_j)$$
+the $\partial$ part measures the speed the cost changes. 
