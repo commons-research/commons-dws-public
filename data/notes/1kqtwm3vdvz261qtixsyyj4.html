@@ -1,0 +1,153 @@
+<h1 id="from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy"><a aria-hidden="true" class="anchor-heading icon-link" href="#from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy"></a>From Trees To Graphs Speeding Up Vector Search 10x With Hannoy</h1>
+<h1 id="from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy"><a aria-hidden="true" class="anchor-heading icon-link" href="#from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy"></a><a href="https://blog.kerollmops.com/from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy">From trees to graphs - speeding up vector search 10x with Hannoy</a></h1>
+<h2 id="motivation"><a aria-hidden="true" class="anchor-heading icon-link" href="#motivation"></a>Motivation</h2>
+<p>Arroy’s design exposes fundamental limits:</p>
+<ul>
+<li>Tree-based ANN degrades badly for <strong>high-dimensional embeddings (>20D)</strong></li>
+<li>Large leaf nodes reduce build time but:
+<ul>
+<li>Require many distance computations at query time</li>
+<li>Cause high latency even for small k</li>
+</ul>
+</li>
+<li>Making trees deeper:
+<ul>
+<li>Explodes build time</li>
+<li>Increases index size</li>
+</ul>
+</li>
+</ul>
+<h2 id="why-graph-anns"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-graph-anns"></a>Why Graph ANNs</h2>
+<p>Modern ANN systems favor <strong>graph-based approaches</strong> (HNSW, DiskANN):</p>
+<ul>
+<li>Build a navigable graph over all vectors</li>
+<li>Search via best-first traversal</li>
+<li>Logarithmic convergence to nearest neighbors
+Key property: <strong>Sparse Neighborhood Graph (SNG)</strong></li>
+<li>Neighbors of x are closer to x than to each other</li>
+<li>Ensures fast convergence during traversal</li>
+<li>Core invariant behind HNSW, DiskANN, hannoy</li>
+</ul>
+<h2 id="advantages-of-graph-anns"><a aria-hidden="true" class="anchor-heading icon-link" href="#advantages-of-graph-anns"></a>Advantages of Graph ANNs</h2>
+<ul>
+<li>Disk-friendly:
+<ul>
+<li>~200 bytes per vector for edges (before compression)</li>
+</ul>
+</li>
+<li>Query-time efficiency:
+<ul>
+<li>Explore neighbors incrementally</li>
+<li>Fewer distance computations</li>
+</ul>
+</li>
+<li>Simpler updates:
+<ul>
+<li>Insertions/deletions only affect local edges</li>
+</ul>
+</li>
+<li>Avoids global rebalancing required by trees</li>
+</ul>
+<h2 id="hannoy-overview"><a aria-hidden="true" class="anchor-heading icon-link" href="#hannoy-overview"></a>Hannoy Overview</h2>
+<ul>
+<li><strong>Graph-based successor to arroy</strong></li>
+<li>KV-backed via <strong>LMDB</strong></li>
+<li>Inspired by:
+<ul>
+<li>HNSW (Faiss, hnsw crate)</li>
+<li>DiskANN / FreshDiskANN</li>
+</ul>
+</li>
+<li>Uses Meilisearch crates:
+<ul>
+<li>heed</li>
+<li>roaring-rs</li>
+<li>steppe
+Design goals:</li>
+</ul>
+</li>
+<li>Retain disk-backed scalability</li>
+<li>Improve:
+<ul>
+<li>Indexing speed</li>
+<li>Search latency</li>
+<li>Disk usage</li>
+</ul>
+</li>
+<li>Support:
+<ul>
+<li>Zero-copy</li>
+<li>Persistence</li>
+<li>SIMD</li>
+<li>Online updates</li>
+<li>Multi-phase indexing</li>
+</ul>
+</li>
+</ul>
+<h2 id="incremental-updates-core-challenge"><a aria-hidden="true" class="anchor-heading icon-link" href="#incremental-updates-core-challenge"></a>Incremental Updates: Core Challenge</h2>
+<p>Problem:</p>
+<ul>
+<li>Graph ANNs traditionally require full rebuilds</li>
+<li>Rebuilding large indexes is operationally expensive
+DiskANN insight:</li>
+<li>Batch updates</li>
+<li>Merge lazily instead of eagerly</li>
+<li>Avoid constant full rebuilds</li>
+</ul>
+<h2 id="hannoys-update-strategy"><a aria-hidden="true" class="anchor-heading icon-link" href="#hannoys-update-strategy"></a>Hannoy’s Update Strategy</h2>
+<ul>
+<li>Track modified items via a bitmap:
+<ul>
+<li>New</li>
+<li>Updated</li>
+<li>Deleted</li>
+</ul>
+</li>
+<li>Dring rebuild:
+<ul>
+<li>Deleted nodes trigger <strong>DiskANN-style patching</strong></li>
+<li>Neighbors of deleted nodes are reconnected</li>
+<li>Prevents graph “holes”</li>
+<li>Preserves SNG property</li>
+</ul>
+</li>
+</ul>
+<h2 id="hybrid-in-memory--on-disk-graph"><a aria-hidden="true" class="anchor-heading icon-link" href="#hybrid-in-memory--on-disk-graph"></a>Hybrid In-Memory + On-Disk Graph</h2>
+<ul>
+<li>New inserts build a fresh <strong>in-memory HNSW</strong></li>
+<li>Old on-disk graph remains authoritative</li>
+<li>Entry points from old graph are re-indexed</li>
+<li>Neighbor lookups:
+<ul>
+<li>Check LMDB first</li>
+<li>Fall back to in-memory layers</li>
+<li>Lazily link missing nodes
+Result:</li>
+</ul>
+</li>
+<li>Seamless merging of graphs</li>
+<li>&#x3C;1% of old vectors re-indexed</li>
+<li>No disjoint subgraphs</li>
+<li>Recall preserved</li>
+</ul>
+<h2 id="benchmarking-hannoy-vs-arroy"><a aria-hidden="true" class="anchor-heading icon-link" href="#benchmarking-hannoy-vs-arroy"></a>Benchmarking: Hannoy vs Arroy</h2>
+<p>Benchmarks on 1M vectors, cosine distance.</p>
+<h3 id="high-level-results"><a aria-hidden="true" class="anchor-heading icon-link" href="#high-level-results"></a>High-Level Results</h3>
+<p>Across 768D, 1536D, 3072D embeddings:</p>
+<ul>
+<li>Index build time:
+<ul>
+<li>Up to ~10× faster</li>
+</ul>
+</li>
+<li>Disk usage:
+<ul>
+<li>2–5× smaller</li>
+</ul>
+</li>
+<li>Search latency:
+<ul>
+<li>6×–30× faster</li>
+</ul>
+</li>
+</ul>

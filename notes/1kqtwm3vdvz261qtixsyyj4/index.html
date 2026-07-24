@@ -1,0 +1,153 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><link rel="icon" href="/commons-dws-public/favicon.ico"/><title>From Trees To Graphs Speeding Up Vector Search 10x With Hannoy</title><meta name="robots" content="index,follow"/><meta name="googlebot" content="index,follow"/><meta name="description" content="Personal knowledge space"/><meta property="og:title" content="From Trees To Graphs Speeding Up Vector Search 10x With Hannoy"/><meta property="og:description" content="Personal knowledge space"/><meta property="og:url" content="https://commons-research.github.io/commons-dws-public/notes/1kqtwm3vdvz261qtixsyyj4/"/><meta property="og:type" content="article"/><meta property="article:published_time" content="7/21/2026"/><meta property="article:modified_time" content="7/21/2026"/><link rel="canonical" href="https://commons-research.github.io/commons-dws-public/notes/1kqtwm3vdvz261qtixsyyj4/"/><meta name="next-head-count" content="14"/><link rel="preload" href="/commons-dws-public/_next/static/css/47f58a23998994fc.css" as="style"/><link rel="stylesheet" href="/commons-dws-public/_next/static/css/47f58a23998994fc.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/commons-dws-public/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/commons-dws-public/_next/static/chunks/webpack-18f1eb2dd0aac0df.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/framework-28c999baf2863c3d.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/main-1bd061c8c8d18148.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/pages/_app-8bc9d81129a787a1.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/935-4dee79e80b8641c6.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/6-50972def09142ee2.js" defer=""></script><script src="/commons-dws-public/_next/static/chunks/pages/notes/%5Bid%5D-78d472fa3b924116.js" defer=""></script><script src="/commons-dws-public/_next/static/uwPTqZNPtu3o5LSWzWn4x/_buildManifest.js" defer=""></script><script src="/commons-dws-public/_next/static/uwPTqZNPtu3o5LSWzWn4x/_ssgManifest.js" defer=""></script></head><body><div id="__next" data-reactroot=""><section class="ant-layout" style="width:100%;min-height:100%"><header class="ant-layout-header" style="position:fixed;isolation:isolate;z-index:1;width:100%;border-bottom:1px solid #d4dadf;height:64px;padding:0 24px 0 2px"><div class="ant-row ant-row-center" style="max-width:992px;justify-content:space-between;margin:0 auto"><div style="display:flex" class="ant-col ant-col-xs-20 ant-col-sm-4"></div><div class="ant-col gutter-row ant-col-xs-0 ant-col-sm-20 ant-col-md-20 ant-col-lg-19"><div class="ant-select ant-select-lg ant-select-auto-complete ant-select-single ant-select-allow-clear ant-select-show-search" style="width:100%"><div class="ant-select-selector"><span class="ant-select-selection-search"><input type="search" autoComplete="off" class="ant-select-selection-search-input" role="combobox" aria-haspopup="listbox" aria-owns="undefined_list" aria-autocomplete="list" aria-controls="undefined_list" aria-activedescendant="undefined_list_0" value=""/></span><span class="ant-select-selection-placeholder">For full text search please use the &#x27;?&#x27; prefix. e.g. ? Onboarding</span></div></div></div><div style="display:none;align-items:center;justify-content:center" class="ant-col ant-col-xs-4 ant-col-sm-4 ant-col-md-0 ant-col-lg-0"><span role="img" aria-label="menu" style="font-size:24px" tabindex="-1" class="anticon anticon-menu"><svg viewBox="64 64 896 896" focusable="false" data-icon="menu" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"></path></svg></span></div></div></header><section class="ant-layout" style="margin-top:64px;display:flex;flex-direction:row"><div class="site-layout-sidebar" style="flex:0 0 auto;width:calc(max((100% - 992px) / 2, 0px) + 200px);min-width:200px;padding-left:calc((100% - 992px) / 2)"><aside class="ant-layout-sider ant-layout-sider-dark" style="position:fixed;overflow:auto;height:calc(100vh - 64px);background-color:transparent;flex:0 0 200px;max-width:200px;min-width:200px;width:200px"><div class="ant-layout-sider-children"></div></aside></div><main class="ant-layout-content side-layout-main" style="max-width:1200px;min-width:0;display:block"><div style="padding:0 24px"><div class="main-content" role="main"><div class="ant-row"><div class="ant-col ant-col-24"><div class="ant-row" style="margin-left:-10px;margin-right:-10px"><div style="padding-left:10px;padding-right:10px" class="ant-col ant-col-xs-24 ant-col-md-18"><div><h1 id="from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy"><a aria-hidden="true" class="anchor-heading icon-link" href="#from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy"></a>From Trees To Graphs Speeding Up Vector Search 10x With Hannoy</h1>
+<h1 id="from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy"><a aria-hidden="true" class="anchor-heading icon-link" href="#from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy"></a><a href="https://blog.kerollmops.com/from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy">From trees to graphs - speeding up vector search 10x with Hannoy</a></h1>
+<h2 id="motivation"><a aria-hidden="true" class="anchor-heading icon-link" href="#motivation"></a>Motivation</h2>
+<p>Arroy’s design exposes fundamental limits:</p>
+<ul>
+<li>Tree-based ANN degrades badly for <strong>high-dimensional embeddings (>20D)</strong></li>
+<li>Large leaf nodes reduce build time but:
+<ul>
+<li>Require many distance computations at query time</li>
+<li>Cause high latency even for small k</li>
+</ul>
+</li>
+<li>Making trees deeper:
+<ul>
+<li>Explodes build time</li>
+<li>Increases index size</li>
+</ul>
+</li>
+</ul>
+<h2 id="why-graph-anns"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-graph-anns"></a>Why Graph ANNs</h2>
+<p>Modern ANN systems favor <strong>graph-based approaches</strong> (HNSW, DiskANN):</p>
+<ul>
+<li>Build a navigable graph over all vectors</li>
+<li>Search via best-first traversal</li>
+<li>Logarithmic convergence to nearest neighbors
+Key property: <strong>Sparse Neighborhood Graph (SNG)</strong></li>
+<li>Neighbors of x are closer to x than to each other</li>
+<li>Ensures fast convergence during traversal</li>
+<li>Core invariant behind HNSW, DiskANN, hannoy</li>
+</ul>
+<h2 id="advantages-of-graph-anns"><a aria-hidden="true" class="anchor-heading icon-link" href="#advantages-of-graph-anns"></a>Advantages of Graph ANNs</h2>
+<ul>
+<li>Disk-friendly:
+<ul>
+<li>~200 bytes per vector for edges (before compression)</li>
+</ul>
+</li>
+<li>Query-time efficiency:
+<ul>
+<li>Explore neighbors incrementally</li>
+<li>Fewer distance computations</li>
+</ul>
+</li>
+<li>Simpler updates:
+<ul>
+<li>Insertions/deletions only affect local edges</li>
+</ul>
+</li>
+<li>Avoids global rebalancing required by trees</li>
+</ul>
+<h2 id="hannoy-overview"><a aria-hidden="true" class="anchor-heading icon-link" href="#hannoy-overview"></a>Hannoy Overview</h2>
+<ul>
+<li><strong>Graph-based successor to arroy</strong></li>
+<li>KV-backed via <strong>LMDB</strong></li>
+<li>Inspired by:
+<ul>
+<li>HNSW (Faiss, hnsw crate)</li>
+<li>DiskANN / FreshDiskANN</li>
+</ul>
+</li>
+<li>Uses Meilisearch crates:
+<ul>
+<li>heed</li>
+<li>roaring-rs</li>
+<li>steppe
+Design goals:</li>
+</ul>
+</li>
+<li>Retain disk-backed scalability</li>
+<li>Improve:
+<ul>
+<li>Indexing speed</li>
+<li>Search latency</li>
+<li>Disk usage</li>
+</ul>
+</li>
+<li>Support:
+<ul>
+<li>Zero-copy</li>
+<li>Persistence</li>
+<li>SIMD</li>
+<li>Online updates</li>
+<li>Multi-phase indexing</li>
+</ul>
+</li>
+</ul>
+<h2 id="incremental-updates-core-challenge"><a aria-hidden="true" class="anchor-heading icon-link" href="#incremental-updates-core-challenge"></a>Incremental Updates: Core Challenge</h2>
+<p>Problem:</p>
+<ul>
+<li>Graph ANNs traditionally require full rebuilds</li>
+<li>Rebuilding large indexes is operationally expensive
+DiskANN insight:</li>
+<li>Batch updates</li>
+<li>Merge lazily instead of eagerly</li>
+<li>Avoid constant full rebuilds</li>
+</ul>
+<h2 id="hannoys-update-strategy"><a aria-hidden="true" class="anchor-heading icon-link" href="#hannoys-update-strategy"></a>Hannoy’s Update Strategy</h2>
+<ul>
+<li>Track modified items via a bitmap:
+<ul>
+<li>New</li>
+<li>Updated</li>
+<li>Deleted</li>
+</ul>
+</li>
+<li>Dring rebuild:
+<ul>
+<li>Deleted nodes trigger <strong>DiskANN-style patching</strong></li>
+<li>Neighbors of deleted nodes are reconnected</li>
+<li>Prevents graph “holes”</li>
+<li>Preserves SNG property</li>
+</ul>
+</li>
+</ul>
+<h2 id="hybrid-in-memory--on-disk-graph"><a aria-hidden="true" class="anchor-heading icon-link" href="#hybrid-in-memory--on-disk-graph"></a>Hybrid In-Memory + On-Disk Graph</h2>
+<ul>
+<li>New inserts build a fresh <strong>in-memory HNSW</strong></li>
+<li>Old on-disk graph remains authoritative</li>
+<li>Entry points from old graph are re-indexed</li>
+<li>Neighbor lookups:
+<ul>
+<li>Check LMDB first</li>
+<li>Fall back to in-memory layers</li>
+<li>Lazily link missing nodes
+Result:</li>
+</ul>
+</li>
+<li>Seamless merging of graphs</li>
+<li>&#x3C;1% of old vectors re-indexed</li>
+<li>No disjoint subgraphs</li>
+<li>Recall preserved</li>
+</ul>
+<h2 id="benchmarking-hannoy-vs-arroy"><a aria-hidden="true" class="anchor-heading icon-link" href="#benchmarking-hannoy-vs-arroy"></a>Benchmarking: Hannoy vs Arroy</h2>
+<p>Benchmarks on 1M vectors, cosine distance.</p>
+<h3 id="high-level-results"><a aria-hidden="true" class="anchor-heading icon-link" href="#high-level-results"></a>High-Level Results</h3>
+<p>Across 768D, 1536D, 3072D embeddings:</p>
+<ul>
+<li>Index build time:
+<ul>
+<li>Up to ~10× faster</li>
+</ul>
+</li>
+<li>Disk usage:
+<ul>
+<li>2–5× smaller</li>
+</ul>
+</li>
+<li>Search latency:
+<ul>
+<li>6×–30× faster</li>
+</ul>
+</li>
+</ul></div></div><div style="padding-left:10px;padding-right:10px" class="ant-col ant-col-xs-0 ant-col-md-6"><div><div class=""><div class="ant-anchor-wrapper dendron-toc" style="max-height:calc(100vh - 64px);z-index:1"><div class="ant-anchor"><div class="ant-anchor-ink"><span class="ant-anchor-ink-ball"></span></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy" title="From trees to graphs - speeding up vector search 10x with Hannoy">From trees to graphs - speeding up vector search 10x with Hannoy</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#motivation" title="Motivation">Motivation</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#why-graph-anns" title="Why Graph ANNs">Why Graph ANNs</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#advantages-of-graph-anns" title="Advantages of Graph ANNs">Advantages of Graph ANNs</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#hannoy-overview" title="Hannoy Overview">Hannoy Overview</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#incremental-updates-core-challenge" title="Incremental Updates: Core Challenge">Incremental Updates: Core Challenge</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#hannoys-update-strategy" title="Hannoy’s Update Strategy">Hannoy’s Update Strategy</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#hybrid-in-memory--on-disk-graph" title="Hybrid In-Memory + On-Disk Graph">Hybrid In-Memory + On-Disk Graph</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#benchmarking-hannoy-vs-arroy" title="Benchmarking: Hannoy vs Arroy">Benchmarking: Hannoy vs Arroy</a></div><div class="ant-anchor-link"><a class="ant-anchor-link-title" href="#high-level-results" title="High-Level Results">High-Level Results</a></div></div></div></div></div></div></div></div></div></div></div><div class="ant-divider ant-divider-horizontal" role="separator"></div><footer class="ant-layout-footer" style="padding:0 24px 24px"></footer></main></section></section></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"note":{"id":"1kqtwm3vdvz261qtixsyyj4","title":"From Trees To Graphs Speeding Up Vector Search 10x With Hannoy","desc":"","updated":1784643508449,"created":1784643507716,"traitIds":["open-notebook-commons-ablood-literature"],"custom":{},"fname":"open-notebook.commons.ablood.general.rust.from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy","type":"note","vault":{"fsPath":"vault"},"contentHash":"d90f19946e0eca64d503c69526d7b0fa","links":[],"anchors":{"from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy":{"type":"header","text":"From trees to graphs - speeding up vector search 10x with Hannoy","value":"from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy","line":9,"column":0,"depth":1},"motivation":{"type":"header","text":"Motivation","value":"motivation","line":10,"column":0,"depth":2},"why-graph-anns":{"type":"header","text":"Why Graph ANNs","value":"why-graph-anns","line":19,"column":0,"depth":2},"advantages-of-graph-anns":{"type":"header","text":"Advantages of Graph ANNs","value":"advantages-of-graph-anns","line":28,"column":0,"depth":2},"hannoy-overview":{"type":"header","text":"Hannoy Overview","value":"hannoy-overview","line":38,"column":0,"depth":2},"incremental-updates-core-challenge":{"type":"header","text":"Incremental Updates: Core Challenge","value":"incremental-updates-core-challenge","line":60,"column":0,"depth":2},"hannoys-update-strategy":{"type":"header","text":"Hannoy’s Update Strategy","value":"hannoys-update-strategy","line":68,"column":0,"depth":2},"hybrid-in-memory--on-disk-graph":{"type":"header","text":"Hybrid In-Memory + On-Disk Graph","value":"hybrid-in-memory--on-disk-graph","line":78,"column":0,"depth":2},"benchmarking-hannoy-vs-arroy":{"type":"header","text":"Benchmarking: Hannoy vs Arroy","value":"benchmarking-hannoy-vs-arroy","line":91,"column":0,"depth":2},"high-level-results":{"type":"header","text":"High-Level Results","value":"high-level-results","line":93,"column":0,"depth":3}},"children":[],"parent":"ltdp5yiyyt539i7gy198iwn","data":{}},"body":"\u003ch1 id=\"from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy\"\u003e\u003c/a\u003eFrom Trees To Graphs Speeding Up Vector Search 10x With Hannoy\u003c/h1\u003e\n\u003ch1 id=\"from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#from-trees-to-graphs---speeding-up-vector-search-10x-with-hannoy\"\u003e\u003c/a\u003e\u003ca href=\"https://blog.kerollmops.com/from-trees-to-graphs-speeding-up-vector-search-10x-with-hannoy\"\u003eFrom trees to graphs - speeding up vector search 10x with Hannoy\u003c/a\u003e\u003c/h1\u003e\n\u003ch2 id=\"motivation\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#motivation\"\u003e\u003c/a\u003eMotivation\u003c/h2\u003e\n\u003cp\u003eArroy’s design exposes fundamental limits:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eTree-based ANN degrades badly for \u003cstrong\u003ehigh-dimensional embeddings (\u003e20D)\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003eLarge leaf nodes reduce build time but:\n\u003cul\u003e\n\u003cli\u003eRequire many distance computations at query time\u003c/li\u003e\n\u003cli\u003eCause high latency even for small k\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eMaking trees deeper:\n\u003cul\u003e\n\u003cli\u003eExplodes build time\u003c/li\u003e\n\u003cli\u003eIncreases index size\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"why-graph-anns\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#why-graph-anns\"\u003e\u003c/a\u003eWhy Graph ANNs\u003c/h2\u003e\n\u003cp\u003eModern ANN systems favor \u003cstrong\u003egraph-based approaches\u003c/strong\u003e (HNSW, DiskANN):\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eBuild a navigable graph over all vectors\u003c/li\u003e\n\u003cli\u003eSearch via best-first traversal\u003c/li\u003e\n\u003cli\u003eLogarithmic convergence to nearest neighbors\nKey property: \u003cstrong\u003eSparse Neighborhood Graph (SNG)\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003eNeighbors of x are closer to x than to each other\u003c/li\u003e\n\u003cli\u003eEnsures fast convergence during traversal\u003c/li\u003e\n\u003cli\u003eCore invariant behind HNSW, DiskANN, hannoy\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"advantages-of-graph-anns\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#advantages-of-graph-anns\"\u003e\u003c/a\u003eAdvantages of Graph ANNs\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eDisk-friendly:\n\u003cul\u003e\n\u003cli\u003e~200 bytes per vector for edges (before compression)\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eQuery-time efficiency:\n\u003cul\u003e\n\u003cli\u003eExplore neighbors incrementally\u003c/li\u003e\n\u003cli\u003eFewer distance computations\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eSimpler updates:\n\u003cul\u003e\n\u003cli\u003eInsertions/deletions only affect local edges\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eAvoids global rebalancing required by trees\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"hannoy-overview\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#hannoy-overview\"\u003e\u003c/a\u003eHannoy Overview\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eGraph-based successor to arroy\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003eKV-backed via \u003cstrong\u003eLMDB\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003eInspired by:\n\u003cul\u003e\n\u003cli\u003eHNSW (Faiss, hnsw crate)\u003c/li\u003e\n\u003cli\u003eDiskANN / FreshDiskANN\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eUses Meilisearch crates:\n\u003cul\u003e\n\u003cli\u003eheed\u003c/li\u003e\n\u003cli\u003eroaring-rs\u003c/li\u003e\n\u003cli\u003esteppe\nDesign goals:\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eRetain disk-backed scalability\u003c/li\u003e\n\u003cli\u003eImprove:\n\u003cul\u003e\n\u003cli\u003eIndexing speed\u003c/li\u003e\n\u003cli\u003eSearch latency\u003c/li\u003e\n\u003cli\u003eDisk usage\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eSupport:\n\u003cul\u003e\n\u003cli\u003eZero-copy\u003c/li\u003e\n\u003cli\u003ePersistence\u003c/li\u003e\n\u003cli\u003eSIMD\u003c/li\u003e\n\u003cli\u003eOnline updates\u003c/li\u003e\n\u003cli\u003eMulti-phase indexing\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"incremental-updates-core-challenge\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#incremental-updates-core-challenge\"\u003e\u003c/a\u003eIncremental Updates: Core Challenge\u003c/h2\u003e\n\u003cp\u003eProblem:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eGraph ANNs traditionally require full rebuilds\u003c/li\u003e\n\u003cli\u003eRebuilding large indexes is operationally expensive\nDiskANN insight:\u003c/li\u003e\n\u003cli\u003eBatch updates\u003c/li\u003e\n\u003cli\u003eMerge lazily instead of eagerly\u003c/li\u003e\n\u003cli\u003eAvoid constant full rebuilds\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"hannoys-update-strategy\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#hannoys-update-strategy\"\u003e\u003c/a\u003eHannoy’s Update Strategy\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eTrack modified items via a bitmap:\n\u003cul\u003e\n\u003cli\u003eNew\u003c/li\u003e\n\u003cli\u003eUpdated\u003c/li\u003e\n\u003cli\u003eDeleted\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eDring rebuild:\n\u003cul\u003e\n\u003cli\u003eDeleted nodes trigger \u003cstrong\u003eDiskANN-style patching\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003eNeighbors of deleted nodes are reconnected\u003c/li\u003e\n\u003cli\u003ePrevents graph “holes”\u003c/li\u003e\n\u003cli\u003ePreserves SNG property\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"hybrid-in-memory--on-disk-graph\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#hybrid-in-memory--on-disk-graph\"\u003e\u003c/a\u003eHybrid In-Memory + On-Disk Graph\u003c/h2\u003e\n\u003cul\u003e\n\u003cli\u003eNew inserts build a fresh \u003cstrong\u003ein-memory HNSW\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003eOld on-disk graph remains authoritative\u003c/li\u003e\n\u003cli\u003eEntry points from old graph are re-indexed\u003c/li\u003e\n\u003cli\u003eNeighbor lookups:\n\u003cul\u003e\n\u003cli\u003eCheck LMDB first\u003c/li\u003e\n\u003cli\u003eFall back to in-memory layers\u003c/li\u003e\n\u003cli\u003eLazily link missing nodes\nResult:\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eSeamless merging of graphs\u003c/li\u003e\n\u003cli\u003e\u0026#x3C;1% of old vectors re-indexed\u003c/li\u003e\n\u003cli\u003eNo disjoint subgraphs\u003c/li\u003e\n\u003cli\u003eRecall preserved\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"benchmarking-hannoy-vs-arroy\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#benchmarking-hannoy-vs-arroy\"\u003e\u003c/a\u003eBenchmarking: Hannoy vs Arroy\u003c/h2\u003e\n\u003cp\u003eBenchmarks on 1M vectors, cosine distance.\u003c/p\u003e\n\u003ch3 id=\"high-level-results\"\u003e\u003ca aria-hidden=\"true\" class=\"anchor-heading icon-link\" href=\"#high-level-results\"\u003e\u003c/a\u003eHigh-Level Results\u003c/h3\u003e\n\u003cp\u003eAcross 768D, 1536D, 3072D embeddings:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eIndex build time:\n\u003cul\u003e\n\u003cli\u003eUp to ~10× faster\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eDisk usage:\n\u003cul\u003e\n\u003cli\u003e2–5× smaller\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eSearch latency:\n\u003cul\u003e\n\u003cli\u003e6×–30× faster\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e","noteIndex":{"id":"QvYK9hGbCvPpEfSRYhV8j","title":"Welcome to the COMMONS Lab Open Dendron","desc":"","updated":1693056226815,"created":1630130450048,"custom":{"nav_order":0,"permalink":"/"},"fname":"root","type":"note","vault":{"fsPath":"vault"},"contentHash":"20f67df3dd870fc450a162c202c9ff41","links":[{"type":"wiki","from":{"fname":"root","id":"QvYK9hGbCvPpEfSRYhV8j","vaultName":"vault"},"value":"open-notebook.commons.setup","position":{"start":{"line":43,"column":118,"offset":1871},"end":{"line":43,"column":149,"offset":1902},"indent":[]},"xvault":false,"sameFile":false,"to":{"fname":"open-notebook.commons.setup"}}],"anchors":{"what-is-this-note":{"type":"header","text":"What is this note","value":"what-is-this-note","line":16,"column":0,"depth":2},"tutorial":{"type":"header","text":"Tutorial","value":"tutorial","line":20,"column":0,"depth":2},"dendron":{"type":"header","text":"Dendron.","value":"dendron","line":22,"column":0,"depth":3},"what-is-dendron-":{"type":"header","text":"What is Dendron ?","value":"what-is-dendron-","line":24,"column":0,"depth":4},"where-to-get-more-info-on-dendron-":{"type":"header","text":"Where to get more info on Dendron ?","value":"where-to-get-more-info-on-dendron-","line":30,"column":0,"depth":4},"concrete-steps-to-access-and-contribute-to-the-dbgi-dendron":{"type":"header","text":"Concrete steps to access and contribute to the DBGI Dendron","value":"concrete-steps-to-access-and-contribute-to-the-dbgi-dendron","line":35,"column":0,"depth":4},"questions-comments-suggestions-":{"type":"header","text":"Questions, comments, suggestions ?","value":"questions-comments-suggestions-","line":52,"column":0,"depth":2}},"children":["tiqo5upbg6224t7i8p87iok","ltq8wcrabmq6mlescrdi4m0","ih6vyup3yre4m9woc9ldl7k","8us579vydjfskegndhvdzsl","jldFUSJGjDf1mFH8c2yUI","euqp6iyat5tlhs3otdvp1gi","dh2qp7w4tl6otf89xrmxitv","stj9lq0lxhfuk5ntomiozz0","xkvjb3l8c7vygic4ut0rlpq","ihj17axz8bg0tfte3w8i8bw","2cxr093kvrg4jojokwgqrbj","8vfu5h3617jbzy78xr2hlo1","w75krbmkkvla3hwd66hn5bh","tbyq7kr3ftu82o9gdgce2op","4pqppog2u66rx1tkc8jy5v9","ektni5nfulyro7dkrbtek7j","vfsp2aci6vy7kg2jsyy8tzu","0wm4geq40t6nscn88rcwu47","ib4jmxy1x3l1r0ewe6hln4j","jtrrduel9fklhqvwghoo19d","4789z8f1dqdh5k3nmgr1m4z","43p60vv8btyhaclugl93jok","ylulfzi7ra5yv6ja7j78t6e","wj0i9czxvt4v0b674nb8501","ovslc641d0h00s16tf6kl8w","oyaxpncxdpvnqu3ubo01q0m","8gtqah8sn7gtjxrcpca3lk9","z5zqab1fcqlysxcbhu1i9np","ofl0a2z0t6sjactzn82potp","3vc7e7x1e12qs22j4i0zycx","vitiie30ztffl6ndyiww7nr","jma32v5d1s7bvffx9iyqp57","rb9gm8hz4txor488cpan8am","xsg4k6i8em4v2vytq9wuumw","buksy2mnryc1cwlg9202l53","5ruu1m8qmq69wcbk7oba5r7","g7cc71y92m7idoqv5dofbdu","7x3mdln4ckmva4yxubfwdbi","6f4lawzs09r8vsk9i5dvl5p","gavawx3i7dmbdlozr9td08u","cskd90puu1iwjxch87uulfs","kagwu4pg7fo86jvxped04l2"],"parent":null,"data":{},"body":"\n![](/assets/images/allard-lab.jpg)\n\nWelcome the the COMMONS Lab Open Dendron !\n\nIn the [COMMONS Lab](https://www.unifr.ch/bio/en/groups/allard/) we intent to follow the [Open Notebook Science](https://en.wikipedia.org/wiki/Open-notebook_science) approach to document our research.\n\nFor this we use the [Dendron](https://www.dendron.so/) system as a mean to efficiently capture notes and publish them.\n\n## What is this note\n\nThis note is a succinct tutorial note aiming to get you started in the use of the COMMONS Lab Dendron.\n\n## Tutorial\n\n### Dendron. \n\n#### What is Dendron ?\n\n\u003e Dendron is an open-source, local-first, markdown-based, note-taking tool. Think of it as a cache for everything that you care about - if you've spent more then five minutes solving a problem, you should never spent any more time solving the same exact problem.\n\u003e \n\u003e Dendron is a knowledge base built by and for developers and integrates natively with IDEs like VS Code and VSCodium.\n\n#### Where to get more info on Dendron ?\n\n- You can get more information in the Dendron system at the official website www.dendron.so\n- All the Dendron documentation is hosted here https://wiki.dendron.so/. It is, obviously, a Dendron itself.\n\n#### Concrete steps to access and contribute to the DBGI Dendron\n\n1. Install [VSCode](https://code.visualstudio.com/download)\n2. Install [Dendron](https://marketplace.visualstudio.com/items?itemName=dendron.dendron) from the VSCode marketplace \n3. Clone the COMMONS Dendron repo\n\n    In your terminal\n    ```\n    git clone https://github.com/commons-research/commons-dws-public.git\n    ```\n4. In VSCode open (File/Open) the cloned repository.\n5. Voila ! You should now be in the COMMONS Lab Open Dendron.\n\nFeel free to explore and contribute.\nA first, important step could be to configure VSCode so that you can easily add a daily note. See steps described at [[open-notebook.commons.setup]]\n\n\n## Questions, comments, suggestions ?\n\nFeel free to contribute here https://github.com/orgs/commons-research/discussions\n\n"},"collectionChildren":null,"customHeadContent":null,"config":{"version":5,"dev":{"enablePreviewV2":true},"commands":{"lookup":{"note":{"selectionMode":"extract","confirmVaultOnCreate":false,"leaveTrace":false,"bubbleUpCreateNew":true,"vaultSelectionModeOnCreate":"smart","fuzzThreshold":0.2}},"insertNote":{"initialValue":"templates"},"insertNoteLink":{"aliasMode":"none","enableMultiSelect":false},"insertNoteIndex":{"enableMarker":false},"randomNote":{},"copyNoteLink":{"aliasMode":"title"},"templateHierarchy":"template"},"workspace":{"vaults":[{"fsPath":"vault"}],"journal":{"dailyDomain":"daily","name":"journal","dateFormat":"y.MM.dd","addBehavior":"childOfDomain"},"scratch":{"name":"scratch","dateFormat":"y.MM.dd.HHmmss","addBehavior":"asOwnDomain"},"graph":{"zoomSpeed":1,"createStub":false},"enableAutoCreateOnDefinition":false,"enableXVaultWikiLink":false,"enableRemoteVaultInit":true,"workspaceVaultSyncMode":"noCommit","enableAutoFoldFrontmatter":false,"maxPreviewsCached":10,"maxNoteLength":204800,"task":{"name":"","dateFormat":"","addBehavior":"childOfCurrent","statusSymbols":{"":" ","wip":"w","done":"x","assigned":"a","moved":"m","blocked":"b","delegated":"l","dropped":"d","pending":"y"},"prioritySymbols":{"H":"high","M":"medium","L":"low"},"todoIntegration":false,"createTaskSelectionType":"selection2link","taskCompleteStatus":["done","x"]},"enableUserTags":true,"enableHashTags":true,"dendronVersion":"0.112.0","enableEditorDecorations":true,"enableFullHierarchyNoteTitle":false},"preview":{"enableFMTitle":true,"enableNoteTitleForLink":true,"enableMermaid":true,"enablePrettyRefs":true,"enableKatex":true,"automaticallyShowPreview":false,"enableFrontmatterTags":true,"enableHashesForFMTags":false},"publishing":{"enableFMTitle":true,"enableNoteTitleForLink":true,"enableMermaid":true,"enablePrettyRefs":true,"enableKatex":true,"assetsPrefix":"/commons-dws-public","copyAssets":true,"siteHierarchies":["root"],"enableSiteLastModified":true,"siteRootDir":"docs","siteUrl":"https://commons-research.github.io","enableFrontmatterTags":true,"enableHashesForFMTags":false,"enableRandomlyColoredTags":true,"duplicateNoteBehavior":{"action":"useVault","payload":["vault"]},"writeStubs":false,"seo":{"title":"COMMONS DWS Public","description":"Personal knowledge space"},"github":{"enableEditLink":true,"editLinkText":"Click here to edit this page on Github !","editBranch":"main","editViewMode":"edit","editRepository":"https://github.com/commons-research/commons-dws-public"},"enablePrettyLinks":true,"enableTaskNotes":true,"siteFaviconPath":"favicon.ico","siteIndex":"root","searchMode":"lookup"}}},"__N_SSG":true},"page":"/notes/[id]","query":{"id":"1kqtwm3vdvz261qtixsyyj4"},"buildId":"uwPTqZNPtu3o5LSWzWn4x","assetPrefix":"/commons-dws-public","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

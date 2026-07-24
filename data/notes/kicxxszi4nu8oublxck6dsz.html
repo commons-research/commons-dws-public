@@ -1,0 +1,124 @@
+<h1 id="supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#supervised-learning"></a>Supervised Learning</h1>
+<h1 id="what-is-supervised-learning-ibm"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-is-supervised-learning-ibm"></a><a href="https://www.ibm.com/think/topics/supervised-learning">What is supervised learning? (IBM)</a></h1>
+<ul>
+<li><strong><a href="https://www.ibm.com/think/topics/supervised-learning">Supervised Machine Learning</a></strong>: Technique using labeled data sets for training ML model to identify underlying patterns/relationships.
+Datasets consist of labeled sample data points &#x26; the correct outputs. The model uses input data to train and adjust the model parameters until it fits the task. The labeled training data gives the <em>ground truth</em>, teaching the model to identify features and data labels relationships. </li>
+</ul>
+<h2 id="what-is-ground-truth-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-is-ground-truth-data"></a>What is ground truth data?</h2>
+<ul>
+<li><strong>Ground truth data</strong>: data that is verified against the actual outcomes expected, created usually through annotation/measurement by hand; used for training, validating, and testing models. By definition, this data is confirmed to be true and accurate data, it is the basis the model will use, a gold standard. </li>
+</ul>
+<h2 id="how-supervised-learning-works"><a aria-hidden="true" class="anchor-heading icon-link" href="#how-supervised-learning-works"></a>How supervised learning works</h2>
+<p>Through labeled training data the relationships between the inputs and the outputs of the data are understood. Then the model can be trained and applied to real world situations to find correct outputs to unseen data. </p>
+<ul>
+<li>Requires a large dataset to train the model and find correlations. </li>
+<li>Test data is used after training to evaluate model efficacy.</li>
+<li><strong>Cross-validation</strong>: process of testing the model using another portion of the dataset. </li>
+<li><strong><a href="https://www.ibm.com/think/topics/gradient-descent">gradient descent</a></strong>: family of algorithms, including <em>stochastic gradient descent</em> (SGD), which are used to optimize the model's algorithms. This is done by assessing accuracy with a <em>loss function</em>. </li>
+<li><strong><a href="https://www.ibm.com/think/topics/loss-function">Loss function</a></strong>: An equation used to measure discrepancies between a model's predictions and the actual values the model is trying to predict. </li>
+<li><strong><a href="https://www.ibm.com/think/topics/dimensionality-reduction">Dimensionality reduction</a></strong>: Reduce the number of <em>features</em> in the data to the most crucial ones for predicting data labels, increasing efficiency and maintaining accuracy.</li>
+<li><strong><a href="https://www.ibm.com/think/topics/feature-selection">Features</a></strong>: individual measurable properties/characteristics of a data point; the specific attributes of the data used to describe the phenomenon being observed. Chosen through <em>feature selection</em>
+The loss function produces a gradient that indicates the direction the model should be adjusted towards, to reduce errors. The optimization is applied throughout training in order to optimize the model.  </li>
+</ul>
+<h2 id="an-example-of-supervised-learning-in-action"><a aria-hidden="true" class="anchor-heading icon-link" href="#an-example-of-supervised-learning-in-action"></a>An example of supervised learning in action</h2>
+<ul>
+<li>Captcha is a crowd sourced example of supervised learning, where the model data was annotated by the users of captcha, based on labels prepared by the data scientists, then annotated for each image based on the crowd's classifications. </li>
+</ul>
+<h2 id="types-of-supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#types-of-supervised-learning"></a>Types of supervised learning</h2>
+<ul>
+<li><strong><a href="https://www.ibm.com/think/topics/classification-machine-learning">Classification</a></strong>: Uses an algorithm to sort data into categories, recognizing entities within a dataset and tries to determine labels/definitions for those entities. This type includes <a href="https://www.ibm.com/think/topics/logistic-regression">logistic regression</a>. This model is commonly used for neural networks. </li>
+<li><strong>Regression</strong>: Used for understanding the relationship between dependent and independent variables. Outputs are continuous values, and the model attempts to predict the target output. E.g. projections for sales revenue, financial planning, etc. Includes <a href="https://www.ibm.com/think/topics/linear-regression">linear regression</a>, and other regression methods. </li>
+<li><strong><a href="https://www.ibm.com/think/topics/ensemble-learning">Ensemble Learning</a></strong>: meta-approach which entails using multiple modles on the same classification/regression task. Then all results are pooled together to find the best overall approach. Each model used is called a <em>weak learner</em>/<em>base model</em>. This approach could be good for mitigating ==<a href="https://www.ibm.com/think/topics/bias-variance-tradeoff">bias-variance tradeoff</a>==</li>
+</ul>
+<h2 id="supervised-learning-algorithms"><a aria-hidden="true" class="anchor-heading icon-link" href="#supervised-learning-algorithms"></a>Supervised learning algorithms</h2>
+<p>Gradient descent and other optimization algorithms can be used to train a large number of ML algorithms suitable for supervised learning:</p>
+<ul>
+<li><a href="https://www.ibm.com/think/topics/naive-bayes">Naive Bayes</a>: classification algorithm using Bayes' theorem that doesn't use the presence of one feature to predict another feature probability, assuming all predictors have equal impact on the result.</li>
+<li>Linear Regression: Identifies relationship between continuous dependent variables and one or more independent variables. Useful for predicting future outcomes. Represents the relationship as a straight line. </li>
+<li>Nonlinear Regression: Used when outputs cannot be produced from linear inputs (linear regression), and thus represents the values using a nonlinear, curved, line. Useful for complex relationships with large number of parameters.</li>
+<li>Logistic Regression: Used for categorical dependent variables, where there are binary outputs (true, false, or positive/negative, etc). Useful for binary identification problems (such as presence of an atom in spectrum). </li>
+<li>Polynomial Regression:  Similar to linear regression, representing relationship modelling on a graph; though the functions express the relationship using <em>polynomial</em> degrees (raising the input features to powers) and thus a linear model can fit a non linear pattern. </li>
+<li><a href="https://www.ibm.com/think/topics/support-vector-machine">Support vector machine (SVM)</a>: Useful for data classification and regression, separating the classes of data points with a decision boundary or <em>hyperplane</em>; The SVM plots the hyperplane that can maximize the distance between the data point groupings. </li>
+<li><a href="https://www.ibm.com/think/topics/knn">K-nearest neighbor</a>: <em>nonparametric</em> algorithm to classify data points based on proximity to other available data. Assumes similar data points can be found near each other when plotted mathematically. </li>
+<li><a href="https://www.ibm.com/think/topics/knn">Random forest</a>: Forest references a collection of uncorrelated <a href="https://www.ibm.com/think/topics/decision-trees">decision trees</a> that are merged to increase accuracy and cut back on variance/deviation. </li>
+</ul>
+<h2 id="supervised-learning-versus-other-learning--methods"><a aria-hidden="true" class="anchor-heading icon-link" href="#supervised-learning-versus-other-learning--methods"></a>Supervised learning versus other learning  methods</h2>
+<p>Other types of learning include:
+1) unsupervised learning
+2) semi-supervised learning
+3) self supervised learning
+4) reinforcement learning</p>
+<h3 id="supervised-versus-unsupervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#supervised-versus-unsupervised-learning"></a>Supervised versus unsupervised learning</h3>
+<p>Unsupervised learning uses data that hasn't been labeled and has no "ground truth". The model discovers patterns and relationships on its own within the data set. Generative AI models are trained in this fashion. </p>
+<h4 id="pros-of-unsupervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#pros-of-unsupervised-learning"></a>Pros of unsupervised learning</h4>
+<ul>
+<li>exploratory analysis</li>
+<li>no data labeling</li>
+<li>flexible</li>
+<li>scalable</li>
+</ul>
+<h4 id="cons-of-unsupervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#cons-of-unsupervised-learning"></a>Cons of unsupervised learning</h4>
+<ul>
+<li>imprecise</li>
+<li>sensitive</li>
+<li>requires <em>good data</em></li>
+</ul>
+<h3 id="supervised-versus-semi-supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#supervised-versus-semi-supervised-learning"></a>Supervised versus semi-supervised learning</h3>
+<p>Semi-supervised uses labeled data for a small part of the learning and unlabeled for the rest. Good where labeled data is costly. </p>
+<h4 id="pros-of-semi-supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#pros-of-semi-supervised-learning"></a>Pros of semi-supervised learning</h4>
+<ul>
+<li>less reliant on labeling</li>
+<li>hidden pattern discovery</li>
+<li>more flexible</li>
+</ul>
+<h4 id="cons-of-semi-supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#cons-of-semi-supervised-learning"></a>Cons of semi-supervised learning</h4>
+<ul>
+<li>sensitive</li>
+<li>bias</li>
+<li>complexity</li>
+</ul>
+<h3 id="supervised-vs-self-supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#supervised-vs-self-supervised-learning"></a>Supervised vs self-supervised learning</h3>
+<p>Self supervised use unlabeled data and generate their own supervisory signals (its own labels basically). And ground truth is an emergent property of this process. Loss function uses the emergent labels for assessing performance. </p>
+<h4 id="pros-of-self-supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#pros-of-self-supervised-learning"></a>Pros of self-supervised learning</h4>
+<ul>
+<li>efficient</li>
+<li>scalable</li>
+<li>low need for labels</li>
+<li>versatile</li>
+</ul>
+<h4 id="cons-of-self-supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#cons-of-self-supervised-learning"></a>Cons of self-supervised learning</h4>
+<ul>
+<li>intensive</li>
+<li>complex</li>
+<li>unreliable</li>
+</ul>
+<h4 id="supervised-versus-reinforcement-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#supervised-versus-reinforcement-learning"></a>Supervised versus reinforcement learning</h4>
+<p>Useful for training autonomous agents such as cars. Does not use labeled data, but teaches the model through trial and error, rather than finding patterns from a dataset. </p>
+<h4 id="pros-of-reinforcement"><a aria-hidden="true" class="anchor-heading icon-link" href="#pros-of-reinforcement"></a>pros of reinforcement</h4>
+<ul>
+<li>applies to complex tasks</li>
+<li>no labels needed</li>
+<li>self correcting</li>
+<li>adaptable</li>
+</ul>
+<h4 id="cons-of-reinforcement-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#cons-of-reinforcement-learning"></a>cons of reinforcement learning</h4>
+<ul>
+<li>inconsistent results</li>
+<li>needs data from environment ( a lot)</li>
+<li>rewards hacking - models exploit loopholes</li>
+<li>task-specific </li>
+</ul>
+<h2 id="challenges-of-supervised-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#challenges-of-supervised-learning"></a>Challenges of supervised learning</h2>
+<ul>
+<li>Personnel limitations: requires expertise in domain use</li>
+<li>human involvement: Similar to personnel, requires <em>supervision</em></li>
+<li>time requirements: data must be manually labelled</li>
+<li>inflexibility: struggles labeling data outside of training dataset</li>
+<li>bias: more likely for bias to emerge</li>
+<li>overfit: can become too closely tailored to training dataset. </li>
+</ul>
+<hr>
+<strong>Children</strong>
+<ol>
+<li><a href="/commons-dws-public/notes/8wf4wj6infen1uw9mjyckd7">Logistic Regression</a></li>
+</ol>
