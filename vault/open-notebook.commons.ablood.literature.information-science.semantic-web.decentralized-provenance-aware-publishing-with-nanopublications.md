@@ -1,6 +1,6 @@
 ---
 id: etrprelxpds1n6lovd2qq0w
-title: Decentralized Provenance Aware Publishing With Nanopublications
+title: Decentralized Provenance Aware Publishing with Nanopublications
 desc: ''
 updated: 1785220653857
 created: 1785220650383
