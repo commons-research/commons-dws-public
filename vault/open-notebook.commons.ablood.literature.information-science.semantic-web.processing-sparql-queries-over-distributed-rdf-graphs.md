@@ -2,12 +2,12 @@
 id: ox544qyn2v8f1rk2x0fxzti
 title: Processing Sparql Queries Over Distributed Rdf Graphs
 desc: ''
-updated: 1786630064632
+updated: 1786715060573
 created: 1786455706442
 traitIds:
   - open-notebook-commons-ablood-literature
 ---
-# [Processing SPARQL Queries Over Distributed RDF Graphs](https://arxiv.org/abs/1411.6763)
+# [Processing SPARQL Queries Over Distributed RDF Graphs](https://arxiv.org/abs/1411.6763?utm_source=chatgpt.com)
 ## Terms
 - **local partial match**: the query partial answers in each fragment of the RDF graph
 - **SPARQL**: SPARQL Protocol and RDF Query Language.
@@ -51,3 +51,14 @@ Each method mentioned follows a set of rules for partitioning the data. But this
 #### Federated SPARQL Query Systems
 Here queries are run across multiple SPARQL endpoints, like with linked data with RDF repos linked together and collectively queriable. Commonly the metadata for each end point is precomputed, and that metadata is used to decompose the query into subqueries, across relevant endpoints. 
 #### Partial Evaluation
+They mention using partial evaluation and XML but that  SPARQL queries RDF as a graph and therefore topology is not the same intuitive idea as a hierarchical structure like an XML tree. 
+
+## 3 Background and Framework
+Again, an RDF can be a graph if the subjects and objects are treated as the vertices and the triples as labeled edges. 
+### Definition 1 (RDF Graph)
+graph is $G=\{V,E,\Sigma\}$ , where:
+- $V$ is a set of vertices of all subjects and objects in the RDF Data: $E\subseteq V \times V$ a multiset of directed edges for all triples in the RDF dataset.  $\Sigma$ is the set of labels, and for each edge $e \in E$ the edge label is its property. 
+SPARQL queries can be represented as a graph $Q$. 
+### Definition 2 (SPARQL BGP Query)
+they denote a SPARQL  BGP Query wtih $Q = \{V^Q,E^Q,\Sigma^Q\}$ where $V^Q\subseteq V \cup V_{Var}$  as a set of vertices, $V$ is all vertices in the RDF graph $G$ and $V_{Var}$ is a set of variables. $E^Q \subseteq V^Q \times V^Q$ is multiset of edges in $Q$. edge $e$ in $E^Q$ has either an edge lable in $\Sigma$ or is a variable (what?). 
+### Definition 3 (SPARQL Match)
