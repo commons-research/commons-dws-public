@@ -2,7 +2,7 @@
 id: ox544qyn2v8f1rk2x0fxzti
 title: Processing Sparql Queries Over Distributed Rdf Graphs
 desc: ''
-updated: 1786715060573
+updated: 1786776437662
 created: 1786455706442
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -62,3 +62,76 @@ SPARQL queries can be represented as a graph $Q$.
 ### Definition 2 (SPARQL BGP Query)
 they denote a SPARQL  BGP Query wtih $Q = \{V^Q,E^Q,\Sigma^Q\}$ where $V^Q\subseteq V \cup V_{Var}$  as a set of vertices, $V$ is all vertices in the RDF graph $G$ and $V_{Var}$ is a set of variables. $E^Q \subseteq V^Q \times V^Q$ is multiset of edges in $Q$. edge $e$ in $E^Q$ has either an edge lable in $\Sigma$ or is a variable (what?). 
 ### Definition 3 (SPARQL Match)
+A subgraph $M$ with $m$ vertices $\{u_1,...,u_m\}$ that are in $G$ is a match of $Q$ graph if and only if a funciton $f$ with conditions below exists:
+1) if $v_i$ is non variable $f(v_i)$ and $v_i$ have the same value/ URI
+2) i4 $v_i$ is a variable there is no constraint on the function
+3) if edger $v_iv_j$ exists in $Q$ there is a edge of the function that also exists. 
+### Definition 4 (Distributed RDF Graph)
+$G$ is a set of fragments $\mathcal{F}$, in each fragment $F_i$,, where the $F$ are specified as:
+1) $\{V_1, \ldots, V_k\}$ partitions $V$:
+   $$
+   V_i \cap V_j = \emptyset \quad (i \neq j), \qquad
+   \bigcup_{i=1}^{k} V_i = V
+   $$
+
+2) $$
+   E_i \subseteq V_i \times V_i, \qquad i=1,\ldots,k
+   $$
+
+3)  $E_i^c$ contains edges between $F_i$ and other fragments:
+   $$
+   E_i^c =
+   \left(
+   \bigcup_{\substack{1\le j\le k\\j\neq i}}
+   \{\overrightarrow{uu'} \mid u\in F_i,\ u'\in F_j,\ \overrightarrow{uu'}\in E\}
+   \right)
+   \cup
+   \left(
+   \bigcup_{\substack{1\le j\le k\\j\neq i}}
+   \{\overrightarrow{u'u} \mid u\in F_i,\ u'\in F_j,\ \overrightarrow{u'u}\in E\}
+   \right)
+   $$
+
+4) $V_i^e$ contains vertices in other fragments that are endpoints of crossing edges with $F_i$:
+   $$
+   V_i^e =
+   \left(
+   \bigcup_{\substack{1\le j\le k\\j\neq i}}
+   \{u' \mid \overrightarrow{uu'}\in E_i^c,\ u\in F_i\}
+   \right)
+   \cup
+   \left(
+   \bigcup_{\substack{1\le j\le k\\j\neq i}}
+   \{u' \mid \overrightarrow{u'u}\in E_i^c,\ u\in F_i\}
+   \right)
+   $$
+
+5) **Vertex terminology:**
+   - $V_i^e$ = extended vertices of $F_i$
+   - $V_i$ = internal vertices of $F_i$
+
+6) $\Sigma_i$ = set of edge labels in $F_i$. 
+
+### Definition 5 (Problem Statement)
+$G$ is a distributed RDF graph, with fragments $\mathcal{F}$. and $S$ is the computing nodes. Th $i$ for both corrsponds to the fragmetn being on that node. 
+## 4 Partial Evaluation
+Each site receives the complete query graph and independently computes local partial matches using only the graph fragment it stores. A local partial match represents the portion of a potential cross-fragment match visible within that fragment, even though the complete match cannot yet be confirmed from the locally available data.
+### Definition 6 (Local Partial Match)
+given a partial match, it qualifies if:
+1) the vertex is not a variable, the function and vertex have the same value/URI or the function is NULL.
+2) if the vertex is a variable, the function of it is a set of values or is NULL.
+3) if there is an edge in $Q$, then one of these conditions:
+	1) there is a matching edge in the partial match with the same property.
+	2) there is a matching edge in the partial match and the query edge's property is a variable.
+	3) there is no matching edge, but both mapped vertices are extended vertices.
+	4) the source vertex maps to NULL.
+	5) the target vertex maps to NULL.
+4) the partial match contains at least one crossing edge.
+5) if a query vertex maps to an internal vertex, all of its neighbours in $Q$ must also be mapped (not NULL) and connected by the corresponding edges with matching properties.
+6) if two query vertices map to internal vertices, there must be a weakly connected path between them in $Q$, with every vertex on that path mapping to an internal vertex.
+
+The vector of mapped query vertices is the serialization of the local partial match.
+
+**Condition 4:** ensures the partial match is part of a crossing match rather than an entirely local match.
+
+**Condition 5:** an internal vertex's neighbourhood is fully known within the fragment. Therefore, if a query vertex maps to an internal vertex, its query neighbours must also have corresponding matches in the fragment. A partial match violating this cannot contribute to a valid crossing match.
