@@ -2,7 +2,7 @@
 id: ox544qyn2v8f1rk2x0fxzti
 title: Processing Sparql Queries Over Distributed Rdf Graphs
 desc: ''
-updated: 1786776437662
+updated: 1786947108252
 created: 1786455706442
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -135,3 +135,17 @@ The vector of mapped query vertices is the serialization of the local partial ma
 **Condition 4:** ensures the partial match is part of a crossing match rather than an entirely local match.
 
 **Condition 5:** an internal vertex's neighbourhood is fully known within the fragment. Therefore, if a query vertex maps to an internal vertex, its query neighbours must also have corresponding matches in the fragment. A partial match violating this cannot contribute to a valid crossing match.
+
+## 7 Experiments
+Using benchmarks they compare their approach with the other existing approaches out there. Using the WatDiv, LUBM, and BTC benchmark datasets. Then experiments:
+1) Evaluating Each Stage's performance
+2) Evaluating Optimizations in Assembly
+3) Scalability Test
+4) Intermediate Result Size and Query Performance vs Query Decomposition Approaches
+5) Performance on RDF Datasets with One Billion Triples
+6) Impact of different paritioning strategies - tried different partitioning strategies. 
+7) Comparing with memory-based distributed RDF systems 
+8) Comparing with federated SPARQL systems
+9) Comparing with centralized RDF systems
+## 8 Conclusion
+Their method works well with any kind of partitioning, and intermediate vertices and edges are intentionally minimized. 
