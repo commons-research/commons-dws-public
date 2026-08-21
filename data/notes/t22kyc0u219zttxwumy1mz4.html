@@ -1,0 +1,8 @@
+<h1 id="pdf"><a aria-hidden="true" class="anchor-heading icon-link" href="#pdf"></a>Pdf</h1>
+<p>Working from <a href="https://superuser.com/a/1217306">https://superuser.com/a/1217306</a>
+Trying to compress a pdf</p>
+<p>compresspdf() {
+echo 'Usage: compresspdf [input file][output file] [screen|ebook|printer|prepress]'
+gs -sDEVICE=pdfwrite -dNOPAUSE -dQUIET -dBATCH -dPDFSETTINGS=/${3:-"screen"} -dCompatibilityLevel=1.4 -sOutputFile="$2" "$1"
+}</p>
+<p>compresspdf "Massive.pdf" "Small.pdf" ebook</p>
