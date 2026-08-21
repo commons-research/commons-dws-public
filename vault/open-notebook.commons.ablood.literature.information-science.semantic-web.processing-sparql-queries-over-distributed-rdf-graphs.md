@@ -2,12 +2,12 @@
 id: ox544qyn2v8f1rk2x0fxzti
 title: Processing Sparql Queries Over Distributed Rdf Graphs
 desc: ''
-updated: 1786947108252
+updated: 1787288445460
 created: 1786455706442
 traitIds:
   - open-notebook-commons-ablood-literature
 ---
-# [Processing SPARQL Queries Over Distributed RDF Graphs](https://arxiv.org/abs/1411.6763?utm_source=chatgpt.com)
+# [Processing SPARQL Queries Over Distributed RDF Graphs](https://arxiv.org/abs/1411.6763)
 ## Terms
 - **local partial match**: the query partial answers in each fragment of the RDF graph
 - **SPARQL**: SPARQL Protocol and RDF Query Language.
