@@ -1,0 +1,14 @@
+<h1 id="jupyter"><a aria-hidden="true" class="anchor-heading icon-link" href="#jupyter"></a>Jupyter</h1>
+<p>To launch a Jupyter notebook on a remote ssh</p>
+<ol>
+<li>From the local host </li>
+</ol>
+<p>ssh commons-server -L 12888:localhost:12888</p>
+<ol start="2">
+<li>On the remote host</li>
+</ol>
+<p>python -m jupyter notebook --port 12888</p>
+<p>This can be done also to acess PGadmin </p>
+<p>ex</p>
+<p>ssh commons-server -L PORT:localhost:PORT</p>
+<p>then fromn </p>

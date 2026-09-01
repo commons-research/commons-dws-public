@@ -1,0 +1,34 @@
+<h1 id="a-little-rust-trait-limitation"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-little-rust-trait-limitation"></a>A Little Rust Trait Limitation</h1>
+<h1 id="a-little-rust-trait-limitation-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-little-rust-trait-limitation-1"></a><a href="https://www.thecodedmessage.com/posts/rust-trait-limitation/">A Little Rust Trait Limitation</a></h1>
+<p>Rust compiler has a limitation with traits.</p>
+<h3 id="the-issue"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-issue"></a>The Issue:</h3>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>marker<span class="token punctuation">::</span></span><span class="token class-name">PhantomData</span><span class="token punctuation">;</span>
+
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token type-definition class-name">Simple</span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> <span class="token type-definition class-name">State</span><span class="token punctuation">;</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">do_stuff</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Parameterized</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    _phantom<span class="token punctuation">:</span> <span class="token class-name">PhantomData</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Simple</span> <span class="token keyword">for</span> <span class="token class-name">Parameterized</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">type</span> <span class="token type-definition class-name">State</span> <span class="token operator">=</span> <span class="token keyword">u32</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">fn</span> <span class="token function-definition function">do_stuff</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">// where Self: Simple</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> state<span class="token punctuation">:</span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">State</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+        <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{state}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>If you include the commented out section the compiler will throw an error. </p>
+<h3 id="trait-bounds-are-promises-callers-make-to-callees"><a aria-hidden="true" class="anchor-heading icon-link" href="#trait-bounds-are-promises-callers-make-to-callees"></a>Trait bounds are promises callers make to callees</h3>
+<p>a function signature constitutes a contract between caller and callee -> specifying types of values the caller needs to provide -> and which value types the calle can expect to receive. </p>
+<h3 id="trait-bounds-are-capabilities-callees-rely-on"><a aria-hidden="true" class="anchor-heading icon-link" href="#trait-bounds-are-capabilities-callees-rely-on"></a>Trait bounds are capabilities callees rely on</h3>
+<p>trai bounds are promises for the caller, they must be held. </p>
+<p>From the above example it <em>seems</em> like the compiler should have enough context to figure out we are using <code>State</code> and that it is <code>u32</code>, but when compiling <code>do_stuff()</code> the compiler will prefer the version found in the <code>where</code> clause. and this tells us nothing about the <code>Self::state</code> and <code>u32</code>. You can use correct syntax for this but the author's suggestion is: you shouldn't need that syntax. </p>
+<h3 id="whys-it-matter"><a aria-hidden="true" class="anchor-heading icon-link" href="#whys-it-matter"></a>Why's it matter?</h3>
+<p>It is an unnecessary limitation of the current Rust version.</p>

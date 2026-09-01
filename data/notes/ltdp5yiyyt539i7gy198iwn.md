@@ -1,0 +1,1 @@
+A place for Rust concepts, blogs, etc that I take notes on

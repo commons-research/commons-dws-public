@@ -1,0 +1,19 @@
+<h1 id="splatter-simulation-of-single-cell-rna-sequencing"><a aria-hidden="true" class="anchor-heading icon-link" href="#splatter-simulation-of-single-cell-rna-sequencing"></a>Splatter Simulation Of Single Cell Rna Sequencing</h1>
+<h1 id="splatter-simulation-of-single-cell-rna-sequencing-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#splatter-simulation-of-single-cell-rna-sequencing-data"></a><a href="https://link.springer.com/article/10.1186/s13059-017-1305-0">Splatter: simulation of single-cell RNA sequencing data</a></h1>
+<p>Splatter creates an interface for simulating RNA data. Their simulation has 2 steps: estimate parameters for sim from real dataset and then use those estimates to generate the synthetic dataset. </p>
+<h2 id="simulation-models"><a aria-hidden="true" class="anchor-heading icon-link" href="#simulation-models"></a>Simulation models</h2>
+<p>Their model is called Splat, but they also include other models to use as well.</p>
+<h2 id="simple"><a aria-hidden="true" class="anchor-heading icon-link" href="#simple"></a>Simple</h2>
+<p>This is a basic sim using negative binomial distribution. </p>
+<h2 id="lun"><a aria-hidden="true" class="anchor-heading icon-link" href="#lun"></a>Lun</h2>
+<p>This is build on Simple and adds scaling factors for each cell. </p>
+<h2 id="lun-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#lun-2"></a>Lun 2</h2>
+<p>Exntension of the Lun model, and replace cell factors iwth library size factors, and batch effects that are applied to groups of cells in same batch.</p>
+<h2 id="scdd"><a aria-hidden="true" class="anchor-heading icon-link" href="#scdd"></a>scDD</h2>
+<p>checks differential expression between two groups of cells. </p>
+<h2 id="basics"><a aria-hidden="true" class="anchor-heading icon-link" href="#basics"></a>BASiCS</h2>
+<p>separates variation in scRNA-seq data into bio and technical components. </p>
+<h2 id="splat"><a aria-hidden="true" class="anchor-heading icon-link" href="#splat"></a>Splat</h2>
+<p>Their model. Captures features from real scRNA-Seq data. Usies parametric distirbutions with hyper-parameters based on real data estimates. </p>
+<h2 id="conclusion"><a aria-hidden="true" class="anchor-heading icon-link" href="#conclusion"></a>Conclusion</h2>
+<p>Splatter allows for simulations and their model Splat performs well, amongst the other models available on Splatter. </p>
