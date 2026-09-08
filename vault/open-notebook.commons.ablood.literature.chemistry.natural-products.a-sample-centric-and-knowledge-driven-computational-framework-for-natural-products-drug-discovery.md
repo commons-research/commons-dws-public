@@ -4,7 +4,7 @@ title: >-
   A Sample Centric And Knowledge Driven Computational Framework For Natural
   Products Drug Discovery
 desc: ''
-updated: 1787060583143
+updated: 1788852151595
 created: 1787060581996
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -44,3 +44,23 @@ Data is processed by:
 3) chemical structure annotation using ISDB-LOTUS
 4) chemical structure and chemical class annotationusing SIRIUS' FingerID and CANOPUS
 Then the data is converted into RDF and a KG is constructed from the triples. Then you can run SPARQL queries over the data. 
+---
+# PhD Connection Questions
+## Problem being solved
+Batch effects caused by recording data in different batches, need for recomputation of novel samples into already analyzed data. This is due to being set-centric and divides things up into different separate projects that are isolated (siloed). 
+## Data inputs
+list of LC-MS features: m/z, RT, area/intensity, and MS/MS spectrum. 
+## Assumptions about input data
+Large number of samples in the dataset. 
+## Transformation pipeline
+Each sample is used individually for taxonomic metadata standardization, feature detection, structural annotation, and FBMN (feature based molecular networking).
+## Semantic model / ontologies
+the data is transformed into RDF (resource description framework) triple data (subject - predicate - object) and placed into a knowledge graph. Data could look like: molecule A found in Species X. 
+
+MS data starts by gaining a DOI (from MassIVE) and USI (universal spectrum identifier), and metadata includes:
+- LC-HRMS2 filename(s)
+- sample id
+- sample type
+- sample source id
+- sample's source taxonomical denomination
+Each sample is organized as a directory. 
