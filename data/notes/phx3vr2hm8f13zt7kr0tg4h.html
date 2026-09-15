@@ -1,0 +1,31 @@
+<h1 id="development-of-a-lightweight-ro-crate-rust-library-for-automated-synthetic-biology"><a aria-hidden="true" class="anchor-heading icon-link" href="#development-of-a-lightweight-ro-crate-rust-library-for-automated-synthetic-biology"></a>Development Of A Lightweight Ro Crate Rust Library For Automated Synthetic Biology</h1>
+<h1 id="ro-crate-rs-development-of-a-lightweight-ro-crate-rust-library-for-automated-synthetic-biology"><a aria-hidden="true" class="anchor-heading icon-link" href="#ro-crate-rs-development-of-a-lightweight-ro-crate-rust-library-for-automated-synthetic-biology"></a><a href="https://www.biorxiv.org/content/10.64898/2026.01.22.701040v1">ro-crate-rs: Development of a Lightweight RO-Crate Rust Library for Automated Synthetic Biology</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>RO-Crate:</strong> framework that packages research data with machine readable metadata.</li>
+<li><strong><a href="https://github.com/intbio-ncl/ro-crate-rs">ro-crate-rs</a></strong>: The author's rust based implementation</li>
+<li><strong><a href="https://bioconvs.org/biofoundries-a-revolution-for-research-and-global-economy/">biofoundaries</a></strong>: high throughput automated facilities for bio systems. </li>
+<li><strong>DBTL</strong>: (design-build-test-learn) the cycle used in labs for research and development.</li>
+<li><strong><a href="https://json-ld.org/">JSON-LD</a></strong>: A json based linked data format for linked open data (LOD)</li>
+</ul>
+<h2 id="intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#intro"></a>Intro</h2>
+<p>Biofoundaries are expensive. They are not used as frequently as a result and ad hoc solutions are creating compatibility issues. There are already workflows and tools that exist to help remedy this data drift. They propose a tool that structures data produced in silos and presents them for downstream consumption.</p>
+<h2 id="background"><a aria-hidden="true" class="anchor-heading icon-link" href="#background"></a>Background</h2>
+<p>RO-crate allows for packaging data with structured, machine readable metadata. Uses JSON-LD. They present their own version of the RO-Crate suite of tools, built in rust. Comes with a python API, for ease of crate generation (RO-Crate, not crates.io crate). </p>
+<h2 id="results"><a aria-hidden="true" class="anchor-heading icon-link" href="#results"></a>Results</h2>
+<h3 id="core-ro-crate-rs-library"><a aria-hidden="true" class="anchor-heading icon-link" href="#core-ro-crate-rs-library"></a>Core ro-crate-rs Library</h3>
+<p>Implements the RO-Crate JSON-LD model using strongly typed Rust data structures with minimal abstraction over the specification. Supports the four core entity types (MetadataDescriptor, RootDataEntity, DataEntity, and ContextualEntity) while allowing arbitrary JSON-LD properties through dynamic fields.</p>
+<h3 id="reading-and-writing"><a aria-hidden="true" class="anchor-heading icon-link" href="#reading-and-writing"></a>Reading and Writing</h3>
+<p>Uses <strong>Serde</strong> for serialization and deserialization between RO-Crate JSON-LD and Rust types. Supports reading from JSON files, JSON strings, and zipped RO-Crates without full extraction.</p>
+<h3 id="validation"><a aria-hidden="true" class="anchor-heading icon-link" href="#validation"></a>Validation</h3>
+<p>Strong typing enforces required RO-Crate fields and valid JSON-LD types at compile time. Runtime validation provides permissive, warning, and strict modes for checking structural and vocabulary conformance.</p>
+<h3 id="packaging"><a aria-hidden="true" class="anchor-heading icon-link" href="#packaging"></a>Packaging</h3>
+<p>RO-Crates can be packaged as portable, self-contained archives while preserving identifiers and rewriting file paths as needed. Packaging automatically assigns stable UUID URNs and can import external files into the archive.</p>
+<h3 id="file-conversion"><a aria-hidden="true" class="anchor-heading icon-link" href="#file-conversion"></a>File Conversion</h3>
+<p>Supports exporting RO-Crates to CSV and Apache Parquet. Tabular output follows a graph-subject-predicate-object layout inspired by N-Quads.</p>
+<h3 id="python-api"><a aria-hidden="true" class="anchor-heading icon-link" href="#python-api"></a>Python API</h3>
+<p>Provides a lightweight Python interface built on the Rust core using dictionaries instead of schema-specific classes. Structural validation and RO-Crate compliance are still enforced by the underlying Rust implementation.</p>
+<h3 id="cli-tool"><a aria-hidden="true" class="anchor-heading icon-link" href="#cli-tool"></a>CLI Tool</h3>
+<p>Provides command-line access for creating, inspecting, validating, modifying, and saving RO-Crates. Intended for scripting, pipelines, and lightweight interaction rather than large-scale crate construction.</p>
+<h2 id="conclusion"><a aria-hidden="true" class="anchor-heading icon-link" href="#conclusion"></a>Conclusion</h2>
+<p>they present a tool with many features for developing ro-crate tools and their repo enforces the specs presented by RO-Crate. </p>
