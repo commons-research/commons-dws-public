@@ -2,7 +2,7 @@
 id: p2iy2x7kvtud41wkv6w4mda
 title: A Simple Standard For Sharing Ontological Mappings Sssom
 desc: ''
-updated: 1789560068229
+updated: 1789561744465
 created: 1789560065344
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -61,3 +61,19 @@ SSSOM is managed as a LINKML model. LinkML allows for managing schema by:
 2) Use LinkML utility classes to automatically convert instnace data into common representations such as JSON / RDF
 3) use LinkML meta models to automatically generate python dataclasses and implement data validators etc. 
 4) SSSOM schema in YAML makes it readable for experts 
+
+## SSSOM software ecosystem
+they have tools such as SSSOM-py for working with SSSOM. 
+
+## Why we need it
+- harmonizing ontologies
+- browsing and cross walking mappings
+- Data collaboration
+- finding and using mappings
+## Limitations
+1) mappings have no context (always true)
+2) complex mapping rules are hard to capture due to simple, flat data model
+3) mappings are not idempotent (metadta elements can modify other ones)
+4) lack support for complex mappings
+## Future work
+help train people to build better mpapings and mapping repos. evolve sssom. 
