@@ -1,0 +1,85 @@
+<h1 id="prov-o-the-prov-ontology"><a aria-hidden="true" class="anchor-heading icon-link" href="#prov-o-the-prov-ontology"></a>Prov O The Prov Ontology</h1>
+<h1 id="prov-o-the-prov-ontology-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#prov-o-the-prov-ontology-1"></a><a href="https://www.w3.org/TR/prov-o/">PROV-O: The PROV Ontology</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong><a href="https://www.w3.org/TR/prov-dm/">PROV Data Model (PROV-DM)</a></strong>: provenance data model defining concepts for describing the origin and history of data.</li>
+<li><strong>PROV-O</strong>: OWL ontology implementing PROV-DM for RDF/Linked Data.</li>
+<li><strong>Provenance</strong>: information describing where data came from, how it was produced, and by whom.</li>
+<li><strong>Entity</strong>: a physical, digital, conceptual, or other thing.</li>
+<li><strong>Activity</strong>: an action or process that uses or generates entities.</li>
+<li><strong>Agent</strong>: a person, organization, or software responsible for an activity or entity.</li>
+<li><strong>Bundle</strong>: a named collection of provenance assertions which can itself have provenance.</li>
+<li><strong>Qualified relation</strong>: a provenance relationship with additional metadata (time, role, plan, etc.).</li>
+</ul>
+<h2 id="intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#intro"></a>Intro</h2>
+<p>PROV-O provides an OWL ontology implementing the PROV Data Model. It standardizes how provenance information is represented, exchanged, and integrated across different systems. The ontology is lightweight, extensible, and designed to support interoperability. </p>
+<h2 id="core-model"><a aria-hidden="true" class="anchor-heading icon-link" href="#core-model"></a>Core Model</h2>
+<p>Everything is built around three concepts:</p>
+<ul>
+<li><strong>Entity</strong>: data, documents, files, datasets, models, etc.</li>
+<li><strong>Activity</strong>: processes that consume or produce entities.</li>
+<li><strong>Agent</strong>: people, organizations, or software responsible for activities.
+Together they form provenance graphs describing how information flows through a system. </li>
+</ul>
+<h2 id="core-relationships"><a aria-hidden="true" class="anchor-heading icon-link" href="#core-relationships"></a>Core Relationships</h2>
+<p>Common provenance relationships include:</p>
+<ul>
+<li>Entity <strong>wasGeneratedBy</strong> Activity</li>
+<li>Activity <strong>used</strong> Entity</li>
+<li>Entity <strong>wasDerivedFrom</strong> Entity</li>
+<li>Entity <strong>wasAttributedTo</strong> Agent</li>
+<li>Activity <strong>wasAssociatedWith</strong> Agent</li>
+<li>Agent <strong>actedOnBehalfOf</strong> Agent</li>
+<li>Activity <strong>wasInformedBy</strong> another Activity</li>
+</ul>
+<p>These relationships can be chained together to reconstruct complete provenance histories.</p>
+<h2 id="design-philosophy"><a aria-hidden="true" class="anchor-heading icon-link" href="#design-philosophy"></a>Design Philosophy</h2>
+<p>The ontology is introduced in increasing levels of detail:</p>
+<ol>
+<li>Starting Point terms (core concepts)</li>
+<li>Expanded terms (additional classes and relationships)</li>
+<li>Qualified terms (add metadata to relationships)</li>
+</ol>
+<p>Most applications only need the Starting Point vocabulary. </p>
+<h2 id="expanded-terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#expanded-terms"></a>Expanded Terms</h2>
+<p>Adds richer concepts including:</p>
+<ul>
+<li>Person</li>
+<li>Organization</li>
+<li>SoftwareAgent</li>
+<li>Collection</li>
+<li>Bundle</li>
+<li>Plan</li>
+<li>Location</li>
+</ul>
+<p>Also introduces more specific provenance relationships such as:</p>
+<ul>
+<li>revision</li>
+<li>quotation</li>
+<li>primary source</li>
+<li>specialization</li>
+<li>alternate versions</li>
+</ul>
+<h2 id="qualified-relationships"><a aria-hidden="true" class="anchor-heading icon-link" href="#qualified-relationships"></a>Qualified Relationships</h2>
+<p>Binary relationships can be "qualified" with additional context.</p>
+<p>Instead of simply saying:</p>
+<ul>
+<li>Activity used Entity</li>
+</ul>
+<p>you can also describe:</p>
+<ul>
+<li>when it happened</li>
+<li>the role involved</li>
+<li>the plan followed</li>
+<li>additional metadata</li>
+</ul>
+<p>This allows provenance to become much more expressive without changing the underlying graph. </p>
+<h2 id="relevance"><a aria-hidden="true" class="anchor-heading icon-link" href="#relevance"></a>Relevance</h2>
+<ul>
+<li>Standard ontology for provenance in RDF.</li>
+<li>Complements FAIR and Linked Data principles.</li>
+<li>Enables reproducibility and traceability.</li>
+<li>Can model data transformations across biological workflows.</li>
+<li>Useful for recording dataset lineage, preprocessing, algorithm execution, and software versions.</li>
+<li>Natural complement to nanopublications and Research Objects.</li>
+</ul>

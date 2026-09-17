@@ -1,0 +1,16 @@
+<h1 id="curie"><a aria-hidden="true" class="anchor-heading icon-link" href="#curie"></a>Curie</h1>
+<h1 id="curie-w3"><a aria-hidden="true" class="anchor-heading icon-link" href="#curie-w3"></a><a href="https://www.w3.org/TR/curie/">Curie (w3)</a></h1>
+<p>Curie is a datatype that allows for definition and scoped names that map to URIs. CURIE: Compact URI. CURIEs are a superset of <strong>QNames</strong>. </p>
+<ul>
+<li>designed to be used in attribute values</li>
+<li>expand to any IRI. QNames are value pairs</li>
+<li>usable in non-XML grammars (SPARQL), and used in XML languages that do not support XML namespaces. </li>
+</ul>
+<h2 id="usage"><a aria-hidden="true" class="anchor-heading icon-link" href="#usage"></a>Usage</h2>
+<p>Used in same places as QNames. </p>
+<p>SPARQL Example: </p>
+<pre class="language-sparql"><code class="language-sparql"><span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span>   <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span> 
+<span class="token keyword">SELECT</span> <span class="token variable">?x</span> <span class="token variable">?name</span> 
+<span class="token keyword">WHERE</span>  <span class="token punctuation">{</span> <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">}</span>
+</code></pre>
+<p><code>PREFIX</code> keyword defines the prefix used in CURIE identifiers. </p>

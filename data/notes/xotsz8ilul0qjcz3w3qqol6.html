@@ -1,0 +1,58 @@
+<h1 id="battery-packs-lets-talk-about-crates-baby"><a aria-hidden="true" class="anchor-heading icon-link" href="#battery-packs-lets-talk-about-crates-baby"></a>Battery Packs Lets Talk About Crates Baby</h1>
+<h1 id="battery-packs-lets-talk-about-crates-baby-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#battery-packs-lets-talk-about-crates-baby-1"></a><a href="https://smallcultfollowing.com/babysteps/blog/2026/07/15/battery-packs/">Battery packs: Let's talk about crates, baby</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>Battery packs</strong>: curated list of rust crates organized around a theme/goal, e.g. making a <a href="https://crates.io/crates/cli-battery-pack">CLI Tool</a></li>
+</ul>
+<h2 id="intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#intro"></a>Intro</h2>
+<p>Battery packs try to address the need for default choices for a new project/new developer in rust.
+if you install <code>cargo-bp</code> can run:</p>
+<pre class="language-bash"><code class="language-bash">cargo bp list
+</code></pre>
+<p>and see battery packs. Then can add battery packs to project like:</p>
+<pre class="language-bash"><code class="language-bash">cargo bp <span class="token function">add</span> cli
+</code></pre>
+<h2 id="lets-talk-about-you-and-me"><a aria-hidden="true" class="anchor-heading icon-link" href="#lets-talk-about-you-and-me"></a>Let's talk about you and me</h2>
+<p>key idea is that anyone can publish  a battery pack. syntax is <code>{name}-battery-pack</code>. So people building stuff like what you wanna build become the ones recommending the battery packs to use</p>
+<h2 id="creating-a-battery-pack"><a aria-hidden="true" class="anchor-heading icon-link" href="#creating-a-battery-pack"></a>Creating a battery pack</h2>
+<p>creating is easy:
+<code>cargo bp new battery-pack</code>
+and then just follow the prompts. Then you publish to crates.io to get it out there. </p>
+<h2 id="giving-it-some-structure"><a aria-hidden="true" class="anchor-heading icon-link" href="#giving-it-some-structure"></a>Giving it some structure</h2>
+<p>Can group dependencies/features into categories.
+──────────────────────────────────────────────────────────────────
+▼ Concurrency Framework (pick at most one)</p>
+<blockquote>
+<p>○ ✦ embassy [embassy-executor, embassy-sync, embassy-time]
+○ ✦ rtic [cortex-m, rtic]    RTIC — interrupt-driven real-time</p>
+</blockquote>
+<p> ▼ Display &#x26; Graphics (pick any number)
+[ ] ✦ display-ssd1306 [embedded-graphics, ssd1306]    SSD1306
+[ ] ✦ display-st7789 [embedded-graphics, st7789]    ST7789 col</p>
+<p> ▼ Popular Drivers (pick any number)
+[ ] ✦ display-ssd1306 [embedded-graphics, ssd1306]    SSD1306
+[ ] ✦ display-st7789 [embedded-graphics, st7789]    ST7789 col
+[ ] ✦ sensor-bme280 [bme280]    BME280 temperature/humidity/pr
+[ ] ✦ sensor-lis3dh [lis3dh]    LIS3DH 3-axis accelerometer (I
+[ ] ✦ usb-device [usb-device, usbd-serial]    USB device stack</p>
+<p> ▼ Hardware Abstraction Layer (pick at most one)
+○ ✦ atsamd [atsamd-hal, cortex-m-rt, critical-section-impl, co
+○ ✦ esp32 [embedded-hal, esp-hal]    ESP32 (Xtensa, WiFi + BT,
+○ ✦ esp32c3 [embedded-hal, esp-hal]    ESP32-C3 (RISC-V, WiFi
+○ ✦ esp32s3 [embedded-hal, esp-hal]    ESP32-S3 (Xtensa, WiFi
+○ ✦ nrf52832 [cortex-m-rt, critical-section-impl, cortex-m, em
+○ ✦ nrf52840 [cortex-m-rt, critical-section-impl, cortex-m, em
+○ ✦ nrf9160 [cortex-m-rt, critical-section-impl, cortex-m, emb
+○ ✦ rp2040 [cortex-m-rt, critical-section-impl, cortex-m, embe
+○ ✦ stm32f0 [cortex-m-rt, critical-section-impl, cortex-m, emb
+embedded-battery-pack v0.1.0  ↑↓/jk Navigate | Space Toggle | ←/→</p>
+<h2 id="lets-talk-about-all-the-good-things"><a aria-hidden="true" class="anchor-heading icon-link" href="#lets-talk-about-all-the-good-things"></a>Let's talk about all the good things...</h2>
+<p>this could absolutely become commercially supported by bigger actors and grow into a robust go to tool</p>
+<h3 id="supporting-maintainers"><a aria-hidden="true" class="anchor-heading icon-link" href="#supporting-maintainers"></a>Supporting maintainers</h3>
+<p>If things become a battery pack member and that battery pack is a default for many projects then it helps justify supporting a maintainer financially for big players. </p>
+<h3 id="fostering-interoperability"><a aria-hidden="true" class="anchor-heading icon-link" href="#fostering-interoperability"></a>Fostering interoperability</h3>
+<p>it could influence the interop discussion and drive interoperability through battery packs guiding default means of doing things. </p>
+<h2 id="-and-the-bad-things-that-could-be"><a aria-hidden="true" class="anchor-heading icon-link" href="#-and-the-bad-things-that-could-be"></a>... and the bad things that could be</h2>
+<p>anyone can publish them. could have bad actors. </p>
+<h3 id="avoiding-stagnation"><a aria-hidden="true" class="anchor-heading icon-link" href="#avoiding-stagnation"></a>Avoiding stagnation</h3>
+<p>battery packs are designed to be able to evolve. </p>

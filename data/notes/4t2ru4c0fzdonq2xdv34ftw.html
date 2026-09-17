@@ -1,0 +1,87 @@
+<h1 id="a-parallel-and-distributed-rust-library-for-core-decomposition-on-large-graphs"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-parallel-and-distributed-rust-library-for-core-decomposition-on-large-graphs"></a>A Parallel And Distributed Rust Library For Core Decomposition On Large Graphs</h1>
+<p><a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">A Parallel and Distributed Rust Library for Core Decomposition on Large Graphs.pdf (Private)</a></p>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes:</h2>
+<p>No link to the actual tool found. The tool the paper is about doesn't have a link to it.
+<a href="https://arxiv.org/abs/2512.00233">source</a></p>
+<h1 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h1>
+<ul>
+<li><strong>K-core decomposition</strong>: Provides hierarchical peeling of a network, finding denser and denser subgraphs that reveal features of the data.</li>
+<li><strong>k-core</strong>: Maximal subgraph where every node has at least <em>k</em> neighbors inside the subgraph.</li>
+<li><strong>coreness</strong>: Highest <em>k- where a node belongs to the </em>k*th core.</li>
+<li><strong>shared-memory system</strong>: Parallel computation where threads operate on the same memory space.</li>
+<li><strong>message passing</strong>: Nodes communicate updates to neighbors instead of using full global graph knowledge.</li>
+<li><strong>synchronization overhead</strong>: Extra runtime cost from coordinating threads safely.</li>
+<li><strong>contention</strong>: Multiple threads trying to access/update the same data at the same time.</li>
+<li><strong>cache-friendly data structure</strong>: Data layout that improves CPU cache use, often faster than theoretically better structures.</li>
+<li><strong>Rayon</strong>: Rust crate for high-level parallelism.</li>
+<li><strong>Mutex</strong>: Lock used to protect shared data from unsafe concurrent access.</li>
+<li><strong>raw pointer</strong>: Lower-level Rust pointer that avoids some safety checks, but requires <code>unsafe</code>.</li>
+</ul>
+<h1 id="intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#intro"></a>Intro</h1>
+<p>Graph structured data allows for reasoning about interactions, dependencies, and optimizations in heterogeneous systems. Graph abstraction is used in social networks, web graphs, cybersecurity, biological networks, distributed systems, cloud infrastructure, and federated learning.</p>
+<p><em>K-core decomposition</em> is useful because it gives an interpretable way to find dense/resilient parts of a graph.</p>
+<p>For semantic web / knowledge graph work, this is relevant because RDF/KG data can also be treated as large graph structured data. K-core could help identify dense regions, central entities, structurally important concepts, or anomalous parts of the graph.</p>
+<p>Problem:</p>
+<ul>
+<li>sequential k-core algorithms exist</li>
+<li>but modern graphs are too large for single-core computation</li>
+<li>graph algorithms are hard to parallelize because of irregular memory access, dependencies, and load imbalance</li>
+</ul>
+<h1 id="main-contribution"><a aria-hidden="true" class="anchor-heading icon-link" href="#main-contribution"></a>Main contribution</h1>
+<p>The paper implements a Rust-based parallel library for k-core decomposition.
+They adapt the distributed algorithm from Montresor et al. into a shared-memory Rust implementation.
+They build 3 versions:</p>
+<ol>
+<li><strong>SequentialK</strong>: baseline implementation</li>
+<li><strong>ParallelK</strong>: parallel message-passing implementation</li>
+<li><strong>FastK</strong>: optimized version with less synchronization and better data layout</li>
+</ol>
+<h1 id="sequentialk"><a aria-hidden="true" class="anchor-heading icon-link" href="#sequentialk"></a>SequentialK</h1>
+<p>SequentialK is the correctness baseline.
+Each node stores:</p>
+<ul>
+<li>node id</li>
+<li>current coreness estimate</li>
+<li>neighbor list</li>
+<li>estimates for neighbor coreness values</li>
+<li>message queue for received updates
+Nodes only communicate through messages, mimicking a distributed system.</li>
+</ul>
+<h1 id="parallelk"><a aria-hidden="true" class="anchor-heading icon-link" href="#parallelk"></a>ParallelK</h1>
+<p>ParallelK adds multithreading on top of SequentialK.
+They test:</p>
+<ol>
+<li>parallel iterators</li>
+<li>thread pools</li>
+<li>native Rust threads
+Rayon made parallelism easier, but native Rust threads gave better performance in their experiments.
+Message queues use <code>Mutex</code> so threads can safely access/update them.
+Problem:</li>
+</ol>
+<ul>
+<li>locks and barriers add overhead</li>
+<li>too much synchronization can reduce the gain from parallelism</li>
+</ul>
+<h1 id="fastk"><a aria-hidden="true" class="anchor-heading icon-link" href="#fastk"></a>FastK</h1>
+<p>FastK is the optimized implementation.
+Main changes:</p>
+<ul>
+<li>uses global shared vectors for estimates and active nodes</li>
+<li>reduces per-node duplicated state</li>
+<li>uses selective message propagation</li>
+<li>uses activation scheduling</li>
+<li>switches toward sequential-like processing when few nodes remain activ
+Reported result:</li>
+<li>up to 11x speedup on 16 threads</li>
+<li>up to two orders of magnitude faster than NetworkX</li>
+</ul>
+<h1 id="semantic-web-relevance"><a aria-hidden="true" class="anchor-heading icon-link" href="#semantic-web-relevance"></a>Semantic web relevance</h1>
+<p>Possible uses for semantic web / knowledge graph work:</p>
+<ul>
+<li>identify dense concept/entity regions</li>
+<li>find central entities beyond degree</li>
+<li>detect graph anomalies</li>
+<li>profile structural bias in a KG</li>
+<li>compare subgraphs/classes by coreness distribution</li>
+<li>scalable graph preprocessing before downstream ML</li>
+</ul>

@@ -1,0 +1,8 @@
+<h1 id="port-forwarding"><a aria-hidden="true" class="anchor-heading icon-link" href="#port-forwarding"></a>Port Forwarding</h1>
+<p>Let's say you want to open on your local machine a port that is on a remote machine. You can do this with SSH port forwarding.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">ssh</span> commons-server -L <span class="token number">8888</span>:localhost:8890
+</code></pre>
+<p>This will cease existing once your bash session is closed. If you want to keep it running, you can use <code>autossh</code>.</p>
+<pre class="language-bash"><code class="language-bash">autossh -M <span class="token number">0</span> -f -N -L <span class="token number">8888</span>:localhost:8890 commons-server
+</code></pre>
+<p>ssh metabomaps.nprod.net -L 8888:localhost:80</p>
