@@ -1,0 +1,171 @@
+<h1 id="linkml-an-open-data-modeling-framework"><a aria-hidden="true" class="anchor-heading icon-link" href="#linkml-an-open-data-modeling-framework"></a>Linkml An Open Data Modeling Framework</h1>
+<h1 id="linkml-an-open-data-modeling-framework-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#linkml-an-open-data-modeling-framework-1"></a><a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giaf152/8378082">LinkML: an open data modeling framework</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>LinkML</strong>: Linked Data Modeling Language - open framework that simplifies the process of authoring, validating, and sharing data. </li>
+<li><strong>LinkML-Map</strong>: tool for mapping schema with LinkML</li>
+</ul>
+<h2 id="introduction"><a aria-hidden="true" class="anchor-heading icon-link" href="#introduction"></a>Introduction</h2>
+<p>Data publishing is not consistent in structure or format. Additionally, missing/misaligned metadata exascerbate these issues (no units etc). </p>
+<p>Support for shared vocabularies/ontologies with external data are lacking from existing tools. Domain meaning is left out of the data structures. </p>
+<ul>
+<li>Simple</li>
+<li>hierarchical</li>
+<li>reusable</li>
+<li>computable</li>
+</ul>
+<h2 id="the-linkml-framework"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-linkml-framework"></a>The LinkML framework</h2>
+<p>allows for converting data to widely used formats like JSON Schema, SQL, RDF, OWL, SHACL, Python (this is a language?). Also generates machine readable documentation, and is FAIR. </p>
+<h2 id="example-notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#example-notes"></a>Example notes</h2>
+<ul>
+<li>identifiers are not consistent</li>
+<li>headers were an issue</li>
+<li>units not standardized within dataset</li>
+<li>again datatypes not standardized</li>
+<li>values not following a predictable value range (lake, sand, human gut)</li>
+<li>missing fields</li>
+</ul>
+<h2 id="the-linkml-standard"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-linkml-standard"></a>The LinkML standard</h2>
+<p>Organizes data in a machin readable manner. </p>
+<p>The LinkML schema consist of 4 main elements:
+1) classes
+2) slots
+3) types
+4) enumerations
+<strong>Definitions</strong>:</p>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Elements</th><th>Description</th><th>Example</th></tr></thead><tbody><tr><td>Schema</td><td>Defines structure of data model, includes metadata, <em>prefixes</em>, imports</td><td>NMDC</td></tr><tr><td>Classes</td><td>Represents the entities in the model, linked together via <em>slots</em></td><td>sample, study</td></tr><tr><td>Slots</td><td>attributes/properties of classes, describing characteristics an relationships</td><td>Lat/Long</td></tr><tr><td>Types</td><td>Data types that are held in slots, e.g. string, int</td><td>String, Integer, etc</td></tr><tr><td>Enumerations</td><td>Controlled vocabs that constrain slot values and/or link to external ontologies</td><td>Environment Ontology terms</td></tr><tr><td>Mappings</td><td>Link Schema elements to external standards or ontologies (URIs)</td><td>class_uri:biosample</td></tr></tbody></table></div>
+<p>Their model has robust built in mechanisms to link knowledge:
+1) connecting model calsses within the schema using typed relationships
+2) establish class hierarchies to support specialization of concepts(?)
+3) mapping to data standards/ontologies for ==interoperability==. </p>
+<p>Their example: Sample class linked to related classes, e.g. Sample Site, using slots like "collected from" (this does seem triple like?). </p>
+<p>==mapping==: alignment of schema elements (classes, slots, enumerations) with terms from an ontology. Usually uses the URI (Uniform Resource Identifier). </p>
+<p>Slots are like spreadsheet/db columns. Slots have a range (String, Integer, etc). They are able to have metadata. Slots are organized into checklists. <strong>Checklists</strong> define a group of attributes (slots) to describe relevant metadata. LinkML-Map allows for easily extending and mapping schema. </p>
+<p>Use of LinkML <em>could</em> help define data and schema metadata for publishing that follows FAIR principles. </p>
+<h2 id="linkml-data-life-cycle"><a aria-hidden="true" class="anchor-heading icon-link" href="#linkml-data-life-cycle"></a>LinkML data life cycle</h2>
+<p>5 Stages of the life cycle:
+1) schema creation and reuse
+1) define classes, slots (and types), enumerations, links between classes
+2) reuse existing models
+2) apply best practices
+1) esnure all classes have descriptions
+2) ensure all slots have types
+3) customize best practices (optioanal)
+3) reuse ontologies
+1) ad slot, URIs (classes) and mappings
+2) define enumerations with ontology defined values
+4) validate data
+1) specify input data serialization (linkml-validate)
+2) customize validation rules (optional)
+5) manage schema evolution (LinkML Map)</p>
+<p>LinkLM has a whole ecosystem of tools:</p>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tool name</th><th>Description</th><th>Life Cycle stage</th></tr></thead><tbody><tr><td>linkml-project-copier</td><td>copier-based starter project for scaffolding new schemas with structure</td><td>Create Schema</td></tr><tr><td>schemasheets</td><td>define schemas in spreadsheet format and convert them into LinkML YAML</td><td>Create schema</td></tr><tr><td>schema-automator</td><td>auto-gen LinkML schemas from artifacts e.g. spreadsheets</td><td>create schema</td></tr><tr><td>gen-python, gen-pydantic</td><td>serializes python classes to reflect the schema struct, for validation, serialization, type enforcement</td><td>create schema</td></tr><tr><td>gen-rdf, gen-owl</td><td>serializes linkml model as RDF triples using RDFs and SKOS to represent schema struct and semantics</td><td>create schema</td></tr><tr><td>gen-json-schema, gen-jsonid</td><td>converst schema into json schema to validate json data files and outputs json-ld filesthat support semantic annotation and LD</td><td>create schema</td></tr><tr><td>linkml-lint</td><td>validates schema conformance to community best practices using customizable linting rules</td><td>apply best practices</td></tr><tr><td>ontogpt</td><td>tool to suggest ontology mappings and values sets using llms</td><td>reuse ontologies</td></tr><tr><td>linkml-validate</td><td>validates input data against a linkml schema</td><td>validate data</td></tr><tr><td>linkml-map</td><td>supports schema alignment, transformation, evolution</td><td>manage schema evolution</td></tr><tr><td>linkml-store</td><td>adds a layer of abstraction between data models and underlying tech, to allow migration and avoid changing model</td><td>manage schema evolution</td></tr></tbody></table></div>
+<h2 id="apply-best-practices"><a aria-hidden="true" class="anchor-heading icon-link" href="#apply-best-practices"></a>Apply best practices</h2>
+<p>LinkML does this through linting schema. </p>
+<h2 id="conclusion"><a aria-hidden="true" class="anchor-heading icon-link" href="#conclusion"></a>Conclusion</h2>
+<p>LinkML reduces complexity, heterogeneity between datasets, and reduces single use data models. It is also compliant with FAIR standards. </p>

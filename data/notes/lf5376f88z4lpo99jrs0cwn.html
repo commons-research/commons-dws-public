@@ -1,0 +1,50 @@
+<h1 id="2025-02-21"><a aria-hidden="true" class="anchor-heading icon-link" href="#2025-02-21"></a>2025-02-21</h1>
+<h1 id="this-is-pmass-commons-lab-daily-open-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-pmass-commons-lab-daily-open-notebook"></a>This is PMAS's COMMONS Lab daily Open Notebook.</h1>
+<p>Today is 2025.02.21</p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<h3 id="have-a-look-at-the-commons-research-discussion-forum"><a aria-hidden="true" class="anchor-heading icon-link" href="#have-a-look-at-the-commons-research-discussion-forum"></a>Have a look at the COMMONS research discussion forum</h3>
+<pre><code>- https://github.com/orgs/commons-research/discussions
+</code></pre>
+<h3 id="daily-work-on-the-open-science-for-natural-products-research-viewpoint"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-work-on-the-open-science-for-natural-products-research-viewpoint"></a>Daily work on the Open Science for natural products research Viewpoint</h3>
+<p>See <a href="/commons-dws-public/notes/43p60vv8btyhaclugl93jok">Viewpoint</a></p>
+<h3 id=""><a aria-hidden="true" class="anchor-heading icon-link" href="#"></a></h3>
+<h3 id="-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#-1"></a></h3>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<p>Chat wioth Javier on Scholia
+Possibility to establisha DB of NP isolated in Chili with their geographical occurences.</p>
+<p>We start with the example of <a href="https://scholia.toolforge.org/chemical/Q82866929">https://scholia.toolforge.org/chemical/Q82866929</a></p>
+<p><a href="https://scholia.toolforge.org/taxon/Q15513067#metabolome">https://scholia.toolforge.org/taxon/Q15513067#metabolome</a></p>
+<p>This one is connected to the GBIF id <a href="https://www.gbif.org/species/5343387">https://www.gbif.org/species/5343387</a></p>
+<p>We manually created the taxon ranmge properties for this one</p>
+<p><a href="https://www.wikidata.org/wiki/Q15513067">https://www.wikidata.org/wiki/Q15513067</a></p>
+<p>So now we can check for molecules found in the Astragalus genera for which the taxon range includes Chile.
+<a href="https://w.wiki/D9aT">https://w.wiki/D9aT</a></p>
+<p>We can observe that few taxa have in fact Chile as a taxonrang <a href="https://w.wiki/D9an">https://w.wiki/D9an</a></p>
+<p>We started with Tiago's <a href="http://tiago.bio.br/gbif_range_to_wikidata/">http://tiago.bio.br/gbif_range_to_wikidata/</a></p>
+<p>Lets see how we can use / adapt this for our use case</p>
+<p><a href="https://api.gbif.org/v1/occurrence/search?taxonKey=212&#x26;continent=africa&#x26;limit=0&#x26;facet=speciesKey&#x26;facetMincount=10&#x26;facetLimit=5000">https://api.gbif.org/v1/occurrence/search?taxonKey=212&#x26;continent=africa&#x26;limit=0&#x26;facet=speciesKey&#x26;facetMincount=10&#x26;facetLimit=5000</a></p>
+<p>For countries, the url should be encoded</p>
+<p><a href="https://api.gbif.org/v1/occurrence/search?taxonKey=212&#x26;country=CL&#x26;limit=0&#x26;facet=speciesKey&#x26;facetMincount=10&#x26;facetLimit=5000">https://api.gbif.org/v1/occurrence/search?taxonKey=212&#x26;country=CL&#x26;limit=0&#x26;facet=speciesKey&#x26;facetMincount=10&#x26;facetLimit=5000</a></p>
+<p>We started to investigate the possibility to map traditional uses from taxon to indegeneous peoples</p>
+<p><a href="https://www.wikidata.org/wiki/Q158780">https://www.wikidata.org/wiki/Q158780</a></p>
+<p>Discussing about ethopharmocological KG </p>
+<p><a href="https://ieeexplore.ieee.org/abstract/document/10443268">https://ieeexplore.ieee.org/abstract/document/10443268</a>
+<a href="https://www.nature.com/articles/s41597-023-02757-0">https://www.nature.com/articles/s41597-023-02757-0</a>
+<a href="https://gitub.u-bordeaux.fr/erias/oregano">https://gitub.u-bordeaux.fr/erias/oregano</a></p>
+<h3 id="directusqfield"><a aria-hidden="true" class="anchor-heading icon-link" href="#directusqfield"></a>Directus/Qfield</h3>
+<p>We try to set up a EMI project for Javier (temporary while we have the EMI data portal up and running)</p>
+<p>We could create both a qfieldcloud and directus username
+However we are stuck at the stage of Project creation (<a href="https://emi-collection.unifr.ch/qfieldcloud/admin/core/project/add/">https://emi-collection.unifr.ch/qfieldcloud/admin/core/project/add/</a>) as we cannot setup the owner.
+To be checked with Edouard.</p>
+<p>This , <a href="https://emi-collection.unifr.ch/qfieldcloud/admin/auditlog/logentry/">https://emi-collection.unifr.ch/qfieldcloud/admin/auditlog/logentry/</a> , for example returns a 500
+<img src="/commons-dws-public/assets/images/2025-02-21-15-03-35.png"></p>
+<h2 id="paused"><a aria-hidden="true" class="anchor-heading icon-link" href="#paused"></a>Paused</h2>
+<h2 id="done"><a aria-hidden="true" class="anchor-heading icon-link" href="#done"></a>Done</h2>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes</h2>
+<h2 id="todo-tomorrow-one-day--or-never"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-tomorrow-one-day--or-never"></a>Todo tomorrow, one day ... or never</h2>
+<h3 id="-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#-2"></a></h3>
+<h3 id="-3"><a aria-hidden="true" class="anchor-heading icon-link" href="#-3"></a></h3>
+<h2 id="today-i-learned-that"><a aria-hidden="true" class="anchor-heading icon-link" href="#today-i-learned-that"></a>Today I learned that</h2>
+<ul>
+<li>o</li>
+</ul>
