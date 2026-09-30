@@ -1,0 +1,2 @@
+# [Van Krevelen Diagram (wikipedia)](https://en.wikipedia.org/wiki/Van_Krevelen_diagram)
+- **Van Krevelen diagrams**: graphical plots used for assessing origin and maturity of *kerogen* and *petroleum*. Diagram is a cross plot of the hydrogen and carbon atomic ratios as a function of the oxygen and carbon atomic ratios. Now used for visualizing mass spec data. 

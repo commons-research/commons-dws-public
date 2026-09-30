@@ -1,0 +1,54 @@
+<h1 id="2023-02-12"><a aria-hidden="true" class="anchor-heading icon-link" href="#2023-02-12"></a>2023-02-12</h1>
+<h1 id="this-is-pmas-daily-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-pmas-daily-notebook"></a>This is PMA's daily notebook.</h1>
+<p>Today is 2023.02.12</p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<h3 id="program-22nd-dbgi"><a aria-hidden="true" class="anchor-heading icon-link" href="#program-22nd-dbgi"></a>Program 22nd DBGI</h3>
+<p>Working at <a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">communication.meetings.2023.02.22.program (Private)</a></p>
+<h3 id="peeking-into-quarto"><a aria-hidden="true" class="anchor-heading icon-link" href="#peeking-into-quarto"></a>Peeking into Quarto</h3>
+<p><a href="https://quarto.org/">https://quarto.org/</a></p>
+<p>Looks pretty much like the Knitr and Rmd format but also suited for python.
+Maybe to keep in mind for MAPP reports <a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">2022.platform.communication and reports (Private)</a></p>
+<h2 id="paused"><a aria-hidden="true" class="anchor-heading icon-link" href="#paused"></a>Paused</h2>
+<h2 id="done"><a aria-hidden="true" class="anchor-heading icon-link" href="#done"></a>Done</h2>
+<h3 id="mapp-activity-report"><a aria-hidden="true" class="anchor-heading icon-link" href="#mapp-activity-report"></a>MAPP Activity Report</h3>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes</h2>
+<ul>
+<li>followed
+<a href="https://towardsdatascience.com/managing-project-specific-environments-with-conda-406365a539ab">https://towardsdatascience.com/managing-project-specific-environments-with-conda-406365a539ab</a>
+Trying to better grasp the .env and location of env with mamba</li>
+</ul>
+<ul>
+<li>Created notebook-commons-pmallard.js
+Should reflect the ON on the commons side.</li>
+</ul>
+<h2 id="todo-tomorrow-another-day--or-never-"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-tomorrow-another-day--or-never-"></a>Todo tomorrow, another day ... or never !</h2>
+<h3 id="will-need-to-find-a-way-to-clean-the-huge-mess-within-my-conda-environments-at-one-point"><a aria-hidden="true" class="anchor-heading icon-link" href="#will-need-to-find-a-way-to-clean-the-huge-mess-within-my-conda-environments-at-one-point"></a>Will need to find a way to clean the huge mess within my conda environments at one point</h3>
+<h3 id="think-of-a-way-to-incentivate-passage-from-daily-notebook-to-open-notebooks-at-the-end-of-the-day"><a aria-hidden="true" class="anchor-heading icon-link" href="#think-of-a-way-to-incentivate-passage-from-daily-notebook-to-open-notebooks-at-the-end-of-the-day"></a>Think of a way to incentivate passage from daily Notebook to Open Notebooks at the end of the day</h3>
+<p>Most likely through the templates notes first  <a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">templates.notebook.commons.pmallard (Private)</a></p>
+<p>Adding a
+<code> 📖 Comment what should be commented and pass this daily Notebook to it's Open Notebook counterpart</code></p>
+<ul>
+<li><code>cmd+A</code> on local Notebook (without frontmatter)</li>
+<li><code>cmd+o cmd+c</code> to open new daily Open Notebook (in COMMONS)</li>
+<li><code>cmd+v</code> to paste </li>
+<li>remove/comment if needed</li>
+<li>post</li>
+</ul>
+<p>That's some lines for now and will try redirecting to Open Notebook (in MAPP, COMMONS and DBGI) as much as possible. Will not port old notes ...too much of a burden</p>
+<h2 id="today-i-learned-that"><a aria-hidden="true" class="anchor-heading icon-link" href="#today-i-learned-that"></a>Today I learned that</h2>
+<ul>
+<li>I can output selectively a text (and not only code) depending on knitting as pdf or html. Note the <code>results='asis'</code> to render as text.</li>
+</ul>
+<pre class="language-r"><code class="language-R">```<span class="token punctuation">{</span>r<span class="token punctuation">,</span> echo<span class="token operator">=</span><span class="token boolean">FALSE</span><span class="token punctuation">,</span> results<span class="token operator">=</span><span class="token string">'asis'</span><span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>knitr<span class="token operator">::</span>is_latex_output<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  cat<span class="token punctuation">(</span><span class="token string">"This text will only be rendered in PDF."</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>knitr<span class="token operator">::</span>is_html_output<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  cat<span class="token punctuation">(</span><span class="token string">"This text will only be rendered in HTML."</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>
+- Just lost a lot of time since I wrote the MAPP activity report having in mind that I could share the Airtbale dashboard (they call this an interface) as a public link. Turns out it's not possible https://community.airtable.com/t5/other-questions/how-to-make-link-to-interface-public/td-p/81008
+Another good reason to keep on digging in the NocoDB/Directus direction. Should have checked before.
+</code></pre>

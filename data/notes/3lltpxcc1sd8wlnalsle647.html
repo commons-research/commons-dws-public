@@ -1,0 +1,55 @@
+<h1 id="metrin-kg-a-knowledge-graph-integrating-plant-metabolites-traits-and-biotic-interactions"><a aria-hidden="true" class="anchor-heading icon-link" href="#metrin-kg-a-knowledge-graph-integrating-plant-metabolites-traits-and-biotic-interactions"></a>Metrin Kg A Knowledge Graph Integrating Plant Metabolites Traits And Biotic Interactions</h1>
+<h1 id="metrin-kg-a-knowledge-graph-integrating-plant-metabolites-traits-and-biotic-interactions-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#metrin-kg-a-knowledge-graph-integrating-plant-metabolites-traits-and-biotic-interactions-1"></a><a href="https://academic.oup.com/gigascience/article/doi/10.1093/gigascience/giag051/8664851">METRIN-KG: A knowledge graph integrating plant metabolites, traits, and biotic interactions</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong><a href="https://en.wikipedia.org/wiki/Metabolome">Metabolome</a></strong>: all metabolites present within an organism or biological system.</li>
+<li><strong><a href="https://enpkg.commons-lab.org/">ENPKG</a></strong>: Experimental Natural Products Knowledge Graph - metabolomes from tropical plant extracts.</li>
+<li><strong><a href="https://www.globalbioticinteractions.org/">GloBI</a></strong>: Global Biotic Interactions, an open resource describing interactions between organisms.</li>
+<li><strong><a href="https://www.try-db.org/">TRY</a></strong>: global database containing plant trait data.</li>
+<li><strong><a href="https://ontop-vkg.org/">Ontop</a></strong>: virtual knowledge graph system that maps relational databases to RDF and translates SPARQL queries into SQL.</li>
+<li><strong><a href="https://github.com/ad-freiburg/qlever">QLever</a></strong>: SPARQL engine designed for efficient querying of large knowledge graphs.</li>
+<li><strong><a href="https://www.qudt.org/">QUDT</a></strong>: ontology and vocabulary for representing quantities, units, dimensions, and data types.</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Semantic_interoperability">Semantic interoperability</a></strong>: ability of different systems to exchange data while preserving a shared interpretation of its meaning.</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Ontology_alignment">Ontology alignment</a></strong>: process of identifying relationships between concepts represented in different ontologies.</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Sentence_embedding">Sentence embedding</a></strong>: vector representation of text intended to capture its semantic meaning.</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Materialization_%28computer_science%29">Materialization</a></strong>: precomputing and storing derived information rather than generating it only when queried.</li>
+</ul>
+<h2 id="introduction"><a aria-hidden="true" class="anchor-heading icon-link" href="#introduction"></a>Introduction</h2>
+<p>There are 7 shortfalls of biodiversity knowledge, and lack of connected knowledge on species' traits and interactions, and ecological functions is a major one. Metabolomes can aid in identifying plant functions, and help establish cause/effect in plants and their environments. Combining large datasets of metabolomic data is an obvious choice given how much data is actually needed to do analysis based on the metabolites.</p>
+<p>The EMI and DBGI were started to document the metabolic content of species while following FAIR principles. ENPKG was an earlier step towards this, organizing metabolomics data from tropical plant extracts. ENPKG lacks ecological metadata. METRIN-KG expands this idea by combining:</p>
+<ol>
+<li>metabolomes - ENPKG</li>
+<li>plant traits - <a href="https://www.try-db.org/">TRY</a></li>
+<li>biotic interactions - <a href="https://www.globalbioticinteractions.org/">GloBI</a></li>
+<li>natural product information - <a href="https://lotus.naturalproducts.net/">LOTUS</a> / Wikidata
+The key problem is not simply that these datasets exist separately. They have different structures, identifiers, terminology, metadata, and levels of standardization. METRIN-KG attempts to create a common semantic representation so they can be queried together.</li>
+</ol>
+<h2 id="data-integration"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-integration"></a>Data integration</h2>
+<p>Taxonomic identifiers are one of the primary mechanisms for connecting the datasets. Species names and identifiers from different taxonomy databases are mapped to <a href="https://www.wikidata.org/">Wikidata</a> identifiers.</p>
+<h3 id="semantic-metadata-mapping"><a aria-hidden="true" class="anchor-heading icon-link" href="#semantic-metadata-mapping"></a>Semantic metadata mapping</h3>
+<p>They developed a semi-automated method for mapping this messy metadata to existing ontology terms.
+Process:</p>
+<ol>
+<li>parse and normalize raw metadata</li>
+<li>extract labels and synonyms from relevant ontologies</li>
+<li>generate sentence embeddings for ontology terms and source terms</li>
+<li>calculate cosine similarity</li>
+<li>select candidate ontology matches</li>
+<li>manually review/correct mappings</li>
+</ol>
+<h2 id="emi-ontology"><a aria-hidden="true" class="anchor-heading icon-link" href="#emi-ontology"></a>EMI Ontology</h2>
+<p>The EMI ontology provides the schema used to represent the integrated data. Reuses existing vocabularies and ontologies where possible:</p>
+<ul>
+<li><a href="https://www.w3.org/TR/vocab-ssn/">SOSA</a> - samples/observations</li>
+<li><a href="https://obofoundry.org/ontology/ro.html">Relation Ontology</a> - biological relationships</li>
+<li><a href="https://www.w3.org/TR/skos-reference/">SKOS</a> - knowledge organization</li>
+<li><a href="https://www.qudt.org/">QUDT</a> - quantities and units</li>
+<li><a href="https://www.w3.org/2003/01/geo/">WGS84 Geo</a> - geographic information</li>
+<li>ENPKG ontology - natural product concepts</li>
+</ul>
+<h2 id="knowledge-graph-construction"><a aria-hidden="true" class="anchor-heading icon-link" href="#knowledge-graph-construction"></a>Knowledge graph construction</h2>
+<p>METRIN-KG uses the EMI ontology as the data schema and integrates three main data sources into subgraphs.</p>
+<h3 id="enpkg"><a aria-hidden="true" class="anchor-heading icon-link" href="#enpkg"></a>ENPKG</h3>
+<p>ENPKG data are first loaded into a relational MySQL database. <a href="https://ontop-vkg.org/">Ontop</a> mappings define relationships between the relational schema and EMI ontology.</p>
+<h2 id="linked-data--federation"><a aria-hidden="true" class="anchor-heading icon-link" href="#linked-data--federation"></a>Linked data / federation</h2>
+<p>An important feature is that everything does not need to be copied into METRIN-KG. External identifiers allow information to remain linked to other resources and retrieved when needed.</p>

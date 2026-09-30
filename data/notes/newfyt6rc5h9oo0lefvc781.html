@@ -1,0 +1,76 @@
+<h1 id="feature-engineering"><a aria-hidden="true" class="anchor-heading icon-link" href="#feature-engineering"></a>Feature Engineering</h1>
+<h1 id="what-is-feature-engineering-ibm"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-is-feature-engineering-ibm"></a><a href="https://www.ibm.com/think/topics/feature-engineering">What is feature engineering (IBM)</a></h1>
+<ul>
+<li><strong>Feature Engineering (feature extraction):</strong> process of transforming raw data into relevant information for use by ML models. </li>
+<li><strong><a href="https://www.ibm.com/think/topics/feature-engineering">Multicollinearity</a></strong>: The situation where independent variables in a linear regression equation are correlated, multi as there are more than 2. </li>
+<li><strong>Cross validation</strong>: tests a model on unseen data
+Feature engineering creates predictive model features. As ML training rests on the quality of the data being used during training, feature engineering is an important part of the training process. Feature engineering is the process of selecting subset of variables to create a new model, with the goal of reducing <em>multicollinearity</em></li>
+</ul>
+<h2 id="the-benefits-of-feature-selection"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-benefits-of-feature-selection"></a>The benefits of feature selection</h2>
+<p>Identifies the most important and impactful features that are not redundant, boosting performance:</p>
+<ul>
+<li>Better model performance</li>
+<li>reduced overfitting</li>
+<li>shorter training times</li>
+<li>lower compute costs</li>
+<li>greater interpretability</li>
+<li>smoother implementation</li>
+<li><a href="https://www.ibm.com/think/topics/dimensionality-reduction">dimensionality reduction</a> - If there are more variables being used the dimensionality grows, as does the space between data points, which makes it more difficult to train the algorithm to identify patterns and predict.</li>
+</ul>
+<h2 id="what-are-features"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-are-features"></a>What are features?</h2>
+<ul>
+<li><strong>Feature:</strong> a definable quality of the items in the dataset
+They are also called variables. Features may be independent, dependent - based on independent variables and/or combined attributes of the dataset. </li>
+</ul>
+<p>Feature selection identifies the most important input variables to use to predict dependent variables. The <em>target variable</em> is the variable that the model is trying to predict. </p>
+<p>Features are categorized into two broad categories:</p>
+<ul>
+<li><strong>Numerical variables</strong>: quantifiable, like length, size, age, duration</li>
+<li><strong>Categorical variables</strong>: non numeric values, such as a name, job title, location
+<strong><a href="https://www.ibm.com/think/topics/feature-extraction">Feature extraction:</a></strong> transforms raw data into numerical features the model can use to make predictions. Thus simplifying the data and reducing compute needs. </li>
+</ul>
+<h2 id="supervised-feature-selection-methods"><a aria-hidden="true" class="anchor-heading icon-link" href="#supervised-feature-selection-methods"></a>Supervised feature selection methods</h2>
+<p><strong><a href="https://www.ibm.com/think/topics/feature-selection">Supervised learning</a>:</strong> Uses a target variable to find the most important features. The task becomes identifying the input variables that have the largest affect on the target variable. Methods include:</p>
+<ul>
+<li>Filter methods</li>
+<li>wrapper methods</li>
+<li>embedded methods</li>
+</ul>
+<h3 id="filter-methods"><a aria-hidden="true" class="anchor-heading icon-link" href="#filter-methods"></a>Filter methods</h3>
+<p>Filtering focuses on the data itself and does not take into account model performance optimizations. Each input variable is assessed independently against a target variable and the highest correlations are determined. When testing 1 by 1 this is called univariate feature selection. </p>
+<p>These filter methods are usually used as data preprocessing tools, and are fast and efficient for feature selection. Common filter methods:
+1) Information gain: Simply measures impact of presence/absence of feature in determining a given target variable
+2) Mutual information: Measures dependence between two variables by measuring information obtained about one through the other
+3) <strong>Chi-square test</strong>: Compares observed vs expected values to measure relationship
+4) <strong>Fisher's score</strong>: Derivatives are used to calculate the relative importance of each feature for classifying data. Higher scores indicate greater influence.
+5) <strong>Pearson's correlation coefficient</strong>: Quantifies relationship of two continuous variables using a score ranged -1 to 1
+6) <strong>Variance Threshold</strong>: Removes all features under a minimally defined degree of variance under the assumption that greater variance contains more information. Related to using MAD (mean absolute difference).
+7) <strong>Missing value ratio:</strong> Calculates percentages of each instance in the dataset where a certain feature is missing or has a null value. If a feature has a low percentage its likely a bad candidate.
+8) <strong>Dispersion ratio</strong>: Variance ratio for the mean value of a feature. Higher ratio value means more information
+9) <strong>ANOVA (Analysis of variance)</strong>: Determines if different feature values affect the value of a target variable. </p>
+<h3 id="wrapper-methods"><a aria-hidden="true" class="anchor-heading icon-link" href="#wrapper-methods"></a>Wrapper methods</h3>
+<p>These methods train the algorithm  using subsets of features, and adds/removes features then tests the results. If the wrapper method tests all combinations of features, it is known as a <em>greedy algorithm</em>. These are computationally intensive and time consuming. Works well for datasets with smaller number of features.
+Wrapper methods include:
+1) <strong>Forward selection</strong>: start with an empty feature set and gradually add new features until an optimal set is found.
+2) <strong>Backward selection</strong>: trains the model with a set of features and then removes each feature and only the most relevant are aloud to remain.
+3) <strong>Exhaustive feature selection</strong>: Tests all combos of features and finds the best fitting one against a performance metric. A logistic regression model that uses exhaustive feature selection would try every possible combo of all features
+4) <strong>Recursive feature elimination (RFE)</strong>: backward selection type that bases addition/removal of features based on relative importance of the feature.
+5) <strong>Recursive feature elimination with cross-validation</strong>: RFE variation that uses cross-validation. </p>
+<h3 id="embedded-methods"><a aria-hidden="true" class="anchor-heading icon-link" href="#embedded-methods"></a>Embedded methods</h3>
+<p>Folds/embeds feature selection into the model training process. Uses metrics to identify under performing features and discard them. Methods include:
+1) <strong>LASSO regression:</strong> L1 - adds a penalty to the loss function for high-value correlated coefficients, which moves towards 0. If feature coefficient reaches 0 it is removed.
+2) <strong>Random forest importance</strong>: Builds decision trees that are a random selection of data points and features. Each tree is then assessed on how well it divides the data points. Better results indicate a more important feature.
+3) <strong>Gradient boosting</strong>: Adds predictors at each iteration that correct errors from the previous iteration. Helping find the the features that lead to the most optimal results. </p>
+<h2 id="unsupervised-feature-selection-methods"><a aria-hidden="true" class="anchor-heading icon-link" href="#unsupervised-feature-selection-methods"></a>Unsupervised feature selection methods</h2>
+<p>Since unsupervised models figure out the patterns/relationships on their own, tailoring the inputs isn't feasible. But other methods are used to simplify the feature space. </p>
+<ul>
+<li><strong>Principal component analysis (PCA)</strong>: Reduces dimensionality of large datasets by transforming possibly correlated variables into a smaller set of variables. </li>
+</ul>
+<h2 id="choosing-a-feature-selection-method"><a aria-hidden="true" class="anchor-heading icon-link" href="#choosing-a-feature-selection-method"></a>Choosing a feature selection method</h2>
+<p>Feature selection use depends on the nature of the input and output variables. Problem spaces: </p>
+<ul>
+<li><strong>Numerical input, numerical output:</strong> Inputs and outputs are numeric so a regression predictive problem.</li>
+<li><strong>Numerical input, categorical output:</strong> <a href="https://www.ibm.com/think/topics/logistic-regression">Logistic regression</a> models classify inputs into binary values. true/false</li>
+<li><strong>Categorical input, numerical output:</strong> Correlation methods work here</li>
+<li><strong>Categorical input, categorical output:</strong> Chi-squared methods and information gain techniques work well here.</li>
+</ul>

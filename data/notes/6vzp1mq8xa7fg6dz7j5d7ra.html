@@ -1,0 +1,19 @@
+<h1 id="why-machine-learning-fails-at-mass-spectrometry-for-small-molecules"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-machine-learning-fails-at-mass-spectrometry-for-small-molecules"></a>Why Machine Learning Fails At Mass Spectrometry For Small Molecules</h1>
+<h1 id="why-machine-learning-fails-at-mass-spectrometry-for-small-molecules-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-machine-learning-fails-at-mass-spectrometry-for-small-molecules-1"></a><a href="https://www.nature.com/articles/s42255-026-01544-6">Why machine learning fails at mass spectrometry for small molecules</a></h1>
+<h2 id="current-situation"><a aria-hidden="true" class="anchor-heading icon-link" href="#current-situation"></a>Current situation</h2>
+<p>Most models are currently predicting a molecular fingerprint, then querying a molecular db, like pubchem, to find candidates. Useful for identifying compounds that have never been identified in MS, as the model can map any spectra to a fingerprint. Training occurs with commonly used datasets like NPLIB1 or MassSpecGym.
+The neural network workflow goes:
+1) MS collected (m/z)
+2) encoded
+3) then embedded
+4) run through neural network
+5) predicted fingerprint obtained
+6) fingerprint lookup in database
+7) evaluation of database candidates
+Models evaluated, includig DreaMS and MIST performed poorly. For scaffolding splits, nearest neighbor outperforms MISt, and is near the performance of DreaMS. </p>
+<h2 id="inability-to-generalize-across-experimental-conditions"><a aria-hidden="true" class="anchor-heading icon-link" href="#inability-to-generalize-across-experimental-conditions"></a>Inability to generalize across experimental conditions</h2>
+<p>Current models fail to model changes in conditions impact spectra.</p>
+<h2 id="inability-to-capture-peak-intensity"><a aria-hidden="true" class="anchor-heading icon-link" href="#inability-to-capture-peak-intensity"></a>Inability to capture peak intensity</h2>
+<p>Models struggle with distinguishing similar m/s distributions (could this be overfit?). And intensity information is largely ignored. </p>
+<h2 id="inability-to-generalize-to-new-chemical-formulas"><a aria-hidden="true" class="anchor-heading icon-link" href="#inability-to-generalize-to-new-chemical-formulas"></a>Inability to generalize to new chemical formulas</h2>
+<p>Examples where the models fell short were also largely due to molecular fragments being present that were not present in the training data. </p>

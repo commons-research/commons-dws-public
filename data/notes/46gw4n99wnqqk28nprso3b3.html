@@ -1,0 +1,104 @@
+<h1 id="use-mcp-servers-in-vs-code"><a aria-hidden="true" class="anchor-heading icon-link" href="#use-mcp-servers-in-vs-code"></a>Use Mcp Servers In Vs Code</h1>
+<h1 id="use-mcp-servers-in-vs-code-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#use-mcp-servers-in-vs-code-1"></a><a href="https://code.visualstudio.com/docs/copilot/customization/mcp-servers">Use MCP servers in VS Code</a></h1>
+<h2 id="vs-code--mcp-model-context-protocol-overview"><a aria-hidden="true" class="anchor-heading icon-link" href="#vs-code--mcp-model-context-protocol-overview"></a>VS Code — MCP (Model Context Protocol) Overview</h2>
+<p><strong>MCP</strong> lets AI models access external tools/services (file system, APIs, DBs, Rust analyzer, etc.) through a standard interface.<br>
+VS Code supports MCP starting in <strong>v1.102+</strong> and Copilot is required.</p>
+<h3 id="key-concepts"><a aria-hidden="true" class="anchor-heading icon-link" href="#key-concepts"></a>Key Concepts</h3>
+<ul>
+<li>MCP servers = external tool providers</li>
+<li>Used alongside VS Code's built-in + extension tools</li>
+<li>Works inside Copilot Chat</li>
+</ul>
+<h3 id="prereqs"><a aria-hidden="true" class="anchor-heading icon-link" href="#prereqs"></a>Prereqs</h3>
+<ul>
+<li>Latest VS Code</li>
+<li>Copilot access</li>
+</ul>
+<h2 id="enabling--managing-mcp"><a aria-hidden="true" class="anchor-heading icon-link" href="#enabling--managing-mcp"></a>Enabling &#x26; Managing MCP</h2>
+<h3 id="settings"><a aria-hidden="true" class="anchor-heading icon-link" href="#settings"></a>Settings</h3>
+<ul>
+<li><code>chat.mcp.access</code>
+<ul>
+<li><code>all</code> <em>(default)</em></li>
+<li><code>registry</code> <em>(only registry servers)</em></li>
+<li><code>none</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="add-mcp-servers"><a aria-hidden="true" class="anchor-heading icon-link" href="#add-mcp-servers"></a>Add MCP servers</h3>
+<p>Ways to register a server:</p>
+<ul>
+<li>Install from Extensions → MCP</li>
+<li>Add to <code>mcp.json</code> in workspace or user config</li>
+<li>Dev containers support</li>
+<li>Auto-discover</li>
+<li>CLI install <code>code --add-mcp "{\"name\":\"my-server\",\"command\": \"uvx\",\"args\": [\"mcp-server-fetch\"]}"</code></li>
+</ul>
+<h3 id="trust-model"><a aria-hidden="true" class="anchor-heading icon-link" href="#trust-model"></a>Trust Model</h3>
+<ul>
+<li>MCP servers run code ➝ trust prompt on first run</li>
+<li>You can revoke trust with <code>MCP: Reset Trust</code></li>
+</ul>
+<h2 id="using-mcp-in-chat"><a aria-hidden="true" class="anchor-heading icon-link" href="#using-mcp-in-chat"></a>Using MCP in Chat</h2>
+<ul>
+<li>Agent mode auto-invokes tools</li>
+<li>Explicit tool call: <code>#tool-name</code></li>
+<li>Add MCP resources: <em>Chat → Add Context → MCP Resources</em></li>
+<li>MCP prompts: <code>/mcp.server.prompt</code></li>
+</ul>
+<h3 id="cached-tools"><a aria-hidden="true" class="anchor-heading icon-link" href="#cached-tools"></a>Cached Tools</h3>
+<p>Clear cache: <code>MCP: Reset Cached Tools</code></p>
+<h2 id="tool-organization"><a aria-hidden="true" class="anchor-heading icon-link" href="#tool-organization"></a>Tool Organization</h2>
+<ul>
+<li>Group tools via <strong>tool sets</strong></li>
+<li>Manage servers: start/stop, logs, uninstall via:
+<pre><code>- Extensions view
+- `mcp.json` lenses
+- Command Palette → `MCP: List Servers`
+</code></pre>
+Autostart config:</li>
+<li><code>chat.mcp.autostart</code> <em>(experimental)</em></li>
+</ul>
+<h2 id="finding-mcp-servers"><a aria-hidden="true" class="anchor-heading icon-link" href="#finding-mcp-servers"></a>Finding MCP Servers</h2>
+<ul>
+<li>GitHub MCP registry</li>
+<li>VS Marketplace extensions</li>
+<li>Official MCP repo (examples + community servers)</li>
+</ul>
+<h2 id="config-structure-mcpjson"><a aria-hidden="true" class="anchor-heading icon-link" href="#config-structure-mcpjson"></a>Config Structure (<code>mcp.json</code>)</h2>
+<h3 id="sections"><a aria-hidden="true" class="anchor-heading icon-link" href="#sections"></a>Sections</h3>
+<pre><code>servers: { ... }
+inputs: [ ... ]   // for secrets like API keys
+</code></pre>
+<h3 id="local-stdio-server-example"><a aria-hidden="true" class="anchor-heading icon-link" href="#local-stdio-server-example"></a>Local (stdio) server example</h3>
+<ul>
+<li><code>type: "stdio"</code></li>
+<li><code>command</code>, optional <code>args</code>, <code>env</code>, <code>.env</code></li>
+</ul>
+<h3 id="httpsse-server-example"><a aria-hidden="true" class="anchor-heading icon-link" href="#httpsse-server-example"></a>HTTP/SSE server example</h3>
+<ul>
+<li><code>type: http/sse</code></li>
+<li><code>url</code></li>
+<li>optional auth headers
+Supports Unix sockets + Windows pipes.</li>
+</ul>
+<h3 id="inputs"><a aria-hidden="true" class="anchor-heading icon-link" href="#inputs"></a>Inputs</h3>
+<p>Secure prompts for secrets (API keys, etc.)</p>
+<h2 id="debugging--dev"><a aria-hidden="true" class="anchor-heading icon-link" href="#debugging--dev"></a>Debugging &#x26; Dev</h2>
+<ul>
+<li>View server logs through MCP panel / Command Palette</li>
+<li>Dev mode: auto-restart, debugging Node/Python MCP servers</li>
+<li>See <strong>MCP Dev Guide</strong> for more</li>
+</ul>
+<h2 id="faq-notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#faq-notes"></a>FAQ Notes</h2>
+<ul>
+<li>Toggle tools on/off in Chat Tools picker</li>
+<li>Limit: <strong>max 128 tools per chat request</strong></li>
+<li>Docker servers must run in foreground</li>
+</ul>
+<h2 id="related"><a aria-hidden="true" class="anchor-heading icon-link" href="#related"></a>Related</h2>
+<ul>
+<li>Model Context Protocol docs</li>
+<li>Official MCP registry repo</li>
+<li>VS Code agent mode docs</li>
+</ul>

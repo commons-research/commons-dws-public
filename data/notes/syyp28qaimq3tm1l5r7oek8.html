@@ -1,0 +1,15 @@
+<h1 id="how-i-found-out-52-of-my-knowledge-graph-was-duplicates"><a aria-hidden="true" class="anchor-heading icon-link" href="#how-i-found-out-52-of-my-knowledge-graph-was-duplicates"></a>How I Found Out 52% Of My Knowledge Graph Was Duplicates</h1>
+<h1 id="how-i-found-out-52-of-my-knowledge-graph-was-duplicates-and-what-i-did-about-it"><a aria-hidden="true" class="anchor-heading icon-link" href="#how-i-found-out-52-of-my-knowledge-graph-was-duplicates-and-what-i-did-about-it"></a><a href="https://dev.to/ernesto_arias_148b35bc25d/-how-i-found-out-52-of-my-knowledge-graph-was-duplicates-and-what-i-did-about-it-3coh">How I Found Out 52% of My Knowledge Graph Was Duplicates (and What I Did About It)</a></h1>
+<p>After auditing his code he found that 52% of his nodes were duplicates that hadn't been detected.</p>
+<h2 id="how-did-this-happen"><a aria-hidden="true" class="anchor-heading icon-link" href="#how-did-this-happen"></a>How did this happen?</h2>
+<p>Over aggressive filtering caused a loop to explore the same topics thousands of times, and on each pass similar content to the last was generated. Was unique enough to not be detected as an exact duplicate.</p>
+<h2 id="the-rust-engineering-side"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-rust-engineering-side"></a>The Rust engineering side</h2>
+<p>Fixed with Rust auditing:</p>
+<ul>
+<li>Fixing gap filter</li>
+<li>fixing recency bias when searching</li>
+<li>implementing metrics to assess the graph by category every 37 cycles (why 37?)</li>
+</ul>
+<h2 id="what-i-learned-the-author"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-i-learned-the-author"></a>What I learned (the author)</h2>
+<p>The biggest thing is any metric that is expected to only go up will not warn you something is wrong. Using node count as a proxy for system learning inflated the content and did not result in new knowledge.
+<a href="https://github.com/ernestoariasdiaz/animus-ai">ANIMUS code</a></p>

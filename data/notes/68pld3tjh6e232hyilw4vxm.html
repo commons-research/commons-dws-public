@@ -1,0 +1,56 @@
+<h1 id="2022-08-14"><a aria-hidden="true" class="anchor-heading icon-link" href="#2022-08-14"></a>2022-08-14</h1>
+<h1 id="this-is-pmas-daily-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-pmas-daily-notebook"></a>This is PMA's daily notebook.</h1>
+<p>Today is 2022.08.14</p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled></li>
+<li class="task-list-item"><input type="checkbox" disabled></li>
+<li class="task-list-item"><input type="checkbox" disabled></li>
+</ul>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h2 id="done"><a aria-hidden="true" class="anchor-heading icon-link" href="#done"></a>Done</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes</h2>
+<ul>
+<li>This morning I am wanting to use a docker image which is supposed to run on localhost:8080
+Howver this one is allready used
+see
+<img src="/commons-dws-public/assets/images/2022-08-14-08-02-02.png"></li>
+</ul>
+<p>I need to find which process is using this and stop it </p>
+<p>Solution one. Use findanyfile and search for "It works!" string
+Not working </p>
+<p>Found <a href="https://www.maketecheasier.com/setup-local-web-server-all-platforms/">https://www.maketecheasier.com/setup-local-web-server-all-platforms/</a></p>
+<p>cd /Library/WebServer/Documents/</p>
+<p>So sudo apachectl stop  should be OK now</p>
+<p>Trying to run Rhizomer <a href="https://rhizomer.rhizomik.net/about">https://rhizomer.rhizomik.net/about</a></p>
+<p><a href="https://graph.metabomaps.com/repositories/ENPKG?query=PREFIX%20enpkg%3A%20%3Chttps%3A%2F%2Fwww.sinergiawolfender.org%2Fjlw%2F%3E%20PREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%20%20SELECT%20%3Factive_extract%20WHERE%20%7B%20%3Factive_extract%20rdf%3Atype%20enpkg%3ALabExtract%20.%20%3Factive_extract%20enpkg%3Ahas_bioassay_results%20%3Fbiores%20.%20%3Factive_extract%20enpkg%3Ahas_bioassay_results%20%3Ftoxres%20.%20%3Fbiores%20rdf%3Atype%20enpkg%3ATcruzi_10ugml%20.%20%3Ftoxres%20rdf%3Atype%20enpkg%3AL6_10ugml%20.%20%3Fbiores%20enpkg%3Ainhibition_percentage%20%3Ftc_inhib%20.%20%3Ftoxres%20enpkg%3Ainhibition_percentage%20%3Fl6_inhib%20.%20FILTER((%3Ftc_inhib%20%3E%2080)%20%26%26%20(%3Fl6_inhib%20%3C%2050))%20%7D&#x26;queryLn=sparql">https://graph.metabomaps.com/repositories/ENPKG?query=PREFIX%20enpkg%3A%20%3Chttps%3A%2F%2Fwww.sinergiawolfender.org%2Fjlw%2F%3E%20PREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%20%20SELECT%20%3Factive_extract%20WHERE%20%7B%20%3Factive_extract%20rdf%3Atype%20enpkg%3ALabExtract%20.%20%3Factive_extract%20enpkg%3Ahas_bioassay_results%20%3Fbiores%20.%20%3Factive_extract%20enpkg%3Ahas_bioassay_results%20%3Ftoxres%20.%20%3Fbiores%20rdf%3Atype%20enpkg%3ATcruzi_10ugml%20.%20%3Ftoxres%20rdf%3Atype%20enpkg%3AL6_10ugml%20.%20%3Fbiores%20enpkg%3Ainhibition_percentage%20%3Ftc_inhib%20.%20%3Ftoxres%20enpkg%3Ainhibition_percentage%20%3Fl6_inhib%20.%20FILTER((%3Ftc_inhib%20%3E%2080)%20%26%26%20(%3Fl6_inhib%20%3C%2050))%20%7D&#x26;queryLn=sparql</a></p>
+<p><a href="https://dbgikg.commons-lab.org/repositories/DBGI-KG?query=PREFIX%20enpkg%3A%20%3Chttps%3A%2F%2Fenpkg.commons-lab.org%2Fkg%2F%3E%0Aselect%20%3Fdbgi_sample%20%3Fsubmitted_taxon%20where%20%7B%20%0A%09%3Fextract%20enpkg%3Ahas_lab_process%20%3Fdbgi_sample%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20enpkg%3Asubmitted_taxon%20%3Fsubmitted_taxon%20.%0A%7D%0A=sparql">https://dbgikg.commons-lab.org/repositories/DBGI-KG?query=PREFIX%20enpkg%3A%20%3Chttps%3A%2F%2Fenpkg.commons-lab.org%2Fkg%2F%3E%0Aselect%20%3Fdbgi_sample%20%3Fsubmitted_taxon%20where%20%7B%20%0A%09%3Fextract%20enpkg%3Ahas_lab_process%20%3Fdbgi_sample%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20enpkg%3Asubmitted_taxon%20%3Fsubmitted_taxon%20.%0A%7D%0A=sparql</a></p>
+<p><a href="https://dbgikg.commons-lab.org/sparql?name=dbgi_plants&#x26;infer=true&#x26;sameAs=true&#x26;query=PREFIX%20enpkg%3A%20%3Chttps%3A%2F%2Fenpkg.commons-lab.org%2Fkg%2F%3E%0Aselect%20%3Fdbgi_sample%20%3Fsubmitted_taxon%20where%20%7B%20%0A%09%3Fextract%20enpkg%3Ahas_lab_process%20%3Fdbgi_sample%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20enpkg%3Asubmitted_taxon%20%3Fsubmitted_taxon%20.%0A%7D%0A">https://dbgikg.commons-lab.org/sparql?name=dbgi_plants&#x26;infer=true&#x26;sameAs=true&#x26;query=PREFIX%20enpkg%3A%20%3Chttps%3A%2F%2Fenpkg.commons-lab.org%2Fkg%2F%3E%0Aselect%20%3Fdbgi_sample%20%3Fsubmitted_taxon%20where%20%7B%20%0A%09%3Fextract%20enpkg%3Ahas_lab_process%20%3Fdbgi_sample%20%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20enpkg%3Asubmitted_taxon%20%3Fsubmitted_taxon%20.%0A%7D%0A</a></p>
+<p><a href="https://dbgikg.commons-lab.org/repositories/DBGI-KG?query=PREFIX%20enpkg%3A%20%3Chttps%3A%2F%2Fenpkg.commons-lab.org%2Fkg%2F%3E%20select%20%3Fdbgi_sample%20%3Fsubmitted_taxon%20where%20%7B%20%20%09%3Fextract%20enpkg%3Ahas_lab_process%20%3Fdbgi_sample%20%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20enpkg%3Asubmitted_taxon%20%3Fsubmitted_taxon%20.%20%7D&#x26;queryLn=sparql">https://dbgikg.commons-lab.org/repositories/DBGI-KG?query=PREFIX%20enpkg%3A%20%3Chttps%3A%2F%2Fenpkg.commons-lab.org%2Fkg%2F%3E%20select%20%3Fdbgi_sample%20%3Fsubmitted_taxon%20where%20%7B%20%20%09%3Fextract%20enpkg%3Ahas_lab_process%20%3Fdbgi_sample%20%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20enpkg%3Asubmitted_taxon%20%3Fsubmitted_taxon%20.%20%7D&#x26;queryLn=sparql</a></p>
+<p><a href="https://graph.metabomaps.com/repositories">https://graph.metabomaps.com/repositories</a></p>
+<p><a href="https://graph.metabomaps.com/sparql">https://graph.metabomaps.com/sparql</a></p>
+<p>Made a wikidata dump <a href="https://wdumps.toolforge.org/dumps?last=2569">https://wdumps.toolforge.org/dumps?last=2569</a></p>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<h2 id="todo-tomorrow"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-tomorrow"></a>Todo tomorrow</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled></li>
+<li class="task-list-item"><input type="checkbox" disabled></li>
+<li class="task-list-item"><input type="checkbox" disabled></li>
+</ul>
+<h2 id="today-i-learned-that"><a aria-hidden="true" class="anchor-heading icon-link" href="#today-i-learned-that"></a>Today I learned that</h2>
+<ul>
+<li></li>
+</ul>

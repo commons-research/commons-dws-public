@@ -1,0 +1,33 @@
+<h1 id="2024-03-17"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-03-17"></a>2024-03-17</h1>
+<h1 id="this-is-pmass-commons-lab-daily-open-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-pmass-commons-lab-daily-open-notebook"></a>This is PMAS's COMMONS Lab daily Open Notebook.</h1>
+<p>Today is 2024.03.17</p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<h3 id="have-a-look-at-the-commons-research-discussion-forum"><a aria-hidden="true" class="anchor-heading icon-link" href="#have-a-look-at-the-commons-research-discussion-forum"></a>Have a look at the COMMONS research discussion forum</h3>
+<pre><code>- https://github.com/orgs/commons-research/discussions
+</code></pre>
+<h3 id="daily-work-on-the-open-science-for-natural-products-research-viewpoint"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-work-on-the-open-science-for-natural-products-research-viewpoint"></a>Daily work on the Open Science for natural products research Viewpoint</h3>
+<p>See <a href="/commons-dws-public/notes/43p60vv8btyhaclugl93jok">Viewpoint</a></p>
+<h3 id=""><a aria-hidden="true" class="anchor-heading icon-link" href="#"></a></h3>
+<h3 id="-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#-1"></a></h3>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<h2 id="paused"><a aria-hidden="true" class="anchor-heading icon-link" href="#paused"></a>Paused</h2>
+<h2 id="done"><a aria-hidden="true" class="anchor-heading icon-link" href="#done"></a>Done</h2>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes</h2>
+<p>looking for a way to copy very large dir (with a high number of files and nested dir) efficiently</p>
+<p>Installed rust-based  cpz <a href="https://github.com/SUPERCILEX/fuc">https://github.com/SUPERCILEX/fuc</a></p>
+<p><a href="https://basila.medium.com/fastest-way-to-copy-a-directory-in-linux-40611d2c5aa4">https://basila.medium.com/fastest-way-to-copy-a-directory-in-linux-40611d2c5aa4</a></p>
+<p>cd /path/to/SOURCE_FOLDER; tar cf - . | (cd /path/to/DESTINATION_FOLDER; tar xvf -)</p>
+<p>Progress bars are good for mental sanity in these cases ...</p>
+<p>cp -r ./pf1600_sub ./pf_1600_test | pv -lep -s $(du -sb ./pf1600_sub | awk '{print $1}') >/dev/null</p>
+<p>cp -r /path/to/source /path/to/destination | bar</p>
+<p>rsync -aP ./pf1600_sub ./pf_1600_test</p>
+<p>time rsync -avh --progress VGF157 VGF157_test_rsync</p>
+<p>time cpz VGF157/ VGF157_test_it</p>
+<p>tar -cf - ./pf1600_raw | pv -s $(du -sb ./pf1600_raw | awk '{print $1}') | gzip > pf1600_raw.tar.gz</p>
+<h2 id="todo-tomorrow-one-day--or-never"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-tomorrow-one-day--or-never"></a>Todo tomorrow, one day ... or never</h2>
+<h3 id="-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#-2"></a></h3>
+<h3 id="-3"><a aria-hidden="true" class="anchor-heading icon-link" href="#-3"></a></h3>
+<h2 id="today-i-learned-that"><a aria-hidden="true" class="anchor-heading icon-link" href="#today-i-learned-that"></a>Today I learned that</h2>
+<ul>
+<li>o</li>
+</ul>
