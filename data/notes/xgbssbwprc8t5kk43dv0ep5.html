@@ -1,0 +1,22 @@
+<h1 id="abstract-syntax-trees-for-smiles"><a aria-hidden="true" class="anchor-heading icon-link" href="#abstract-syntax-trees-for-smiles"></a>Abstract Syntax Trees for Smiles</h1>
+<p><a href="https://depth-first.com/articles/2020/12/14/an-abstract-syntatx-tree-for-smiles/">source</a></p>
+<h1 id="blazingly-fast-smiles-processing"><a aria-hidden="true" class="anchor-heading icon-link" href="#blazingly-fast-smiles-processing"></a>Blazingly fast SMILES Processing</h1>
+<p>String manipulation is non trivial and resource taxing. </p>
+<h1 id="abstract-syntax-trees"><a aria-hidden="true" class="anchor-heading icon-link" href="#abstract-syntax-trees"></a>Abstract Syntax Trees</h1>
+<p>Use of an AST could be helpful for SMILES. An AST has three types of nodes:</p>
+<ul>
+<li>Root Node: no parent and zero or more children nodes</li>
+<li>Interior Node: One parent and one or more children</li>
+<li>Leaf Node: One parent and zero children
+AST structs are recursive. Interior nodes can be attached become root nodes of their own trees. So assembly of an AST from fragments is possible. </li>
+</ul>
+<h1 id="rust-as-an-abstract-syntax-tree-design-language"><a aria-hidden="true" class="anchor-heading icon-link" href="#rust-as-an-abstract-syntax-tree-design-language"></a>Rust as an Abstract Syntax Tree Design Language</h1>
+<p>Rust does ASTs good. Static typing is good for validation. The type system is good. Enums good. </p>
+<h1 id="the-chemical-elements"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-chemical-elements"></a>The Chemical Elements</h1>
+<p>Enums are great for representing atoms</p>
+<h1 id="bond-kinds"><a aria-hidden="true" class="anchor-heading icon-link" href="#bond-kinds"></a>Bond kinds</h1>
+<p>can do enums for bonds too of course lol</p>
+<h1 id="bracketsymbol"><a aria-hidden="true" class="anchor-heading icon-link" href="#bracketsymbol"></a>BracketSymbol</h1>
+<p>Same for brackets</p>
+<h1 id="atomkind"><a aria-hidden="true" class="anchor-heading icon-link" href="#atomkind"></a>AtomKind</h1>
+<p>The same can be done for AtomKind </p>

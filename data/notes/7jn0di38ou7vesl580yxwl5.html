@@ -1,0 +1,148 @@
+<h1 id="2023-02-13"><a aria-hidden="true" class="anchor-heading icon-link" href="#2023-02-13"></a>2023-02-13</h1>
+<h1 id="this-is-pmass-commons-lab-daily-open-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-pmass-commons-lab-daily-open-notebook"></a>This is PMAS's COMMONS Lab daily Open Notebook.</h1>
+<p>Today is 2023.02.13</p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<h3 id="swat4hcls"><a aria-hidden="true" class="anchor-heading icon-link" href="#swat4hcls"></a>SWAT4HCLS</h3>
+<p>Tutorials can be found here <a href="https://www.swat4ls.org/workshops/basel2023/tutorials/">https://www.swat4ls.org/workshops/basel2023/tutorials/</a></p>
+<p>Those which are organized as interactive you can find the zoom links here.
+Track A <a href="https://zoom.us/j/98544172437">https://zoom.us/j/98544172437</a>
+Track B <a href="https://us02web.zoom.us/j/85986933013">https://us02web.zoom.us/j/85986933013</a>
+Track C <a href="https://zoom.us/j/99286755590">https://zoom.us/j/99286755590</a></p>
+<p>The other sessions will be streamed on the website.
+For Q&#x26;A please use Discord channel <a href="https://discord.gg/WC6qanWj">https://discord.gg/WC6qanWj</a></p>
+<p>The final programme of the conference days  can be found here <a href="https://www.swat4ls.org/workshops/basel2023/scientific-programme-2023/">https://www.swat4ls.org/workshops/basel2023/scientific-programme-2023/</a>
+All sessions will be streamed at the conference website.
+For Q&#x26;A please use Discord channel  <a href="https://discord.gg/BRwbWWjDaE">https://discord.gg/BRwbWWjDaE</a></p>
+<p>Information about BioHackathon can be found here <a href="https://www.swat4ls.org/workshops/basel2023/scientific-programme-2023/">https://www.swat4ls.org/workshops/basel2023/scientific-programme-2023/</a></p>
+<p>We work at <a href="https://cocalc.com/projects/">https://cocalc.com/projects/</a></p>
+<p>Ontology at the Topo
+Data on the bottom (<strong>instances</strong> of the ontology)</p>
+<p>Prefix is simply a declaration of an IRI abbreviation</p>
+<h1 id="remember-that-in-the-turtle-data-above-we-can-see"><a aria-hidden="true" class="anchor-heading icon-link" href="#remember-that-in-the-turtle-data-above-we-can-see"></a>Remember that in the turtle data above we can see:</h1>
+<h1 id=""><a aria-hidden="true" class="anchor-heading icon-link" href="#"></a></h1>
+<h1 id="ttrjohn-a-dboperson"><a aria-hidden="true" class="anchor-heading icon-link" href="#ttrjohn-a-dboperson"></a>'ttr:John a dbo:Person'</h1>
+<h1 id="-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#-1"></a></h1>
+<h1 id="a-can-also-be-used-instead-of-rdftype"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-can-also-be-used-instead-of-rdftype"></a>'a' can also be used instead of 'rdf:type'</h1>
+<h1 id="a-is-a-synonym-of-rdftype"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-is-a-synonym-of-rdftype"></a>'a' is a synonym of 'rdf:type'</h1>
+<p>If you dont know what is your data. Dont fill it in </p>
+<p><a href="https://sparql.rhea-db.org/">https://sparql.rhea-db.org/</a></p>
+<h1 id="put-your-code-here"><a aria-hidden="true" class="anchor-heading icon-link" href="#put-your-code-here"></a>Put your code here</h1>
+<p>chebi = '18059'</p>
+<pre class="language-sql"><code class="language-SQL"><span class="token comment">#endpoint:https://sparql.rhea-db.org/sparql</span>
+<span class="token comment">#query Q9: Select Rhea reactions using CHEBI:31488 (N-acylsphinganine) or one of its descendant as reaction participant</span>
+
+PREFIX rh:<span class="token operator">&#x3C;</span>http:<span class="token comment">//rdf.rhea-db.org/></span>
+PREFIX CHEBI:<span class="token operator">&#x3C;</span>http:<span class="token comment">//purl.obolibrary.org/obo/CHEBI_></span>
+PREFIX up:<span class="token operator">&#x3C;</span>http:<span class="token comment">//purl.uniprot.org/core/></span>
+
+<span class="token keyword">SELECT</span> <span class="token keyword">distinct</span> ?chebi ?chebiUniprotName ?rhea ?equation 
+<span class="token keyword">WHERE</span> {
+  ?rhea rdfs:subClassOf rh:Reaction <span class="token punctuation">.</span>
+  ?rhea rh:equation ?equation <span class="token punctuation">.</span>
+  ?rhea rh:side<span class="token operator">/</span>rh:<span class="token keyword">contains</span><span class="token operator">/</span>rh:compound<span class="token operator">/</span>rh:chebi ?chebi <span class="token punctuation">.</span>
+  ?chebi rdfs:subClassOf<span class="token operator">/</span>rdfs:subClassOf<span class="token operator">/</span>rdfs:subClassOf CHEBI:<span class="token string">""" + chebi + """</span> <span class="token punctuation">.</span>
+  ?chebi up:name ?chebiUniprotName <span class="token punctuation">.</span>
+}
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> ?chebi
+</code></pre>
+<p>Note : </p>
+<p>To fetch exactly one level:
+<code>?chebi rdfs:subClassOf CHEBI:""" + chebi + """ .</code></p>
+<p>To fetch exactly all level:
+<code>?chebi rdfs:subClassOf* CHEBI:""" + chebi + """ .</code></p>
+<p>To fetch exactly one to three levels:
+<code>?chebi rdfs:subClassOf/rdfs:subClassOf/rdfs:subClassOf CHEBI:""" + chebi + """ .</code></p>
+<p>print(sparql_QEx4)</p>
+<p>SPARQL is 1 based</p>
+<p>When one queries the Uniprot KB (or other massive source) one can work 2step wise.</p>
+<p>1 get a subset of the graph</p>
+<pre class="language-sql"><code class="language-SQL">
+P05067ttl <span class="token operator">=</span> <span class="token string">"""base &#x3C;http://purl.uniprot.org/uniprot/>  
+prefix up: &#x3C;http://purl.uniprot.org/core/>
+prefix taxon: &#x3C;http://purl.uniprot.org/taxonomy/>
+
+&#x3C;P05067> a up:Protein ;
+         up:organism taxon:9606 .
+"""</span>
+
+P05067<span class="token operator">=</span>Graph<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>parse<span class="token punctuation">(</span>format<span class="token operator">=</span><span class="token string">'ttl'</span><span class="token punctuation">,</span> <span class="token keyword">data</span><span class="token operator">=</span>P05067ttl<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> subj<span class="token punctuation">,</span> pred<span class="token punctuation">,</span> obj <span class="token operator">in</span> P05067:
+   <span class="token keyword">print</span><span class="token punctuation">(</span>subj<span class="token punctuation">,</span> pred<span class="token punctuation">,</span> obj<span class="token punctuation">)</span>
+
+</code></pre>
+<p>And then query this subgraph</p>
+<pre class="language-sql"><code class="language-SQL">qres<span class="token operator">=</span>P05067<span class="token punctuation">.</span>query<span class="token punctuation">(</span><span class="token string">"""
+PREFIX up: &#x3C;http://purl.uniprot.org/core/> 
+PREFIX uniprotkb: &#x3C;http://purl.uniprot.org/uniprot/>
+PREFIX skos: &#x3C;http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?protein ?taxon
+WHERE {
+  ?protein a up:Protein ;
+           up:organism ?taxon .
+}"""</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> <span class="token keyword">row</span> <span class="token operator">in</span> qres:
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"The taxon (organism id) of %s is %s"</span> <span class="token operator">%</span> <span class="token keyword">row</span><span class="token punctuation">)</span>
+</code></pre>
+<p>2023-02-13 13:34</p>
+<p>Eric Neumann</p>
+<p>2023-02-13 14:05</p>
+<p>Hi, this is the link to the slides: <a href="https://docs.google.com/presentation/d/10bVN0e5wFSKxbi8l6KCvfGxRSkWLi1eXmeIaY4Szo7w/edit?usp=sharing">https://docs.google.com/presentation/d/10bVN0e5wFSKxbi8l6KCvfGxRSkWLi1eXmeIaY4Szo7w/edit?usp=sharing</a></p>
+<p>This is a link to the github repo: <a href="https://github.com/kg-subsetting/tutorial-swat4hcl23">https://github.com/kg-subsetting/tutorial-swat4hcl23</a></p>
+<p>Property graphs.
+Similar to RDF + some flavor
+e.g. Neo4j
+Nodes and relations can be qualified</p>
+<p>Wikibase supporting WD
+Can go further than traditional Property graphs.</p>
+<p>Why would you create KG subset ?</p>
+<ul>
+<li>Reproducibility !</li>
+</ul>
+<p>Most advances in WD subsetting were done through Hackatons (Andra, Jose etc.)</p>
+<p>SparkWDSub
+Graph traversal (Pregel)
+Jose Emilio Labra Gayo</p>
+<p>KGTK
+Kypher language
+JSON dump > SQLite
+(Dump processed on a laptop)</p>
+<p>Zenodo
+Wikibase
+HDT triple store</p>
+<p>ShEX Shape Expression
+Concise and Human readable</p>
+<p>sheXer can extract ShEx schemas from RDF data</p>
+<p><img src="/commons-dws-public/assets/images/2023-02-13-15-53-41.png"></p>
+<p>Eric Neumann</p>
+<p>Property Graph are syntactic sugar <a href="https://en.wikipedia.org/wiki/Syntactic_sugar">https://en.wikipedia.org/wiki/Syntactic_sugar</a>
+Hyperedges Hypergraphs</p>
+<p>Mathematical tools </p>
+<p>Functors </p>
+<p>Spivak Category Theory for the Sciences.
+A database is a Functor</p>
+<p>SHACL and SHEx are Functors</p>
+<p>Notion of Simplices</p>
+<p><img src="/commons-dws-public/assets/images/2023-02-13-16-30-52.png"></p>
+<p>They are nested subsets. A simplex contains all lower simplices </p>
+<p><img src="/commons-dws-public/assets/images/2023-02-13-16-33-32.png"></p>
+<p>Dedekind Numbers</p>
+<p><img src="/commons-dws-public/assets/images/2023-02-13-16-56-35.png"></p>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<h2 id="paused"><a aria-hidden="true" class="anchor-heading icon-link" href="#paused"></a>Paused</h2>
+<h2 id="done"><a aria-hidden="true" class="anchor-heading icon-link" href="#done"></a>Done</h2>
+<h3 id="send-dbgi-22nd-program"><a aria-hidden="true" class="anchor-heading icon-link" href="#send-dbgi-22nd-program"></a>Send DBGI 22nd program</h3>
+<p>Working on <a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">communication.meetings.2023.02.22.program (Private)</a> and </p>
+<h3 id="send-mapp-activity-report"><a aria-hidden="true" class="anchor-heading icon-link" href="#send-mapp-activity-report"></a>Send MAPP Activity report</h3>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes</h2>
+<h2 id="todo-tomorrow-another-day--or-never-"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-tomorrow-another-day--or-never-"></a>Todo tomorrow, another day ... or never !</h2>
+<h3 id="-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#-2"></a></h3>
+<h3 id="-3"><a aria-hidden="true" class="anchor-heading icon-link" href="#-3"></a></h3>
+<h3 id="-4"><a aria-hidden="true" class="anchor-heading icon-link" href="#-4"></a></h3>
+<h2 id="today-i-learned-that"><a aria-hidden="true" class="anchor-heading icon-link" href="#today-i-learned-that"></a>Today I learned that</h2>
+<ul>
+<li></li>
+</ul>
+<p>📖 Comment what should be commented and pass this daily Notebook to it's Open Notebook counterpart</p>

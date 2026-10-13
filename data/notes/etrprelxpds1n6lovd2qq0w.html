@@ -1,0 +1,106 @@
+<h1 id="decentralized-provenance-aware-publishing-with-nanopublications"><a aria-hidden="true" class="anchor-heading icon-link" href="#decentralized-provenance-aware-publishing-with-nanopublications"></a>Decentralized Provenance Aware Publishing with Nanopublications</h1>
+<h1 id="decentralized-provenance-aware-publishing-with-nanopublications-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#decentralized-provenance-aware-publishing-with-nanopublications-1"></a><a href="https://backoffice.biblio.ugent.be/download/8521008/8521009">Decentralized provenance-aware publishing with nanopublications</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong><a href="https://nanopub.net/">Nanopublication</a></strong>: small knowledge graph with metadata and can be treated as an independent scientific publication.</li>
+<li><strong>DOI:</strong> Digital Object Identification system for referring to objects online.</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF Data</a></strong>: (resource description framework) used to describe and exchange graph data. RDFs are directed graphs</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL</a></strong>: SPARQL Protocol and RDF Query Language, used for semantic queries of databases with data stored as RDFs. </li>
+<li><strong>Trusty URIs:</strong> En example <a href="http://example.org/r1.RA5AbXdpz5DcaYXCh9l3eI9ruBosiL5XDU3rxBbBaUO70">here</a></li>
+<li><strong>Follow your nose principle</strong>: Looking up URIs should return the relevant data as well as links to other relevant URIs, allowing for exploration/discovery.</li>
+</ul>
+<h2 id="intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#intro"></a>Intro</h2>
+<p>datasets are increasingly divorced from the publications referring back to them. There are inherent trust, centralization, and sharability concerns with many of the current methods associated with data sharing. Their approach uses RDFs and <em>nanopublications</em> and presents decentralized RESTful APIs that support FAIR principles. Goal is a system that is trustworthy and publishes, retrieves, and archives linked data as nanopublications. </p>
+<h2 id="background"><a aria-hidden="true" class="anchor-heading icon-link" href="#background"></a>Background</h2>
+<p>Nanopublications take provenance into account for publishing. And can be used for fine grain citation of data. Based on RDF with named graphs. So its:</p>
+<ul>
+<li>atomic assertions -> </li>
+<li>represented in RDF -> 
+<ul>
+<li>contains provenance info</li>
+</ul>
+</li>
+<li>Each entity is its own publication
+With regards to SPARQL and SPARQL endpoints (servers), SPARQL is quite resource intensive and often endpoints will go down (relative to like amazon's 9 9's - SPARQL is only up 95% of the time on average). If things were decentralized, then the risk of failure would be largely mitigated as data access would be done across many endpoints. </li>
+</ul>
+<h2 id="approach"><a aria-hidden="true" class="anchor-heading icon-link" href="#approach"></a>Approach</h2>
+<p>Their approach assumes the data is already structured as an RDF representation. And use of the <em>follow your nose principle</em>. </p>
+<h3 id="architecture"><a aria-hidden="true" class="anchor-heading icon-link" href="#architecture"></a>Architecture</h3>
+<p>Three semantic web architectures are proposed:
+1) http get requests
+2) SPARQL query endpoints
+3) Triple Pattern fragments: limited query features, query execution done client side. </p>
+<h3 id="nanopublication-servers"><a aria-hidden="true" class="anchor-heading icon-link" href="#nanopublication-servers"></a>Nanopublication servers</h3>
+<p>They propose a restful api style server network, allowing for distributed querying (essentially the cloud). A nanopub server has these components:</p>
+<ul>
+<li>key-value store of nanopubs</li>
+<li>list of stored nanopubs</li>
+<li>cache of gzipped packages</li>
+<li>pattern definitions</li>
+<li>list of known peers (other nanopub servers)</li>
+<li>information about each known peer
+Servers respond with the following to a GET request:</li>
+<li>server info</li>
+<li>artifact code of the nanopub in question - using formats like TriG, TriX, N-Quads, JSON-LD</li>
+<li>journal page by page number upon request</li>
+<li>each journal page returns a gzipped package</li>
+<li>list of known peers
+With optional support for POST requests:</li>
+<li>add a nanopub</li>
+<li>add a url of a new nanopub server
+(the optional post request stuff seems a bit in the weeds. The implementation details don't need this specific. maybe just outline the bare bones requirements and leave optional functionality to another section?)</li>
+</ul>
+<h3 id="multi-layer-architecture"><a aria-hidden="true" class="anchor-heading icon-link" href="#multi-layer-architecture"></a>Multi-layer architecture</h3>
+<p>They argue data storage and data querying should be separated.
+Lowest layer:</p>
+<ul>
+<li>publication</li>
+<li>storage</li>
+<li>replication</li>
+<li>archival
+Higher layers:</li>
+<li>querying</li>
+<li>search</li>
+<li>aggregation</li>
+<li>analytics
+This keeps the underlying data infrastructure simple and reliable while allowing more complex services to be built above it.</li>
+</ul>
+<h3 id="nanopublication-indexes"><a aria-hidden="true" class="anchor-heading icon-link" href="#nanopublication-indexes"></a>Nanopublication indexes</h3>
+<p>A single nanopublication is intentionally tiny, so collections are represented using nanopublication indexes.
+Indexes:</p>
+<ul>
+<li>reference nanopublications rather than containing them</li>
+<li>are themselves nanopublications</li>
+<li>support hierarchical organization through sub-indexes</li>
+<li>allow large datasets to be referred to using a single identifier</li>
+</ul>
+<h2 id="why-nanopublications"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-nanopublications"></a>Why nanopublications?</h2>
+<p>Current scientific publishing has several shortcomings:</p>
+<ul>
+<li>publications become disconnected from datasets</li>
+<li>centralized repositories are single points of failure</li>
+<li>datasets cannot easily be referenced at a fine-grained level (individual assertions or subsets)</li>
+<li>difficult to verify that retrieved data has not been modified
+Nanopublications take provenance into account for publishing and enable fine-grained citation of scientific claims.
+Built on RDF named graphs:</li>
+<li>assertion (the claim)</li>
+<li>provenance (where/how the claim came from)</li>
+<li>publication info (metadata about the nanopublication)
+Each nanopublication is treated as an independent publication.</li>
+</ul>
+<h2 id="research-objects"><a aria-hidden="true" class="anchor-heading icon-link" href="#research-objects"></a>Research Objects</h2>
+<p>Interesting comparison:</p>
+<ul>
+<li>Research Objects bundle an entire experiment (data, workflows, software, logs, etc.)</li>
+<li>Nanopublications instead focus on small, atomic scientific assertions.</li>
+</ul>
+<p>These approaches are complementary rather than competing.</p>
+<h2 id="relevance"><a aria-hidden="true" class="anchor-heading icon-link" href="#relevance"></a>Relevance</h2>
+<ul>
+<li>Provenance is treated as a first-class citizen.</li>
+<li>Scientific claims become individually citable.</li>
+<li>Supports <strong>FAIR</strong> principles.</li>
+<li>Decentralized publishing improves robustness and long-term availability.</li>
+<li>RDF and Linked Data provide interoperability.</li>
+<li>REST APIs expose semantic data without requiring expensive SPARQL endpoints.</li>
+</ul>

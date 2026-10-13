@@ -1,0 +1,16 @@
+<h1 id="the-in-browser-vector-store-that-remembers"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-in-browser-vector-store-that-remembers"></a>The In Browser Vector Store That Remembers</h1>
+<h1 id="the-in-browser-vector-store-that-remembers-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-in-browser-vector-store-that-remembers-1"></a><a href="https://singhpratech.github.io/ferrovec/">The in-browser vector store that remembers</a></h1>
+<p>An in-browser vector store called <strong>ferrovec</strong> that persists its index to disk (using <a href="https://web.dev/articles/origin-private-file-system">OPFS</a>), allowing it to survive page refreshes and browser restarts.
+Unlike most browser vector stores, it supports incremental insertion, remains synchronized across browser tabs, and requires no server.</p>
+<p>Internally uses a Rust → WASM implementation of the <strong>HNSW</strong> approximate nearest-neighbor algorithm.
+Provides a simple JavaScript API while hiding the Rust implementation behind WebAssembly.</p>
+<p><strong>Features</strong>:</p>
+<ul>
+<li>persistent storage using OPFS</li>
+<li>cross-tab synchronization via leader election</li>
+<li>offline and local-first</li>
+<li>incremental vector insertion (no index rebuilds)</li>
+<li>supports cosine, dot product, and L2 distance</li>
+<li>exports as a small (~33 KB gzipped) WASM module</li>
+</ul>
+<p><a href="https://github.com/singhpratech/ferrovec">github</a></p>
