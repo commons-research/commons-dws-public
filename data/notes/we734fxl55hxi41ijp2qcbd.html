@@ -1,0 +1,22 @@
+<h1 id="the-lotus-initiative-for-open-knowledge-management-in-natural-products-research"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-lotus-initiative-for-open-knowledge-management-in-natural-products-research"></a>The Lotus Initiative For Open Knowledge Management In Natural Products Research</h1>
+<h1 id="the-lotus-initiative-for-open-knowledge-management-in-natural-products-research-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-lotus-initiative-for-open-knowledge-management-in-natural-products-research-1"></a><a href="https://elifesciences.org/articles/70780">The LOTUS initiative for open knowledge management in natural products research</a></h1>
+<h2 id="introduction"><a aria-hidden="true" class="anchor-heading icon-link" href="#introduction"></a>Introduction</h2>
+<p>Natural-products knowledge is fragmented across many specialized databases with inconsistent standards, access models, and levels of curation, making integration and reuse difficult.</p>
+<p>LOTUS treats the <strong>referenced structure–organism pair</strong> as the fundamental unit of natural-products knowledge: a chemical structure linked to the organism in which it was observed and to the scientific evidence supporting that relationship.</p>
+<p>LOTUS was developed to move natural-products knowledge away from isolated databases toward an open, interoperable, and computer-interpretable knowledge resource.</p>
+<p>The project builds partly on experience from <strong>COCONUT</strong>, extending chemical-structure aggregation to include biological organisms and literature references.</p>
+<h2 id="fair-and-open-knowledge"><a aria-hidden="true" class="anchor-heading icon-link" href="#fair-and-open-knowledge"></a>FAIR and Open Knowledge</h2>
+<p>LOTUS explicitly follows <strong>FAIR</strong> principles as well as <strong>TRUST</strong> principles for sustainable and transparent scientific data management.</p>
+<p>Data are released under <strong>CC0</strong>, allowing unrestricted reuse, editing, redistribution, and community contribution.</p>
+<p>A major goal is not simply making the data downloadable, but making the knowledge <strong>machine-interpretable, interoperable, traceable, and reusable</strong>.</p>
+<h3 id="wikidata"><a aria-hidden="true" class="anchor-heading icon-link" href="#wikidata"></a>Wikidata</h3>
+<p><strong>Wikidata was chosen as the primary dissemination platform</strong> because it already provides an open, globally maintained, cross-disciplinary knowledge graph with machine-readable statements, identifiers, references, and community curation.</p>
+<p>Hosting LOTUS within Wikidata connects natural-products knowledge to existing information about chemicals, organisms, taxonomy, publications, and other domains rather than creating another isolated database.</p>
+<p>Wikidata also permits natural-products relationships to be queried using <strong>SPARQL</strong>, enabling questions spanning chemical structures, taxa, and references.</p>
+<p>Because Wikidata is not ideal for every natural-products-specific search task, LOTUS is also mirrored through a dedicated natural-products interface; the two approaches provide general linked-data interoperability and domain-specific usability respectively. (deprecated - use zenodo or wikidata).</p>
+<h2 id="data-model-and-curation"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-model-and-curation"></a>Data Model and Curation</h2>
+<p>LOTUS reduces natural-products occurrence knowledge to three core objects: <strong>chemical structure, biological organism, and supporting reference</strong>.</p>
+<p>Chemical structures are normalized using identifiers such as <strong>SMILES, InChI, and InChIKey</strong>, while organisms are linked to standardized taxonomic identifiers and references to persistent publication identifiers.</p>
+<p>Heterogeneous source databases require substantial <strong>harmonization, processing, and validation</strong> before their information can become interoperable.</p>
+<p>The overall workflow is essentially <strong>harmonization → processing → validation → dissemination</strong>, with later community contributions feeding back into the resource.</p>
+<p>LOTUS uses a <strong>Single Source of Truth (SSOT)</strong> internally so that curated information is maintained consistently before dissemination through Wikidata and the LOTUS interface.</p>

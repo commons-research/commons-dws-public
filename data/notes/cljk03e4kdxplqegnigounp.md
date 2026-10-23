@@ -1,0 +1,56 @@
+
+
+# Tuesday 26 September 2023
+
+
+### Thursday 19 September 2024
+
+#### Assembled and annotated genomes
+
+- Avec qui peut on faire du génome complet de 2 champi, 3 actinos 1 bacterie.
+Laurent Falquet.
+
+https://www.ngs.unibe.ch/about_us/contact/
+
+Pamel Nicolson
+
+
+#### Metabolomics
+
+
+
+#### Paired omics platform 
+
+https://pairedomicsdata.bioinformatics.nl/
+
+
+20231131_PMA_RO_01_15_01_HM.mzML
+20231131_PMA_RO_01_15_02_HM.mzML
+20231131_PMA_RO_01_15_03_HM.mzML
+20231131_PMA_RO_01_15_04_HM.mzML
+20231131_PMA_RO_01_15_05_HM.mzML
+20231131_PMA_RO_01_15_06_HM.mzML
+20231131_PMA_RO_01_15_07_HM.mzML
+20231131_PMA_RO_01_15_08_HM.mzML
+20231131_PMA_RO_01_15_09_HM.mzML
+20231131_PMA_RO_01_15_10_HM.mzML
+20231131_PMA_RO_01_15_11_HM.mzML
+20231131_PMA_RO_01_15_12_HM.mzML
+20231131_PMA_RO_01_15_13_HM.mzML
+20231131_PMA_RO_01_15_14_HM.mzML
+20231131_PMA_RO_01_15_15_HM.mzML
+20231131_PMA_RO_01_15_16_HM.mzML
+20231131_PMA_RO_01_15_17_HM.mzML
+20231131_PMA_RO_01_15_18_HM.mzML
+20231131_PMA_RO_01_15_19_HM.mzML
+20231131_PMA_RO_01_15_20_HM.mzML
+20231131_PMA_RO_01_15_21_HM.mzML
+20231131_PMA_RO_01_15_22_HM.mzML
+20231131_PMA_RO_01_15_23_HM.mzML
+20231131_PMA_RO_01_15_24_HM.mzML
+20231131_PMA_RO_01_15_25_HM.mzML
+20231131_PMA_RO_01_15_26_HM.mzML
+20231131_PMA_RO_01_15_27_HM.mzML
+20231131_PMA_mapp_post_00_HM.mzML
+20231131_PMA_mapp_pre_00_HM.mzML
+20231131_PMA_mapp_pre_01_HM.mzML
