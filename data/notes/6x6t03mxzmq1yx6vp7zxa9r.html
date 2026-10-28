@@ -1,0 +1,88 @@
+<h1 id="why-almost-all-ml-models-for-medicine-are-wrong-and-what-we-need-for-evidence-based-medical-ai"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-almost-all-ml-models-for-medicine-are-wrong-and-what-we-need-for-evidence-based-medical-ai"></a>Why Almost All Ml Models For Medicine Are Wrong And What We Need For Evidence Based Medical Ai</h1>
+<h1 id="why-almost-all-ml-models-for-medicine-are-wrong-and-what-we-need-for-evidence-based-medical-ai-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-almost-all-ml-models-for-medicine-are-wrong-and-what-we-need-for-evidence-based-medical-ai-1"></a><a href="https://www.sciencedirect.com/science/article/pii/S1386505626002789?via%3Dihub">Why almost all ML models for medicine are wrong-and what we need for evidence-based medical AI</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<h2 id="concerns"><a aria-hidden="true" class="anchor-heading icon-link" href="#concerns"></a>Concerns</h2>
+<ul>
+<li>many of the models being published are not validated/verified well and do not perform as stated
+<ul>
+<li>This is based on many assumptions in the design process for these models</li>
+</ul>
+</li>
+</ul>
+<h3 id="issues-with-model-training"><a aria-hidden="true" class="anchor-heading icon-link" href="#issues-with-model-training"></a>Issues with model training:</h3>
+<ul>
+<li>Unreliable ground truths</li>
+<li>inappropriate decision thresholds</li>
+<li>assessment metrics are inadequate</li>
+<li>validation datasets do not represent real world use cases</li>
+</ul>
+<h4 id="ground-truth-concerns"><a aria-hidden="true" class="anchor-heading icon-link" href="#ground-truth-concerns"></a>Ground Truth Concerns</h4>
+<p>Specifically in medicine, diagnostic categories are not cut and dry categories and there is often blurring/overlap. However ML training assumptions are being made that the labels used are objective and accurate/correct, and then used for predictions. These assumptions on accuracy supremacy lead to noise in the dataset and impact the application of the model.</p>
+<h4 id="threshold-optimization"><a aria-hidden="true" class="anchor-heading icon-link" href="#threshold-optimization"></a>Threshold optimization</h4>
+<p>Most ML models optimize global metrics such as <strong>AUROC</strong>, assuming all decision thresholds are equally important. In medicine this assumption is incorrect:</p>
+<ul>
+<li>different diseases have different acceptable false positive / false negative tradeoffs</li>
+<li>decision thresholds depend on clinical context and risk</li>
+<li>threshold selection therefore has ethical and clinical implications</li>
+</ul>
+<h4 id="assessment-metrics"><a aria-hidden="true" class="anchor-heading icon-link" href="#assessment-metrics"></a>Assessment metrics</h4>
+<p>Many commonly reported metrics are unstable or misleading. Problems:</p>
+<ul>
+<li><strong>accuracy</strong> is inflated by class imbalance</li>
+<li><strong>PPV</strong> changes with disease prevalence</li>
+<li><strong>F1</strong>, <strong>MCC</strong>, sensitivity and specificity depend on the chosen threshold</li>
+<li>many papers report metrics using an arbitrary threshold of 0.5
+Thus recommendations include:</li>
+<li>report calibration</li>
+<li>report clinical utility (net benefit)</li>
+<li>evaluate robustness on heterogeneous and out-of-distribution (OOD) data</li>
+<li>evaluate performance across clinically relevant thresholds</li>
+</ul>
+<h4 id="calibration"><a aria-hidden="true" class="anchor-heading icon-link" href="#calibration"></a>Calibration</h4>
+<p>A model should produce probabilities that match real-world outcomes. For example:</p>
+<ul>
+<li>if the model predicts 80% probability for 100 patients, then roughly 80 should actually have the condition.
+Calibration should be evaluated around clinically important decision thresholds, not only globally.</li>
+</ul>
+<h4 id="performance-uncertainty"><a aria-hidden="true" class="anchor-heading icon-link" href="#performance-uncertainty"></a>Performance uncertainty</h4>
+<p>Many papers report only point estimates for metrics. The problem is(are):</p>
+<ul>
+<li>evaluation datasets are often small</li>
+<li>performance estimates have statistical uncertainty</li>
+<li>small differences between models may not be meaningful
+To address these concerns, researchers can use report confidence/credible intervals and use statistical tests when comparing models</li>
+</ul>
+<h4 id="external-validation"><a aria-hidden="true" class="anchor-heading icon-link" href="#external-validation"></a>External validation</h4>
+<p>Many studies only evaluate on held-out splits from the same dataset. But this does not show whether the model generalizes</p>
+<p>External validation should use:</p>
+<ul>
+<li>independent hospitals</li>
+<li>different populations</li>
+<li>different collection conditions</li>
+<li>ideally prospective datasets</li>
+</ul>
+<h4 id="temporal-validation"><a aria-hidden="true" class="anchor-heading icon-link" href="#temporal-validation"></a>Temporal validation</h4>
+<p>Clinical data changes over time:</p>
+<ul>
+<li>disease prevalence</li>
+<li>diagnostic criteria    </li>
+<li>laboratory equipment</li>
+<li>clinical practice</li>
+<li>patient populations
+Models should therefore include:</li>
+<li>temporal validation</li>
+<li>recalibration</li>
+<li>post-deployment monitoring</li>
+<li>MLOps fo continuous evaluation</li>
+</ul>
+<h2 id="recommendations-real-world-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#recommendations-real-world-data"></a>Recommendations: Real-world data</h2>
+<p>The paper argues that real-world clinical data is inherently noisy. Rather than assuming perfect labels, ML methods should support:</p>
+<ul>
+<li>noisy labels</li>
+<li>soft/probabilistic labels</li>
+<li>annotator disagreement</li>
+<li>dataset shift</li>
+<li>uncertainty estimation</li>
+<li>OOD detection</li>
+<li>robust learning</li>
+</ul>

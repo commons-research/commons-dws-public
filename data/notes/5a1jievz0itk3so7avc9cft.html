@@ -1,0 +1,62 @@
+<h1 id="fluoromatch-im-an-interactive-software-for-pfas-analysis-by-ion-mobility-spectrometry"><a aria-hidden="true" class="anchor-heading icon-link" href="#fluoromatch-im-an-interactive-software-for-pfas-analysis-by-ion-mobility-spectrometry"></a>Fluoromatch Im An Interactive Software For Pfas Analysis By Ion Mobility Spectrometry</h1>
+<p><a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">FluoroMatch IM - An Interactive Software for PFAS Analysis by Ion Mobility Spectrometry.pdf (Private)</a></p>
+<h1 id="fluoromatch-im---an-interactive-software-for-pfas-analysis-by-ion-mobility-spectrometry"><a aria-hidden="true" class="anchor-heading icon-link" href="#fluoromatch-im---an-interactive-software-for-pfas-analysis-by-ion-mobility-spectrometry"></a><a href="https://pubs.acs.org/doi/10.1021/acs.est.4c13846">FluoroMatch IM - An Interactive Software for PFAS Analysis by Ion Mobility Spectrometry</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>HRMS</strong>: High-resolution mass spectrometry.</li>
+<li><strong>IMS (Ion Mobility Spectrometry)</strong>: Separates ions based on charge, size, and shape before mass analysis.</li>
+<li><strong>LC-IM-HRMS</strong>: Liquid chromatography coupled with ion mobility and high-resolution mass spectrometry.</li>
+<li><strong>CCS (Collision Cross Section)</strong>: A reproducible physical measurement describing an ion's effective size and shape in the gas phase.</li>
+<li><strong>DTIMS</strong>: Drift Tube Ion Mobility Spectrometry.</li>
+<li><strong>TWIMS</strong>: Traveling Wave Ion Mobility Spectrometry.</li>
+<li><strong>cIMS</strong>: Cyclic Ion Mobility Spectrometry.</li>
+<li><strong>Mobilogram</strong>: Plot of ion intensity versus drift time.</li>
+<li><strong>Drift time</strong>: Time required for an ion to traverse the ion mobility cell.</li>
+<li><strong>Orthogonal evidence</strong>: Independent evidence supporting an identification (e.g. CCS in addition to m/z).</li>
+<li><strong>Feature</strong>: A detected ion characterized by m/z, retention time, drift time, CCS and intensity.</li>
+<li><strong>4D peak picking</strong>: Feature detection using m/z, retention time, drift time and intensity.</li>
+<li><strong>CCS library</strong>: Database of experimentally measured collision cross sections.</li>
+<li><strong>Vendor-neutral</strong>: Compatible with data from multiple instrument vendors.</li>
+<li><strong>Mass defect filtering</strong>: Filtering compounds by characteristic mass defect ranges.</li>
+<li><strong>Homologous series detection</strong>: Finding compounds differing by repeating units.</li>
+<li><strong>Extracted Ion Chromatogram (EIC)</strong>: Chromatogram for one selected m/z.</li>
+<li><strong>Negative electrospray ionization (ESI−)</strong>: Negative ion acquisition mode.</li>
+<li><strong>QTOF</strong>: Quadrupole Time-of-Flight mass spectrometer.</li>
+<li><strong>DDA (Data-Dependent Acquisition)</strong>: MS/MS acquired for selected precursor ions.</li>
+<li><strong>All Ions acquisition</strong>: DIA-style acquisition fragmenting everything simultaneously.</li>
+<li><strong>PNNL Preprocessor</strong>: Software that converts Agilent All Ions data into pseudo-DDA spectra.</li>
+<li><strong>Confidence scoring</strong>: FluoroMatch's A–E scoring system for PFAS annotation confidence.</li>
+</ul>
+<h2 id="about"><a aria-hidden="true" class="anchor-heading icon-link" href="#about"></a>About</h2>
+<p>Rather than relying solely on MS/MS fragmentation, the software combines multiple independent pieces of evidence including:</p>
+<ul>
+<li>Accurate mass</li>
+<li>Collision Cross Section (CCS)</li>
+<li>Homologous series</li>
+<li>Mass defect</li>
+<li>Formula prediction</li>
+<li>Drift time</li>
+<li>Retention time</li>
+</ul>
+<p><strong>Software</strong>:
+<a href="https://github.com/Innovative-Omics/FluoroMatch">https://github.com/Innovative-Omics/FluoroMatch</a></p>
+<p><strong>Interactive visualization</strong>:
+<a href="https://innovativeomics.com/datasets">https://innovativeomics.com/datasets</a></p>
+<h2 id="dataset"><a aria-hidden="true" class="anchor-heading icon-link" href="#dataset"></a>Dataset</h2>
+<p>MassIVE - ftp://massive.ucsd.edu/v07/MSV000096605/</p>
+<h2 id="relevant-for-fluorine-detection"><a aria-hidden="true" class="anchor-heading icon-link" href="#relevant-for-fluorine-detection"></a>Relevant for fluorine detection</h2>
+<h3 id="fluorinated-molecules-occupy-a-unique-ccs-region"><a aria-hidden="true" class="anchor-heading icon-link" href="#fluorinated-molecules-occupy-a-unique-ccs-region"></a>Fluorinated molecules occupy a unique CCS region</h3>
+<ul>
+<li>lower CCS than non-fluorinated molecules</li>
+<li>for the same m/z</li>
+</ul>
+<h3 id="multiple-weak-signals-outperform-one-strong-signal"><a aria-hidden="true" class="anchor-heading icon-link" href="#multiple-weak-signals-outperform-one-strong-signal"></a>Multiple weak signals outperform one strong signal</h3>
+<p>Instead of relying only on MS/MS:</p>
+<ul>
+<li>exact mass</li>
+<li>CCS</li>
+<li>homologous series</li>
+<li>mass defect</li>
+<li>retention time</li>
+<li>drift time</li>
+</ul>

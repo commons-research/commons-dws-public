@@ -1,0 +1,42 @@
+<h1 id="implementation_of_a_functional_semantic_similarity_measure_between_gene-products"><a aria-hidden="true" class="anchor-heading icon-link" href="#implementation_of_a_functional_semantic_similarity_measure_between_gene-products"></a>Implementation_of_a_functional_semantic_similarity_measure_between_gene Products</h1>
+<h1 id="implementation-of-a-functional-semantic-similarity-measure-between-gene-products"><a aria-hidden="true" class="anchor-heading icon-link" href="#implementation-of-a-functional-semantic-similarity-measure-between-gene-products"></a><a href="https://repositorio.ulisboa.pt/bitstreams/b360195f-961b-4929-97a9-f5c480a1ac73/download">Implementation of a Functional Semantic Similarity Measure between Gene-Products</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong><a href="https://en.wikipedia.org/wiki/Functional_similarity">Functional similarity</a></strong>: Similarity between gene products based on biological function rather than sequence.</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Semantic_similarity">Semantic similarity</a></strong>: Similarity between concepts based on their meaning within an ontology.</li>
+<li><strong><a href="https://geneontology.org/">Gene Ontology (GO)</a></strong>: Controlled vocabulary describing gene products by molecular function, biological process and cellular component.</li>
+<li><strong><a href="https://www.ebi.ac.uk/GOA/">Gene Ontology Annotation (GOA)</a></strong>: Database linking gene products to GO terms.</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/Information_content">Information Content (IC)</a></strong>: Measure of how specific a GO term is based on its frequency.</li>
+<li><strong><a href="https://aclanthology.org/O97-1002/">Jiang-Conrath similarity</a></strong>: Hybrid semantic similarity measure combining information content and ontology structure.</li>
+<li><strong>Node depth</strong>: Distance of a GO term from the ontology root.</li>
+<li><strong>Node density</strong>: Number of child relationships from a GO term.</li>
+<li><strong>Directed Acyclic Graph (DAG)</strong>: Graph structure used by GO where terms may have multiple parents but no cycles.</li>
+<li><strong>FuSSiMeG</strong>: Functional Semantic Similarity Measure between Gene-Products proposed in this paper.</li>
+<li><strong>Swiss-Prot</strong>: Manually curated section of UniProt.</li>
+<li><strong>TrEMBL</strong>: Automatically annotated section of UniProt.</li>
+<li><strong><a href="https://wordnet.princeton.edu/">WordNet</a></strong>: Lexical ontology commonly used to evaluate semantic similarity methods.</li>
+</ul>
+<h2 id="about"><a aria-hidden="true" class="anchor-heading icon-link" href="#about"></a>About</h2>
+<p><em>FuSSiMeG</em> is a semantic similarity measure for comparing gene products using Gene Ontology annotations rather than sequence similarity. It extends the Jiang-Conrath semantic similarity measure and is intended for applications where biological function is more important than structural similarity.</p>
+<h2 id="semantic-similarity"><a aria-hidden="true" class="anchor-heading icon-link" href="#semantic-similarity"></a>Semantic similarity</h2>
+<p>The paper distinguishes two major approaches for measuring semantic similarity:</p>
+<ol>
+<li><strong>Information content (node-based):</strong> similarity depends on how much information two terms share.</li>
+<li><strong>Conceptual distance (edge-based):</strong> similarity depends on distance through the ontology graph.
+FuSSiMeG combines both approaches into a hybrid similarity measure based on Jiang-Conrath. </li>
+</ol>
+<h2 id="gene-ontology"><a aria-hidden="true" class="anchor-heading icon-link" href="#gene-ontology"></a>Gene Ontology</h2>
+<p>The measure operates on the Gene Ontology rather than sequence databases. GO is represented as a <em>directed acyclic graph (DAG)</em> instead of a tree, allowing terms to have multiple parents and providing a more realistic representation of biological knowledge. </p>
+<h2 id="information-content"><a aria-hidden="true" class="anchor-heading icon-link" href="#information-content"></a>Information content</h2>
+<p>Information content is computed from GO annotation frequencies. Frequently occurring GO terms contain less information, while rare, specific terms contain more. Occurrences are propagated upward through the ontology so parent terms become progressively more common and therefore have lower information content. </p>
+<h2 id="fussimeg"><a aria-hidden="true" class="anchor-heading icon-link" href="#fussimeg"></a>FuSSiMeG</h2>
+<p>Functional similarity between two gene products is computed by comparing all GO terms assigned to each product and selecting the highest semantic similarity. The final score is further weighted by the information content of the matched GO terms so that highly specific matches contribute more than generic annotations.</p>
+<h2 id="applications"><a aria-hidden="true" class="anchor-heading icon-link" href="#applications"></a>Applications</h2>
+<ul>
+<li>protein function prediction</li>
+<li>protein family organization</li>
+<li>identifying interacting proteins</li>
+<li>validating text-mining systems</li>
+<li>evaluating biological information extraction</li>
+<li>analysis of microarray clusters </li>
+</ul>
