@@ -2,7 +2,7 @@
 id: tekkv4lvxbjmrjamxyb4muc
 title: Redu A Framework To Find And Reanalyze Public Mass Spectrometry Data
 desc: ''
-updated: 1789996559433
+updated: 1793193897405
 created: 1789996556904
 traitIds:
   - open-notebook-commons-ablood-literature
@@ -12,4 +12,6 @@ traitIds:
 **ReDU**: Reanalysis of Data User interface. This tool uses a template for creating files for datasets. This includes consistent and validated sample information, or metadata. Template uses controlled vocabularies and ontologies. They have a low compatibility at time of publishing, < 20% with public data sources. 
 
 The use of ReDU is fairly restrictive and prescriptive as it does follow the template. They also have requirements for uploading the dataset as a public MassIVE. So there seems some issues with interoperability with datasets that can be made to fit the template? 
+
+[https://redu.ucsd.edu/](https://redu.ucsd.edu/)
 
