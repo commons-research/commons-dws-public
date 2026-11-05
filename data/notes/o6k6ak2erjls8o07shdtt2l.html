@@ -1,0 +1,36 @@
+<h1 id="tidy-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#tidy-data"></a>Tidy Data</h1>
+<h1 id="tidy-data-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#tidy-data-1"></a><a href="https://www.jstatsoft.org/article/view/v059i10">Tidy Data</a></h1>
+<h2 id="1-introduction"><a aria-hidden="true" class="anchor-heading icon-link" href="#1-introduction"></a>1. Introduction</h2>
+<p><strong>tidying:</strong> structuring datasets to facilitate analysis</p>
+<p>A major time sync is data structuring and importation into other tools for analysis. Tidying stands to help with this, implying ease of <em>interoperability</em>. The concept is built off of normalization in databasing and is focused on advising the structure of datasets for analytical purposes. </p>
+<h2 id="2-defining-tidy-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#2-defining-tidy-data"></a>2. Defining tidy data</h2>
+<p>Datasets comprise the physical layout of the data and the semantics of the dataset are the meaning contained in the dataset. </p>
+<h3 id="21-data-structure"><a aria-hidden="true" class="anchor-heading icon-link" href="#21-data-structure"></a>2.1 Data structure</h3>
+<p>Tables are commonly broken down into rows and columns however data can still be represented differently using these concepts while presenting the same informaiton.</p>
+<h3 id="22-data-semantics"><a aria-hidden="true" class="anchor-heading icon-link" href="#22-data-semantics"></a>2.2 Data semantics</h3>
+<p>Datasets are collections of values. These values can be organized two ways, as either variables or observations. </p>
+<p>It should be easier to describe functional relationships between variables than between rows. </p>
+<h3 id="23-tidy-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#23-tidy-data"></a>2.3 Tidy data</h3>
+<p>Tidy data structure
+1) each variable is a column
+2) each observation is a row
+3) each type of observational unit forms a table
+<em>messy data</em> is any other arrangement of the data. </p>
+<h2 id="3-tidying-messy-datasets"><a aria-hidden="true" class="anchor-heading icon-link" href="#3-tidying-messy-datasets"></a>3 Tidying messy datasets</h2>
+<p>5 most common violations to a tidy dataset</p>
+<ol>
+<li>column headers are values, not variable names.</li>
+<li>multiple variables are stored in one column.</li>
+<li>variables are stored in both rows and columns.</li>
+<li>multiple types of observational units are stored in the same table.</li>
+<li>a single observational unit is stored in multiple tables.
+<a href="https://github.com/hadley/tidy-data" title="https://github.com/hadley/tidy-data">author's R based tidy tool</a></li>
+</ol>
+<h3 id="31-column-headers-are-values-not-variable-names"><a aria-hidden="true" class="anchor-heading icon-link" href="#31-column-headers-are-values-not-variable-names"></a>3.1 Column headers are values, not variable names</h3>
+<p>Tabular data for presentations is a common example of this. </p>
+<h3 id="32-multiple-variables-stored-in-one-column"><a aria-hidden="true" class="anchor-heading icon-link" href="#32-multiple-variables-stored-in-one-column"></a>3.2 Multiple variables stored in one column</h3>
+<h3 id="33-variables-are-stored-in-both-rows-and-columns"><a aria-hidden="true" class="anchor-heading icon-link" href="#33-variables-are-stored-in-both-rows-and-columns"></a>3.3 Variables are stored in both rows and columns</h3>
+<p>most complicated form of messy data. </p>
+<h3 id="34-multiple-types-in-one-table"><a aria-hidden="true" class="anchor-heading icon-link" href="#34-multiple-types-in-one-table"></a>3.4 Multiple types in one table</h3>
+<h3 id="35-one-type-in-multiple-tables"><a aria-hidden="true" class="anchor-heading icon-link" href="#35-one-type-in-multiple-tables"></a>3.5 One type in multiple tables</h3>
+<p>data values duplicated across different tables. Same issues as with non normalized relational db data.</p>

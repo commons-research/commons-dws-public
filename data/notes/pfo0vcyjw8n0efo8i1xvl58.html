@@ -1,0 +1,54 @@
+<h1 id="a-new-measure-for-functional-similarity-of-gene-products-based-on-gene-ontology"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-new-measure-for-functional-similarity-of-gene-products-based-on-gene-ontology"></a>A New Measure For Functional Similarity Of Gene Products Based On Gene Ontology</h1>
+<h1 id="a-new-measure-for-functional-similarity-of-gene-products-based-on-gene-ontology-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-new-measure-for-functional-similarity-of-gene-products-based-on-gene-ontology-1"></a><a href="https://pubmed.ncbi.nlm.nih.gov/16776819/">A new measure for functional similarity of gene products based on Gene Ontology</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>Gene Ontology (GO)</strong>: Standard vocabulary describing gene products through <strong>molecular function</strong>, <strong>biological process</strong>, and <strong>cellular component</strong>.</li>
+<li><strong>Semantic similarity</strong>: Measure of how closely two concepts are related within an ontology.</li>
+<li><strong>Information content (IC)</strong>: Measure of how specific a GO term is. Rare terms have higher information content than common terms.</li>
+<li><strong>Lowest common ancestor (LCA)</strong>: The most specific GO term shared by two GO terms.</li>
+<li><strong>simRel</strong>: Semantic similarity measure proposed by the paper. Combines the strengths of Resnik and Lin similarity.</li>
+<li><strong>funSim</strong>: Functional similarity score between gene products based on their GO annotations.</li>
+<li><strong>Homology</strong>: Similarity due to shared evolutionary ancestry.</li>
+<li><strong>Orthologs</strong>: Genes in different species that evolved from a common ancestral gene and often retain similar functions.</li>
+<li><strong>Multidimensional scaling (MDS)</strong>: Dimensionality reduction method that projects pairwise distances into a low-dimensional space for visualization.</li>
+</ul>
+<h2 id="motivation"><a aria-hidden="true" class="anchor-heading icon-link" href="#motivation"></a>Motivation</h2>
+<p>Traditional function prediction relies heavily on sequence similarity. However, proteins with similar sequences do not always perform the same function, and proteins with similar functions may have evolved independently. Instead they compare proteins using their <strong>Gene Ontology annotations</strong>, allowing similarity to be measured directly from biological function rather than sequence alone.</p>
+<h2 id="gene-ontology"><a aria-hidden="true" class="anchor-heading icon-link" href="#gene-ontology"></a>Gene Ontology</h2>
+<p>GO is represented as a <strong>directed acyclic graph (DAG)</strong> rather than a tree. Each term can have multiple parents through relationships such as:</p>
+<ul>
+<li><strong>is-a</strong></li>
+<li><strong>part-of</strong>
+The paper notes that GO depth alone is not a good measure of specificity. Two terms at the same depth can represent very different levels of biological detail.</li>
+</ul>
+<h2 id="simrel"><a aria-hidden="true" class="anchor-heading icon-link" href="#simrel"></a>simRel</h2>
+<p>The proposed <strong>simRel</strong> measure combines ideas from both Resnik and Lin. It considers:</p>
+<ul>
+<li>how specific the shared ancestor is</li>
+<li>how close both GO terms are to that ancestor
+Unlike previous measures, generic shared ancestors receive less weight, making the similarity more biologically meaningful.</li>
+</ul>
+<h2 id="funsim"><a aria-hidden="true" class="anchor-heading icon-link" href="#funsim"></a>funSim</h2>
+<p><strong>funSim</strong> extends semantic similarity from individual GO terms to complete gene products. Rather than comparing only one pair of GO terms, it compares the complete annotation sets for two proteins and allows <strong>partial matches</strong>. This makes it more robust for:</p>
+<ul>
+<li>incomplete GO annotations</li>
+<li>multifunctional proteins</li>
+</ul>
+<h2 id="results"><a aria-hidden="true" class="anchor-heading icon-link" href="#results"></a>Results</h2>
+<p>The proposed similarity scores correlate well with sequence similarity, but also identify proteins with similar functions despite having little or no sequence similarity. The approach can therefore discover functional relationships that homology-based methods miss. They also found that:</p>
+<ul>
+<li>molecular function similarity tends to correlate more strongly with sequence similarity than biological process similarity</li>
+<li>orthologous proteins are not necessarily functionally identical</li>
+</ul>
+<h2 id="functional-maps"><a aria-hidden="true" class="anchor-heading icon-link" href="#functional-maps"></a>Functional maps</h2>
+<p>They compare every yeast protein against every other yeast protein using <strong>funSim</strong>, then apply <strong>multidimensional scaling (MDS)</strong>. This produces a map where proteins naturally cluster according to molecular function. Similar functional groups appear close together, while multifunctional proteins tend to lie between clusters.</p>
+<h2 id="applications"><a aria-hidden="true" class="anchor-heading icon-link" href="#applications"></a>Applications</h2>
+<p>The proposed measures can be used to:</p>
+<ul>
+<li>compare functions between different species</li>
+<li>identify functionally related proteins without relying on sequence similarity</li>
+<li>discover potential pathogen-specific drug targets</li>
+<li>visualize functional space of proteins or protein families</li>
+</ul>
+<h2 id="limitations"><a aria-hidden="true" class="anchor-heading icon-link" href="#limitations"></a>Limitations</h2>
+<p>The approach depends heavily on GO annotation quality. Missing, incomplete, or incorrect GO annotations reduce the usefulness of the similarity measures. The authors also note that future work should distinguish between <strong>is-a</strong> and <strong>part-of</strong> relationships and include the <strong>cellular component</strong> ontology.</p>

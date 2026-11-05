@@ -1,0 +1,118 @@
+<h1 id="cyclic-trait-implementations"><a aria-hidden="true" class="anchor-heading icon-link" href="#cyclic-trait-implementations"></a>Cyclic Trait Implementations</h1>
+<h1 id="cyclic-trait-implementations-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#cyclic-trait-implementations-1"></a><a href="https://smallcultfollowing.com/babysteps/blog/2026/08/10/cyclic-trait-solving/">Cyclic Trait Implementations</a></h1>
+<h2 id="what-are-cyclic-trait-implementations"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-are-cyclic-trait-implementations"></a>What are cyclic trait implementations?</h2>
+<p>normally traits must be non-cyclic, aka inductive:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">trait</span> <span class="token type-definition class-name">Dump</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">dump</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>then implement for <code>i32</code>:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">Dump</span> <span class="token keyword">for</span> <span class="token keyword">i32</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">dump</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{self}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Then <code>Rc&#x3C;T></code> and <code>Option</code>:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token comment">// impl RC</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Dump</span> <span class="token keyword">for</span> <span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> wher <span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Dump</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">dump</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">T</span><span class="token punctuation">::</span><span class="token function">dump</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// impl Opt</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Dump</span> <span class="token keyword">for</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token keyword">where</span> <span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Dump</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">dump</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token keyword">let</span> <span class="token class-name">Some</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword">self</span> <span class="token punctuation">{</span>
+			<span class="token class-name">T</span><span class="token punctuation">::</span><span class="token function">dump</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>and the last impl for a recursive list:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">List</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	value<span class="token punctuation">:</span> <span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+	next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">List</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Impl L </span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Dump</span> <span class="token keyword">for</span> <span class="token class-name">List</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token keyword">where</span> <span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Dump</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">dump</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">Dump</span><span class="token punctuation">::</span><span class="token function">dump</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">if</span> <span class="token keyword">let</span> <span class="token class-name">Some</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">.</span>next <span class="token punctuation">{</span>
+			<span class="token class-name">Dump</span><span class="token punctuation">::</span><span class="token function">dump</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>then doing <code>List&#x3C;i32>:Dump</code> requires applying <code>impl L</code> to show <code>List&#x3C;i32>: Dump</code> if <code>i32: Dump</code>. then need to apply <code>impl l</code> to show the <code>i32: Dump</code>. And did not have a cycle, where impl L proves impl L is valid.</p>
+<h2 id="cyclic-logic-sounds-bad-but-it-can-be-exactly-what-you-want"><a aria-hidden="true" class="anchor-heading icon-link" href="#cyclic-logic-sounds-bad-but-it-can-be-exactly-what-you-want"></a>Cyclic logic sounds bad, but it can be exactly what you want</h2>
+<p>There are times it might be useful to validate tautologically (as it were).
+A motivating example is <code>#[derive(Clone)]</code>. The generated implementation normally adds a <code>T: Clone</code> bound:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Clone</span> <span class="token keyword">for</span> <span class="token class-name">List</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">where</span>
+    <span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Clone</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// …</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>But this can be unnecessarily restrictive. If <code>T</code> only occurs inside an <code>Rc&#x3C;T></code>, then <code>T</code> itself does not actually need to implement <code>Clone</code>, since cloning an <code>Rc&#x3C;T></code> does not clone the underlying <code>T</code>.
+Instead, the compiler could reason about the actual fields:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Clone</span> <span class="token keyword">for</span> <span class="token class-name">List</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">where</span>
+    <span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">:</span> <span class="token class-name">Clone</span><span class="token punctuation">,</span>
+    <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">List</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token operator">></span><span class="token punctuation">:</span> <span class="token class-name">Clone</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// …</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This allows the required bounds to follow from the structure of the type rather than simply requiring every generic parameter to implement the trait.</p>
+<h2 id="perfect-derive"><a aria-hidden="true" class="anchor-heading icon-link" href="#perfect-derive"></a>Perfect derive</h2>
+<p>This approach is called <strong>perfect derive</strong>: generated trait bounds should reflect what the implementation actually requires rather than conservatively adding the trait to every generic parameter.
+For <code>Clone</code>, the recursive structure works without requiring <code>T: Clone</code>:</p>
+<ol>
+<li><code>List&#x3C;T>: Clone</code> requires <code>Rc&#x3C;T>: Clone</code></li>
+<li>It also requires <code>Option&#x3C;Rc&#x3C;List&#x3C;T>>>: Clone</code></li>
+<li><code>Rc&#x3C;T>: Clone</code> does not require <code>T: Clone</code></li>
+<li><code>Rc&#x3C;List&#x3C;T>>: Clone</code> similarly does not require <code>List&#x3C;T>: Clone</code>
+So despite <code>List</code> being recursive, proving <code>Clone</code> does not actually produce a cyclic trait proof.</li>
+</ol>
+<h2 id="but-dump-actually-creates-a-cycle"><a aria-hidden="true" class="anchor-heading icon-link" href="#but-dump-actually-creates-a-cycle"></a>But <code>Dump</code> actually creates a cycle</h2>
+<p>Applying the same perfect-derive pattern to <code>Dump</code> is different:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Dump</span> <span class="token keyword">for</span> <span class="token class-name">List</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">where</span>
+    <span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">:</span> <span class="token class-name">Dump</span><span class="token punctuation">,</span>
+    <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">List</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token operator">></span><span class="token punctuation">:</span> <span class="token class-name">Dump</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// …</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>To prove <code>List&#x3C;i32>: Dump</code>:</p>
+<ol>
+<li><code>Rc&#x3C;i32>: Dump</code> requires <code>i32: Dump</code> -> this is satisfied.</li>
+<li><code>Option&#x3C;Rc&#x3C;List&#x3C;i32>>>: Dump</code> requires <code>Rc&#x3C;List&#x3C;i32>>: Dump</code>.</li>
+<li><code>Rc&#x3C;List&#x3C;i32>>: Dump</code> requires <code>List&#x3C;i32>: Dump</code>.</li>
+<li>But <code>List&#x3C;i32>: Dump</code> is the original thing we were trying to prove.
+So the proof becomes cyclic:
+<code>List&#x3C;i32>: Dump</code> -> <code>Option&#x3C;Rc&#x3C;List&#x3C;i32>>>: Dump</code> -> <code>Rc&#x3C;List&#x3C;i32>>: Dump</code> -> <code>List&#x3C;i32>: Dump</code>
+The question is whether Rust can safely recognize some cycles like this as valid.</li>
+</ol>
+<h2 id="we-cant-accept-every-cycle"><a aria-hidden="true" class="anchor-heading icon-link" href="#we-cant-accept-every-cycle"></a>We can't accept every cycle</h2>
+<p>Simply accepting cyclic proofs would make the trait system unsound. Consider:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">trait</span> <span class="token type-definition class-name">Magic</span><span class="token punctuation">:</span> <span class="token class-name">Copy</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Magic</span> <span class="token keyword">for</span> <span class="token class-name">T</span>
+<span class="token keyword">where</span>
+    <span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Magic</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<p>If cycles were automatically accepted, then <code>String: Magic</code> could be "proven" using itself:
+<code>String: Magic</code> -> <code>String: Magic</code></p>
+<p>But because <code>Magic: Copy</code>, proving <code>String: Magic</code> would imply <code>String: Copy</code>, even though <code>String</code> does <strong>not</strong> implement <code>Copy</code>. The cyclic implementation has provided no actual evidence; it is just a tautology. So the problem is not simply whether Rust should allow cyclic trait solving. It needs a way to distinguish <strong>productive/useful cycles</strong> from cycles that manufacture trait implementations from nothing.</p>
+<h2 id="soundness-for-traits"><a aria-hidden="true" class="anchor-heading icon-link" href="#soundness-for-traits"></a>Soundness for traits</h2>
+<p>A rough definition of trait-system soundness:</p>
+<ul>
+<li>If Rust accepts a program where some code assumes <code>T: Trait</code>, there must actually be an applicable implementation of <code>Trait</code> for <code>T</code>.
+The <code>Magic</code> example violates this because Rust could reach code assuming <code>String: Copy</code> without any valid <code>Copy for String</code> implementation.</li>
+</ul>
+<p>This is the fundamental problem cyclic trait solving has to solve: <strong>permit useful recursive reasoning without allowing cyclic reasoning to invent evidence that does not exist.</strong></p>

@@ -1,0 +1,193 @@
+<h1 id="tidy-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#tidy-data"></a>Tidy Data</h1>
+<h1 id="tidy-data-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#tidy-data-1"></a><a href="https://tidyr.tidyverse.org/articles/tidy-data.html">Tidy Data</a></h1>
+<p><strong>Tidying:</strong> structuring datasets to facilitate analysis. </p>
+<p>This works as a data standard. </p>
+<h2 id="defining-tidy-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#defining-tidy-data"></a>Defining tidy data</h2>
+<h3 id="data-structure"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-structure"></a>Data structure</h3>
+<p>Usually datasets are rows and columns. Columns are usually labeled, and rows are sometimes labeled. </p>
+<p>Rows and columns can be transposed. </p>
+<h3 id="data-semantics"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-semantics"></a>Data semantics</h3>
+<p>Datasets are a collection of values, and values are organized as either a variable or an observation. </p>
+<ul>
+<li>variables contain contain all values that measure attributes accross units</li>
+<li>observations contain all values measured on the same unit</li>
+</ul>
+<h2 id="tidy-data-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#tidy-data-2"></a>Tidy Data</h2>
+<p>Standard for mapping data to meaning and structure. </p>
+<ol>
+<li>each variable is a column</li>
+<li>each observation is a row</li>
+<li>each value is a cell</li>
+</ol>
+<h2 id="tidying-messy-datasets"><a aria-hidden="true" class="anchor-heading icon-link" href="#tidying-messy-datasets"></a>Tidying messy datasets</h2>
+<p>Common issues with datasets</p>
+<ul>
+<li>column headers are values not variable names</li>
+<li>multiple variables are stored in one column</li>
+<li>variables are stored in both rows and columns</li>
+<li>multiple types of observational units are stored in same table</li>
+<li>single observational unit is stored in multiple tables</li>
+</ul>
+<h3 id="column-headers-are-values-not-variable-names"><a aria-hidden="true" class="anchor-heading icon-link" href="#column-headers-are-values-not-variable-names"></a>Column headers are values, not variable names</h3>
+<p>example:</p>
+<pre><code>#> # A tibble: 18 × 11
+#>    religion   `&#x3C;$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k`
+#>    &#x3C;chr>        &#x3C;dbl>     &#x3C;dbl>     &#x3C;dbl>     &#x3C;dbl>     &#x3C;dbl>     &#x3C;dbl>
+#>  1 Agnostic        27        34        60        81        76       137
+#>  2 Atheist         12        27        37        52        35        70
+#>  3 Buddhist        27        21        30        34        33        58
+#>  4 Catholic       418       617       732       670       638      1116
+#>  5 Don’t kno…      15        14        15        11        10        35
+#>  6 Evangelic…     575       869      1064       982       881      1486
+#>  7 Hindu            1         9         7         9        11        34
+#>  8 Historica…     228       244       236       238       197       223
+#>  9 Jehovah's…      20        27        24        24        21        30
+#> 10 Jewish          19        19        25        25        30        95
+#> # ℹ 8 more rows
+#> # ℹ 4 more variables: `$75-100k` &#x3C;dbl>, `$100-150k` &#x3C;dbl>,
+#> #   `>150k` &#x3C;dbl>, `Don't know/refused` &#x3C;dbl>
+</code></pre>
+<p>Data has 3 variables - religion, income, and frequency.
+Tidying means pivoting the data inot non variable columns:</p>
+<pre><code>#> # A tibble: 180 × 3
+#>    religion income             frequency
+#>    &#x3C;chr>    &#x3C;chr>                  &#x3C;dbl>
+#>  1 Agnostic &#x3C;$10k                     27
+#>  2 Agnostic $10-20k                   34
+#>  3 Agnostic $20-30k                   60
+#>  4 Agnostic $30-40k                   81
+#>  5 Agnostic $40-50k                   76
+#>  6 Agnostic $50-75k                  137
+#>  7 Agnostic $75-100k                 122
+#>  8 Agnostic $100-150k                109
+#>  9 Agnostic >150k                     84
+#> 10 Agnostic Don't know/refused        96
+#> # ℹ 170 more rows
+</code></pre>
+<p>Here now each column represents a variable and each row represents an observation, in this case a demographic unit corresponding to a combination of <code>religion</code> and <code>income</code>. </p>
+<p>Note that this results in a lot of redundancy in data columns. </p>
+<h3 id="multiple-variables-stored-in-one-column"><a aria-hidden="true" class="anchor-heading icon-link" href="#multiple-variables-stored-in-one-column"></a>Multiple variables stored in one column</h3>
+<p>See below example of TB cases</p>
+<pre><code>#> # A tibble: 5,769 × 22
+#>    iso2   year   m04  m514  m014 m1524 m2534 m3544 m4554 m5564   m65
+#>    &#x3C;chr> &#x3C;int> &#x3C;int> &#x3C;int> &#x3C;int> &#x3C;int> &#x3C;int> &#x3C;int> &#x3C;int> &#x3C;int> &#x3C;int>
+#>  1 AD     1989    NA    NA    NA    NA    NA    NA    NA    NA    NA
+#>  2 AD     1990    NA    NA    NA    NA    NA    NA    NA    NA    NA
+#>  3 AD     1991    NA    NA    NA    NA    NA    NA    NA    NA    NA
+#>  4 AD     1992    NA    NA    NA    NA    NA    NA    NA    NA    NA
+#>  5 AD     1993    NA    NA    NA    NA    NA    NA    NA    NA    NA
+#>  6 AD     1994    NA    NA    NA    NA    NA    NA    NA    NA    NA
+#>  7 AD     1996    NA    NA     0     0     0     4     1     0     0
+#>  8 AD     1997    NA    NA     0     0     1     2     2     1     6
+#>  9 AD     1998    NA    NA     0     0     0     1     0     0     0
+#> 10 AD     1999    NA    NA     0     0     0     1     1     0     0
+#> # ℹ 5,759 more rows
+#> # ℹ 11 more variables: mu &#x3C;int>, f04 &#x3C;int>, f514 &#x3C;int>, f014 &#x3C;int>,
+#> #   f1524 &#x3C;int>, f2534 &#x3C;int>, f3544 &#x3C;int>, f4554 &#x3C;int>, f5564 &#x3C;int>,
+#> #   f65 &#x3C;int>, fu &#x3C;int>
+</code></pre>
+<p>This can be tidied up to be:</p>
+<pre><code>#> # A tibble: 35,750 × 4
+#>    iso2   year demo      n
+#>    &#x3C;chr> &#x3C;int> &#x3C;chr> &#x3C;int>
+#>  1 AD     1996 m014      0
+#>  2 AD     1996 m1524     0
+#>  3 AD     1996 m2534     0
+#>  4 AD     1996 m3544     4
+#>  5 AD     1996 m4554     1
+#>  6 AD     1996 m5564     0
+#>  7 AD     1996 m65       0
+#>  8 AD     1996 f014      0
+#>  9 AD     1996 f1524     1
+#> 10 AD     1996 f2534     1
+#> # ℹ 35,740 more rows
+</code></pre>
+<p>Then further separating out the gender as:</p>
+<pre><code>#> # A tibble: 35,750 × 5
+#>    iso2   year sex   age       n
+#>    &#x3C;chr> &#x3C;int> &#x3C;chr> &#x3C;chr> &#x3C;int>
+#>  1 AD     1996 m     014       0
+#>  2 AD     1996 m     1524      0
+#>  3 AD     1996 m     2534      0
+#>  4 AD     1996 m     3544      4
+#>  5 AD     1996 m     4554      1
+#>  6 AD     1996 m     5564      0
+#>  7 AD     1996 m     65        0
+#>  8 AD     1996 f     014       0
+#>  9 AD     1996 f     1524      1
+#> 10 AD     1996 f     2534      1
+</code></pre>
+<p>Note that this new tidied format readily presents a necessary piece of information: the population. </p>
+<h3 id="variables-are-stored-in-both-rows-and-columns"><a aria-hidden="true" class="anchor-heading icon-link" href="#variables-are-stored-in-both-rows-and-columns"></a>Variables are stored in both rows and columns</h3>
+<p>Most complicated issue. example:</p>
+<pre><code>#> # A tibble: 22 × 35
+#>    id      year month element    d1    d2    d3    d4    d5    d6    d7
+#>    &#x3C;chr>  &#x3C;int> &#x3C;int> &#x3C;chr>   &#x3C;dbl> &#x3C;dbl> &#x3C;dbl> &#x3C;dbl> &#x3C;dbl> &#x3C;dbl> &#x3C;dbl>
+#>  1 MX170…  2010     1 tmax       NA  NA    NA      NA  NA      NA    NA
+#>  2 MX170…  2010     1 tmin       NA  NA    NA      NA  NA      NA    NA
+#>  3 MX170…  2010     2 tmax       NA  27.3  24.1    NA  NA      NA    NA
+#>  4 MX170…  2010     2 tmin       NA  14.4  14.4    NA  NA      NA    NA
+#>  5 MX170…  2010     3 tmax       NA  NA    NA      NA  32.1    NA    NA
+#>  6 MX170…  2010     3 tmin       NA  NA    NA      NA  14.2    NA    NA
+#>  7 MX170…  2010     4 tmax       NA  NA    NA      NA  NA      NA    NA
+#>  8 MX170…  2010     4 tmin       NA  NA    NA      NA  NA      NA    NA
+#>  9 MX170…  2010     5 tmax       NA  NA    NA      NA  NA      NA    NA
+#> 10 MX170…  2010     5 tmin       NA  NA    NA      NA  NA      NA    NA
+#> # ℹ 12 more rows
+#> # ℹ 24 more variables: d8 &#x3C;dbl>, d9 &#x3C;lgl>, d10 &#x3C;dbl>, d11 &#x3C;dbl>,
+#> #   d12 &#x3C;lgl>, d13 &#x3C;dbl>, d14 &#x3C;dbl>, d15 &#x3C;dbl>, d16 &#x3C;dbl>, d17 &#x3C;dbl>,
+#> #   d18 &#x3C;lgl>, d19 &#x3C;lgl>, d20 &#x3C;lgl>, d21 &#x3C;lgl>, d22 &#x3C;lgl>, d23 &#x3C;dbl>,
+#> #   d24 &#x3C;lgl>, d25 &#x3C;dbl>, d26 &#x3C;dbl>, d27 &#x3C;dbl>, d28 &#x3C;dbl>, d29 &#x3C;dbl>,
+#> #   d30 &#x3C;dbl>, d31 &#x3C;dbl>
+</code></pre>
+<p>individual column variables (id, year, month), spread across columns (day, d1-d31) and across rows (tmin, tmax). </p>
+<p>Tidied up:</p>
+<pre><code>#> # A tibble: 33 × 6
+#>    id       year month   day  tmax  tmin
+#>    &#x3C;chr>   &#x3C;int> &#x3C;int> &#x3C;int> &#x3C;dbl> &#x3C;dbl>
+#>  1 MX17004  2010     1    30  27.8  14.5
+#>  2 MX17004  2010     2     2  27.3  14.4
+#>  3 MX17004  2010     2     3  24.1  14.4
+#>  4 MX17004  2010     2    11  29.7  13.4
+#>  5 MX17004  2010     2    23  29.9  10.7
+#>  6 MX17004  2010     3     5  32.1  14.2
+#>  7 MX17004  2010     3    10  34.5  16.8
+#>  8 MX17004  2010     3    16  31.1  17.6
+#>  9 MX17004  2010     4    27  36.3  16.7
+#> 10 MX17004  2010     5    27  33.2  18.2
+</code></pre>
+<p>one variable in each column, each row is now one day</p>
+<h3 id="multiple-types-in-one-table"><a aria-hidden="true" class="anchor-heading icon-link" href="#multiple-types-in-one-table"></a>Multiple types in one table</h3>
+<p>Each observational unit should be stored in its own table. Similar to DB normalization. Example:
+song dataset has artist and song name</p>
+<pre><code>#> # A tibble: 317 × 3
+#>    artist         track                   song_id
+#>    &#x3C;chr>          &#x3C;chr>                     &#x3C;int>
+#>  1 2 Pac          Baby Don't Cry (Keep...       1
+#>  2 2Ge+her        The Hardest Part Of ...       2
+#>  3 3 Doors Down   Kryptonite                    3
+#>  4 3 Doors Down   Loser                         4
+#>  5 504 Boyz       Wobble Wobble                 5
+#>  6 98^0           Give Me Just One Nig...       6
+#>  7 A*Teens        Dancing Queen                 7
+#>  8 Aaliyah        I Don't Wanna                 8
+#>  9 Aaliyah        Try Again                     9
+#> 10 Adams, Yolanda Open My Heart                10
+#> # ℹ 307 more rows
+</code></pre>
+<p>ranking table which gives each song a ranking. </p>
+<pre><code>#> # A tibble: 5,307 × 4
+#>    song_id date        week  rank
+#>      &#x3C;int> &#x3C;date>     &#x3C;int> &#x3C;dbl>
+#>  1       1 2000-02-26     1    87
+#>  2       1 2000-03-04     2    82
+#>  3       1 2000-03-11     3    72
+#>  4       1 2000-03-18     4    77
+#>  5       1 2000-03-25     5    87
+#>  6       1 2000-04-01     6    94
+#>  7       1 2000-04-08     7    99
+#>  8       2 2000-09-02     1    91
+#>  9       2 2000-09-09     2    87
+#> 10       2 2000-09-16     3    92
+#> # ℹ 5,297 more rows
+</code></pre>

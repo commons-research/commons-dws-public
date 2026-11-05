@@ -1,0 +1,94 @@
+<h1 id="data-binning"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-binning"></a>Data Binning</h1>
+<h1 id="data-binning-wikipedia"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-binning-wikipedia"></a><a href="https://en.wikipedia.org/wiki/Data_binning">Data Binning (wikipedia)</a></h1>
+<p>alternative names: <em>data discrete binning</em>, <em>data bucketing</em>.</p>
+<p>Goal of binning is to reduce observation errors. Data falls into a given small interval, called a bin, and then a value replaces that interval, such as mean or median.</p>
+<p>In statistics, <strong>Statistical Data Binning</strong> is a method for grouping continuous values into smaller numbers, <em>bins</em>. Such as age being broken down into smaller groups (bins).</p>
+<h2 id="example-usage"><a aria-hidden="true" class="anchor-heading icon-link" href="#example-usage"></a>Example Usage</h2>
+<p>A histogram uses data binning to observe frequency distributions.</p>
+<p>Binning is common in MS research, where smalls shifts could be incorrectly interpeted as different components/features. Thus binning ensures the peaks remain in their <em>bin</em> even with slight fluctuations to the bin. (I wonder if these fluctuations hold any data that is lost in binning?)</p>
+<p>Also common in machine learning, for supervised classification and regression.</p>
+<h1 id="numerical-data-binning-google-ml"><a aria-hidden="true" class="anchor-heading icon-link" href="#numerical-data-binning-google-ml"></a><a href="https://developers.google.com/machine-learning/crash-course/numerical-data/binning">Numerical Data: Binning (google ML)</a></h1>
+<p>Binning groups subranges into bins or <em>buckets</em>, and often are used to turn numeric data into categorical data. Example: feature <code>X</code> has lowest value 15 and highest 425 <span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>15</mn><mo>≤</mo><mi>X</mi><mo>≤</mo><mn>425</mn></mrow><annotation encoding="application/x-tex">15\leq X \leq 425</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">15</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">425</span></span></span></span></span>. Thus binning X could look like:
+1) 15-34
+2) 35-117
+3) 118-279
+4) 280-392
+5) 393-425
+In machin learning, a model trained on these bins will react no differently to <code>X</code> values of 17 and 29, as both are Bin 1.
+If you represent these bins as a feature vectore it would look something like this:</p>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Bin</th><th>Range</th><th>Feature Vec</th></tr></thead><tbody><tr><td>1</td><td>15-34</td><td>[1.0, 0.0, 0.0, 0.0, 0.0]</td></tr><tr><td>2</td><td>35-117</td><td>[0.0, 1.0, 0.0, 0.0, 0.0]</td></tr><tr><td>3</td><td>118-279</td><td>[0.0, 0.0, 1.0, 0.0, 0.0]</td></tr><tr><td>4</td><td>280-392</td><td>[0.0, 0.0, 0.0, 1.0, 0.0]</td></tr><tr><td>5</td><td>393-425</td><td>[0.0, 0.0, 0.0, 0.0, 1.0]</td></tr></tbody></table></div>
+<p>Thus <code>X</code> becomes 5 separate features.</p>
+<p>Useful when:</p>
+<ul>
+<li>linear relationship between the feature and lable is weak/none</li>
+<li>feature values are clustered.</li>
+</ul>
+<h1 id="binning-in-data-mining-geeksforgeeks"><a aria-hidden="true" class="anchor-heading icon-link" href="#binning-in-data-mining-geeksforgeeks"></a><a href="https://www.geeksforgeeks.org/machine-learning/binning-in-data-mining/">Binning in Data Mining (geeksforgeeks)</a></h1>
+<h2 id="why-binning-is-important"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-binning-is-important"></a>Why binning is important?</h2>
+<p>1) data smoothing: reduces impact of minor obvservation variations (noise)
+2) outlier mitigation: outliers are reduced as values are grouped into bins
+3) improved analysis: making continuous data discrete makes data analysis easier, and improves <strong>visualization</strong>
+4) feature engineering: in ML can help with predictive modeling</p>
+<h2 id="types-of-binning-techniques"><a aria-hidden="true" class="anchor-heading icon-link" href="#types-of-binning-techniques"></a>Types of Binning Techniques</h2>
+<h3 id="1-equal-width-binning"><a aria-hidden="true" class="anchor-heading icon-link" href="#1-equal-width-binning"></a>1. Equal-width binning</h3>
+<p>Bins are equal width/interval, data is broken into <span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> intervals
+<span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Bin Width</mtext><mo>=</mo><mfrac><mrow><mtext>Max-Value</mtext><mo>−</mo><mtext>Min Value</mtext></mrow><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">\text{Bin Width}= \frac{\text{Max-Value}-\text{Min Value}}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">Bin Width</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Max-Value</span></span><span class="mbin mtight">−</span><span class="mord text mtight"><span class="mord mtight">Min Value</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+Easy to implement but does not account for data distribution in bins</p>
+<h3 id="2-equal-frequency-binning"><a aria-hidden="true" class="anchor-heading icon-link" href="#2-equal-frequency-binning"></a>2. Equal-frequency binning</h3>
+<p>Each bin has about same number of data points. Is balanced, but bin width can be highly variable.</p>
+<h3 id="steps-in-binning"><a aria-hidden="true" class="anchor-heading icon-link" href="#steps-in-binning"></a>Steps in Binning</h3>
+<ol>
+<li>sort data</li>
+<li>define boundaries for each bin (intervals)</li>
+<li>Assign data points to bins: put data into bins</li>
+</ol>
+<h3 id="applications-of-binning"><a aria-hidden="true" class="anchor-heading icon-link" href="#applications-of-binning"></a>Applications of Binning</h3>
+<ol>
+<li>data preprocessing</li>
+<li>anomaly detection</li>
+<li>data visualization</li>
+<li>feature engineering</li>
+</ol>
+<h3 id="challenges-of-binning"><a aria-hidden="true" class="anchor-heading icon-link" href="#challenges-of-binning"></a>Challenges of binning</h3>
+<ul>
+<li>information loss: since coming from continuous data to discrete, granular detail is lost at points of binning</li>
+<li>subjective: definition of bins is highly subjective</li>
+<li>overfitting: may overfit data, and make a ML model less generalizabile</li>
+</ul>
+<h2 id="data-binning-explained-medium"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-binning-explained-medium"></a><a href="https://medium.com/@mose.kabungo/binning-explained-557aa3cce591">Data Binning Explained (medium)</a></h2>
+<p><strong>Data Binning</strong>: organizing data into finite range of intervals. Also called data bucketing. </p>

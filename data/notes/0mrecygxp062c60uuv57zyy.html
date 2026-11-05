@@ -1,0 +1,28 @@
+<h1 id="the-unglamorous-side-of-rust-web-development"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-unglamorous-side-of-rust-web-development"></a>The Unglamorous Side Of Rust Web Development</h1>
+<h1 id="the-unglamorous-side-of-rust-web-development-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-unglamorous-side-of-rust-web-development-1"></a><a href="https://blog.jetbrains.com/rust/2026/06/25/rust-web-development-2026/">The Unglamorous Side of Rust Web Development</a></h1>
+<p>Authors chose to use cot.rs because of recurring issues with tool selection in rust ecosystem for each new project. </p>
+<h2 id="tldr"><a aria-hidden="true" class="anchor-heading icon-link" href="#tldr"></a>TL;DR</h2>
+<ul>
+<li>async rust is hard to debug</li>
+<li>Rust based ORMs require schema in more than one place</li>
+<li>Error handling inconsistencies in frameworks</li>
+<li>macros are frequent in web dev but make problems</li>
+<li>compile times cost real time</li>
+<li>fragmented ecosystem</li>
+<li>cot.rs and others are helping make it better, still not fully there. </li>
+</ul>
+<h2 id="async-rust-problems-debuggin-backtraces-and-what-nobody-tells-you"><a aria-hidden="true" class="anchor-heading icon-link" href="#async-rust-problems-debuggin-backtraces-and-what-nobody-tells-you"></a>Async rust problems: debuggin, backtraces, and what nobody tells you</h2>
+<p>Async is great but complex to work with. Requiring a lot of knowledge about futures and async. This is especially true for debugging. The backtraces for async are large and hard to trace back. (note - maybe they should not be panicking at all to begin with and should do fuzzing ot help identify coverage issues?)</p>
+<h2 id="rust-orm-and-database-access-diesel-seaorm-and-the-schema-problem"><a aria-hidden="true" class="anchor-heading icon-link" href="#rust-orm-and-database-access-diesel-seaorm-and-the-schema-problem"></a>Rust ORM and database access: Diesel, SeaORM, and the schema problem</h2>
+<p>Diesel essentially has 3 representations of the same data. SeaORM helps but migrations are still challenging to write with Rust + SQL. So they propose simplifying the ORM code more (this is an issue with the tools they use, not the language used to build them). </p>
+<h2 id="error-handling-returning-an-error-is-easy-returning-the-right-one-is-harder"><a aria-hidden="true" class="anchor-heading icon-link" href="#error-handling-returning-an-error-is-easy-returning-the-right-one-is-harder"></a>Error handling: Returning an error is easy; returning the right one is harder</h2>
+<p>They assert that error handling should be easy to write, and carry as much context as possible (why not just the context for the erorr?). Using axum there are two ways to do errors. Existing middleware and web frameworks have different ways to handle errors. </p>
+<h2 id="metaprogramming-useful-magic-is-still-magic"><a aria-hidden="true" class="anchor-heading icon-link" href="#metaprogramming-useful-magic-is-still-magic"></a>Metaprogramming: Useful magic is still magic</h2>
+<p>Macros work well but are black boxes and can have issues. error handling and tracing can be a headache. IDE support for macros is not always uniform.
+Generics are also powerful tools for reusable software, but for web application, it can increase overhead by a lot. (something to consider for the portal). </p>
+<h2 id="iteration-speed-i-changed-a-string-see-you-in-a-minute"><a aria-hidden="true" class="anchor-heading icon-link" href="#iteration-speed-i-changed-a-string-see-you-in-a-minute"></a>Iteration speed: "I changed a string, see you in a minute"</h2>
+<p>Compilation takes time, monomorphization for generics takes time in compilation. this is all real time that developers need to wait before testing the software built. macros are close to 70% of compile time. Speedups work minimally and have nominal impact. </p>
+<h2 id="ecosystem-fragmentation-choosing-everything-yourself"><a aria-hidden="true" class="anchor-heading icon-link" href="#ecosystem-fragmentation-choosing-everything-yourself"></a>Ecosystem fragmentation: choosing everything yourself</h2>
+<p>Due to how crates.io and crates work with eachother, things become fragmented very quickly in projects. Moreover a crate can and does easily lose support as the maintainer stops paying attention to it. </p>
+<h2 id="so-is-it-worth-it"><a aria-hidden="true" class="anchor-heading icon-link" href="#so-is-it-worth-it"></a>So, is it worth it?</h2>
+<p>Rust is still a good choice they argue. </p>

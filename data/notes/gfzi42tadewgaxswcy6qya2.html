@@ -1,0 +1,1041 @@
+<h1 id="part-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#part-1"></a>Part 1</h1>
+<p>Repo: <a href="https://github.com/brndnmtthws/idiomatic-rust-book">https://github.com/brndnmtthws/idiomatic-rust-book</a>
+Forum: <a href="https://livebook.manning.com/book/idiomatic-rust/discussion">https://livebook.manning.com/book/idiomatic-rust/discussion</a>
+<a title="Private" href="https://wiki.dendron.so/notes/hfyvYGJZQiUwQaaxQO27q.html" target="_blank" class="private">Part 2 Core Patterns (Private)</a></p>
+<h1 id="part-1-building-blocks"><a aria-hidden="true" class="anchor-heading icon-link" href="#part-1-building-blocks"></a>Part 1: Building Blocks</h1>
+<h2 id="rust-y--patterns"><a aria-hidden="true" class="anchor-heading icon-link" href="#rust-y--patterns"></a>Rust-y  Patterns</h2>
+<p><strong>Design Patterns</strong>: high-level (abstraction) patterns that aid in design and architect software. </p>
+<h3 id="12-what-design-patterns-are"><a aria-hidden="true" class="anchor-heading icon-link" href="#12-what-design-patterns-are"></a>1.2 What design patterns are</h3>
+<p>Design patterns common throughout programming
+<strong>Design patterns are</strong> </p>
+<ul>
+<li>reusable</li>
+<li>Can be applied widely and broadly</li>
+<li>solve problems while being easy to reason with/about</li>
+<li>understood by other devs</li>
+<li>and <em>antipatterns</em> would be code that does not follow an established design pattern</li>
+</ul>
+<h4 id="what-are-antipatterns"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-are-antipatterns"></a>What are antipatterns?</h4>
+<p>The opposite of a good pattern for solving a problem, can be seen as the <em>wrong</em> way. Rust is good at avoiding antipatterns to begin with. </p>
+<p><strong>Hierarchy</strong>:
+Architecture -> Design Patterns -> idioms
+</p><blockquote>
+No note with name Pasted image 20251113212053.png found in cache during parsing.
+</blockquote> The three pillars of good software design<p></p>
+<h3 id="13-why-this-book-is-different"><a aria-hidden="true" class="anchor-heading icon-link" href="#13-why-this-book-is-different"></a>1.3 Why this book is different</h3>
+<h3 id="14-tools-youll-need"><a aria-hidden="true" class="anchor-heading icon-link" href="#14-tools-youll-need"></a>1.4 Tools You'll Need</h3>
+<ul>
+<li>git</li>
+<li>rustup</li>
+<li>gcc or clang</li>
+</ul>
+<h3 id="summary"><a aria-hidden="true" class="anchor-heading icon-link" href="#summary"></a>Summary</h3>
+<ul>
+<li>good design patterns are reusable with broad application and solve common problems in programming</li>
+<li>Good design patterns get widely adopted</li>
+<li>Antipatterns is a poorly understandable design pattern, poorly specified, or considered detrimental</li>
+<li>Need Rust, Git, Gcc/LLVM Clang for Rust</li>
+<li>Use the repo</li>
+</ul>
+<h2 id="2-rusts-basic-building-blocks"><a aria-hidden="true" class="anchor-heading icon-link" href="#2-rusts-basic-building-blocks"></a>2 Rust's Basic Building Blocks</h2>
+<h3 id="21-generics"><a aria-hidden="true" class="anchor-heading icon-link" href="#21-generics"></a>2.1 Generics</h3>
+<p>Generics are:
+1) compile time abstractions
+2) type-safe
+3) enhance meta programming
+Can use placeholders instead of concrete types, making code more broadly applicable. <strong>Generics do increase compile time</strong>. However Rust generics are still type safe!</p>
+<h4 id="211-a-turing-complete-type-system"><a aria-hidden="true" class="anchor-heading icon-link" href="#211-a-turing-complete-type-system"></a>2.1.1 A Turing-complete type system</h4>
+<p><strong>Turing-Complete</strong>: the rust type system can express any turing machine capable computation. So it can do anything a computer can do.
+Check out <strong><a href="https://github.com/paholg/minsky">Minsky Machine</a></strong>, register-based counter machine, equivalent to a turing machine and equivalent to representinga  CPU. </p>
+<h4 id="212-why-generics"><a aria-hidden="true" class="anchor-heading icon-link" href="#212-why-generics"></a>2.1.2 Why generics?</h4>
+<p>Generics allow us to follow DRY - Don't repeat yourself, with Rust, because the compiler needs to know the types of everything at compile time, and without generics there is potential for a lot of repetitive code to meet the compiler's requirements. </p>
+<p>However generics can also introduce more overhead and make the code harder to read and writer. Therefore they may be used sparingly but likely will be worth the extra effort when they are needed and used. </p>
+<h4 id="213-basics-of-generics"><a aria-hidden="true" class="anchor-heading icon-link" href="#213-basics-of-generics"></a>2.1.3 Basics of Generics</h4>
+<p>basic generic struct:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Container</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	value<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><code>T</code> represents the value that is being held (generic). A generic can be used in a struct, enum, function, <code>impl</code> block, etc. The use of the <code>&#x3C;..></code> usually indicates a generic. </p>
+<p>Usually the compiler can infer the generic type. When using a generic you cannot initialize with <code>None</code> as the compiler would not be able to infer the type. So annotation is needed: </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> container<span class="token punctuation">:</span> <span class="token class-name">Container</span><span class="token operator">&#x3C;</span><span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">String</span><span class="token operator">>></span> <span class="token operator">=</span> <span class="token class-name">Container</span> <span class="token punctuation">{</span>value<span class="token punctuation">:</span> <span class="token class-name">None</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>With the type annotation on the left side of the assignment the compiler is able to understand the type. </p>
+<p>Another method is the <code>fn new()</code> constructor pattern. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Container</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		<span class="token keyword">Self</span> <span class="token punctuation">{</span>value<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The <code>impl</code> block uses <code>&#x3C;T></code> and passes the <code>value:T</code> into the <code>Container</code> as a new instance of <code>Container</code>. So doing it this way we can write:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> short_alt_container <span class="token operator">=</span> <span class="token class-name">Container</span><span class="token punctuation">::</span><span class="token operator">&#x3C;</span><span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">String</span><span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">None</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Generics allow us to do things like recursion and are useful for things like linked lists:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token attribute attr-name">#[derive(Clone)]</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">ListItem</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">where</span>
+	<span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Clone</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span>
+	data<span class="token punctuation">:</span> <span class="token class-name">Box</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+	next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">Box</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItem</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>If you wanted to do the above without Option it could be done with an Enum:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">enum</span> <span class="token type-definition class-name">NextNode</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token class-name">Nex</span><span class="token punctuation">(</span><span class="token class-name">Box</span><span class="token operator">&#x3C;</span><span class="token class-name">ListNode</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token class-name">End</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">ListNode</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	data<span class="token punctuation">:</span> <span class="token class-name">Box</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+	next<span class="token punctuation">:</span> <span class="token class-name">NextNode</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="214-exploring-rusts-option"><a aria-hidden="true" class="anchor-heading icon-link" href="#214-exploring-rusts-option"></a>2.1.4 Exploring Rust's Option</h4>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token class-name">None</span><span class="token punctuation">,</span>
+	<span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This a super clear example of the use of a generic. That's what this is. <code>None</code> is just an enum variant, and if there's a value, its just another enum variant called <code>Some</code> which takes your generic <code>T</code>. </p>
+<h4 id="215-marker-structs-and-phantom-types"><a aria-hidden="true" class="anchor-heading icon-link" href="#215-marker-structs-and-phantom-types"></a>2.1.5 Marker Structs and Phantom types</h4>
+<p><strong>phantom types:</strong> types that are used for generic parameters when they are not needed in a struct.</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Dog</span><span class="token operator">&#x3C;</span><span class="token class-name">Breed</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	name<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>In the above example the <code>Breed</code> needs to be kept track for compilation reasons only and not after. Therefore the <code>Breed</code> is never defined beyond this generic use. To use the <code>Breed</code> we create some breeds:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Labrador</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Retriever</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Poodle</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Dachshund</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<p>However the above phantom generic will throw an error as the parameter is never used. This can be gotten around by including:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>marker<span class="token punctuation">::</span></span><span class="token class-name">PhantomData</span><span class="token punctuation">;</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Dog</span><span class="token operator">&#x3C;</span><span class="token class-name">Breed</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	name<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">,</span>
+	breed<span class="token punctuation">:</span> <span class="token class-name">PhantomData</span><span class="token operator">&#x3C;</span><span class="token class-name">Breed</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Thus anytime you want to use this struct you will need to provide the phantom data:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>marker<span class="token punctuation">::</span></span><span class="token class-name">PhantomData</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> my_poodle<span class="token punctuation">:</span> <span class="token class-name">Dog</span><span class="token operator">&#x3C;</span><span class="token class-name">Poodle</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span>
+	name<span class="token punctuation">:</span> <span class="token string">"Jeffery"</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	breed<span class="token punctuation">:</span> <span class="token class-name">PhantomData</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>PhantomData</code> is a marker struct, a <strong>marker struct</strong> is useful for specialized distinct types at compile time:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">Dog</span><span class="token operator">&#x3C;</span><span class="token class-name">Labrador</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">breed_name</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token operator">&#x26;</span><span class="token keyword">str</span> <span class="token punctuation">{</span>
+		<span class="token string">"labrador"</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span> <span class="token class-name">Dog</span><span class="token operator">&#x3C;</span><span class="token class-name">Retriever</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">breed_name</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token operator">&#x26;</span><span class="token keyword">str</span> <span class="token punctuation">{</span>
+		<span class="token string">"retriever"</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The above <code>impl</code> blocks are concrete specializations for <code>Dog</code> and therefore do not require the generic <code>Breed</code> parameter. The breed name is returned here directly, without it being stored in a field, and will be part of the program's data segment. </p>
+<p>Because the above <code>breed_name()</code> takes the parameter <code>&#x26;self</code> we do not need to specify the lifetime - <code>'static</code> . </p>
+<p><strong>Lifetimes and 'static</strong>: Lifetimes are valid for as long as they are used. A lifetime has a similar syntax to a generic parameter but are not the same - <code>&#x3C;'a></code> would be a lifetime. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Dog</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	name<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">str</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The above <code>str</code> has a lifetime of <code>'a</code> and must therefore be valid for as long as <code>Dog</code> is. <code>'static</code> is a special lifetime that lasts for the duration of the whole program. String literals are <code>'static</code> and do not necessarily need a lifetime assigned to them. Therefore returning a string you may return as <code>&#x26;'static str</code> to specify explicit lifetime. The <code>'static</code> lifetime is option but including it for a string literal ensures it is valid for the program duration. </p>
+<p>Testing the above code:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> my_poodle<span class="token punctuation">:</span> <span class="token class-name">Dog</span><span class="token operator">&#x3C;</span><span class="token class-name">Poodle</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span>
+	name<span class="token punctuation">:</span> <span class="token string">"Jeffrey"</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	breed<span class="token punctuation">:</span> <span class="token class-name">PHantomData</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property">println!</span><span class="token punctuation">(</span>
+	<span class="token string">"My dog is a {}, name {}"</span><span class="token punctuation">,</span>
+	my_poodle<span class="token punctuation">.</span><span class="token function">breed_name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	my_poodle<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>which should output:</p>
+<pre class="language-bash"><code class="language-bash">My dog is a poodle, named Jeffrey
+</code></pre>
+<h4 id="216-generic-parameter-trait-bounds"><a aria-hidden="true" class="anchor-heading icon-link" href="#216-generic-parameter-trait-bounds"></a>2.1.6 Generic Parameter trait bounds</h4>
+<p><strong>trait bounds</strong>: a generics feature for controlling which types can be used with a specific structure. There can be multiple trait bounds for any parameter.
+The linked list example uses the <code>Clone</code> trait by deriving it, and given <code>Clone</code> to <code>T</code> by writing <code>where T: Clone</code>. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token attribute attr-name">#[derive(CLone)]</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">ListItem</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span>
+<span class="token keyword">where</span> <span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">Clone</span> <span class="token operator">+</span> <span class="token class-name">Debug</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	data<span class="token punctuation">:</span> <span class="token class-name">Box</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+	next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">Box</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItem</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="22-traits"><a aria-hidden="true" class="anchor-heading icon-link" href="#22-traits"></a>2.2 Traits</h3>
+<p>Traits are very powerful abstractions. But need to be careful of:
+1) Trait Pollution
+2) Trait Duplication</p>
+<h4 id="221-why-traits-are-not-object-oriented-programming"><a aria-hidden="true" class="anchor-heading icon-link" href="#221-why-traits-are-not-object-oriented-programming"></a>2.2.1 Why traits are not object-oriented programming</h4>
+<p>In Rust there are <em>objects</em> and objects are instances of a type, like an enum or struct, and represent state. However Rust does not have <em>inheritance</em>. Instead Rust uses traits. Traits can be added on top of any structure or data type and add features. traits define <em>functionality</em> rather than <em>is-a</em> relationship. </p>
+<h4 id="222-whats-in-a-trait"><a aria-hidden="true" class="anchor-heading icon-link" href="#222-whats-in-a-trait"></a>2.2.2 What's in a trait?</h4>
+<p>Traits are a definition and optional implementations. The definition usually includes:</p>
+<ul>
+<li>A trait name</li>
+<li>Optional set of methods (and even optional default implementations)</li>
+<li>Optional placeholder generic types</li>
+<li>Optional set of required traits
+The bare minimum of a trait:</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">trait</span> <span class="token type-definition class-name">MinimalTrait</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre>
+<p><em>Implementations</em> apply the definition of the trait to a specific type. Do not need to implement a trait for all possible types. Traits can use generic data types. Basic example:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">trait</span> <span class="token type-definition class-name">DoesItBark</span> <span class="token punctuation">{</span>  <span class="token comment">// trait definition block</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">it_barks</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">bool</span><span class="token punctuation">;</span> <span class="token comment">// trait method signature</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Dog</span><span class="token punctuation">;</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">DoesItBark</span> <span class="token keyword">for</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span>  <span class="token comment">//implementation block for the trait</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">it_barks</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">bool</span> <span class="token punctuation">{</span>
+		<span class="token boolean">true</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>As trait definitions can be empty, and can therefore be used for metaprogramming. </p>
+<blockquote>
+<p>In OOP, relationships are defined in terms of the objects themselves. In trait programming, relationships are defined in terms of which traits an object implements
+rather than which object the behavior is implemented for a subtle but crucial distinction.</p>
+</blockquote>
+<p><strong>Note:</strong> Traits are NOT Object Oriented Concepts. Forget about OOP Here. </p>
+<h4 id="223-understanding-traits-by-examining-object-oriented-code"><a aria-hidden="true" class="anchor-heading icon-link" href="#223-understanding-traits-by-examining-object-oriented-code"></a>2.2.3 Understanding traits by examining object-oriented code</h4>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Rectangle</span> <span class="token punctuation">{</span>
+	width<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">,</span>
+	height<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+	<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span>width<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">,</span> height<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		<span class="token keyword">Self</span> <span class="token punctuation">{</span> width<span class="token punctuation">,</span> height <span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Square</span> <span class="token punctuation">{</span>
+	length<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span> <span class="token class-name">Square</span> <span class="token punctuation">{</span>
+	<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span>length<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		<span class="token keyword">Self</span> <span class="token punctuation">{</span> length <span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">pub</span> <span class="token keyword">fn</span> <span class="token function-definition function">get_length</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span>length
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token type-definition class-name">Rectangular</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_width</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_height</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_area</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">Rectangular</span> <span class="token keyword">for</span> <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_width</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span>width
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_height</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span>height
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_area</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span>width <span class="token operator">*</span> <span class="token keyword">self</span><span class="token punctuation">.</span>height
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">Rectangular</span> <span class="token keyword">for</span> <span class="token class-name">Square</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_width</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span>length
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_height</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span>length
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">get_area</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span>length <span class="token operator">*</span> <span class="token keyword">self</span><span class="token punctuation">.</span>length
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="224-combining-generics-and-traits"><a aria-hidden="true" class="anchor-heading icon-link" href="#224-combining-generics-and-traits"></a>2.2.4 Combining generics and traits</h4>
+<p>Trait bounds tell the compiler when a given type must provide a particular trait implementation. Trait bounds can be done inline or with an explicit <code>wherre</code> clause. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token type-definition class-name">SelfDescribing</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">describe</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">String</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">// inline example</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">describe_type</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">SelfDescribing</span><span class="token operator">></span><span class="token punctuation">(</span>t<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">String</span> <span class="token punctuation">{</span>
+	t<span class="token punctuation">.</span><span class="token function">describe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// explicit where clause style</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">describe_type</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span>t<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">String</span> <span class="token keyword">where</span> <span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">SelfDescribing</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+	t<span class="token punctuation">.</span><span class="token function">describe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>But if you try to use this code, e.g.:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> dog <span class="token operator">=</span> <span class="token class-name">Dog</span><span class="token punctuation">;</span>
+<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"I am a {}"</span><span class="token punctuation">,</span> <span class="token function">describe_type</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span>dog<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>It will produce an error as the trait bound is not satisfied. As you need to implement that trait binding for the <code>Dog</code></p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">SelfDescribing</span> <span class="token keyword">for</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">describe</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">String</span> <span class="token punctuation">{</span>
+		<span class="token string">"happy little dog"</span><span class="token punctuation">.</span><span class="token function">into</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Doing so will let you print <code>I am a happy little dog</code>.
+The <code>&#x26;self</code> parameter can be dropped too, to make the trait bound more versatile. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">trait</span> <span class="token type-definition class-name">SelfDescribing</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">describe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">String</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Then you will need to subsequently drop the <code>&#x26;self</code> requirement in the <code>describe_type</code>:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">describe_type</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token class-name">SelfDescribing</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">String</span> <span class="token punctuation">{</span>
+	<span class="token class-name">T</span><span class="token punctuation">::</span><span class="token function">describe</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>If you include the <code>&#x26;self</code> you need an object to describe it. Without it can describe a type without an object. </p>
+<p>Traits are most commonly used to apply <em>generic functionality</em>, where behavior is shared across types.
+Problems with traits to be cautious about:
+1) <em>trait pollution</em>: Too many traits
+2) <em>trait duplication</em>:  when multiple traits are providing the same or similar functionality. </p>
+<h4 id="225-deriving-traits-automatically"><a aria-hidden="true" class="anchor-heading icon-link" href="#225-deriving-traits-automatically"></a>2.2.5 Deriving traits automatically</h4>
+<p>Rust has many traits built in, including <code>Clone</code>, <code>Debug</code>, and so on. There is a full list <a href="https://doc.rust-lang.org/reference/special-types-and-traits.html">here</a>.
+The <code>derive</code> attribute <code>#[derive]</code> automatically provides implementations. Example of using <code>#[derive]</code></p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>fmt<span class="token punctuation">::</span></span><span class="token class-name">Debug</span><span class="token punctuation">;</span>
+
+<span class="token attribute attr-name">#[derive(Clone,Debug,Default)]</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Pumpkin</span> <span class="token punctuation">{</span>
+	mass<span class="token punctuation">:</span> <span class="token keyword">f64</span><span class="token punctuation">,</span>
+	diameter<span class="token punctuation">:</span> <span class="token keyword">f64</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The <code>Debug</code> trait allows for the <code>Pumkin</code> to be formatted as a string.  The <code>Clone</code> trait allows the struct to be freely cloned, and the <code>Default</code> allows for default values (0's). </p>
+<p>How these traits are defined in the standard library:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token attribute attr-name">#[derive(Copy, PartialEq, PartialOrd, Eq, Ord, Debug, Hash)]</span>
+<span class="token keyword">pub</span> <span class="token keyword">enum</span> <span class="token type-definition class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token class-name">None</span><span class="token punctuation">,</span>
+	<span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token class-name">T</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>However you can also just write your own implementations for these traits as well, such as for <code>Default</code>:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span> <span class="token class-name">Default</span> <span class="token keyword">for</span> <span class="token class-name">Pumkin</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		mass<span class="token punctuation">:</span> <span class="token number">2.0</span><span class="token punctuation">,</span>
+		diameter<span class="token punctuation">:</span> <span class="token number">5.0</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="226-trait-objects"><a aria-hidden="true" class="anchor-heading icon-link" href="#226-trait-objects"></a>2.2.6 Trait Objects</h4>
+<p>Rust has <em>trait objects</em> which allow treating an object as a trait rather than as a type.
+Trait objects <em>may</em> be considered dynamic dispatch, which would count as an antipattern, as opposed to using static dispatch. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">trait</span> <span class="token type-definition class-name">MyTrait</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">trait_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">struct</span> <span class="token type-definition class-name">MyStruct1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">MyStruct1</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">struct_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Hello, world! from MyStruct1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">struct</span> <span class="token type-definition class-name">MyStruct2</span><span class="token punctuation">;</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">MyStruct2</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">struct_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Hello, world! from MyStruct2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">MyTrait</span> <span class="token keyword">for</span> <span class="token class-name">MyStruct1</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">trait_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">struct_hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">MyTrait</span> <span class="token keyword">for</span> <span class="token class-name">MyStruct2</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">trait_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">struct_hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> <span class="token keyword">mut</span> v <span class="token operator">=</span> <span class="token class-name">Vec</span><span class="token punctuation">::</span><span class="token operator">&#x3C;</span><span class="token class-name">Box</span><span class="token operator">&#x3C;</span><span class="token keyword">dyn</span> <span class="token class-name">MyTrait</span><span class="token operator">>></span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+v<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token class-name">Box</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">MyStruct1</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+v<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token class-name">Box</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">MyStruct2</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+v<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">for_each</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>i<span class="token closure-punctuation punctuation">|</span></span> i<span class="token punctuation">.</span><span class="token function">trait_hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Running the above should result in:</p>
+<pre class="language-bash"><code class="language-bash">Hello, world<span class="token operator">!</span> from MyStruct1
+Hello, world<span class="token operator">!</span> form MyStruct2
+</code></pre>
+<p>Traits cannot be stored as objects directly because they do not have a size <code>unsized</code> at compile time. <code>Box</code> can store objects that do not implement <code>Sized</code> so we put our trait in a box. Then we can put the box into the <code>Vec</code>, as a <code>Vec</code> cannot hold unsized itself either. Generally, the <code>sized</code> trait is necessary for any generics in Rust. <code>Box</code> is getting around the problem by decoupling the allocation and the container. </p>
+<h5 id="downcasting-trait-objects"><a aria-hidden="true" class="anchor-heading icon-link" href="#downcasting-trait-objects"></a>Downcasting trait objects</h5>
+<p>trait objects can only call methods on the trait and not the concrete type. To do so you would need to <em>downcast</em>, <code>Box</code>,<code>Rc</code>,<code>Arc</code> can perform downcasting, along with the <code>Any</code> trait. To use a reference need to use <code>Any</code>, <code>downcast_ref()</code> that will return the reference. <code>'static</code> bound types can automatically derive <code>Any</code>. So works for <code>dyn Any + 'static</code>. Need to add an <code>as_any()</code> method to trait to get inner object. Updated Example: </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">trait</span> <span class="token type-definition class-name">MyTrait</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">trait_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">// new</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">as_any</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token operator">&#x26;</span><span class="token keyword">dyn</span> <span class="token class-name">Any</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">struct</span> <span class="token type-definition class-name">MyStruct1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">MyStruct1</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">struct_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Hello, world! from MyStruct1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">struct</span> <span class="token type-definition class-name">MyStruct2</span><span class="token punctuation">;</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">MyStruct2</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">struct_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Hello, world! from MyStruct2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">MyTrait</span> <span class="token keyword">for</span> <span class="token class-name">MyStruct1</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">trait_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">struct_hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">as_any</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token operator">&#x26;</span><span class="token keyword">dyn</span> <span class="token class-name">Any</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span> <span class="token class-name">MyTrait</span> <span class="token keyword">for</span> <span class="token class-name">MyStruct2</span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">trait_hello</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">struct_hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">as_any</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token operator">&#x26;</span><span class="token keyword">dyn</span> <span class="token class-name">Any</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// now can:</span>
+<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"With a downcast:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+v<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">for_each</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>i<span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token keyword">let</span> <span class="token class-name">Some</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">=</span> i<span class="token punctuation">.</span><span class="token function">as_any</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">downcast_ref</span><span class="token punctuation">::</span><span class="token operator">&#x3C;</span><span class="token class-name">MyStruct1</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		obj<span class="token punctuation">.</span><span class="token function">struct_hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">if</span> <span class="token keyword">let</span> <span class="token class-name">Some</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">=</span> i<span class="token punctuation">.</span><span class="token function">as_any</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">downcast_ref</span><span class="token punctuation">::</span><span class="token operator">&#x3C;</span><span class="token class-name">MyStruct2</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		obj<span class="token punctuation">.</span><span class="token function">struct_hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>This pattern should be carefully used as it could become an antipattern. </li>
+<li>Cannot implement traits for types outside of your crate </li>
+</ul>
+<h4 id="summary-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#summary-1"></a>Summary</h4>
+<ul>
+<li>generics are a key abstraction in Rust that allow for type-safe code reuse</li>
+<li>generics can include type parameters to extend structs, enums, functions to create objects and functions to handle many types of values</li>
+<li>Generics are commonly used to create container types</li>
+<li>Traits allow sharing functionality on top of different types</li>
+</ul>
+<h1 id="3-code-flow"><a aria-hidden="true" class="anchor-heading icon-link" href="#3-code-flow"></a>3 Code Flow</h1>
+<p>Chapter will cover</p>
+<ul>
+<li>Discussing pattern matching</li>
+<li>Handling errors with pattern matching</li>
+<li>Review Rust's functional programming patterns
+<em>Patter Matching</em> - allows for control of code flow and deconstructing of values, as well as optional case handling
+<em>Functional Programming</em> - Build software around the unit of function</li>
+</ul>
+<h2 id="31-a-tour-of-pattern-matching"><a aria-hidden="true" class="anchor-heading icon-link" href="#31-a-tour-of-pattern-matching"></a>3.1 A tour of pattern matching</h2>
+<p><em>Pattern matching</em> is a runtime feature, rather than a compile time feature. In rust all possible patterns must be accounted for. match statements start with the <code>match</code> keyword. </p>
+<h3 id="311-basics-of-pattern-matching"><a aria-hidden="true" class="anchor-heading icon-link" href="#311-basics-of-pattern-matching"></a>3.1.1 Basics of pattern matching</h3>
+<p>Simplest way to illustrate patter matching is with an <code>Option</code></p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">some_or_none</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span>option<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">match</span> option <span class="token punctuation">{</span>
+		<span class="token class-name">Some</span><span class="token punctuation">(</span>_v<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"is some!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"is none!"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>To actually use the <code>_v</code> that we have above we need to implement the trait bound for <code>std::fmt::Display</code>:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">some_or_none</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token punctuation">:</span> <span class="token namespace">std<span class="token punctuation">::</span>fmt<span class="token punctuation">::</span></span><span class="token class-name">Display</span><span class="token operator">></span><span class="token punctuation">(</span>option<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">match</span> option <span class="token punctuation">{</span>
+		<span class="token class-name">Some</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"is some {v}!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"is none!"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>So if a value includes the <code>fmt::Display</code> bound then we can use this! </p>
+<h4 id="sourcing-security-vulnerabilities"><a aria-hidden="true" class="anchor-heading icon-link" href="#sourcing-security-vulnerabilities"></a>Sourcing Security Vulnerabilities</h4>
+<p>70% of security vulnerabilities are memory based problems. Examples:</p>
+<ul>
+<li>Read/Write out of bounds</li>
+<li>dereferencing invalid pointers </li>
+<li>memory use after freed</li>
+<li>freeing already free memory</li>
+<li>not handling error cases properly
+Pattern matching is a key aspect to avoiding these issues. </li>
+</ul>
+<p>Can pattern match against ranges as well:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">what_type_of_integer_is_this</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">match</span> value <span class="token punctuation">{</span>
+	<span class="token number">1</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"The number one number"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token number">2</span> <span class="token operator">|</span> <span class="token number">3</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"This is a two or a three"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token number">4</span><span class="token punctuation">..=</span><span class="token number">10</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"this is 4 to 10"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	_ <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"number > 10 or less than 1"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre>
+<p>You can use pattern matching for destructuring things like tuples:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">destructure_tuple</span><span class="token punctuation">(</span>tuple<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token punctuation">(</span><span class="token keyword">i32</span><span class="token punctuation">,</span><span class="token keyword">i32</span><span class="token punctuation">,</span><span class="token keyword">i32</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">match</span> tuple <span class="token punctuation">{</span>
+		<span class="token punctuation">(</span>first<span class="token punctuation">,</span><span class="token punctuation">..</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+			<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{first}"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token keyword">match</span> tuple <span class="token punctuation">{</span>
+		<span class="token punctuation">(</span>_<span class="token punctuation">,</span>middle<span class="token punctuation">,</span>_<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+		<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"middle"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token keyword">match</span> tuple <span class="token punctuation">{</span>
+		<span class="token punctuation">(</span><span class="token punctuation">..</span><span class="token punctuation">,</span> last<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+			<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"last"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token keyword">match</span> tuple <span class="token punctuation">{</span>
+		<span class="token punctuation">(</span>first<span class="token punctuation">,</span> middle<span class="token punctuation">,</span> last<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+			<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"first: {first}, middle: {middle}, last: {last}"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Will always return the block with the first matching pattern. If you do not exhaust all situations basic clippy will still warn against this.
+You can implement a <code>guard</code> to help verify matches:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">match_with_guard</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token keyword">i32</span><span class="token punctuation">,</span> choose_first<span class="token punctuation">:</span> <span class="token keyword">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">match</span> value <span class="token punctuation">{</span>
+		v <span class="token keyword">if</span> v <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">&#x26;&#x26;</span> choose_first <span class="token operator">=></span> <span class="token punctuation">{</span>
+			<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"First match: This value is equal to 1"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		v <span class="token keyword">if</span> v <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">&#x26;&#x26;</span> <span class="token operator">!</span>choose_first <span class="token operator">=></span> <span class="token punctuation">{</span>
+			<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Second match: This value is equal to 1"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		v <span class="token keyword">if</span> choose_first <span class="token operator">=></span> <span class="token punctuation">{</span>
+			<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"First match: This value is equal to {v}"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		v <span class="token keyword">if</span> <span class="token operator">!</span>choose_first <span class="token operator">=></span> <span class="token punctuation">{</span>
+			<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Second match: This value is equal to {v}"</span><span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		_ <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Fell through to the default case"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>All matches must be on the same types. Bad example:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">invalid_matching</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">match</span> value <span class="token punctuation">{</span>
+		<span class="token string">"is a string"</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"This is a string"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token number">1</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"This is an integral value"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>However we can use an <code>Enum</code> to match with distinct inner types:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">enum</span> <span class="token type-definition class-name">DistinctTypes</span> <span class="token punctuation">{</span>
+	<span class="token class-name">Name</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token class-name">Count</span><span class="token punctuation">(</span><span class="token keyword">i32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">match_enum_types</span><span class="token punctuation">(</span>enum_types<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token class-name">DistinctTypes</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">match</span> enum_types <span class="token punctuation">{</span>
+		<span class="token class-name">DistinctTypes</span><span class="token punctuation">::</span><span class="token class-name">Name</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"name={name}"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token class-name">DistinctTypes</span><span class="token punctuation">::</span><span class="token class-name">Count</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"count={count}"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="312-clean-matches-with-the--operator"><a aria-hidden="true" class="anchor-heading icon-link" href="#312-clean-matches-with-the--operator"></a>3.1.2 Clean matches with the <code>?</code> operator</h3>
+<p>The <code>?</code> operator can be used to handle <code>Option</code> and <code>Result</code> operations cleanly. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">write_to_file</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">std<span class="token punctuation">::</span>io<span class="token punctuation">::</span></span><span class="token class-name">Result</span><span class="token operator">&#x3C;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">></span><span class="token punctuation">{</span>
+	<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>fs<span class="token punctuation">::</span></span><span class="token class-name">File</span><span class="token punctuation">;</span>
+	<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>io<span class="token punctuation">::</span>prelude<span class="token punctuation">::</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+	
+	<span class="token keyword">let</span> <span class="token keyword">mut</span> file <span class="token operator">=</span> <span class="token class-name">File</span><span class="token punctuation">::</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token string">"filename"</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+	file<span class="token punctuation">.</span><span class="token function">write_all</span><span class="token punctuation">(</span><span class="token string">b"File content"</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+	<span class="token class-name">Ok</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The <code>?</code> simply tells rust that if the line in question returns an <code>Error</code> than this function should stop running and also return an error.
+When there is no return type we can use the 'unit' or <code>()</code>. The function must match the return type of the line that is using the <code>?</code>. And this also means for error types, which is why you need to implement error types for others. </p>
+<h2 id="32-functional-rust"><a aria-hidden="true" class="anchor-heading icon-link" href="#32-functional-rust"></a>3.2 Functional Rust</h2>
+<p>Rust's core functional programming features are <em>closures</em> and <em>iterators</em>.
+<strong>Functional Programming</strong> discourages changing/mutating state and guides programs to be composed of declarative functions. Functional programming also discourages side-effects, e.g. non-deterministic results such as with I/O or local state mutation.
+While Rust is not a purely functional language, it does have functional programming choices like opt in mutability with the <code>mut</code> keyword, along with closures and iterators. </p>
+<h3 id="321-basics-of-functional-programming-in-rust"><a aria-hidden="true" class="anchor-heading icon-link" href="#321-basics-of-functional-programming-in-rust"></a>3.2.1 Basics of Functional Programming in Rust</h3>
+<p>A simple closure example:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> bark <span class="token operator">=</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span><span class="token closure-punctuation punctuation">|</span></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"Bark!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// This isn't a pure functional program because it uses I/O</span>
+</code></pre>
+<p>This is in fact a function that prints bark. It does not have braces because they are not necessary and there are no arguments to the function. A closure begins with a list of arguments between the <code>|</code> - pipes; then the code block. Another example:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> increment <span class="token operator">=</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>value<span class="token closure-punctuation punctuation">|</span></span> value <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token function">increment</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre>
+<p>And then we can modify this to illustrate:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> print_and_increment <span class="token operator">=</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>value<span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">{</span>
+	<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{value} will be incremented and returned"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	value <span class="token operator">+</span> <span class="token number">1</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">print_and_increment</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Closures become interesting when referencing <em>higher-order functions</em>, that take other functions as parameters. Iterators have higher order functions, including <code>map()</code>, <code>for_each()</code>, <code>find()</code>, <code>fold()</code>, and so on. Closures make the syntax more convenient. Simple example of higher-order function:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> left_value <span class="token operator">=</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span><span class="token closure-punctuation punctuation">|</span></span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> right_value <span class="token operator">=</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span><span class="token closure-punctuation punctuation">|</span></span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> adder <span class="token operator">=</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>left<span class="token punctuation">:</span> <span class="token keyword">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span><span class="token punctuation">,</span> right<span class="token punctuation">:</span> <span class="token keyword">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">i32</span><span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">{</span>
+	<span class="token function">left</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token macro property">println!</span><span class="token punctuation">(</span>
+	<span class="token string">"{} + {} = {}"</span><span class="token punctuation">,</span>
+	<span class="token function">left_value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token function">right_value</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+	<span class="token function">adder</span><span class="token punctuation">(</span>left_value<span class="token punctuation">,</span>right_value<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="322-closure-variable-capture"><a aria-hidden="true" class="anchor-heading icon-link" href="#322-closure-variable-capture"></a>3.2.2 Closure variable capture</h3>
+<p>Rust has 3 traits that help with functional programming: <code>Fn</code>, <code>FnMut</code>, <code>Fnonce</code></p>
+<ul>
+<li><code>Fn</code> is if for regular functions that can be called again and again. All arguments are going to be immutable.</li>
+<li><code>FnMut</code> This uses mutable references and can still be called again and again as they do not consume the mutable value. </li>
+<li><code>FnOnce</code> This is for the functions that will consume themselves. They will consume the values that they capture.
+For closures, <code>FnOnce</code> is always implemented if the closure will consume any of the values captured. Such as:</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> consumable <span class="token operator">=</span> <span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token string">"cookie"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> consumer <span class="token operator">=</span> <span class="token keyword">move</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span><span class="token closure-punctuation punctuation">|</span></span> consumable<span class="token punctuation">;</span>
+<span class="token function">consumer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>After calling <code>consumer</code> if you tried again it would throw an error because the value has already been consumed - <code>use of moved value</code>. <code>move |..|</code> is useful for transferring/assigning ownership of an object inside the closure without cloning/copying it. Using the <code>move</code> keyword is optional. But should be used to avoid ambiguity. With the closure traits and closures and generics there are many functional patterns that can be explored. </p>
+<h3 id="323-examining-iterators"><a aria-hidden="true" class="anchor-heading icon-link" href="#323-examining-iterators"></a>3.2.3 Examining Iterators</h3>
+<p>Iterators are provided by the <code>Iterator</code> trait. Iterators come with: </p>
+<ul>
+<li><code>map</code></li>
+<li><code>for_each</code></li>
+<li><code>take</code></li>
+<li><code>fold</code></li>
+<li><code>filter</code></li>
+<li><code>find</code></li>
+<li><code>zip</code>
+and many more methods. Handy stuff.
+Core of Rust iterators is: </li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">trait</span> <span class="token type-definition class-name">Iterator</span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">next</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>To implement <code>Iterator</code> for your type you need to provide a <code>next()</code> and <code>Item</code>.
+Example for linked lists:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>cell<span class="token punctuation">::</span></span><span class="token class-name">RefCell</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>rc<span class="token punctuation">::</span></span><span class="token class-name">Rc</span><span class="token punctuation">;</span>
+<span class="token keyword">type</span> <span class="token type-definition class-name">ItemData</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">RefCell</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">;</span>
+<span class="token keyword">type</span> <span class="token type-definition class-name">LIstItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token operator">=</span> <span class="token class-name">Rc</span><span class="token operator">&#x3C;</span><span class="token class-name">RefCell</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItem</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token operator">></span><span class="token punctuation">;</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">ListItem</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	data<span class="token punctuation">:</span> <span class="token class-name">ItemData</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+	next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">ListItem</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">:</span><span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		<span class="token keyword">Self</span> <span class="token punctuation">{</span>
+			data<span class="token punctuation">:</span> <span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">RefCell</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			next<span class="token punctuation">:</span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	head<span class="token punctuation">:</span> <span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">LinkedLIst</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">fnew</span><span class="token punctuation">(</span>t<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		<span class="token keyword">Self</span> <span class="token punctuation">{</span>
+			head<span class="token punctuation">;</span> <span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">RefCell</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">ListItem</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="rc-and-refcell"><a aria-hidden="true" class="anchor-heading icon-link" href="#rc-and-refcell"></a>Rc and RefCell</h4>
+<p>They are small <code>pointers</code> that give some helpful functionality. </p>
+<ul>
+<li><code>Rc</code> provides reference counted pointer, so there can be <em>interior mutability</em>. Allows multiple references to the same location in memory. </li>
+<li><code>RefCell</code> allows for borrow checking at runtime rather than at compile time. This is helpful when you want to have multiple references to the same object and still have mutability. </li>
+</ul>
+<p>Iterators are <em>stateful</em> so they know where they are in the sequence of items, and go to the next item using <code>next()</code>. </p>
+<p>In the example, can store state in the linked list itself. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	head<span class="token punctuation">:</span> <span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+	cur_iter<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		<span class="token keyword">Self</span> <span class="token punctuation">{</span>
+			head<span class="token punctuation">:</span> <span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">RefCell</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">ListItem</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			cur_iter<span class="token punctuation">:</span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Iterator</span> <span class="token keyword">for</span> <span class="token class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">next</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token keyword">match</span> <span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">.</span>cur_iter<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+				<span class="token keyword">self</span><span class="token punctuation">.</span>cur_iter <span class="token operator">=</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+			<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+				<span class="token keyword">self</span><span class="token punctuation">.</span>cur_iter <span class="token operator">=</span> ptr<span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span>cur_iter<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>and using this example:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> dinosaurs <span class="token operator">=</span> <span class="token class-name">LinkedList</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token string">"Tyrannosaurus Rex"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> last_item <span class="token operator">=</span> dinosaurs<span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"couldn't get the last item"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"last item = {}"</span><span class="token punctuation">,</span> last_item<span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Now we can add <code>append()</code>:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		<span class="token keyword">Self</span> <span class="token punctuation">{</span>
+			head<span class="token punctuation">:</span> <span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">RefCell</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">ListItem</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			cur_iter<span class="token punctuation">:</span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">append</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> seolf<span class="token punctuation">,</span> t<span class="token punctuation">:</span><span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">last</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">expect</span><span class="token punctuation">(</span><span class="token string">"list was empty, but it should never be"</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span><span class="token function">borrow_mut</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+			<span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">ListItem</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Now can use <code>for_each</code> and <code>iter</code> over the list and append:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> <span class="token keyword">mut</span> dinosaurs <span class="token operator">=</span> <span class="token class-name">LinkedList</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token string">"Tyrannosaurus Rex"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Triceratops"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Velociraptor"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Stegosaurus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Spinosaurus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs
+	<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">for_each</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>ptr<span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">{</span>
+		<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"data={}"</span><span class="token punctuation">,</span> ptr<span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="324-obtaining-an-iterator-with-iter-into_iter-and-iter_mut"><a aria-hidden="true" class="anchor-heading icon-link" href="#324-obtaining-an-iterator-with-iter-into_iter-and-iter_mut"></a>3.2.4 Obtaining an iterator with iter(), into_iter(), and iter_mut()</h3>
+<p>The linked list should be iterable 3 ways: </p>
+<ul>
+<li><code>iter()</code> - iterates over immutable reference to the items in the list</li>
+<li><code>iter_mut()</code> - iterates mutably over references to items</li>
+<li><code>into_iter()</code> - consumes the list and iterates over the list
+There are usually 3 iterators made available for collections:
+1) Iterator over <code>T</code> that consumes <code>self</code> and provided by <code>into_iter(self)</code>
+2) Iterator over <code>&#x26;T</code> provided by <code>iter(&#x26;self)</code>
+3) Iterator over <code>&#x26;mut T</code> which is of course provided by <code>iter_mut(&#x26;mut self)</code>
+Can add this functionality by implementing the <code>IntoIterator</code> trait.
+First create stateful iterator structs: </li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Iter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>	
+<span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">IterMut</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">IntoIter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Each struct contains the pointer to the next item in the list.
+Now we update our <code>LinkedList&#x3C;T></code> implementation: </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+		<span class="token keyword">Self</span> <span class="token punctuation">{</span>
+			head<span class="token punctuation">:</span> <span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">RefCell</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">ListItem</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">append</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">,</span> t<span class="token punctuation">:</span> <span class="token class-name">T</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">let</span> <span class="token keyword">mut</span> next <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">while</span> next<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">is_some</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">let</span> n <span class="token operator">=</span> next
+				<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+				<span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+				<span class="token punctuation">.</span>next
+				<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+				<span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+				<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			next <span class="token operator">=</span> n<span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		next<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow_mut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>next <span class="token operator">=</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">RefCell</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token class-name">ListItem</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">iter</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Iter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token class-name">Iter</span> <span class="token punctuation">{</span>
+			next<span class="token punctuation">:</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">iter_mut</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">IterMut</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token class-name">IterMut</span> <span class="token punctuation">{</span>
+			next<span class="token punctuation">:</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">into_iter</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">IntoIter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token class-name">IntoIter</span> <span class="token punctuation">{</span>
+			next<span class="token punctuation">:</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Now to implement the <code>Iterator</code> trait for <code>Iter</code>, <code>IterMut</code>, <code>IntoIter</code>: </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Iterator</span> <span class="token keyword">for</span> <span class="token class-name">Iter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token class-name">ItemData</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">next</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token keyword">match</span> <span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+				<span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone_from</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span>ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>next<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>	
+			<span class="token punctuation">}</span>
+			<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Iterator</span> <span class="token keyword">for</span> <span class="token class-name">IterMut</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token class-name">ItemData</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">next</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token keyword">match</span> <span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+				<span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone_from</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span>ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token punctuation">}</span>
+			<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Iterator</span> <span class="token keyword">for</span> <span class="token class-name">IntoIter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token class-name">ItemData</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span> 
+	<span class="token keyword">fn</span> <span class="token function-definition function">next</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token keyword">match</span> <span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+				<span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone_from</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span>ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>next<span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+			<span class="token punctuation">}</span>
+			<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This is still not ideal and all three implementations are using identical logic and returning <code>Rc&#x3C;RefCell&#x3C;T>></code>, whereas we want just <code>T</code> or <code>&#x26;T</code>.
+Vec's <code>into_iter()</code> method looks like this:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">into_iter</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token namespace">slice<span class="token punctuation">::</span></span><span class="token class-name">IterMut</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+</code></pre>
+<p>So <code>into_iter()</code> consumes the vec as it is passing <code>self</code> directly by value (not borrowed: <code>&#x26;self</code>). So changing our <code>IntoIter</code>: </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span>a <span class="token class-name">Iterator</span> <span class="token keyword">for</span> <span class="token class-name">IntoIter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token class-name">T</span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">next</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token keyword">match</span> <span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+				<span class="token keyword">self</span><span class="token punctuation">.</span>next <span class="token operator">=</span> ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token keyword">let</span> listitem <span class="token operator">=</span> <span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">try_unwrap</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>refcell<span class="token closure-punctuation punctuation">|</span></span> refcell<span class="token punctuation">.</span><span class="token function">into_inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>j
+				<span class="token keyword">match</span> listitem <span class="token punctuation">{</span>
+					<span class="token class-name">Ok</span><span class="token punctuation">(</span>listitem<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">try_unwrap</span><span class="token punctuation">(</span>listitem<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
+						<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>refcell<span class="token closure-punctuation punctuation">|</span></span> refcell<span class="token punctuation">.</span><span class="token function">into_inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+						<span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+					<span class="token class-name">Err</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span>
+			<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The above implementation allows us to extract first the <code>Refcell&#x3C;T></code> from the <code>Rc(Refcell&#x3C;T>)</code>, then we extract <code>T</code> from the <code>RefCell&#x3C;T></code>.  And we are able to now return <code>T</code>, as an <code>Option</code>. Test case:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> <span class="token keyword">mut</span> dinosaurs <span class="token operator">=</span> <span class="token class-name">LinkedList</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token string">"Tyrannosaurus Rex"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Triceratops"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Velociraptor"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Stegosaurus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Spinosaurus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs
+<span class="token punctuation">.</span><span class="token function">into_iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">for_each</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>data<span class="token closure-punctuation punctuation">|</span></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"data={}"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>and output:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token assign-left variable">data</span><span class="token operator">=</span>Tyrannosaurus Rex
+<span class="token assign-left variable">data</span><span class="token operator">=</span>Triceratops
+<span class="token assign-left variable">data</span><span class="token operator">=</span>Velociraptor
+<span class="token assign-left variable">data</span><span class="token operator">=</span>Stegosaurus
+<span class="token assign-left variable">data</span><span class="token operator">=</span>Spinosaurus
+</code></pre>
+<p>The other two methods, <code>Iter</code> and <code>IterMut</code> will need to be modified in a different manner as they do not consume the values. <code>RefCell</code> does not allow for regular references to values. In order to work with the values via borrowing, we will need to use unsafe rust, bypassing the compiler checks. We will need to add a lifetime. <code>'a</code>, And there will be a pointer added as a copy called <code>PhantomData</code>, for capturing the lifetime. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">Iter</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>
+data<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ItemData</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>
+phantom<span class="token punctuation">:</span> <span class="token class-name">PhantomData</span><span class="token operator">&#x3C;</span><span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">IterMut</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+next<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ListItemPtr</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>
+data<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">ItemData</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">>></span><span class="token punctuation">,</span>
+phantom<span class="token punctuation">:</span> <span class="token class-name">PhantomData</span><span class="token operator">&#x3C;</span><span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>Lifetimes:</strong>
+Necessary to prevent dangling references. Key concepts for lifetimes:</p>
+<ul>
+<li>lifetime is the period a variable is valid. start at creation and ends in destruction</li>
+<li>a reference is valid for the lifetime, such as <code>'a</code>, naming for lifetimes can be arbitrary. </li>
+<li>Reference is valid for lifetime of object it references OR lifetime of scope it was created in, whichever is shorter.</li>
+<li>Sometimes lifetimes must be explicitly stated, other times the compiler can infer them (elide)</li>
+<li>If lifetime cannot be inferred, compiler will throw error. </li>
+<li>Lifetimes always exist in context of a reference and associated with a reference. no reference means no need for lifetime, and generally compiler will infer lifetime, and tell you when it cannot.
+If lifetime is added to a struct, then the duration would be the life of the struct object. </li>
+</ul>
+<p>For our example will need to initialize the <code>data</code> and <code>phantom</code> fields in both <code>iter()</code> and <code>iter_mut()</code>:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">iter</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Iter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token class-name">Iter</span> <span class="token punctuation">{</span>
+		next<span class="token punctuation">:</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+		data<span class="token punctuation">:</span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		phantom<span class="token punctuation">:</span> <span class="token class-name">PhantomData</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">iter_mut</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">IterMut</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token class-name">IterMut</span> <span class="token punctuation">{</span>
+			next<span class="token punctuation">:</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+			data<span class="token punctuation">:</span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+			phantom<span class="token punctuation">:</span> <span class="token class-name">PhantomData</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Iterator</span> <span class="token keyword">for</span> <span class="token class-name">Iter</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token class-name">T</span><span class="token punctuation">;</span>
+		<span class="token keyword">fn</span> <span class="token function-definition function">next</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token operator">></span> <span class="token punctuation">{</span>
+			<span class="token keyword">match</span> <span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+					<span class="token keyword">self</span><span class="token punctuation">.</span>next <span class="token operator">=</span> ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token keyword">self</span><span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+					<span class="token keyword">unsafe</span> <span class="token punctuation">{</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">as_ptr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+					<span class="token punctuation">}</span>
+				<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">Iterator</span> <span class="token keyword">for</span> <span class="token class-name">IterMut</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">mut</span> <span class="token class-name">T</span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">next</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token operator">></span> <span class="token punctuation">{</span>
+		<span class="token keyword">match</span> <span class="token keyword">self</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+				<span class="token keyword">self</span><span class="token punctuation">.</span>next <span class="token operator">=</span> ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>next<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token keyword">self</span><span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token class-name">Some</span><span class="token punctuation">(</span>ptr<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">borrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+				<span class="token keyword">unsafe</span> <span class="token punctuation">{</span> <span class="token class-name">Some</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token keyword">mut</span> <span class="token operator">*</span><span class="token keyword">self</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">as_ref</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">unwrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">as_ptr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+			<span class="token punctuation">}</span>
+			<span class="token class-name">None</span> <span class="token operator">=></span> <span class="token class-name">None</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>This method works by doing pointer <strong>coercion</strong>, however it is a bit messy doing it this way. It can be tested via:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> <span class="token keyword">mut</span> dinosaurs <span class="token operator">=</span> <span class="token class-name">LinkedList</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token string">"Tyrannosaurus Rex"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Triceratops"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Velociraptor"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Stegosaurus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">"Spinosaurus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs
+	<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">for_each</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>data<span class="token closure-punctuation punctuation">|</span></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"data={}"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+dinosaurs
+	<span class="token punctuation">.</span><span class="token function">iter_mut</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">for_each</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>data<span class="token closure-punctuation punctuation">|</span></span> <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"data={}"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Now to update the <code>IntoIterator</code> trait and remove the <code>impl&#x3C;T> Iterator for LinkedList&#x3C;T></code> block:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">IntoIterator</span> <span class="token keyword">for</span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">IntoIter</span> <span class="token operator">=</span> <span class="token class-name">Iter</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token class-name">T</span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">into_iter</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">IntoIter</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">IntoIterator</span> <span class="token keyword">for</span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">mut</span> <span class="token class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">IntoIter</span> <span class="token operator">=</span> <span class="token class-name">IterMut</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token punctuation">,</span> <span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span>  <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">mut</span> <span class="token class-name">T</span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">into_iter</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">IntoIter</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">iter_mut</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">impl</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token class-name">IntoIterator</span> <span class="token keyword">for</span> <span class="token class-name">LinkedList</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">IntoIter</span> <span class="token operator">=</span> <span class="token class-name">IntoIter</span><span class="token operator">&#x3C;</span><span class="token class-name">T</span><span class="token operator">></span><span class="token punctuation">;</span>
+	<span class="token keyword">type</span> <span class="token type-definition class-name">Item</span> <span class="token operator">=</span> <span class="token class-name">T</span><span class="token punctuation">;</span>
+	<span class="token keyword">fn</span> <span class="token function-definition function">into_iter</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">IntoIter</span> <span class="token punctuation">{</span>
+		<span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">into_iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Now the <code>LinkedList</code> can be used in a <code>for</code> loop. The <code>impl</code> block to use is based on the type passed to the <code>for</code> loop. Now a lot of built in rust functionality is unlocked, including <code>for_each()</code>, <code>map()</code>, <code>reduce()</code>, <code>filter()</code>, <code>zip()</code>, <code>fold()</code>.
+<strong>NOTE:</strong> <code>for_each()</code> method is preferred over <code>for</code> loop. the method accepts a function as its argument, so can pass a closure or a function directly. </p>
+<h3 id="325-iterator-features"><a aria-hidden="true" class="anchor-heading icon-link" href="#325-iterator-features"></a>3.2.5 Iterator Features</h3>
+<p>Iterators unlock things like <code>map()</code>, map works like this:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">map</span><span class="token operator">&#x3C;</span><span class="token class-name">B</span><span class="token punctuation">,</span> <span class="token class-name">F</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">,</span> f<span class="token punctuation">:</span> <span class="token class-name">F</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">Map</span><span class="token operator">&#x3C;</span><span class="token keyword">Self</span><span class="token punctuation">,</span> <span class="token class-name">F</span><span class="token operator">></span>
+<span class="token keyword">where</span>
+	<span class="token class-name">F</span><span class="token punctuation">:</span> <span class="token class-name">FnMut</span><span class="token punctuation">(</span><span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Item</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token class-name">B</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span> <span class="token punctuation">...</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>Remember that <code>map()</code> and other methods used with iterators are lazy and will not compile a value until forced to, such as when using <code>collect()</code>.  When working with iterators and functions on the values that return results, you can use <code>flat_map()</code> to return the <code>Result</code> rather than using <code>unwrap()</code> on each value. <code>flat_map()</code> calls <code>Result::into_iter()</code> which returns an iterator over <code>OK</code> values. <code>Err</code> values are simply ignored when flattening! Another approach that we could use is to collect the errors using <code>partition()</code>:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"duck"</span><span class="token punctuation">,</span> <span class="token string">"1"</span><span class="token punctuation">,</span> <span class="token string">"2"</span><span class="token punctuation">,</span> <span class="token string">"goose"</span><span class="token punctuation">,</span> <span class="token string">"3"</span><span class="token punctuation">,</span> <span class="token string">"4"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token punctuation">(</span>successes<span class="token punctuation">,</span> failures<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token class-name">Vec</span><span class="token operator">&#x3C;</span>_<span class="token operator">></span><span class="token punctuation">,</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span>_<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=</span> arr
+	<span class="token punctuation">.</span><span class="token function">iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>v<span class="token closure-punctuation punctuation">|</span></span> v<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">::</span><span class="token operator">&#x3C;</span><span class="token keyword">i32</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">partition</span><span class="token punctuation">(</span><span class="token class-name">Result</span><span class="token punctuation">::</span>is_ok<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"successses={:?}"</span><span class="token punctuation">,</span> successes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"failures={:?}"</span><span class="token punctuation">,</span> failures<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>tip</strong>: avoid using <code>for</code> and <code>while</code> constructs with iterators. Instead use <code>for_each()</code>, and <code>map_while()</code>. </p>
+<p>Hers a good example of chaining with iterators in Rust, along with <code>Enumerate</code>: </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> popular_dog_breeds <span class="token operator">=</span> <span class="token macro property">vec!</span><span class="token punctuation">[</span>
+	<span class="token string">"Labrador"</span><span class="token punctuation">,</span>
+	<span class="token string">"French Bulldog"</span><span class="token punctuation">,</span>
+	<span class="token string">"Golden Retriever"</span><span class="token punctuation">,</span>
+	<span class="token string">"German Shepherd"</span><span class="token punctuation">,</span>
+	<span class="token string">"Poodle"</span><span class="token punctuation">,</span>
+	<span class="token string">"Bulldog"</span><span class="token punctuation">,</span>
+	<span class="token string">"Beagle"</span><span class="token punctuation">,</span>
+	<span class="token string">"Rottweiler"</span><span class="token punctuation">,</span>
+	<span class="token string">"Pointer"</span><span class="token punctuation">,</span>
+	<span class="token string">"Dachshund"</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> ranked_breeds<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span>_<span class="token operator">></span> <span class="token operator">=</span> popular_dog_breeds<span class="token punctuation">.</span><span class="token function">into_iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">enumerate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{:?}"</span><span class="token punctuation">,</span> ranked_breeds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Which yields:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"Labrador"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"French Bulldog"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"Golden Retriever"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"German Shepherd"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"Poodle"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token string">"Bulldog"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token string">"Beagle"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token string">"Rottweiler"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token string">"Pointer"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token string">"Dachshund"</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+</code></pre>
+<p>This can be further enhanced if you want to count from one by: </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> ranked_breeds<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span>_<span class="token operator">></span> <span class="token operator">=</span> popular_dog_breeds
+	<span class="token punctuation">.</span><span class="token function">into_iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">enumerate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span><span class="token punctuation">(</span>idx<span class="token punctuation">,</span> breed<span class="token punctuation">)</span><span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">(</span>idx <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> breed<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>And you can go further by reversing and counting down!</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">let</span> ranked_breeds<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span>_<span class="token operator">></span> <span class="token operator">=</span> popular_dog_breeds
+	<span class="token punctuation">.</span><span class="token function">into_iter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">enumerate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span><span class="token punctuation">(</span>idx<span class="token punctuation">,</span> breed<span class="token punctuation">)</span><span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">(</span>idx<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> breed<span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">.</span><span class="token function">rev</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// reverse the list</span>
+	<span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="summary-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#summary-2"></a>Summary</h2>
+<ul>
+<li>Pattern matching allows us to unpack data structures and handle a variety of scenarios in a much cleaner way than using combinations of <code>if/else</code> statements.</li>
+<li>We can use pattern matching with the <code>?</code> operator to handle errors gracefully
+and unwrap or destructure values.</li>
+<li>We can destructure nested structs and enums when pattern matching, and we
+can also match on values.</li>
+<li>Rust encourages functional programming patterns, particularly with closures
+and iterators. Learning these patterns will help you use Rust effectively.</li>
+<li>Iterators use a fluent interface, and along with closures, we can easily express
+operations and mutations on data structures.</li>
+<li>Iterators typically hold a reference to the data (such as borrowed data) or use a
+move to move the items out of the underlying sequence.</li>
+<li>Usually, the <code>iter()</code> method returns an iterator with references, and <code>into_iter()</code>
+gives us an iterator that takes ownership with a move.</li>
+</ul>

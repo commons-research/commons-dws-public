@@ -1,0 +1,41 @@
+<h1 id="mztab-m-a-data-standard-for-sharing-quantitative-results-in-mass-spectrometry-metabolomics"><a aria-hidden="true" class="anchor-heading icon-link" href="#mztab-m-a-data-standard-for-sharing-quantitative-results-in-mass-spectrometry-metabolomics"></a>Mztab M A Data Standard For Sharing Quantitative Results In Mass Spectrometry Metabolomics</h1>
+<h1 id="mztab-m-a-data-standard-for-sharing-quantitative-results-in-mass-spectrometry-metabolomics-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#mztab-m-a-data-standard-for-sharing-quantitative-results-in-mass-spectrometry-metabolomics-1"></a><a href="https://pubs.acs.org/ancham/article/91/5/3302/820830/mzTab-M-A-Data-Standard-for-Sharing-Quantitative">mzTab-M: A Data Standard for Sharing Quantitative Results in Mass Spectrometry Metabolomics</a></h1>
+<p>Lack of agreed standards creates issues with data sharing and data interoperability in metabolomics. For MS measurements, software is used to quantify and measure m/z values. </p>
+<p><strong>Standard reporting requirements for biological samples in metabolomics experiments: microbial and in vitro biology experiments</strong></p>
+<p>Their work describes a data standard for MS-based metabolomics analytical pipelines. <strong>mzTab-M</strong>. Capturing downstream analysis (?). This represents a standard that can be followed, as part of the MSI (metabolomics standards initiative). ProteoWizard is included which allows for conversion o fraw files into mzML. </p>
+<h2 id="methods"><a aria-hidden="true" class="anchor-heading icon-link" href="#methods"></a>Methods</h2>
+<p>They reference their repo: <a href="https://github.com/HUPO-PSI/mzTab">https://github.com/HUPO-PSI/mzTab</a></p>
+<h2 id="results-and-discussion"><a aria-hidden="true" class="anchor-heading icon-link" href="#results-and-discussion"></a>Results and Discussion</h2>
+<p>mzTab-M is a single data format for metabolomics and lipidomics. Allows for intermediary data representations. It is presented as tab-separated text, and can therefore be imported to spreadsheets, dbs, etc. </p>
+<p>They have 4 data tables that comprise the format: 1) metadata (MTD), 2) small molecule (SML), 3) small molecule feature (SMF), 4) small molecule evidence (SME). MTD and SML are mandatory fields that must be present. </p>
+<p><a href="https://pubs.acs.org/view-large/figure/255919124/ac-2018-04310d_0001.tif">https://pubs.acs.org/view-large/figure/255919124/ac-2018-04310d_0001.tif</a> (illustration of tables)</p>
+<h3 id="metadata-mtd-table"><a aria-hidden="true" class="anchor-heading icon-link" href="#metadata-mtd-table"></a>Metadata (MTD) table</h3>
+<p>The mtd only has 3 columns :
+1) MTD
+2) parameter name
+3) parameter value</p>
+<p>The MTD table specifies concepts that can be reused elsewhere in the file</p>
+<ul>
+<li>assay</li>
+<li>ms_run</li>
+<li>sample</li>
+<li>study_variable</li>
+</ul>
+<h3 id="small-molecule-sml-table"><a aria-hidden="true" class="anchor-heading icon-link" href="#small-molecule-sml-table"></a>Small Molecule (SML) table</h3>
+<p>represents the quantifiable results. has fields:</p>
+<ul>
+<li>sml_id</li>
+<li>smf_id_refs</li>
+<li>smiles</li>
+<li>inchi</li>
+<li>combined/composite values from elsewhere</li>
+</ul>
+<h3 id="small-molecule-feature-smf-table"><a aria-hidden="true" class="anchor-heading icon-link" href="#small-molecule-feature-smf-table"></a>Small Molecule Feature (SMF) table</h3>
+<p>Includes experimental m/z, retention time, adduct and charge info, and values across assays. </p>
+<h3 id="small-molecule-evidence-sme-table"><a aria-hidden="true" class="anchor-heading icon-link" href="#small-molecule-evidence-sme-table"></a>Small Molecule Evidence (SME) table</h3>
+<p>Used for the evidence for identifying molecules</p>
+<ul>
+<li>identifiers (smiles, inchi, etc)</li>
+<li>scores and confidence levels</li>
+</ul>
+<p><em>thoughts:</em>  The MTD table appears to have considerable amounts of metadata, and the experimental data is mostly in the SML table. this appears to be a relational database representation. So the model is now more of a proposed structure for related data. What is the purpose of separating the SML and SMF? And the grouping? The levels are organized by level of interpretation. </p>

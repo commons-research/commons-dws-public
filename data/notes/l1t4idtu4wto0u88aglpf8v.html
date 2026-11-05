@@ -1,0 +1,22 @@
+<h1 id="high-performance-rust-understanding-and-eliminating-memory-fragmentation"><a aria-hidden="true" class="anchor-heading icon-link" href="#high-performance-rust-understanding-and-eliminating-memory-fragmentation"></a>High Performance Rust Understanding And Eliminating Memory Fragmentation</h1>
+<h1 id="high-performance-rust---understanding-and-eliminating-memory-fragmentation"><a aria-hidden="true" class="anchor-heading icon-link" href="#high-performance-rust---understanding-and-eliminating-memory-fragmentation"></a><a href="https://kerkour.com/rust-high-performance-memory-fragmentation-allocations">High-Performance Rust - Understanding and eliminating memory fragmentation</a></h1>
+<p>Trying to allocate heap memory for embedded is difficult as the tolerances are much lower and allocations can fragment the allocation. This can cause the system to fail to allocate more heap memory.
+The stack however is much lower in for memory usage. </p>
+<h2 id="heap-fragmentation-an-underestimated-enemy"><a aria-hidden="true" class="anchor-heading icon-link" href="#heap-fragmentation-an-underestimated-enemy"></a>Heap Fragmentation: an underestimated enemy</h2>
+<p>Allocating many smaller objects on the heap causes gaps between them in memory, which is the fragmentation mentioned. </p>
+<h2 id="jemalloc-and-mimalloc-to-the-rescue"><a aria-hidden="true" class="anchor-heading icon-link" href="#jemalloc-and-mimalloc-to-the-rescue"></a>Jemalloc and mimalloc to the rescue</h2>
+<p>the two mentioned services are high througput allocators and are designed for just such situations. Simply using jemallocator halfed the memory use in the author's situation. But for embedded platforms you still need to go further. </p>
+<h2 id="reducing-heap-allocations"><a aria-hidden="true" class="anchor-heading icon-link" href="#reducing-heap-allocations"></a>Reducing heap allocations</h2>
+<p>There are three ways to reduce heap allocations:
+1) heapless - use datastructs that have fixed capacity and stack or static allocated
+2) byes - use ref counted byte buffers for clones and slices
+3) smallvec - a vec-like type which is stack allocated as long as it is less than <code>N</code>.
+going heapless is the largest improvement as it is allocation-less:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">const</span> <span class="token constant">MAX_HASH_SIZE</span><span class="token punctuation">:</span> <span class="token keyword">usize</span> <span class="token operator">=</span> <span class="token number">48</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Handshake</span> <span class="token punctuation">{</span>
+	some_hash<span class="token punctuation">:</span> <span class="token namespace">heapless<span class="token punctuation">::</span></span><span class="token class-name">Vec</span><span class="token operator">&#x3C;</span><span class="token keyword">u8</span><span class="token punctuation">,</span> <span class="token constant">MAX_HASH_SIZE</span><span class="token operator">></span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>this will do heapless storing of up to 48 byte hashes. But if you work with larger hash sizes, like for post-quantum hashes (that is a cool point), they can have a max size of <code>1216</code> and be too much for an embedded environment. </p>
+<p>Then you can use <code>bytes</code> as an alternative.</p>
