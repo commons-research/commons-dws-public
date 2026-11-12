@@ -1,0 +1,25 @@
+<h1 id="croissant-a-metadata-format-for-ml-ready-datasets"><a aria-hidden="true" class="anchor-heading icon-link" href="#croissant-a-metadata-format-for-ml-ready-datasets"></a>Croissant A Metadata Format For Ml Ready Datasets</h1>
+<h1 id="croissant-a-metadata-format-for-ml-ready-datasets-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#croissant-a-metadata-format-for-ml-ready-datasets-1"></a><a href="https://arxiv.org/abs/2403.19546">Croissant: A Metadata Format for ML-Ready Datasets</a></h1>
+<h2 id="1-intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#1-intro"></a>1 Intro</h2>
+<p><strong>Croissant</strong>: a format for improving ML dataset discoverability, portability, reproducibility, and interoperability. </p>
+<h2 id="2-related-work"><a aria-hidden="true" class="anchor-heading icon-link" href="#2-related-work"></a>2 Related Work</h2>
+<p><strong>Vocabularies for Dataset Documentation</strong>: documentation is important for data management. Metadata descriptions aid with discovery. <strong>Ontologies</strong> and vocabularies are semantic web tools that standardize dataset documentation.
+<strong>Standards for Catalogs and Metadata</strong>: Need for better documentation lead to DCAT (Data Catalog Vocabulary), and the Dataset vocabulary schema in schema.org. There are also metadata efforts to describe tabular data implemented.
+<strong>Operationalizing Responsible ML thorugh Data Work</strong>: There is a growing effort to grow the trustworthiness of datasets for ML use. Hugging Face provides <a href="https://huggingface.co/docs/hub/en/datasets-cards">Dataset Cards</a> - which has summaries, fields, splits, potential social impacts, and bias inherent in a dataset. </p>
+<h2 id="3-the-croissant-format"><a aria-hidden="true" class="anchor-heading icon-link" href="#3-the-croissant-format"></a>3 The Croissant Format</h2>
+<p>Built off of the schema.org. Has four layers:</p>
+<ol>
+<li>dataset metadata layer</li>
+<li>resource layer</li>
+<li>structure layer</li>
+<li>semantic layer</li>
+</ol>
+<h3 id="31-the-dataset-metadata-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#31-the-dataset-metadata-layer"></a>3.1 the dataset metadata layer</h3>
+<p>Contains basic info like name, description, verion</p>
+<h3 id="32-resource-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#32-resource-layer"></a>3.2 resource layer</h3>
+<p>source data used description. Uses primitive classes to address limitations with schema.org (dataset content description): FIleObject and FileSet. </p>
+<h3 id="33-structure-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#33-structure-layer"></a>3.3 structure layer</h3>
+<p>Here a class called <code>RecordSet</code> defines the structure of the data, such as from CSV, JSON, and other types. </p>
+<h3 id="34-semantic-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#34-semantic-layer"></a>3.4 semantic layer</h3>
+<p>Describes things like dataset splits (for ML: train, test, validation), and dataset labels. </p>
+<p>Look into the implementation of Croissant, as it is used for hugging face and many other data sources. </p>

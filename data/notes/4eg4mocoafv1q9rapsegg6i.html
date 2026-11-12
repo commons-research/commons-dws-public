@@ -1,0 +1,92 @@
+<h1 id="bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding"><a aria-hidden="true" class="anchor-heading icon-link" href="#bert-pre-training-of-deep-bidirectional-transformers-for-language-understanding"></a>Bert Pre Training Of Deep Bidirectional Transformers For Language Understanding</h1>
+<h1 id="bert---pre-training-of-deep-bidirectional-transformers-for-language-understanding"><a aria-hidden="true" class="anchor-heading icon-link" href="#bert---pre-training-of-deep-bidirectional-transformers-for-language-understanding"></a><a href="https://arxiv.org/html/1810.04805v2">BERT - Pre-training of Deep Bidirectional Transformers for Language Understanding</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>BERT</strong>: Bidirectional Encoder Representations from Transformers.</li>
+<li><strong><a href="https://gluebenchmark.com/">GLUE score</a></strong>: General Language Understanding Evaluation benchmark for natural language understanding.</li>
+<li><strong><a href="https://cims.nyu.edu/~sbowman/multinli/">MultiNLI</a></strong>: Multi-Genre Natural Language Inference benchmark for textual entailment.</li>
+<li><strong><a href="https://rajpurkar.github.io/SQuAD-explorer/">SQuAD v1.1</a></strong>: Stanford Question Answering Dataset benchmark where every question has an answer in the passage.</li>
+<li><strong><a href="https://rajpurkar.github.io/SQuAD-explorer/">SQuAD v2.0</a></strong>: Extension of SQuAD including questions with no answer in the passage.</li>
+</ul>
+<h2 id="about"><a aria-hidden="true" class="anchor-heading icon-link" href="#about"></a>About</h2>
+<p>Works well on natural language processing tasks. Receiving a GLUE score as high as 80.5%. They point out there are two approaches for applying the pre-trained representations to a downstream task:
+1) feature based: includes task specific architecture and includes the pre-trained structures as extra features
+2) fine-tuning: (used by GPT) uses task-specific parameters that are smaller, and does fine tuning for down stream tasks with the pre-trained parameters.
+So BERT is meant to be an improvement for the fine tuning approach. It uses 'next sentence prediction' tasks to pre train text-pair representations. </p>
+<h2 id="related-work"><a aria-hidden="true" class="anchor-heading icon-link" href="#related-work"></a>Related Work</h2>
+<h3 id="unsupervised-feature-based-approaches"><a aria-hidden="true" class="anchor-heading icon-link" href="#unsupervised-feature-based-approaches"></a>unsupervised feature based approaches:</h3>
+<p>Methods like <em>left-to-right</em> context-sensitive features are used for prediction. Other researchers have shown that pre-trained embeddings are important parts of NLP systems and are better than working from scratch.</p>
+<h3 id="unsupervised-fine-tuning-approaches"><a aria-hidden="true" class="anchor-heading icon-link" href="#unsupervised-fine-tuning-approaches"></a>unsupervised fine-tuning approaches</h3>
+<p>Work has been done in pre-trained word embedding parameters. The advantage being that fewer parameters are needed to be learned from scratch. </p>
+<h3 id="transfer-learning-from-supervised-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#transfer-learning-from-supervised-data"></a>transfer learning from supervised data</h3>
+<p>Supervised tasks using large datasets have also been shown to be effective when transferred to this unsupervised context. </p>
+<h2 id="bert"><a aria-hidden="true" class="anchor-heading icon-link" href="#bert"></a>BERT</h2>
+<p>BERT has two phases:</p>
+<ol>
+<li><strong>pre-training</strong> on large amounts of unlabeled text</li>
+<li><strong>fine-tuning</strong> on a specific downstream task using labeled data
+Unlike previous language models, BERT uses the same transformer architecture for both phases, only adding a small output layer for the downstream task.</li>
+</ol>
+<h3 id="architecture"><a aria-hidden="true" class="anchor-heading icon-link" href="#architecture"></a>Architecture</h3>
+<p>BERT is built from a bidirectional transformer encoder.
+Two model sizes are introduced:</p>
+<ul>
+<li><strong>BERTBASE</strong>: 12 transformer layers, 110M parameters</li>
+<li><strong>BERTLARGE</strong>: 24 transformer layers, 340M parameters</li>
+</ul>
+<h3 id="input-representation"><a aria-hidden="true" class="anchor-heading icon-link" href="#input-representation"></a>Input representation</h3>
+<p>Each input token is represented by the sum of three embeddings:</p>
+<ol>
+<li>token embedding</li>
+<li>segment embedding</li>
+<li>positional embedding
+Special tokens:</li>
+</ol>
+<ul>
+<li><code>[CLS]</code>: classification token placed at the beginning of every sequence</li>
+<li><code>[SEP]</code>: separates two input sentences
+The final hidden representation of <code>[CLS]</code> is used for sequence-level classification tasks.</li>
+</ul>
+<h3 id="pre-training"><a aria-hidden="true" class="anchor-heading icon-link" href="#pre-training"></a>Pre-training</h3>
+<p>BERT is trained using two self-supervised objectives.</p>
+<h4 id="masked-language-model-mlm"><a aria-hidden="true" class="anchor-heading icon-link" href="#masked-language-model-mlm"></a>Masked Language Model (MLM)</h4>
+<p>Instead of predicting the next word, BERT randomly masks 15% of tokens and predicts the missing words using both left and right context.
+Masking strategy:</p>
+<ul>
+<li>80% replaced with <code>[MASK]</code></li>
+<li>10% replaced with a random token</li>
+<li>10% left unchanged
+This avoids the model relying only on the <code>[MASK]</code> token during training.</li>
+</ul>
+<h4 id="next-sentence-prediction-nsp"><a aria-hidden="true" class="anchor-heading icon-link" href="#next-sentence-prediction-nsp"></a>Next Sentence Prediction (NSP)</h4>
+<p>BERT also learns relationships between sentences.
+For each sntence pair:</p>
+<ul>
+<li>50% are the actual next sentence (<strong>IsNext</strong>)</li>
+<li>50% are a random sentence (<strong>NotNext</strong>)
+So this helps downstream tasks such as question answering and natural language inference.</li>
+</ul>
+<h3 id="training-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#training-data"></a>Training data</h3>
+<p>Pre-training uses:</p>
+<ul>
+<li>BooksCorpus (~800 million words)</li>
+<li>English Wikipedia (~2.5 billion words)</li>
+</ul>
+<h3 id="fine-tuning"><a aria-hidden="true" class="anchor-heading icon-link" href="#fine-tuning"></a>Fine-tuning</h3>
+<p>Fine-tuning is simple:</p>
+<ul>
+<li>initialize from the pre-trained BERT model</li>
+<li>add one small task-specific output layer</li>
+<li>update all parameters jointly</li>
+</ul>
+<h2 id="results"><a aria-hidden="true" class="anchor-heading icon-link" href="#results"></a>Results</h2>
+<p>BERT achieved state-of-the-art performance on eleven NLP benchmarks.</p>
+<p>Highlights:</p>
+<ul>
+<li>GLUE: 80.5</li>
+<li>MultiNLI: 86.7%</li>
+<li>SQuAD v1.1: 93.2 F1</li>
+<li>SQuAD v2.0: 83.1 F1</li>
+</ul>
+<h2 id="relevance"><a aria-hidden="true" class="anchor-heading icon-link" href="#relevance"></a>Relevance</h2>
+<p>Although BERT demonstrates that large-scale self-supervised pre-training can learn useful representations from unlabeled data. This same idea seems to have later influenced DreaMS, where masked prediction is applied to mass spectra instead of text. </p>

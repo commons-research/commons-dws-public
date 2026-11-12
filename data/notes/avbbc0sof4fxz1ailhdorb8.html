@@ -1,0 +1,63 @@
+<h1 id="cleanup-your-lifetime-annotations-in-rust-with-rc-and-arc"><a aria-hidden="true" class="anchor-heading icon-link" href="#cleanup-your-lifetime-annotations-in-rust-with-rc-and-arc"></a>Cleanup Your Lifetime Annotations In Rust With Rc And Arc</h1>
+<h1 id="cleanup-your-lifetime-annotations-in-rust-with-rc-and-arc-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#cleanup-your-lifetime-annotations-in-rust-with-rc-and-arc-1"></a><a href="https://kerkour.com/rust-lifetimes-rc-arc">Cleanup your lifetime annotations in Rust with Rc and Arc</a></h1>
+<p>Lifetime annotations are verbose and contribute to cognitive load.
+example:</p>
+<pre class="language-rust"><code class="language-rust"><span class="token comment">// Haha is a struct to wrap a monad generator to provide a facade for any kind of generic iterator. Because.</span>
+<span class="token keyword">struct</span> <span class="token type-definition class-name">Haha</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'y</span><span class="token punctuation">,</span> <span class="token lifetime-annotation symbol">'o</span><span class="token punctuation">,</span> <span class="token class-name">L</span><span class="token punctuation">,</span> <span class="token class-name">O</span><span class="token operator">></span>
+  <span class="token keyword">where</span> <span class="token keyword">for</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'oO</span><span class="token operator">></span> <span class="token class-name">L</span><span class="token punctuation">:</span> <span class="token class-name">FnOnce</span><span class="token punctuation">(</span><span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'oO</span> <span class="token class-name">O</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'o</span> <span class="token class-name">O</span><span class="token punctuation">,</span>
+  <span class="token class-name">O</span><span class="token punctuation">:</span> <span class="token class-name">Trait</span><span class="token operator">&#x3C;</span><span class="token class-name">L</span><span class="token punctuation">,</span> <span class="token lifetime-annotation symbol">'o</span><span class="token punctuation">,</span> <span class="token class-name">L</span><span class="token operator">></span><span class="token punctuation">,</span>
+  <span class="token class-name">O</span><span class="token punctuation">::</span><span class="token class-name">Item</span> <span class="token punctuation">:</span> <span class="token class-name">Clone</span> <span class="token operator">+</span> <span class="token class-name">Debug</span> <span class="token operator">+</span> <span class="token lifetime-annotation symbol">'static</span> <span class="token punctuation">{</span>
+    x<span class="token punctuation">:</span> <span class="token class-name">L</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h1 id="why-are-lifetime-annotations-needed-in-the-first-place"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-are-lifetime-annotations-needed-in-the-first-place"></a>Why are lifetime annotations needed in the first place?</h1>
+<p>Tells the compiler something will live longer and avoid messing up. </p>
+<h2 id="lifetime-elision"><a aria-hidden="true" class="anchor-heading icon-link" href="#lifetime-elision"></a>Lifetime Elision</h2>
+<p>Can simply omit lifetime annotation and it will elide it. But there rules:
+1) each elided lifetime in fun argument becomes a distinct lifetime parameter
+2) if there is 1 input lifetime it is assigned to all elided lifetimes in the return value of function
+3) if there are multiple input lifetimes, and one is <code>&#x26;self</code> or <code>&#x26;mut</code> <code>self</code> is assigned to all elided output lifetimes. </p>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">do_something</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token keyword">u64</span><span class="token punctuation">)</span><span class="token punctuation">-></span> <span class="token operator">&#x26;</span><span class="token keyword">u64</span> <span class="token punctuation">{</span>
+    <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{}"</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x
+<span class="token punctuation">}</span>
+
+<span class="token comment">// is equivalent to</span>
+<span class="token keyword">fn</span> <span class="token function-definition function">do_something_else</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token operator">></span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">u64</span><span class="token punctuation">)</span><span class="token punctuation">-></span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">u64</span> <span class="token punctuation">{</span>
+    <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{}"</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="smart-pointers"><a aria-hidden="true" class="anchor-heading icon-link" href="#smart-pointers"></a>Smart Pointers</h2>
+<h3 id="rc"><a aria-hidden="true" class="anchor-heading icon-link" href="#rc"></a>Rc</h3>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>rc<span class="token punctuation">::</span></span><span class="token class-name">Rc</span><span class="token punctuation">;</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> pointer <span class="token operator">=</span> <span class="token class-name">Rc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> second_pointer <span class="token operator">=</span> pointer<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// or Rc::clone(&#x26;pointer)</span>
+        <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{}"</span><span class="token punctuation">,</span> <span class="token operator">*</span>second_pointer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{}"</span><span class="token punctuation">,</span> <span class="token operator">*</span>pointer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="arc"><a aria-hidden="true" class="anchor-heading icon-link" href="#arc"></a>Arc</h3>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span>sync<span class="token punctuation">::</span></span><span class="token punctuation">{</span><span class="token class-name">Arc</span><span class="token punctuation">,</span> <span class="token class-name">Mutex</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token namespace">std<span class="token punctuation">::</span></span><span class="token punctuation">{</span>thread<span class="token punctuation">,</span> time<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> pointer <span class="token operator">=</span> <span class="token class-name">Arc</span><span class="token punctuation">::</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">let</span> second_pointer <span class="token operator">=</span> pointer<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// or Arc::clone(&#x26;pointer)</span>
+    <span class="token namespace">thread<span class="token punctuation">::</span></span><span class="token function">spawn</span><span class="token punctuation">(</span><span class="token keyword">move</span> <span class="token closure-params"><span class="token closure-punctuation punctuation">|</span><span class="token closure-punctuation punctuation">|</span></span> <span class="token punctuation">{</span>
+        <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{}"</span><span class="token punctuation">,</span> <span class="token operator">*</span>second_pointer<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token namespace">thread<span class="token punctuation">::</span></span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token namespace">time<span class="token punctuation">::</span></span><span class="token class-name">Duration</span><span class="token punctuation">::</span><span class="token function">from_secs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"{}"</span><span class="token punctuation">,</span> <span class="token operator">*</span>pointer<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Can't use <code>Rc</code> for <code>async</code> or across thread. So gotta use <code>Arc</code>. </p>

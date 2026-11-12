@@ -1,0 +1,984 @@
+<h1 id="web-of-data-coursera"><a aria-hidden="true" class="anchor-heading icon-link" href="#web-of-data-coursera"></a>Web Of Data Coursera</h1>
+<h1 id="week-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#week-1"></a>Week 1:</h1>
+<h2 id="a-brief-story-of-the-web"><a aria-hidden="true" class="anchor-heading icon-link" href="#a-brief-story-of-the-web"></a>A brief story of the Web</h2>
+<p>Ted Nelson coined the term <a href="http://signallake.com/innovation/FileStructure65.pdf">HyperText</a>
+Vannevar Bush described the memex in 1945</p>
+<h3 id="web-architecture"><a aria-hidden="true" class="anchor-heading icon-link" href="#web-architecture"></a>Web Architecture:</h3>
+<p>1) URL
+2) HTTP
+3) HTML</p>
+<h2 id="separation-of-content-and-presentation"><a aria-hidden="true" class="anchor-heading icon-link" href="#separation-of-content-and-presentation"></a>Separation of Content and Presentation</h2>
+<p>XML created to help structure content</p>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>card</span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>name</span><span class="token punctuation">></span></span>Alex<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>name</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>card</span><span class="token punctuation">></span></span>
+</code></pre>
+<p><strong>URI</strong>: Uniform Resource Identifier. A string of characters used to identify a resource on a computer network, of which the best known type is the web address or URL.
+<strong>Namespace</strong>: an abstract space gathering names in the same set</p>
+<ul>
+<li>A collection of names identified by a URI</li>
+<li>Names belonging to the same namespace start with the same URI
+<strong>Prefixes</strong></li>
+<li>Local shortcuts to declare a namespace in a file, document, etc</li>
+<li>Use prefixes locally instead of repeating the namespace</li>
+<li>Representation languages provide prefix declaration means
+<strong>And Qualified Names:</strong> </li>
+<li>Prefix + ":" + local name</li>
+<li>e.g. dc:title </li>
+</ul>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">e:</span></span> <span class="token attr-name">card</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>e</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://website<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">e:</span>name</span><span class="token punctuation">></span></span>Alex<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">e:</span>name</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">e:</span>card</span><span class="token punctuation">></span></span>
+</code></pre>
+<pre><code>adding the prefix links all of of these xml items to the website
+</code></pre>
+<h3 id="from-pages-to-resources"><a aria-hidden="true" class="anchor-heading icon-link" href="#from-pages-to-resources"></a>From Pages to Resources</h3>
+<p>URL is different from a URI
+<strong>IRI</strong>: International Resource Identifier</p>
+<ul>
+<li>identify on the web in any language that exists
+URL -> URI -> IRI
+<strong>Resource</strong>: A resource is anything that can be identified by a URI</li>
+<li>page</li>
+<li>person</li>
+<li>idea</li>
+<li>etc</li>
+</ul>
+<h3 id="linked-data-principles"><a aria-hidden="true" class="anchor-heading icon-link" href="#linked-data-principles"></a>Linked Data Principles</h3>
+<p>1) use http uri (URL) to allow dereferencing the address
+2) When a URI is accessed, provide data about the resource it represents (HTTP)
+3) Include in these data links to other data (Web)</p>
+<p><strong><em>5 star data</em></strong>:
+1) on the web
+2) machien-readable data
+3) non-proprietary format
+4) rdf standards
+5) linked rdf</p>
+<h3 id="stack-of-standards-languages"><a aria-hidden="true" class="anchor-heading icon-link" href="#stack-of-standards-languages"></a>Stack of Standards Languages</h3>
+<p>W3C Standards:
+1) <strong>RDF</strong>: Resource Description Framework
+2) <strong>SPARQL</strong>: A query language
+<strong>Standards:</strong>
+RDFS &#x26; OWL</p>
+<h3 id="demos---a-web-of-linked-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#demos---a-web-of-linked-data"></a>Demos - A Web of Linked Data</h3>
+<h4 id="the-bbc-website"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-bbc-website"></a>The BBC Website</h4>
+<p>They are using linked data to sites such as wikipedia</p>
+<h4 id="dbpedia"><a aria-hidden="true" class="anchor-heading icon-link" href="#dbpedia"></a>DBPedia</h4>
+<p>DBPedia is based on structured data extracted from Wikipedia. </p>
+<h4 id="searching-the-web-of-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#searching-the-web-of-data"></a>Searching the Web of Data</h4>
+<h4 id="open-calais-from-natural-language-to-linked-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#open-calais-from-natural-language-to-linked-data"></a>Open Calais: From natural language to linked data</h4>
+<p>Calais takes text/html/xml and goes to URI in the text.  Able to construct a linked data set from a text resource.</p>
+<h4 id="when-software-agents-access-the-web-of-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#when-software-agents-access-the-web-of-data"></a>When software agents access the Web of data</h4>
+<p>Can use curl to access resources as well from the web of data. Can specify the format for the data that will be received. </p>
+<h4 id="linked-data-for-exploratory-search"><a aria-hidden="true" class="anchor-heading icon-link" href="#linked-data-for-exploratory-search"></a>Linked Data for Exploratory Search</h4>
+<p>Discovery Hub search engine is based on linked data, can search topics and associated new topics. System is able to show the connections (graph) linking terms/data. Can also summarize using natural language on the go. </p>
+<h1 id="week-2-the-rdf-data-model"><a aria-hidden="true" class="anchor-heading icon-link" href="#week-2-the-rdf-data-model"></a>Week 2: The RDF Data Model</h1>
+<h2 id="describing-resources"><a aria-hidden="true" class="anchor-heading icon-link" href="#describing-resources"></a>Describing Resources</h2>
+<p><strong>Schema</strong> as a knowledge graph
+<strong>example:</strong>
+rdf:about
+rdf:type
+rdfs:label
+ex:ingredient</p>
+<h2 id="triple-model-and-graph-model"><a aria-hidden="true" class="anchor-heading icon-link" href="#triple-model-and-graph-model"></a>Triple Model and Graph Model</h2>
+<p><strong>RDF</strong>:</p>
+<ul>
+<li><strong>Resource</strong>: pages, chairs, persons, etc all can have a URI</li>
+<li><strong>Description</strong>: attributes, characteristics, and relations between resources</li>
+<li><strong>Framework</strong>: model, language and syntaxes for these descriptions
+Decomposes descriptions into a triple: (subject, predicate, object)
+<strong>Rules</strong>:
+1) The <em>subject</em> is always a resource (and not a literal)
+2) the type of the <em>binary property</em> is identified by a URI
+3) The <em>value</em> is a resource or a literal
+This model also works a graph model. </li>
+</ul>
+<p>The RDF model is an oriented labeled multi-graph model:</p>
+<ul>
+<li>RDF triples form a graph when getting connected on common subjects or objects. The vertices of an RDF graph are the resources which are the subjects or objects of RDF triples, and its edges are labeled by the properties of the RDF triples.</li>
+<li>Two resources can be linked by several properties; an RDF graph is therefore a multi-graph.</li>
+<li>Vertices are labeled by URIs or literal values, and edges are labeled by URIs identifying properties.</li>
+<li>Edges are oriented: the tail of an edge is the subject of a triple, and the head of an edge is the object of a triple.</li>
+</ul>
+<p><strong>Composition rules for RDF triples:</strong></p>
+<ol>
+<li>The subject is always a resource (and not a literal)</li>
+<li>The type of the binary property is identified by a URI</li>
+<li>The value is a resource or a literal
+*<em>The RDF model is an oriented labeled multigraph model:</em></li>
+<li>multigraph: several edges can connect the same two nodes</li>
+<li>oriented: the head of an edge is the object of the corresponding triple, its tail is the subject of the triple</li>
+<li>labeled: edges and nodes are labeled by resources and literals</li>
+</ol>
+<p><strong>A resource is either a URI or an anonymous resource (blank node)</strong></p>
+<h2 id="serialization-syntaxes"><a aria-hidden="true" class="anchor-heading icon-link" href="#serialization-syntaxes"></a>Serialization Syntaxes</h2>
+<p>Existing Syntaxes:</p>
+<ul>
+<li>XML (historical)</li>
+<li>Turtle</li>
+<li>TriG</li>
+<li>JSON-LD</li>
+<li>N-Triples</li>
+<li>N-Quads</li>
+</ul>
+<h3 id="n-triples"><a aria-hidden="true" class="anchor-heading icon-link" href="#n-triples"></a>N-Triples</h3>
+<p>Easy parsing of triple lists</p>
+<ul>
+<li>URIs between less-than and greater-than signs</li>
+<li>Literal Values between double quotes</li>
+<li>Triples separated by full stops</li>
+</ul>
+<h3 id="turtle"><a aria-hidden="true" class="anchor-heading icon-link" href="#turtle"></a>Turtle</h3>
+<p>one (.) or several properties (;)  or values (,)</p>
+<h3 id="xml"><a aria-hidden="true" class="anchor-heading icon-link" href="#xml"></a>/XML</h3>
+<p>&#x3C;rdf:RDF> &#x3C;/rdf:RDF> is the root node necessary for rdf content</p>
+<h3 id="an-example-rdf-graph-serialized-in-various-rdf-syntaxes"><a aria-hidden="true" class="anchor-heading icon-link" href="#an-example-rdf-graph-serialized-in-various-rdf-syntaxes"></a>An Example RDF Graph Serialized in Various RDF Syntaxes</h3>
+<p>The example RDF graph serialized below has been discussed in the previous video. You can copy it and keep it to reuse it.</p>
+<p>RDF 1.1 comes with 7 syntaxes:</p>
+<ul>
+<li>N-Triples</li>
+<li>Turtle</li>
+<li>RDF/XML</li>
+<li>RDFa</li>
+<li>JSON-LD</li>
+<li>TriG</li>
+<li>N-Quads</li>
+</ul>
+<h4 id="an-example-rdf-graph-in-the-n-triples-syntax"><a aria-hidden="true" class="anchor-heading icon-link" href="#an-example-rdf-graph-in-the-n-triples-syntax"></a>An example RDF graph in the N-Triples syntax</h4>
+<pre><code>[http://inria.fr/rr/doc.html](http://inria.fr/rr/doc.html) [http://inria.fr/schema#author](http://inria.fr/schema#author) [http://ns.inria.fr/catherine.faron#me](http://ns.inria.fr/catherine.faron#me) . [http://inria.fr/rr/doc.html](http://inria.fr/rr/doc.html) [http://inria.fr/schema#topic](http://inria.fr/schema#topic) "Web of Data" . [http://inria.fr/rr/doc.html](http://inria.fr/rr/doc.html) [http://inria.fr/schema#topic](http://inria.fr/schema#topic) "Semantic Web" .
+</code></pre>
+<h4 id="an-example-rdf-graph-in-the-turtle-syntax"><a aria-hidden="true" class="anchor-heading icon-link" href="#an-example-rdf-graph-in-the-turtle-syntax"></a>An example RDF graph in the Turtle syntax</h4>
+<pre><code>
+@prefix rdf: [http://www.w3.org/1999/02/22-rdf-syntax-ns#](http://www.w3.org/1999/02/22-rdf-syntax-ns#). @prefix inria: [http://inria.fr/schema#](http://inria.fr/schema#) . [http://inria.fr/rr/doc.html](http://inria.fr/rr/doc.html) inria:author [http://ns.inria.fr/catherine.faron#me](http://ns.inria.fr/catherine.faron#me) ; inria:topic "Web of Data" , "Semantic Web" .
+
+</code></pre>
+<h4 id="an-example-rdf-graph-in-the-rdfxml-syntax"><a aria-hidden="true" class="anchor-heading icon-link" href="#an-example-rdf-graph-in-the-rdfxml-syntax"></a>An example RDF graph in the RDF/XML syntax</h4>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>RDF</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>rdf</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>inria</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://inria.fr/schema#<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://inria.fr/rr/doc.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">inria:</span>author</span> <span class="token attr-name"><span class="token namespace">rdf:</span>resource</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://ns.inria.fr/catherine.faron#me<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">inria:</span>topic</span><span class="token punctuation">></span></span>Web of Data<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">inria:</span>topic</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">inria:</span>topic</span><span class="token punctuation">></span></span>Semantic Web<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">inria:</span>topic</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>Description</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>RDF</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="values-types-and-languages"><a aria-hidden="true" class="anchor-heading icon-link" href="#values-types-and-languages"></a>Values, Types, and Languages</h2>
+<p>Literal types are considered to default to the <code>xsd:string</code></p>
+<ul>
+<li>data is organized hierarchically </li>
+<li>e.g. rdf:type
+<blockquote>
+No note with name Pasted image 20250415151322.png found in cache during parsing.
+</blockquote></li>
+</ul>
+<h2 id="groups"><a aria-hidden="true" class="anchor-heading icon-link" href="#groups"></a>Groups</h2>
+<p>rdf:{int} are used to list items that are grouped.
+In xml can use rdf:parseType="Collection" too
+these refer to a collection: <code>rdf:List</code> which will list the items in order</p>
+<h3 id="turtle-and-rdfxml-codes-to-represent-rdf-bags-and-lists"><a aria-hidden="true" class="anchor-heading icon-link" href="#turtle-and-rdfxml-codes-to-represent-rdf-bags-and-lists"></a>Turtle and RDF/XML Codes to Represent RDF Bags and Lists</h3>
+<h4 id="describing-a-bag-of-literals-in-turtle"><a aria-hidden="true" class="anchor-heading icon-link" href="#describing-a-bag-of-literals-in-turtle"></a><strong>Describing a Bag of Literals in Turtle</strong></h4>
+<pre><code>@prefix rdf: &#x3C;http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix inria: &#x3C;http://inria.fr/schema#> . 
+&#x3C;http://inria.fr/rr/doc.html> inria:author [ a rdf:Bag ;
+   rdf:li "Fabien", "Catherine", "Olivier" . ] . 
+</code></pre>
+<h4 id="describing-a-bag-of-literals-in-rdfxml"><a aria-hidden="true" class="anchor-heading icon-link" href="#describing-a-bag-of-literals-in-rdfxml"></a><strong>Describing a Bag of Literals in RDF/XML**</strong></h4>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>RDF</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>rdf</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>inria</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://inria.fr/schema#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://inria.fr/rr/doc.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">inria:</span>author</span><span class="token punctuation">></span></span>
+          
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>Bag</span><span class="token punctuation">></span></span>
+              
+                 <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>li</span><span class="token punctuation">></span></span>Fabien<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>li</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>li</span><span class="token punctuation">></span></span>Catherine<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>li</span><span class="token punctuation">></span></span>
+                
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>li</span><span class="token punctuation">></span></span>Olivier<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>li</span><span class="token punctuation">></span></span>
+                
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>Bag</span><span class="token punctuation">></span></span>
+            
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">inria:</span>author</span><span class="token punctuation">></span></span>
+        
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>Description</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>RDF</span><span class="token punctuation">></span></span>
+
+</code></pre>
+<h4 id="describing-a-list-of-resources-in-turtle"><a aria-hidden="true" class="anchor-heading icon-link" href="#describing-a-list-of-resources-in-turtle"></a><strong>Describing a List of Resources in Turtle</strong></h4>
+<pre class="language-turtle"><code class="language-turtle"><span class="token keyword">@prefix</span> <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+<span class="token keyword">@prefix</span> <span class="token function"><span class="token prefix">inria<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://inria.fr/schema#<span class="token punctuation">></span></span> <span class="token punctuation">.</span> 
+<span class="token url"><span class="token punctuation">&#x3C;</span>http://inria.fr/rr/doc.html<span class="token punctuation">></span></span> <span class="token function"><span class="token prefix">inria<span class="token punctuation">:</span></span><span class="token local-name">author</span></span> 
+    <span class="token punctuation">(</span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://ns.inria.fr/fabien.gandon#me<span class="token punctuation">></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://ns.inria.fr/catherine.faron#me<span class="token punctuation">></span></span>
+<span class="token url"><span class="token punctuation">&#x3C;</span>http://ns.inria.fr/olivier.corby#me<span class="token punctuation">></span></span> <span class="token punctuation">)</span> <span class="token punctuation">.</span> 
+</code></pre>
+<h4 id="describing-a-list-of-resources-in-rdfxml"><a aria-hidden="true" class="anchor-heading icon-link" href="#describing-a-list-of-resources-in-rdfxml"></a><strong>Describing a List of Resources in RDF/XML</strong></h4>
+<pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>RDF</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>rdf</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>inria</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://inria.fr/schema#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://inria.fr/rr/doc.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">inria:</span>author</span> <span class="token attr-name"><span class="token namespace">rdf:</span>parseType</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Collection<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://ns.inria.fr/fabien.gandon#me<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+            
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://ns.inria.fr/catherine.faron#me<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+            
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span><span class="token namespace">rdf:</span>Description</span> <span class="token attr-name"><span class="token namespace">rdf:</span>about</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://ns.inria.fr/olivier.corby#me<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">inria:</span>author</span><span class="token punctuation">></span></span>
+        
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>Description</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span><span class="token namespace">rdf:</span>RDF</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="naming-graphs"><a aria-hidden="true" class="anchor-heading icon-link" href="#naming-graphs"></a>Naming Graphs</h2>
+<p>Subgraphs of URI triples are connected by their linked concepts. </p>
+<p><strong>TriG:</strong> consists of an RDF triple which declares that document doc.html is about arithmetic sequences (identified by <a href="http://data.bnf.fr/ark:/12148/cb121105993">http://data.bnf.fr/ark:/12148/cb121105993</a> in the BNF) but also in the encapsulation of this RDF triple within a named graph (identified by <a href="http://inria.fr/topics/algebra">http://inria.fr/topics/algebra</a>) which presumably groups Inria's documents about Algebra.</p>
+<h4 id="trig-and-n-quads-codes-to-represent-named-graphs"><a aria-hidden="true" class="anchor-heading icon-link" href="#trig-and-n-quads-codes-to-represent-named-graphs"></a>TriG and N-Quads Codes to Represent Named Graphs</h4>
+<p>This code has been discussed in the previous video, you can copy it and keep it to reuse it.</p>
+<p><strong>Named Graphs in TriG</strong></p>
+<pre class="language-html"><code class="language-html">@prefix rdf: &#x3C;http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix inria: &#x3C;http://inria.fr/schema#> .
+GRAPH &#x3C;http://inria.fr/people>
+{ 
+  &#x3C;http://inria.fr/rr/doc.html> inria:author. &#x3C;http://ns.inria.fr/catherine.faron#me> .
+}
+
+GRAPH &#x3C;http://inria.fr/topics>
+{ 
+  &#x3C;http://inria.fr/rr/doc.html> inria:topic "Web of Data" .
+}
+
+</code></pre>
+<p><strong>Named Graphs in N-Quads</strong></p>
+<pre class="language-html"><code class="language-html">&#x3C;http://inria.fr/rr/doc.html> &#x3C;http://inria.fr/schema#author>
+
+&#x3C;http://ns.inria.fr/catherine.faron#me> &#x3C;http://inria.fr/people> . &#x3C;http://inria.fr/rr/doc.html> &#x3C;http://inria.fr/schema#topic>
+
+"Web of Data" &#x3C;http://inria.fr/topics> .
+</code></pre>
+<h2 id="rdf-schema"><a aria-hidden="true" class="anchor-heading icon-link" href="#rdf-schema"></a>RDF Schema</h2>
+<p>RDF-S is above the RDF layer for the semantic web standards. </p>
+<ul>
+<li>RDFS provides a standard vocabulary to declare vocabularies to be used in RDF descriptions</li>
+<li>RDFS reuses the vocabulary of RDF and introduces additional constructs</li>
+<li>An RDF vocabulary is a set of property declarations and class declarations
+Declaring an object vocabulary requires connecting it to schema.
+Classes can be declared hierarchically, e.g. Woman -> Person.</li>
+</ul>
+<pre><code>&#x3C;hasMother> a rdf:Property;
+	rdfs:subPropertyyOf &#x3C;hasParent> .
+</code></pre>
+<p>Labels and names are also able to be added. </p>
+<h3 id="turtle-and-rdfxml-codes-to-declare-rdf-classes-and-properties"><a aria-hidden="true" class="anchor-heading icon-link" href="#turtle-and-rdfxml-codes-to-declare-rdf-classes-and-properties"></a>Turtle and RDF/XML Codes to Declare RDF Classes and Properties</h3>
+<p>This code has been discussed in the previous video, you can copy it and keep it to reuse it.
+<strong>Declaring Classes of Resources in Turtle</strong></p>
+<pre><code>@prefix rdfs: &#x3C;http://www.w3.org/2000/01/rdf-schema#>
+@base &#x3C;http://inria.fr/2005/humans.rdfs>
+&#x3C;Woman> a rdfs:Class ; rdfs:subClassOf &#x3C;Person>, &#x3C;Female> . 
+</code></pre>
+<p><strong>Declaring Classes of Resources in RDF/XML</strong></p>
+<pre><code>&#x3C;rdf:RDF xml:base="http://inria.fr/2005/humans.rdfs" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+&#x3C;rdfs:Class rdf:ID="Woman">
+
+&#x3C;rdfs:subClassOf rdf:resource="#Person"/>
+
+&#x3C;rdfs:subClassOf rdf:resource="#Female"/>
+
+&#x3C;/rdfs:Class>
+
+&#x3C;/rdf:RDF>
+</code></pre>
+<p><strong>Declaring Types of Properties in Turtle</strong></p>
+<pre><code>@prefix rdf: &#x3C;http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: &#x3C;http://www.w3.org/2000/01/rdf-schema#>
+@base &#x3C;http://inria.fr/2005/humans.rdfs>
+&#x3C;hasMother> a rdf:Property ;  rdfs:subPropertyOf &#x3C;hasParent> . 
+
+</code></pre>
+<p><strong>Declaring Types of Properties in RDF/XML</strong></p>
+<pre><code>&#x3C;rdf:RDF xml:base="http://inria.fr/2005/humans.rdfs" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+&#x3C;rdf:Property rdf:ID="hasMother">
+
+&#x3C;rdfs:subPropertyOf rdf:resource="#hasParent"/>
+
+&#x3C;rdfs:domain rdf:resource="#Person"/>
+
+&#x3C;rdfs:range rdf:resource="#Woman"/>
+
+&#x3C;/rdf:Property>
+
+&#x3C;/rdf:RDF>
+</code></pre>
+<h1 id="week-3-sparql"><a aria-hidden="true" class="anchor-heading icon-link" href="#week-3-sparql"></a>Week 3: SPARQL</h1>
+<h2 id="rdf-graph-pattern-matching"><a aria-hidden="true" class="anchor-heading icon-link" href="#rdf-graph-pattern-matching"></a>RDF Graph Pattern Matching</h2>
+<p>Accessing Data Sources on the Web
+1) RDF Pattern Matching
+2) Statements
+3) Filter, Constraint, Function
+4) Pre and post processing
+5) Several query forms
+6) Results and update
+Syntax looks like SQL syntax
+statements are triple patterns in turtle syntax
+e.g. <code>?x rdf:type ex:Person</code>
+<code>SELECT ?subject ?property ?value WHERE {?subject ?property ?value}</code></p>
+<pre class="language-sparql"><code class="language-sparql">ELECT <span class="token variable">?subject</span> <span class="token variable">?property</span> <span class="token variable">?value</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> 
+<span class="token variable">?subject</span> <span class="token variable">?property</span> <span class="token variable">?value</span> 
+<span class="token punctuation">}</span>
+
+<span class="token keyword">prefix</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/ns/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?x</span> 
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> 
+<span class="token variable">?x</span> <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span><span class="token local-name">type</span></span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">Person</span></span> <span class="token punctuation">.</span>
+  <span class="token variable">?x</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">.</span> 
+<span class="token punctuation">}</span>
+  
+<span class="token keyword">prefix</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/ns/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?name</span> <span class="token variable">?fname</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+<span class="token variable">?x</span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">Person</span></span><span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">firstname</span></span> <span class="token variable">?fname</span> <span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">author</span></span> <span class="token variable">?y</span> <span class="token punctuation">.</span>
+<span class="token punctuation">}</span> 
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu#<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?student</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?student</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span><span class="token local-name">registeredAt</span></span> <span class="token variable">?x</span> <span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu#<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?student</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?student</span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu#registeredAt<span class="token punctuation">></span></span> <span class="token variable">?x</span> <span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span></span>  <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu#<span class="token punctuation">></span></span>
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?student</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?student</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span><span class="token local-name">registeredAt</span></span> <span class="token variable">?x</span> <span class="token punctuation">.</span>
+ <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">homepage</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?x</span> <span class="token variable">?f</span> <span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token string">"Fabien"</span><span class="token tag"><span class="token punctuation">@</span>fr</span> <span class="token punctuation">;</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">knows</span></span> <span class="token variable">?f</span> <span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?x</span> <span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token string">"Fabien"</span><span class="token tag"><span class="token punctuation">@</span>fr</span> <span class="token punctuation">;</span> 
+    <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">age</span></span> <span class="token string">"21"</span><span class="token punctuation">^^</span><span class="token function"><span class="token prefix">xsd<span class="token punctuation">:</span></span><span class="token local-name">integer</span></span> <span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="statements"><a aria-hidden="true" class="anchor-heading icon-link" href="#statements"></a>Statements</h2>
+<pre class="language-sparql"><code class="language-sparql"><span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?person</span> <span class="token variable">?name</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">homepage</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://fabien.info<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+ <span class="token keyword">OPTIONAL</span> <span class="token punctuation">{</span> <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?person</span> <span class="token variable">?name</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">.</span>
+  <span class="token punctuation">{</span>
+   <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">homepage</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://fabien.info<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">UNION</span>
+  <span class="token punctuation">{</span>
+   <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">homepage</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://bafien.org<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.example.abc#<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?x</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+   <span class="token variable">?x</span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">Person</span></span>  
+   <span class="token keyword">MINUS</span> <span class="token punctuation">{</span> <span class="token variable">?x</span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">Man</span></span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?person</span> <span class="token variable">?name</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">VALUES</span> <span class="token variable">?name</span>  <span class="token punctuation">{</span> <span class="token string">"Peter"</span> <span class="token string">"Pedro"</span> <span class="token string">"Pierre"</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.example.abc#<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?person</span> <span class="token variable">?name</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?person</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">fname</span></span> <span class="token variable">?fname</span> <span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">lname</span></span> <span class="token variable">?lname</span> <span class="token punctuation">.</span>
+ <span class="token keyword">BIND</span> <span class="token punctuation">(</span><span class="token keyword">concat</span><span class="token punctuation">(</span><span class="token variable">?fname</span><span class="token punctuation">,</span> <span class="token variable">?lname</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token variable">?name</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?friend</span> <span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token string">"Fabien Gandon"</span> <span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">knows</span></span>+ <span class="token variable">?friend</span> <span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> <span class="token variable">?name</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="filter-constraint-and-function"><a aria-hidden="true" class="anchor-heading icon-link" href="#filter-constraint-and-function"></a>Filter, Constraint, and Function</h2>
+<p>Declaration Constraints:</p>
+<ul>
+<li>select</li>
+<li>where</li>
+<li>filter
+Strings and Literals</li>
+<li>contains</li>
+<li>strstarts</li>
+<li>strends</li>
+<li>strdt</li>
+<li>stranlang</li>
+<li>etc
+May also get year, date, abs, etc. Many ways to evaluate </li>
+</ul>
+<pre class="language-sparql"><code class="language-sparql"><span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://inria.fr/schema#<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?person</span> <span class="token variable">?name</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?person</span> <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span><span class="token local-name">type</span></span> <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">Person</span></span> <span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">name</span></span>  <span class="token variable">?name</span> <span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ex<span class="token punctuation">:</span></span><span class="token local-name">age</span></span>   <span class="token variable">?age</span> <span class="token punctuation">.</span>
+ <span class="token keyword">FILTER</span> <span class="token punctuation">(</span><span class="token function"><span class="token prefix">xsd<span class="token punctuation">:</span></span><span class="token local-name">integer</span></span><span class="token punctuation">(</span><span class="token variable">?age</span><span class="token punctuation">)</span> >= <span class="token number">18</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> 
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> * <span class="token keyword">where</span> <span class="token punctuation">{</span>
+ <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">;</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">age</span></span> <span class="token variable">?age</span> <span class="token punctuation">.</span>
+ <span class="token keyword">FILTER</span> <span class="token punctuation">(</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">langMatches</span><span class="token punctuation">(</span><span class="token keyword">lang</span><span class="token punctuation">(</span><span class="token variable">?name</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"FR"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token variable">?age</span> >= <span class="token number">18</span><span class="token punctuation">,</span> <span class="token variable">?age</span> >= <span class="token number">21</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?name</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">.</span>
+ <span class="token keyword">FILTER</span> <span class="token keyword">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">{</span> <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">age</span></span> <span class="token number">-1</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="pre-and-post-processing"><a aria-hidden="true" class="anchor-heading icon-link" href="#pre-and-post-processing"></a>Pre and Post Processing</h2>
+<pre class="language-sparql"><code class="language-sparql"><span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu#<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?student</span> 
+<span class="token keyword">FROM</span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu/data1.rdf<span class="token punctuation">></span></span>
+<span class="token keyword">FROM</span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu/data2.rdf<span class="token punctuation">></span></span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> <span class="token variable">?student</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span><span class="token local-name">registeredAt</span></span> <span class="token variable">?x</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu#<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?g</span> <span class="token variable">?student</span> 
+<span class="token keyword">FROM</span> <span class="token keyword">NAMED</span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu/data1.rdf<span class="token punctuation">></span></span>
+<span class="token keyword">FROM</span> <span class="token keyword">NAMED</span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu/data2.rdf<span class="token punctuation">></span></span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> 
+ <span class="token keyword">GRAPH</span> <span class="token variable">?g</span> <span class="token punctuation">{</span>
+  <span class="token variable">?student</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span><span class="token local-name">registeredAt</span></span> <span class="token variable">?x</span> <span class="token punctuation">.</span> 
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">SELECT</span> <span class="token variable">?x</span> 
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> 
+ <span class="token keyword">SERVICE</span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://dbpedia.org/sparql<span class="token punctuation">></span></span> <span class="token punctuation">{</span>
+   <span class="token variable">?x</span> <span class="token function"><span class="token prefix">rdfs<span class="token punctuation">:</span></span><span class="token local-name">label</span></span> <span class="token string">"Auguste"</span><span class="token tag"><span class="token punctuation">@</span>fr</span> <span class="token punctuation">.</span> 
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?name</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span> 
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token variable">?name</span>
+<span class="token keyword">LIMIT</span> <span class="token number">20</span>
+<span class="token keyword">OFFSET</span> <span class="token number">20</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu#<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?student</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> <span class="token variable">?student</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span><span class="token local-name">score</span></span> <span class="token variable">?score</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> <span class="token variable">?student</span>
+<span class="token keyword">HAVING</span><span class="token punctuation">(</span><span class="token keyword">AVG</span><span class="token punctuation">(</span><span class="token variable">?score</span><span class="token punctuation">)</span> >= <span class="token number">10</span><span class="token punctuation">)</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">SELECT</span> <span class="token variable">?name</span> <span class="token keyword">WHERE</span> <span class="token punctuation">{</span>
+ <span class="token punctuation">{</span> <span class="token keyword">SELECT</span> <span class="token punctuation">(</span><span class="token keyword">max</span><span class="token punctuation">(</span><span class="token variable">?age</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token variable">?max</span><span class="token punctuation">)</span>
+   <span class="token keyword">WHERE</span> <span class="token punctuation">{</span> <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">age</span></span> <span class="token variable">?age</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+ <span class="token variable">?senior</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">age</span></span> <span class="token variable">?max</span> <span class="token punctuation">.</span>
+ <span class="token variable">?senior</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token variable">?name</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span> 
+<span class="token keyword">SELECT</span> <span class="token variable">?x</span> <span class="token punctuation">(</span><span class="token keyword">month</span><span class="token punctuation">(</span><span class="token variable">?date</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token variable">?month</span><span class="token punctuation">)</span>
+<span class="token keyword">WHERE</span> <span class="token punctuation">{</span> <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">birthday</span></span> <span class="token variable">?date</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="several-query-forms"><a aria-hidden="true" class="anchor-heading icon-link" href="#several-query-forms"></a>Several Query Forms</h2>
+<p>Able to construct a result graph</p>
+<pre class="language-sparql"><code class="language-sparql"><span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span>
+<span class="token keyword">ASK</span> <span class="token punctuation">{</span> <span class="token variable">?person</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">age</span></span> <span class="token number">111</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span></span>  <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.mit.edu#<span class="token punctuation">></span></span>
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">corp<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://mycorp.com/schema#<span class="token punctuation">></span></span>
+<span class="token keyword">CONSTRUCT</span> <span class="token punctuation">{</span> <span class="token variable">?student</span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">corp<span class="token punctuation">:</span></span><span class="token local-name">FuturExecutive</span></span> <span class="token punctuation">.</span> <span class="token punctuation">}</span>
+<span class="token keyword">WHERE</span>     <span class="token punctuation">{</span> <span class="token variable">?student</span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">mit<span class="token punctuation">:</span></span><span class="token local-name">Student</span></span> <span class="token punctuation">.</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">DESCRIBE</span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://fabien.info<span class="token punctuation">></span></span>
+
+<span class="token keyword">PREFIX</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span> 
+<span class="token keyword">DESCRIBE</span> <span class="token variable">?x</span> <span class="token keyword">WHERE</span> <span class="token punctuation">{</span> <span class="token variable">?x</span> <span class="token function"><span class="token prefix">foaf<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token string">"Fabien"</span> <span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="sparql-query-result"><a aria-hidden="true" class="anchor-heading icon-link" href="#sparql-query-result"></a>SPARQL Query Result</h2>
+<ul>
+<li>select, ask: XML Results format</li>
+<li>construct, describe: RDF/XML</li>
+<li>JSON
+SPARQL Update manage triples:</li>
+<li>Load</li>
+<li>Delete</li>
+<li>Insert</li>
+<li>Copy</li>
+<li>Move</li>
+<li>Add</li>
+<li>etc</li>
+</ul>
+<h2 id="demos-of-sparql"><a aria-hidden="true" class="anchor-heading icon-link" href="#demos-of-sparql"></a>Demos of SPARQL</h2>
+<p><strong>Flint</strong> SPARQL Editor - used for editing and trying queries
+<strong>Corese</strong> Query Tool. Similar to Flint, but can run queries from files and output as Graph or XML and also can be validated
+<strong>Gephi</strong> is used to visualize the graphs from queries
+<strong>QAKIS.org</strong> translates langauge queries into sparql, so natural language to sparql querie. </p>
+<h1 id="week-4-rdfa"><a aria-hidden="true" class="anchor-heading icon-link" href="#week-4-rdfa"></a>Week 4: RDFa</h1>
+<h2 id="rdfa-an-rdf-syntax-inside-html"><a aria-hidden="true" class="anchor-heading icon-link" href="#rdfa-an-rdf-syntax-inside-html"></a>RDFa: An RDF Syntax inside HTML</h2>
+<p><strong>RDF LIght</strong>: contains:</p>
+<ul>
+<li>Vocab</li>
+<li>Prefix</li>
+<li>Resource</li>
+<li>Typeof</li>
+<li>Property
+<strong>RDFa Core</strong> contains:</li>
+<li>Content</li>
+<li>Datatype</li>
+<li>About</li>
+<li>Rel
+Schema.org </li>
+</ul>
+<h3 id="data-from-the-video-an-rdf-syntax-inside-html"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-from-the-video-an-rdf-syntax-inside-html"></a>Data from the video "an RDF syntax inside HTML"</h3>
+<pre class="language-html"><code class="language-html">(...)
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>body</span> <span class="token attr-name">vocab</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://purl.org/dc/terms/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">resource</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/books/web_semantique<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>h2</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>A Web of linked data<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>h2</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>p</span><span class="token punctuation">></span></span>Date: <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>created<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>2012-05-01<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>creator<span class="token punctuation">"</span></span> <span class="token attr-name">resource</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#fg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>by<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>p</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">vocab</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">"</span></span> <span class="token attr-name">resource</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#fg<span class="token punctuation">"</span></span> <span class="token attr-name">typeof</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Person<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>p</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Fabien Gandon<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span>,
+     phone: <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>a</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>phone<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tel:+33492965170<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>+33492965170<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>a</span><span class="token punctuation">></span></span>
+     mail: <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>a</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mbox<span class="token punctuation">"</span></span>
+              <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mailto:fabien.gandon@inria.fr<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>fabien.gandon@inria.fr<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>a</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>p</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+(...)
+</code></pre>
+<pre class="language-turtle"><code class="language-turtle"><span class="token keyword">@prefix</span> <span class="token function"><span class="token prefix">ns1<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://purl.org/dc/terms/<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+<span class="token keyword">@prefix</span> <span class="token function"><span class="token prefix">ns2<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://xmlns.com/foaf/0.1/<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+<span class="token url"><span class="token punctuation">&#x3C;</span>/books/web_semantique<span class="token punctuation">></span></span>
+    <span class="token function"><span class="token prefix">ns1<span class="token punctuation">:</span></span><span class="token local-name">title</span></span> <span class="token string">"A Web of linked data"</span><span class="token tag"><span class="token punctuation">@</span>en</span> <span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ns1<span class="token punctuation">:</span></span><span class="token local-name">created</span></span> <span class="token string">"2012-05-01"</span> <span class="token punctuation">;</span> 
+    <span class="token function"><span class="token prefix">ns1<span class="token punctuation">:</span></span><span class="token local-name">creator</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>#fg<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+<span class="token url"><span class="token punctuation">&#x3C;</span>#fg<span class="token punctuation">></span></span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">ns2<span class="token punctuation">:</span></span><span class="token local-name">Person</span></span><span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ns2<span class="token punctuation">:</span></span><span class="token local-name">mbox</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>mailto:fabien.gandon@inria.fr<span class="token punctuation">></span></span><span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ns2<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token string">"Fabien Gandon"</span> <span class="token punctuation">;</span>
+    <span class="token function"><span class="token prefix">ns2<span class="token punctuation">:</span></span><span class="token local-name">phone</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>tel:+33492965170<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+</code></pre>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">vocab</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schema.org/<span class="token punctuation">"</span></span> <span class="token attr-name">typeof</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Product<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>img</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dell-30in-lcd.jpg<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Dell UltraSharp 30" LCD Monitor<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hasAggregateRating<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">typeof</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schema.org/AggregateRating<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ratingValue<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>87<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span>
+      out of <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bestRating<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>100<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span>
+      based on <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ratingCount<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>24<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span> user ratings
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>offers<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token attr-name">typeof</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://schema.org/AggregateOffer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lowPrice<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>$1250<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span>
+       to <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>highPrice<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>$1495<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span>
+        from <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>offerCount<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span> sellers
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span> (...)
+</code></pre>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>html</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/xhtml<span class="token punctuation">"</span></span> <span class="token attr-name">dir</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ltr<span class="token punctuation">"</span></span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en-US<span class="token punctuation">"</span></span>
+     <span class="token attr-name"><span class="token namespace">xmlns:</span>fb</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://www.facebook.com/2008/fbml<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>head</span> <span class="token attr-name">prefix</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og: http://ogp.me/ns# fb: http://ogp.me/ns# YOUR_NAMESPACE: 
+            http://ogp.me/ns/apps/YOUR_NAMESPACE#<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fb:app_id<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>YOUR_APP_ID<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:type<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>YOUR_NAMESPACE:recipe<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:title<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Stuffed Cookies<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:image<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://example.com/cookie.jpg<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:description<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>The Turducken of Cookies<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>meta</span> <span class="token attr-name">property</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>og:url<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://example.com/cookie.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">function</span> <span class="token function">postCook</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>   <span class="token constant">FB</span><span class="token punctuation">.</span><span class="token method function property-access">api</span><span class="token punctuation">(</span><span class="token string">'/me/YOUR_NAMESPACE:cook'</span> <span class="token operator">+</span> <span class="token string">'?recipe=http://example.com/cookie.html'</span><span class="token punctuation">,</span><span class="token string">'post'</span><span class="token punctuation">,</span>  <span class="token punctuation">(</span><span class="token spread operator">...</span><span class="token punctuation">)</span>       <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>script</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>head</span><span class="token punctuation">></span></span> 
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>body</span><span class="token punctuation">></span></span> 
+(...)
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>form</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Cook<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">postCook</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span> <span class="token punctuation">/></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>form</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>body</span><span class="token punctuation">></span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>html</span><span class="token punctuation">></span></span>
+</code></pre>
+<h2 id="grddl-extract-rdf-from-xhtml"><a aria-hidden="true" class="anchor-heading icon-link" href="#grddl-extract-rdf-from-xhtml"></a>GRDDL: Extract RDF from X(HT)ML</h2>
+<p>Mechanism to extract RD from html and xml
+GRDDL is extractive </p>
+<ul>
+<li>Can be more resilient</li>
+</ul>
+<p><strong>GRDDL in HTML</strong></p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>head</span> <span class="token attr-name">profile</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2003/g/data-view<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>title</span><span class="token punctuation">></span></span>The man who mistook his wife for a hat<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>title</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>transformation<span class="token punctuation">"</span></span> 
+       <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/06/dc-extract/dc-extract.xsl<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>DC.Subject<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clinical tales<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+ (...)
+
+</code></pre>
+<p><strong>GRDDL XML</strong></p>
+<pre class="language-xml"><code class="language-xml"><span class="token prolog">&#x3C;?xml version="1.0"?></span>
+<span class="token prolog">&#x3C;?mso-application progid="Excel.Sheet"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>Workbook</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>urn:schemas-microsoft-com:office:spreadsheet<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">xmlns:</span>grddl</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2003/g/data-view#<span class="token punctuation">"</span></span>
+  <span class="token attr-name"><span class="token namespace">grddl:</span>transformation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>excel2rdf.xsl<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+(...)
+</code></pre>
+<p><strong>GRDDL</strong> is a mechanism for <strong>G</strong>leaning <strong>R</strong>esource <strong>D</strong>escriptions from <strong>D</strong>ialects of <strong>L</strong>anguages.</p>
+<h2 id="json-ld-json-syntax-for-rdf"><a aria-hidden="true" class="anchor-heading icon-link" href="#json-ld-json-syntax-for-rdf"></a>JSON-LD: JSON Syntax for RDF</h2>
+<p>Specific Reserved Names Prefixed by @
+<strong>Compact</strong>: adding a context and shortening rdf
+<strong>Expand</strong>: When you remove a context and expand rdf</p>
+<h3 id="specific-reserved-names"><a aria-hidden="true" class="anchor-heading icon-link" href="#specific-reserved-names"></a>Specific Reserved Names</h3>
+<pre class="language-json-ld"><code class="language-json-ld">@context: define short names used in the document
+@id: identify resources with IRIs or blank nodes
+@value: specify the data value of a property
+@language: specify the language for a string or the document
+@type: set the type of a value or a resource
+@vocab: prefix IRI to expand properties and values in @type
+@base: used to set the base IRI
+@container: used to set the default container type for a term
+@index: specify a container is used to index information
+@list: an ordered list of data
+@set: an unordered set of data
+@reverse: express reverse properties
+@graph: indicate a graph
+</code></pre>
+<h3 id="example-data-in-turtle"><a aria-hidden="true" class="anchor-heading icon-link" href="#example-data-in-turtle"></a>Example Data in Turtle</h3>
+<pre class="language-json-ld"><code class="language-json-ld">@prefix foaf: &#x3C;http://xmlns.com/foaf/0.1/> .
+@prefix xsd: &#x3C;http://www.w3.org/2001/XMLSchema#> .
+&#x3C;http://ns.inria.fr/fabien.gandon#me> a foaf:Person ;
+ foaf:familyName "Gandon"@fr ;
+ foaf:givenName "Fabien"@fr ;
+ foaf:age 40 ;
+ foaf:birthday "--07-31"^^xsd:gMonthDay ;
+ foaf:homepage &#x3C;http://fabien.info> ;
+ foaf:knows [ a foaf:Person ; foaf:name "Olivier Corby" ],
+   [ a foaf:Person ; foaf:name "Catherine Faron-Zucker" ].
+</code></pre>
+<h3 id="sample-exampel-in-simpel-json-ld"><a aria-hidden="true" class="anchor-heading icon-link" href="#sample-exampel-in-simpel-json-ld"></a>Sample Exampel in Simpel JSON-LD</h3>
+<pre class="language-json-ld"><code class="language-json-ld">{
+ "@id": "http://ns.inria.fr/fabien.gandon#me",
+ "@type": "http://xmlns.com/foaf/0.1/Person",
+ "http://xmlns.com/foaf/0.1/age": 40,
+ "http://xmlns.com/foaf/0.1/birthday": {
+    "@type": "http://www.w3.org/2001/XMLSchema#gMonthDay", "@value": "--07-31" },
+ "http://xmlns.com/foaf/0.1/familyName": { "@value": "Gandon" ,"@language": "fr" },
+ "http://xmlns.com/foaf/0.1/givenName": { "@value": "Fabien" , "@language": "fr" },
+ "http://xmlns.com/foaf/0.1/homepage": {"@id": "http://fabien.info" },
+ "http://xmlns.com/foaf/0.1/knows": [
+   { "@type": "http://xmlns.com/foaf/0.1/Person",
+     "http://xmlns.com/foaf/0.1/name": "Catherine Faron-Zucker" },
+   { "@type": "http://xmlns.com/foaf/0.1/Person",
+     "http://xmlns.com/foaf/0.1/name": "Olivier Corby" }
+  ]
+}
+</code></pre>
+<h3 id="sample-example-in-json-ld-with-context"><a aria-hidden="true" class="anchor-heading icon-link" href="#sample-example-in-json-ld-with-context"></a>Sample Example in JSON-LD with Context</h3>
+<pre class="language-json-ld"><code class="language-json-ld">{ "@context": {
+    "foaf": "http://xmlns.com/foaf/0.1/" ,
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    { "@id": "http://ns.inria.fr/fabien.gandon#me",  "@type": "foaf:Person",
+      "foaf:age": 40,
+      "foaf:birthday": { "@type": "xsd:gMonthDay", "@value": "--07-31" },
+      "foaf:familyName": { "@value": "Gandon" , "@language": "fr" },
+      "foaf:givenName": { "@value": "Fabien" , "@language": "fr" },
+      "foaf:homepage": { "@id": "http://fabien.info" },
+      "foaf:knows": [ { "@type": "foaf:Person", "foaf:name": "Olivier Corby" } , 
+    { "@type": "foaf:Person", "foaf:name": "Catherine Faron-Zucker"}
+          ]
+    }
+  ]
+}
+</code></pre>
+<h3 id="linked-from-json_ld-to-turtle"><a aria-hidden="true" class="anchor-heading icon-link" href="#linked-from-json_ld-to-turtle"></a>Linked from JSON_LD to Turtle</h3>
+<pre class="language-json-ld"><code class="language-json-ld">@prefix : &#x3C;http://schema.org/> .
+&#x3C;http://data.org/Fg-fjekzI> :familyName "Gandon" ;
+    :givenName "Fabien" ;
+    :jobTitle "Research Director at Inria"@en .}
+</code></pre>
+<h3 id="google-knowledge-graph-search-api-in-json-ld"><a aria-hidden="true" class="anchor-heading icon-link" href="#google-knowledge-graph-search-api-in-json-ld"></a>Google Knowledge Graph Search API in JSON-LD</h3>
+<pre class="language-json-ld"><code class="language-json-ld">{ "@context": {
+    "@vocab": "http://schema.org/",
+    "goog": "http://schema.googleapis.com/",
+    "resultScore": "goog:resultScore",
+    "detailedDescription": "goog:detailedDescription",
+    "EntitySearchResult": "goog:EntitySearchResult",
+    "kg": "http://g.co/kg"
+  },
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "EntitySearchResult",
+      "result": { "@id": "kg:/m/0dl567", "name": "Taylor Swift",
+        "@type": [ "Thing", "Person" ],
+        "description": "Singer-songwriter",
+        "image": {
+          "contentUrl": "https://t1.gstatic.com/images?q=tbn:ANd9GcQmVDAhjhWnN2OWys2ZMO3PGAhupp5tN2LwF_BJmiHgi19hf8Ku",
+          "url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+          "license": "http://creativecommons.org/licenses/by-sa/2.0"
+        },
+        "detailedDescription": {
+          "articleBody": "Taylor Alison Swift is an American singer-songwriter and actress. Raised in Wyomissing,
+              Pennsylvania, she moved to Nashville, Tennessee, at the age of 14 to pursue a career in country music. ",
+          "url": "http://en.wikipedia.org/wiki/Taylor_Swift",
+          "license":
+         "https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License"
+        },
+        "url": "http://taylorswift.com/"
+      },
+      "resultScore": 896.576599
+    }
+  ]
+}
+</code></pre>
+<h2 id="tabular-data-and-metadata-csv"><a aria-hidden="true" class="anchor-heading icon-link" href="#tabular-data-and-metadata-csv"></a>Tabular Data and Metadata (CSV)</h2>
+<p>Same mechanism as JSON (attach a context)</p>
+<h3 id="metadata-to-document-the-csv"><a aria-hidden="true" class="anchor-heading icon-link" href="#metadata-to-document-the-csv"></a>Metadata to Document the CSV</h3>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"@context"</span><span class="token operator">:</span> <span class="token string">"http://www.w3.org/ns/csvw"</span><span class="token punctuation">,</span>
+  <span class="token property">"dc:title"</span><span class="token operator">:</span> <span class="token string">"Unemployment in Europe (monthly)"</span>
+  <span class="token property">"dc:description"</span><span class="token operator">:</span> <span class="token string">"Harmonized unemployment data for European countries."</span>
+  <span class="token property">"dc:creator"</span><span class="token operator">:</span> <span class="token string">"Eurostat"</span><span class="token punctuation">,</span>
+  <span class="token property">"tables"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"countries.csv"</span><span class="token punctuation">,</span>
+    <span class="token property">"dc:title"</span><span class="token operator">:</span> <span class="token string">"Countries"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"country-groups.csv"</span><span class="token punctuation">,</span>
+      <span class="token property">"dc:title"</span><span class="token operator">:</span> <span class="token string">"Country groups"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"unemployment.csv"</span><span class="token punctuation">,</span>
+    <span class="token property">"dc:title"</span><span class="token operator">:</span> <span class="token string">"Unemployment (monthly)"</span><span class="token punctuation">,</span>
+    <span class="token property">"dc:description"</span><span class="token operator">:</span> <span class="token string">"The total number of people unemployed"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span> (...)
+</code></pre>
+<h3 id="mapping-of-the-csv-structure-create-resources"><a aria-hidden="true" class="anchor-heading icon-link" href="#mapping-of-the-csv-structure-create-resources"></a>Mapping of the CSV Structure: Create Resources</h3>
+<pre class="language-json-ld"><code class="language-json-ld">{
+  "@context": "http://www.w3.org/ns/csvw",
+  "url": "countries.csv",
+  "tableSchema": {
+    "aboutUrl": "http://example.org/country/{code}",
+    "columns": [{
+      "titles": "country",
+      "name": "code",
+      "suppressOutput": true
+    }
+(...)
+</code></pre>
+<h3 id="mapping-of-the-csv-structure-map-columns"><a aria-hidden="true" class="anchor-heading icon-link" href="#mapping-of-the-csv-structure-map-columns"></a>Mapping of the CSV Structure: Map Columns</h3>
+<pre class="language-json-ld"><code class="language-json-ld">(...){
+      "titles": "name (en)",
+      "lang": "en",
+      "propertyUrl": "schema:name"
+    },{
+      "titles": "name (fr)",
+      "lang": "fr",
+      "propertyUrl": "schema:name"
+    },{
+      "titles": "name (de)",
+      "lang": "de",
+      "propertyUrl": "schema:name"
+    }, (...)
+</code></pre>
+<h3 id="mapping-of-the-csv-structure-nested-objects"><a aria-hidden="true" class="anchor-heading icon-link" href="#mapping-of-the-csv-structure-nested-objects"></a>Mapping of the CSV Structure: Nested Objects</h3>
+<pre class="language-json-ld"><code class="language-json-ld">(...) {
+      "titles": "latitude",
+      "datatype": "number",
+      "aboutUrl": "http://example.org/country/{code}#geo",
+      "propertyUrl": "schema:latitude"
+    },{
+      "titles": "longitude",
+      "datatype": "number",
+      "aboutUrl": "http://example.org/country/{code}#geo",
+      "propertyUrl": "schema:longitude"
+    },{
+      "virtual": true,
+      "propertyUrl": "rdf:type",
+      "valueUrl": "schema:Country"
+    },{
+      "virtual": true,
+      "propertyUrl": "schema:geo",
+      "valueUrl": "http://example.org/country/{code}#geo"
+    },{
+      "virtual": true,
+      "aboutUrl": "http://example.org/country/{code}#geo",
+      "propertyUrl": "rdf:type",
+      "valueUrl": "schema:GeoCoordinates"
+    }]
+</code></pre>
+<h3 id="turtle-result"><a aria-hidden="true" class="anchor-heading icon-link" href="#turtle-result"></a>Turtle Result</h3>
+<pre class="language-turtle"><code class="language-turtle"><span class="token keyword">@prefix</span> <span class="token function"><span class="token prefix">rdf<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.w3.org/1999/02/22-rdf-syntax-ns#<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+<span class="token keyword">@prefix</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://schema.org/<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+<span class="token keyword">@prefix</span> <span class="token function"><span class="token prefix">xsd<span class="token punctuation">:</span></span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://www.w3.org/2001/XMLSchema#<span class="token punctuation">></span></span> <span class="token punctuation">.</span>
+
+<span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/at<span class="token punctuation">></span></span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">Country</span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">geo</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/at#geo<span class="token punctuation">></span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token string">"Austria"</span><span class="token tag"><span class="token punctuation">@</span>en</span><span class="token punctuation">,</span> <span class="token string">"Autriche"</span><span class="token tag"><span class="token punctuation">@</span>fr</span><span class="token punctuation">,</span> <span class="token string">"Österreich"</span><span class="token tag"><span class="token punctuation">@</span>de</span> <span class="token punctuation">.</span>
+<span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/at#geo<span class="token punctuation">></span></span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">GeoCoordinates</span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">latitude</span></span> <span class="token number">4.76965545e1</span><span class="token punctuation">;</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">longitude</span></span> <span class="token number">1.334598005e1</span> <span class="token punctuation">.</span>
+
+<span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/be<span class="token punctuation">></span></span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">Country</span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">geo</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/be#geo<span class="token punctuation">></span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token string">"Belgium"</span><span class="token tag"><span class="token punctuation">@</span>en</span><span class="token punctuation">,</span> <span class="token string">"Belgique"</span><span class="token tag"><span class="token punctuation">@</span>fr</span><span class="token punctuation">,</span> <span class="token string">"Belgien"</span><span class="token tag"><span class="token punctuation">@</span>de</span> <span class="token punctuation">.</span>
+<span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/be#geo<span class="token punctuation">></span></span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">GeoCoordinates</span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">latitude</span></span> <span class="token number">5.0501045e1</span><span class="token punctuation">;</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">longitude</span></span> <span class="token number">4.47667405e0</span> <span class="token punctuation">.</span>
+
+<span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/bg<span class="token punctuation">></span></span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">Country</span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">geo</span></span> <span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/bg#geo<span class="token punctuation">></span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">name</span></span> <span class="token string">"Bulgaria"</span><span class="token tag"><span class="token punctuation">@</span>en</span><span class="token punctuation">,</span> <span class="token string">"Bulgarie"</span><span class="token tag"><span class="token punctuation">@</span>fr</span><span class="token punctuation">,</span> <span class="token string">"Bulgarien"</span><span class="token tag"><span class="token punctuation">@</span>de</span> <span class="token punctuation">.</span>
+<span class="token url"><span class="token punctuation">&#x3C;</span>http://example.org/country/bg#geo<span class="token punctuation">></span></span> <span class="token keyword">a</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">GeoCoordinates</span></span><span class="token punctuation">;</span>
+   <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">latitude</span></span> <span class="token number">4.272567375e1</span><span class="token punctuation">;</span> <span class="token function"><span class="token prefix">schema<span class="token punctuation">:</span></span><span class="token local-name">longitude</span></span> <span class="token number">2.54823218e1</span> <span class="token punctuation">.</span>
+</code></pre>
+<h3 id="json-results"><a aria-hidden="true" class="anchor-heading icon-link" href="#json-results"></a>JSON Results</h3>
+<pre class="language-json-ld"><code class="language-json-ld">[{
+  "@id": "http://example.org/country/at",
+  "@type": "schema:Country",
+  "schema:name": ["Austria", "Autriche", "Österreich"],
+  "schema:geo": {
+    "@id": "http://example.org/country/at#geo",
+    "@type": "schema:GeoCoordinates",
+    "schema:latitude": 47.6965545,
+    "schema:longitude": 13.34598005
+  }
+}, {
+  "@id": "http://example.org/country/be",
+  "@type": "schema:Country",
+  "schema:name": ["Belgium", "Belgique", "Belgien"],
+  "schema:geo": {
+    "@id":"http://example.org/country/be#geo",
+    "@type": "schema:GeoCoordinates",
+    "schema:latitude": 50.501045,
+    "schema:longitude": 4.47667405
+  }
+},
+
+ {
+  "@id": "http://example.org/country/bg",
+  "@type": "schema:Country",
+  "schema:name": ["Bulgaria", "Bulgarie", "Bulgarien"],
+  "schema:geo": {
+    "@id": "http://example.org/country/bg#geo",
+    "@type": "schema:GeoCoordinates",
+    "schema:latitude": 42.72567375,
+    "schema:longitude": 25.4823218
+  }
+}]
+</code></pre>
+<h2 id="r2rml-integration-with-databases"><a aria-hidden="true" class="anchor-heading icon-link" href="#r2rml-integration-with-databases"></a>R2RML: Integration with Databases</h2>
+<p>2 ways to integrate
+1) mapping
+2) default transformation/ direct mapping
+1) Uses a set of rules to ensure data integrity</p>
+<h3 id="mapping-example"><a aria-hidden="true" class="anchor-heading icon-link" href="#mapping-example"></a>Mapping Example</h3>
+<pre class="language-json"><code class="language-json">@prefix rr<span class="token operator">:</span> &#x3C;http<span class="token operator">:</span><span class="token comment">//www.w3.org/ns/r2rml#>.</span>
+@prefix foaf<span class="token operator">:</span> &#x3C;http<span class="token operator">:</span><span class="token comment">//xmlns.com/foaf/0.1/>.</span>
+@prefix foaf<span class="token operator">:</span> &#x3C;http<span class="token operator">:</span><span class="token comment">//purl.org/dc/elements/1.1/>.</span>
+
+<span class="token operator">:</span>Author_Table rdf<span class="token operator">:</span>type rr<span class="token operator">:</span>TriplesMap ;
+  rr<span class="token operator">:</span>subjectMap <span class="token punctuation">[</span>
+    rr<span class="token operator">:</span>termtype <span class="token string">"BlankNode"</span> ; 
+    rr<span class="token operator">:</span>column <span class="token string">"ID"</span> ; 
+  <span class="token punctuation">]</span> ;
+  rr<span class="token operator">:</span>predicateObjectMap <span class="token punctuation">[</span>
+    rr<span class="token operator">:</span>predicateMap <span class="token punctuation">[</span> rr<span class="token operator">:</span>predicate foaf<span class="token operator">:</span>name <span class="token punctuation">]</span>;
+    rr<span class="token operator">:</span>objectMap    <span class="token punctuation">[</span>  rr<span class="token operator">:</span>column <span class="token string">"FullName"</span>  <span class="token punctuation">]</span> 
+  <span class="token punctuation">]</span> ;
+  rr<span class="token operator">:</span>predicateObjectMap <span class="token punctuation">[</span>
+    rr<span class="token operator">:</span>predicateMap <span class="token punctuation">[</span> rr<span class="token operator">:</span>predicate foaf<span class="token operator">:</span>homepage <span class="token punctuation">]</span>;
+    rr<span class="token operator">:</span>objectMap <span class="token punctuation">[</span>    rr<span class="token operator">:</span>column <span class="token string">"url"</span> ;    rr<span class="token operator">:</span>termtype <span class="token string">"IRI"</span> <span class="token punctuation">]</span> 
+  <span class="token punctuation">]</span> .
+
+  <span class="token operator">:</span>Book_Table rdf<span class="token operator">:</span>type rr<span class="token operator">:</span>TriplesMap ;
+  rr<span class="token operator">:</span>subjectMap <span class="token punctuation">[</span>  rr<span class="token operator">:</span>template <span class="token string">"http://isbnplus.org/{ISBN}"</span>; <span class="token punctuation">]</span>;
+  rr<span class="token operator">:</span>predicateObjectMap <span class="token punctuation">[</span>
+    rr<span class="token operator">:</span>predicateMap <span class="token punctuation">[</span>  rr<span class="token operator">:</span>predicate dc<span class="token operator">:</span>title  <span class="token punctuation">]</span>;
+    rr<span class="token operator">:</span>objectMap <span class="token punctuation">[</span>     rr<span class="token operator">:</span>column <span class="token string">"Title"</span>     <span class="token punctuation">]</span> 
+  <span class="token punctuation">]</span> ;
+  rr<span class="token operator">:</span>predicateObjectMap <span class="token punctuation">[</span>
+    rr<span class="token operator">:</span>predicateMap <span class="token punctuation">[</span>  rr<span class="token operator">:</span>predicate dc<span class="token operator">:</span>date   <span class="token punctuation">]</span>;
+    rr<span class="token operator">:</span>objectMap <span class="token punctuation">[</span>     rr<span class="token operator">:</span>column <span class="token string">"Release"</span> ;  <span class="token punctuation">]</span> 
+  <span class="token punctuation">]</span> ;
+  rr<span class="token operator">:</span>refPredicateObjectMap <span class="token punctuation">[</span>
+  rr<span class="token operator">:</span>refPredicateMap <span class="token punctuation">[</span>  rr<span class="token operator">:</span>predicate dc<span class="token operator">:</span>creator <span class="token punctuation">]</span>;
+  rr<span class="token operator">:</span>refObjectMap
+    <span class="token punctuation">[</span>  rr<span class="token operator">:</span>parentTriplesMap <span class="token operator">:</span>Author_Table ;
+       rr<span class="token operator">:</span>joinCondition  <span class="token string">"{child}.Author= {parent}.ID"</span>
+    <span class="token punctuation">]</span> 
+  <span class="token punctuation">]</span>.
+</code></pre>
+<h2 id="ldp-a-rest-api-to-linked-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#ldp-a-rest-api-to-linked-data"></a>LDP: a REST API to linked data</h2>
+<ul>
+<li>two types of resources
+<pre><code>- With RDF representation
+- Other formats
+</code></pre>
+4 types of containers for data
+1) Containers: collection fo resources
+2) Basic Container: simple containment vocabulary
+3) direct container: Domain specific membership assertions
+4) indirect container: control the URI of the new domain-specific member resource</li>
+</ul>
+<h3 id="ldp-vocabulary"><a aria-hidden="true" class="anchor-heading icon-link" href="#ldp-vocabulary"></a>LDP Vocabulary</h3>
+<pre class="language-json"><code class="language-json">@prefix <span class="token operator">:</span> &#x3C;http<span class="token operator">:</span><span class="token comment">//www.w3.org/ns/ldp#> </span>
+<span class="token operator">:</span>Resource <span class="token operator">:</span> A HTTP-addressable resource whose lifecycle is managed by a LDP server.
+<span class="token operator">:</span>RDFSource <span class="token operator">:</span> LDP Resource whose state is represented as RDF.
+<span class="token operator">:</span>NonRDFSource <span class="token operator">:</span> LDP Resource whose state is NOT represented as RDF.
+<span class="token operator">:</span>Container <span class="token operator">:</span> RDF Source that conforms to patterns and conventions for managing membership.
+<span class="token operator">:</span>member <span class="token operator">:</span> Default membership predicate.
+<span class="token operator">:</span>contains <span class="token operator">:</span> Links a container with resources created through the container.
+<span class="token operator">:</span>BasicContainer <span class="token operator">:</span> Container that uses an LDP simple predicate to link to contained resources.
+<span class="token operator">:</span>DirectContainer <span class="token operator">:</span> Container that allows a custom properties to link contained resources.
+<span class="token operator">:</span>IndirectContainer <span class="token operator">:</span> Container that allows maximum flexibility to form the membership triples.
+<span class="token operator">:</span>hasMemberRelation <span class="token operator">:</span> Indicates the predicate linking a specified resource to a new member URI.
+<span class="token operator">:</span>isMemberOfRelation <span class="token operator">:</span> Indicates the predicate linking a new member URI to a specified resource.
+<span class="token operator">:</span>membershipResource <span class="token operator">:</span>  Indicates the URI of the fixed resource of a membership triple.
+<span class="token operator">:</span>insertedContentRelation <span class="token operator">:</span> Indicates the property in a creation request with a member-URI value.
+</code></pre>
+<h2 id="further-reading"><a aria-hidden="true" class="anchor-heading icon-link" href="#further-reading"></a>Further Reading:</h2>
+<p>1) <a href="https://www.w3.org/TR/dwbp/">Data on the web best practices</a>
+2) <a href="https://patterns.dataincubator.org/">Linked Data Patterns</a>
+3) <a href="https://lod-cloud.net/">The Linked Open Data Cloud</a>
+4) <a href="https://www.w3.org/TR/SVG/">Scalable Vector Graphics</a>
+5) <a href="https://www.w3.org/2013/data/">W3C Data Activity</a>
+6) <a href="https://www.w3.org/2001/sw/wiki/Tools">Semantic Web Development Tools</a>
+7) <a href="https://swsa.semanticweb.org/content/international-semantic-web-conference-iswc">Semantic Web Science Association</a>
+8) <a href="https://www.ijcai.org/">IJCAI Conferences</a>
+9) <a href="https://wi-consortium.org/">Web Intelligence Consortium</a>
+10) <a href="https://www.sciencedirect.com/browse/journals-and-books">Science Direct</a>
+11) <a href="https://www.semantic-web-journal.net/">Semantic Web Journal</a>
+12) <a href="https://eccai.org/">ECCAI</a></p>

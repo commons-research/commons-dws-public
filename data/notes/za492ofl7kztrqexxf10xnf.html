@@ -1,0 +1,14 @@
+<h1 id="spells-of-protection-from-arithmetic-overflow"><a aria-hidden="true" class="anchor-heading icon-link" href="#spells-of-protection-from-arithmetic-overflow"></a>Spells Of Protection From Arithmetic Overflow</h1>
+<h1 id="spells-of-protection-from-arithmetic-overflow-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#spells-of-protection-from-arithmetic-overflow-1"></a><a href="https://bitfieldconsulting.com/posts/operators-of-death">Spells of protection from arithmetic overflow</a></h1>
+<p>Dev will panic on an overflow but in production it will wrap and go to smallest number.
+However release behavior can be modified to check and panic:</p>
+<pre class="language-toml"><code class="language-toml"><span class="token punctuation">[</span><span class="token table class-name">profile.release</span><span class="token punctuation">]</span>
+<span class="token key property">overflow-checks</span> <span class="token punctuation">=</span> <span class="token boolean">true</span>
+</code></pre>
+<p>Moreover multiplication is able to overflow too. </p>
+<p>The solution when worried about overflows/underflows is to use <code>checked_</code> methods. </p>
+<p>Checked methods simply return the value if successful and a <code>None</code> if not. wrapping the value in a <code>Some</code> when successful. </p>
+<p>can also do <code>overflowing_add</code> which returns a tuple of the number and the <code>bool</code> value of if it overflowed. Can be useful to handle overflows (know about them).</p>
+<p>And wrapping can be enforced with <code>wrapping_add</code> which will wrap the value everytime the number goes over. </p>
+<p>The number can be constrained at the <code>MAX</code> with the <code>saturated_add</code> method, so it will not surpass the maximum value. </p>
+<p>Panicing can also be forced when an overflow occurs, with the <code>strict_add</code> method. </p>

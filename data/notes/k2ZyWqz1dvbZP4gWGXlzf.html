@@ -1,0 +1,42 @@
+<h1 id="labbook"><a aria-hidden="true" class="anchor-heading icon-link" href="#labbook"></a>Labbook</h1>
+<p>Exercice 1</p>
+<p>docker run -it ubuntu</p>
+<p>root@ed76dc41b28c:/# figlet 'SIB courses are great!'</p>
+<hr>
+<p>/ <strong><em>|</em> _| </strong> )    <strong>_ _</strong>  _   _ _ <strong> _</strong>  <strong>_  _</strong>    <strong> _ _ </strong> <strong>_
+_</strong> | ||  <em> \   / __/ </em> | | | | '<strong>/ </strong>|/ <em> \/ __|  / </em>` | '<strong>/ <em> \
+</em></strong>) | || |<em>) | | (</em>| (<em>) | |</em>| | |  __ \  <strong>/_<em> \ | (</em>| | | |  </strong>/
+|_<strong><em>/</em></strong>|_<strong>_/   _</strong>_<strong>/ _<em>,</em>|<em>|  |</em></strong>/_<strong>||_</strong>/  _<em>,</em>|_|  ___|</p>
+<pre><code>                  _   _
+</code></pre>
+<p>  <strong> _ _ </strong> <strong>_  </strong> <em>| |</em>| |
+/ <em>` | '__/ </em> \/ <em>` | __| |
+| (</em>| | | |  <strong>/ (<em>| | |</em>|_|
+_<em>, |</em>|  _</strong>|_<em>,</em>|_<em>(</em>)
+|___/</p>
+<p>docker run \
+-it \
+--mount type=bind,source=/Users/pma/02_tmp/docker_share,target=/working_dir/ \
+ubuntu-figlet</p>
+<p>docker run \
+-it \
+-u "<span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mi>d</mi><mo>−</mo><mi>u</mi><mo stretchy="false">)</mo><mo>:</mo></mrow><annotation encoding="application/x-tex">(id -u):</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">u</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span></span></span></span></span>(id -g)" \
+--mount type=bind,source=/Users/pma/02_tmp/docker_share,target=/working_dir/ \
+ubuntu-figlet</p>
+<p>for the jupyter-lab docker</p>
+<p>docker run \
+-it \
+--rm \
+-p 8888:8888 \
+--mount type=bind,source=/Users/pma/02_tmp/docker_share,target=/working_dir/ \
+jupyter-lab</p>
+<p>ssh -i key_pallard.pem <a href="/commons-dws-public/mailto:pallard@18.192.227.69">pallard@18.192.227.69</a></p>
+<p>singularity pull docker://grndstt/ubuntu-figlet:v2</p>
+<h3 id="piepline"><a aria-hidden="true" class="anchor-heading icon-link" href="#piepline"></a>Piepline</h3>
+<p>snakemake
+nextflow</p>
+<p>both support docker, conda and singularity</p>
+<p>conda + docker + snakemake </p>
+<p><img src="/commons-dws-public/assets/images/2021-10-14-16-28-02.png"></p>
+<p>snakemake --containerize</p>
+<p><a href="https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html?highlight=conda#containerization-of-conda-based-workflows">https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html?highlight=conda#containerization-of-conda-based-workflows</a></p>
