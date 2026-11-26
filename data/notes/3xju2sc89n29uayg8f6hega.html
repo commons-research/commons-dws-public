@@ -1,0 +1,131 @@
+<h1 id="python-and-packages"><a aria-hidden="true" class="anchor-heading icon-link" href="#python-and-packages"></a>Python and Packages</h1>
+<h1 id="python"><a aria-hidden="true" class="anchor-heading icon-link" href="#python"></a>Python</h1>
+<p>To get start with python is very easy. But to come back to a project and let it run again can hurt.
+This should be a small introduction how to handle python environements.  </p>
+<p>It is important for the following steps, to have now activated environments. For example if you using conda (you can see it in the terminal - (base) ), then you should deactivate it. Maybe in the past you had some troubles... It can be a good idea to clean the base in conda.</p>
+<p>Conda deactivate:           <code>conda deactivate</code><br>
+Conda actiavate (base):     <code>conda activate</code><br>
+Conda clean (base):         <code>conda clean --all</code>  </p>
+<p>For checking, which pyhton version is in use:   <code>which python</code>  </p>
+<h2 id="python-versions"><a aria-hidden="true" class="anchor-heading icon-link" href="#python-versions"></a>Python versions</h2>
+<p>As we all, also Python is developping. Some packages are developped for the newest python and a specific time
+but not updated for the newest python versions. This can be a problem when you want to use this package, but you just installed the newest version.  </p>
+<p>The solution is to use a virtual environment (for example <a href="https://anaconda.org/"><strong>conda</strong></a>, <a href="https://pypi.org/project/pipenv/"><strong>pipenv</strong></a>, ect.).  </p>
+<p>In this case we will have a look for <strong>pyenv</strong> (the easier way to work with python versions).  </p>
+<h3 id="pyenv"><a aria-hidden="true" class="anchor-heading icon-link" href="#pyenv"></a>Pyenv</h3>
+<h4 id="installation"><a aria-hidden="true" class="anchor-heading icon-link" href="#installation"></a>Installation</h4>
+<p>To install <a href="https://github.com/pyenv/pyenv"><strong>pyenv</strong></a> you can use the automatic installer (tested with Ubuntu):<br>
+<code>curl https://pyenv.run | bash</code>  </p>
+<p>After that you have to add the following lines to your <code>vim ~/.bashrc</code> fileend:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment">#Pyenv loader</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PYENV_ROOT</span><span class="token operator">=</span><span class="token string">"<span class="token environment constant">$HOME</span>/.pyenv"</span>
+<span class="token punctuation">[</span><span class="token punctuation">[</span> -d <span class="token variable">$PYENV_ROOT</span>/bin <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&#x26;&#x26;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token variable">$PYENV_ROOT</span>/bin:<span class="token environment constant">$PATH</span>"</span>
+<span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>pyenv init -<span class="token variable">)</span></span>"</span>
+
+<span class="token comment"># Load pyenv-virtualenv automatically</span>
+<span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>pyenv virtualenv-init -<span class="token variable">)</span></span>"</span>
+
+</code></pre>
+<p>To take this changes into effect you have to restart your terminal or run <code>source ~/.bashrc</code>. Now it is ready to go.</p>
+<h4 id="useful-commands"><a aria-hidden="true" class="anchor-heading icon-link" href="#useful-commands"></a>Useful commands</h4>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>command</strong></th><th><strong>description</strong></th></tr></thead><tbody><tr><td><code>pyenv install --list</code></td><td>all possible python versions to install.</td></tr><tr><td><code>pyenv install &#x3C;version></code></td><td>install the choosen <version> from --list. This can take a while...</version></td></tr><tr><td><code>pyenv versions</code></td><td>shows all installed environments and the active one</td></tr><tr><td><code>pyenv</code></td><td>help site</td></tr><tr><td><code>pyenv global &#x3C;system></code></td><td>Don't use this, if you not sure what you are doing. We will use poetry for the python versions.</td></tr><tr><td><code>pyenv local &#x3C;system></code></td><td>If poetry can't find your version. Use this to load the rigth version and the use poetry.</td></tr></tbody></table></div>
+<h3 id="poetry"><a aria-hidden="true" class="anchor-heading icon-link" href="#poetry"></a>Poetry</h3>
+<p>Poetry takes care of the python versions and the packages. All this is handled in a single *.toml file.
+Changes can be done in this file, but mainly it is recommended to use the terminal.</p>
+<h4 id="installation-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#installation-1"></a>Installation</h4>
+<p>Pip is the package manager for python. For poetry it is recommended to install it with pipx, which takes care of the packages globaly.  </p>
+<ol>
+<li>Install <a href="https://pipx.pypa.io/stable/installation/">pipx</a></li>
+</ol>
+<pre class="language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> pipx
+pipx ensurepath
+</code></pre>
+<ol start="2">
+<li>install <a href="https://python-poetry.org/docs/#installation">poetry</a></li>
+</ol>
+<pre class="language-bash"><code class="language-bash">pipx <span class="token function">install</span> poetry
+</code></pre>
+<h4 id="useful-commands-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#useful-commands-1"></a>Useful commands</h4>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>command</strong></th><th><strong>description</strong></th></tr></thead><tbody><tr><td><code>poetry install</code></td><td>Takes the *.toml file and installs all the packages. Creates the poetry.lock file.</td></tr><tr><td><code>poetry init</code></td><td>This folder will set up to use a virtual environement with poetry.</td></tr><tr><td><code>poetry new &#x3C;projectname></code></td><td>Makes the folder with the files in it.</td></tr><tr><td><code>poetry add &#x3C;pythonpackage></code></td><td>Add a package to your project.</td></tr><tr><td><code>poetry update</code></td><td>For added packages, it is recommended to update them after that.</td></tr><tr><td><code>poetry env use &#x3C;pythonversion></code></td><td>Change python version.</td></tr><tr><td><code>poetry run &#x3C;python script.py></code></td><td>Run your code in poetry.</td></tr><tr><td><code>poetry show</code></td><td>Poetry show packages from environment.</td></tr></tbody></table></div>
+<p><code>poetry install</code> is the same as <code>poetry update</code> if there's no <em>poetry.lock</em> file. It's only slightly more convenient to install directly from the <em>poetry.lock</em> file if you don't want to update dependencies. <code>poetry lock</code> creates a <em>poetry.lock</em> file, but does not install packages.
+It can be useful in groupworks, that the poetry.lock stays "unchanged". So all collaborators are sure, it works with the defined packages.</p>
+<hr>
+<strong>Backlinks</strong>
+<ul>
+<li><a href="/commons-dws-public/notes/szdrijhisrocpfc7s49wifq">2024-02-29</a></li>
+</ul>

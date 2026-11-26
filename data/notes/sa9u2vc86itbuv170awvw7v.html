@@ -1,0 +1,250 @@
+<h1 id="scalability-of-mass-spectrometry-based-metabolomics"><a aria-hidden="true" class="anchor-heading icon-link" href="#scalability-of-mass-spectrometry-based-metabolomics"></a>Scalability of Mass Spectrometry Based Metabolomics</h1>
+<p><a href="https://pubs.rsc.org/en/content/articlelanding/2026/np/d5np00034c">source</a></p>
+<h1 id="scalability-of-mass-spectrometry-based-metabolomics-for-natural-extracts-libraries-exploration---current-status-challenges-and-opportunities"><a aria-hidden="true" class="anchor-heading icon-link" href="#scalability-of-mass-spectrometry-based-metabolomics-for-natural-extracts-libraries-exploration---current-status-challenges-and-opportunities"></a>Scalability of mass spectrometry-based metabolomics for natural extracts libraries exploration - current status, challenges, and opportunities</h1>
+<h1 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h1>
+<ul>
+<li><strong>Natural products (NPs)</strong>: Bioactive or structurally diverse compounds produced by living organisms (plants, microbes, marine organisms) that are often mined for drugs.</li>
+<li><strong>Natural extracts libraries (NELs)</strong>: Collections of solvent-derived extracts from many organisms, usually stored in well plates for high-throughput screening and chemical profiling.</li>
+<li><strong>Metabolomics</strong>: Large-scale measurement of small molecules (metabolites) in samples; here focused on mass spectrometry for complex natural extracts.</li>
+<li><strong>Mass spectrometry (MS)</strong>: Technique measuring ions by <strong>mass-to-charge ratio (m/z)</strong> to detect and quantify molecules.</li>
+<li><strong>LC-ESI-MS</strong>: Liquid chromatography + electrospray ionization + mass spectrometry; a common workflow to separate and detect metabolites.</li>
+<li><strong>Dereplication</strong>: Identifying known compounds early to avoid rediscovering them.</li>
+<li><strong>Feature</strong>: A detected signal interpreted as a putative compound-related ion (defined by m/z, retention time, intensity; may include MS/MS info).</li>
+<li><strong>Feature detection</strong>: Converting raw MS data into a list/table of features (peaks) per sample.</li>
+<li><strong>Feature alignment</strong>: Matching the “same” feature across many runs/samples (accounting for retention time drift, noise, missingness).</li>
+<li><strong>Gap filling</strong>: Recovering missing intensities for aligned features by revisiting raw data in expected m/z/RT windows.</li>
+<li><strong>Ion mobility spectrometry (IMS)</strong>: Extra separation step distinguishing ions by shape/size/charge; adds another data dimension (and complexity).</li>
+<li><strong>DDA (data-dependent acquisition)</strong>: MS/MS collected for selected (often most intense) precursor ions; can miss low-abundance compounds.</li>
+<li><strong>DIA (data-independent acquisition)</strong>: MS/MS collected broadly across all ions; increases coverage but yields <strong>chimeric spectra</strong>.</li>
+<li><strong>Chimeric spectra</strong>: MS/MS spectra containing fragments from multiple precursors due to co-isolation/co-elution.</li>
+<li><strong>Spectral library</strong>: Reference MS/MS spectra for known compounds used for matching/annotation.</li>
+<li><strong>Structural library</strong>: Database of candidate molecular structures (e.g., PubChem) used for in silico annotation.</li>
+<li><strong>Cosine similarity</strong>: Standard score for comparing MS/MS spectra by overlap of fragment peaks/intensities.</li>
+<li><strong>Modified cosine</strong>: Cosine variant that also matches peaks shifted by precursor mass difference (useful for analogues).</li>
+<li><strong>Analogue search</strong>: Searching for “related” compounds (shared scaffold/family) rather than exact matches.</li>
+<li><strong>Molecular networking (MN)</strong>: Graph where spectra/features are linked by spectral similarity to reveal families of related molecules.</li>
+<li><strong>Tanimoto similarity</strong>: Fingerprint-based structural similarity (Jaccard index) used for comparing molecules efficiently.</li>
+<li><strong>Fingerprint (e.g., ECFP, MAP4)</strong>: Bit-vector representation of a molecule’s substructures for fast similarity computations.</li>
+<li><strong>Maximum common subgraph (MCS/MCES)</strong>: Graph-based structural similarity measures; more interpretable but computationally expensive.</li>
+<li><strong>Knowledge graph</strong>: Graph database linking samples, metadata, spectra, annotations, bioactivity, taxonomy for scalable querying/reuse.</li>
+<li><strong>MassQL</strong>: Query language designed for mass spectrometry patterns in raw/processed data (m/z, RT, intensity logic).</li>
+<li><strong>SPARQL</strong>: Query language for RDF/knowledge graphs; enables rich metadata + relationship queries.</li>
+<li><strong>Non-structural annotation</strong>: Assigning useful properties (bioactivity likelihood, biosource, class) without full structure ID.</li>
+<li><strong>Substructure annotation</strong>: Inferring recurring fragments/motifs corresponding to parts of molecules (even when full ID is unknown).</li>
+<li><strong>MS2LDA / Mass2Motifs</strong>: Topic-modeling approach that discovers recurring fragment/loss patterns interpreted as substructures.</li>
+<li><strong>De novo annotation</strong>: Predicting structures for unknowns without database matches (often via generative/ML models).</li>
+</ul>
+<h2 id="1-core-thesis-scalability-is-the-bottleneck-and-opportunity"><a aria-hidden="true" class="anchor-heading icon-link" href="#1-core-thesis-scalability-is-the-bottleneck-and-opportunity"></a>1) Core thesis: scalability is the bottleneck (and opportunity)</h2>
+<ul>
+<li>NELs are powerful because they can contain huge biochemical diversity, but current NP workflows still behave “molecule-first”: they often end up deeply investigating only a small number of molecules/features.</li>
+<li>The review argues for shifting from molecule-first exploration to <strong>computationally enabled, scalable</strong> exploration of entire extract libraries—so we can prioritize better, reduce rediscovery, and make decisions earlier from MS data.</li>
+<li>“Scalability” for NELs isn’t just speed/throughput; it includes:
+<ul>
+<li><strong>Time</strong>: fast enouh processing to avoid analysis bottlenecks.</li>
+<li><strong>Quality</strong>: broad, reliable metabolome coverage and usable annotation.</li>
+<li><strong>Data retrieval</strong>: being able to query, visualize, and act on results (decision support), not just generate tables.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-why-nels-are-different-from-biomedicalenvironmental-metabolomics"><a aria-hidden="true" class="anchor-heading icon-link" href="#2-why-nels-are-different-from-biomedicalenvironmental-metabolomics"></a>2) Why NELs are different from biomedical/environmental metabolomics</h2>
+<ul>
+<li>Biomedical metabolomics often scales by <strong>number of samples</strong> (large cohorts) but within a relatively narrower chemical space.</li>
+<li>Environmental/NP metabolomics scales by both <strong>chemical diversity</strong> and matrix complexity; NELs intensify this because they combine:
+<ul>
+<li>many extracts,</li>
+<li>high structural novelty,</li>
+<li>sparse distribution of individual compounds across the library,</li>
+<li>and a high cost of “manual interpretation per molecule.”</li>
+</ul>
+</li>
+<li>Therefore, NEL scalability must emphasize: <em>coverage + prioritization + novelty assessment</em> from complex, diverse mixtures.</li>
+</ul>
+<h2 id="3-scalability-across-the-pipeline-ms-acquisition--processing--annotation--decisions"><a aria-hidden="true" class="anchor-heading icon-link" href="#3-scalability-across-the-pipeline-ms-acquisition--processing--annotation--decisions"></a>3) Scalability across the pipeline (MS acquisition → processing → annotation → decisions)</h2>
+<h3 id="31-data-acquisition-start-clean-or-suffer-forever"><a aria-hidden="true" class="anchor-heading icon-link" href="#31-data-acquisition-start-clean-or-suffer-forever"></a>3.1 Data acquisition: start clean or suffer forever</h3>
+<ul>
+<li>No downstream method can fully rescue low-quality acquisition; scalable workflows require <strong>futureproofed</strong> acquisition choices.</li>
+<li>Key acquisition constraints:
+<ul>
+<li><strong>Throughput vs resolution/coverage trade-offs</strong> are unavoidable and must be managed intentionally.</li>
+</ul>
+</li>
+<li>Example approach: <strong>MultiplexMS</strong> (pool + computational deconvolution) to accelerate acquisition by exploiting the fact that many natural products are sparsely distributed across extracts.</li>
+</ul>
+<h4 id="resolution--separation"><a aria-hidden="true" class="anchor-heading icon-link" href="#resolution--separation"></a>Resolution &#x26; separation</h4>
+<ul>
+<li><strong>Chromatography (LC)</strong> remains essential for complex natural extracts: reduces co-elution, ion suppression, helps detect isomers, improves sensitivity for low-abundance metabolites.</li>
+<li>Skipping chromatography increases throughput but causes “data congestion” and worsens interpretability.</li>
+<li>Alternatives (CE, SFC, nano/microflow LC) are promising but adoption is constrained by infrastructure and throughput.</li>
+<li>Future direction: faster, automated, mixed-mode separations that better cover neglected chemical space (e.g., polar metabolites).</li>
+</ul>
+<h4 id="ion-mobility-ims"><a aria-hidden="true" class="anchor-heading icon-link" href="#ion-mobility-ims"></a>Ion mobility (IMS)</h4>
+<ul>
+<li>Adds a valuable third dimension for distinguishing similar metabolites.</li>
+<li>But it increases data complexity and lacks standard, seamless integration in many workflows.</li>
+<li>Needs faster IMS platforms and better standardized software pipelines to be truly scalable for NELs.</li>
+</ul>
+<h4 id="ionization-esi-polarity"><a aria-hidden="true" class="anchor-heading icon-link" href="#ionization-esi-polarity"></a>Ionization (ESI; polarity)</h4>
+<ul>
+<li>Positive mode is common but can add noise and in-source fragmentation.</li>
+<li>Negative mode provides complementary coverage.</li>
+<li>Polarity switching can improve coverage but may reduce scan rate and complicate alignment.</li>
+<li>Big need: smarter/adaptive strategies to optimize polarity per sample (or computational integration across modes).</li>
+</ul>
+<h4 id="fragmentation-strategies-cid-ead-uvpd-dda-vs-dia"><a aria-hidden="true" class="anchor-heading icon-link" href="#fragmentation-strategies-cid-ead-uvpd-dda-vs-dia"></a>Fragmentation strategies (CID, EAD, UVPD; DDA vs DIA)</h4>
+<ul>
+<li>Lack of standardized collision energies hurts cross-lab/library matching.</li>
+<li>CID often yields incomplete structural info → lots of unannotated features.</li>
+<li>Multimodal fragmentation (EAD/UVPD) could enrich structural signal.</li>
+<li><strong>DDA</strong> biases toward abundant ions; <strong>DIA</strong> improves breadth but produces chimeric spectra and increases computational burden.</li>
+<li>Notably: DIA hasn’t yet been widely used in published NEL exploration workflows (as described here), likely due to complexity.</li>
+</ul>
+<h4 id="detection-hardware-tof-vs-orbitrap"><a aria-hidden="true" class="anchor-heading icon-link" href="#detection-hardware-tof-vs-orbitrap"></a>Detection hardware: ToF vs Orbitrap</h4>
+<ul>
+<li>ToF: fast acquisition, strong dynamic range, good for throughput-heavy contexts.</li>
+<li>Orbitrap: ultra-high resolution and mass accuracy but slower at top resolution (scan speed trade-off).</li>
+<li>Instrument choice shapes downstream computational needs and what questions are feasible.</li>
+</ul>
+<h3 id="32-data-processing-turning-thousands-of-files-into-usable-feature-tables"><a aria-hidden="true" class="anchor-heading icon-link" href="#32-data-processing-turning-thousands-of-files-into-usable-feature-tables"></a>3.2 Data processing: turning thousands of files into usable feature tables</h3>
+<h4 id="data-formats--interoperability"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-formats--interoperability"></a>Data formats &#x26; interoperability</h4>
+<ul>
+<li>Scalable metabolomics depends on <strong>open, lossless, interoperable formats</strong> (e.g., mzML and related standards) and tooling ecosystems (pyOpenMS, matchms, spectrum_utils, MSnbase, etc.).</li>
+<li>A forward-looking requirement: formats and metadata conventions that remain compatible with AI/ML workflows.</li>
+</ul>
+<h4 id="feature-detection"><a aria-hidden="true" class="anchor-heading icon-link" href="#feature-detection"></a>Feature detection</h4>
+<ul>
+<li>Feature detection extracts signals across RT (and possibly IMS) into features (m/z, RT, intensity).</li>
+<li>Scalability constraints are driven by sample count <em>and</em> data density (high scan rate, high resolution, IMS).</li>
+<li>Modern tools mitigate RAM constraints via <strong>memory mapping</strong> (offloading to disk while keeping random-ish access).</li>
+<li>Example: mzmine’s memory mapping and internal data model improvements dramatically reduced memory usage and enabled parallel processing at larger scales.</li>
+</ul>
+<h4 id="feature-alignment-project-centric-vs-sample-centric-paradigms"><a aria-hidden="true" class="anchor-heading icon-link" href="#feature-alignment-project-centric-vs-sample-centric-paradigms"></a>Feature alignment: project-centric vs sample-centric paradigms</h4>
+<ul>
+<li><strong>Project-centric alignment</strong>
+<ul>
+<li>Align all samples into one consensus feature table, then gap fill.</li>
+<li>Benefits: consistent reference frame, easier batch-effect handling, simplifies missingness management, includes poorly fragmented features for stats/prioritization.</li>
+<li>Requires careful algorithm design for concurrency; alignment/gap fill can be bottlenecks if poorly implemented.</li>
+</ul>
+</li>
+<li><strong>Sample-centric + knowledge graphs</strong>
+<ul>
+<li>Treat each sample as a core entity; integrate across studies via <strong>knowledge graphs</strong>.</li>
+<li>Benefits: avoids “siloed projects,” supports reuse, aggregation, and continuous growth of a shared knowledge base.</li>
+<li>Especially suited to long-term, multi-project NEL efforts and ML/AI-driven pattern discovery.</li>
+</ul>
+</li>
+</ul>
+<h4 id="feature-grouping"><a aria-hidden="true" class="anchor-heading icon-link" href="#feature-grouping"></a>Feature grouping</h4>
+<ul>
+<li>Groups adducts, in-source fragments, multimers (reducing redundancy).</li>
+<li>More sophisticated correlation/shape-based grouping improves accuracy but can become computationally expensive at large scale.</li>
+<li>Filtering low-abundance features improves dashboard usability—but risks removing rare/novel chemistry (a key tension for NEL discovery).</li>
+</ul>
+<h3 id="33-annotation-scaling-from-few-ids-to-useful-knowledge-at-library-scale"><a aria-hidden="true" class="anchor-heading icon-link" href="#33-annotation-scaling-from-few-ids-to-useful-knowledge-at-library-scale"></a>3.3 Annotation: scaling from “few IDs” to “useful knowledge at library scale”</h3>
+<h4 id="two-similarity-pillars-structural-vs-spectral"><a aria-hidden="true" class="anchor-heading icon-link" href="#two-similarity-pillars-structural-vs-spectral"></a>Two similarity pillars: structural vs spectral</h4>
+<ul>
+<li><strong>Structural similarity</strong>
+<ul>
+<li>Fingerprints + <strong>Tanimoto</strong>: fast and scalable but can be counterintuitive due to lossy representations.</li>
+<li>Graph approaches (MCS/MCES): more interpretable but computationally hard; heuristics (e.g., myopic-MCES) and hybrid methods try to bridge speed and richness.</li>
+</ul>
+</li>
+<li><strong>Spectral similarity</strong>
+<ul>
+<li>Many tasks rely on scoring large numbers of MS/MS comparisons:
+<ul>
+<li>exact library matching,</li>
+<li>analogue search,</li>
+<li>molecular networking,</li>
+<li>repository-scale linking.</li>
+</ul>
+</li>
+<li><strong>Cosine similarity</strong> remains the baseline; correct peak matching matters (avoid bin-edge artifacts; avoid double-counting matches).</li>
+<li>Greedy peak matching is typically “good enough” and far cheaper than optimal assignment (e.g., Hungarian algorithm).</li>
+<li>GPU implementations can massively accelerate similarity computation.</li>
+</ul>
+</li>
+</ul>
+<h4 id="exact-search-vs-analogue-search"><a aria-hidden="true" class="anchor-heading icon-link" href="#exact-search-vs-analogue-search"></a>Exact search vs analogue search</h4>
+<ul>
+<li><strong>Exact search</strong>: match within small precursor tolerance → smaller search space.</li>
+<li><strong>Analogue search</strong>: by nature tends toward many-vs-many comparisons → quadratic explosion if naive.</li>
+<li>Practical GNPS scaling trick: cap allowable mass shift (e.g., ~200 Da) to cover common biotransformations, trading recall for runtime.</li>
+</ul>
+<h4 id="indexing--repository-scale-tricks"><a aria-hidden="true" class="anchor-heading icon-link" href="#indexing--repository-scale-tricks"></a>Indexing + repository-scale tricks</h4>
+<ul>
+<li><strong>Fragment ion indexing</strong>: pre-index fragments to filter candidate comparisons quickly; used to accelerate cosine and entropy-based scores (e.g., “flash entropy”).</li>
+<li><strong>Nearest neighbor suspect libraries</strong>
+<ul>
+<li>Use molecular networking connections from annotated spectra to propose hypotheses for unannotated “suspect” spectra at massive scale.</li>
+<li>Key idea: propagate knowledge via spectral neighborhoods + plausible mass differences/modifications.</li>
+<li>Outcome: expanding “annotation reach” beyond what classical reference libraries can do.</li>
+</ul>
+</li>
+</ul>
+<h4 id="mldeep-learning-similarities-and-retrieval"><a aria-hidden="true" class="anchor-heading icon-link" href="#mldeep-learning-similarities-and-retrieval"></a>ML/deep-learning similarities and retrieval</h4>
+<ul>
+<li>Learned embeddings (Spec2Vec, MS2DeepScore) aim to be more tolerant of multiple modifications and low direct peak overlap.</li>
+<li>Once embeddings are computed once per spectrum, similarity computation becomes cheap (cosine in embedding space).</li>
+<li>Model quality depends on curated training data → community datasets and ML-ready benchmarks matter (e.g., initiatives like MassSpecGym).</li>
+</ul>
+<h4 id="tool-spotlight-ms2query"><a aria-hidden="true" class="anchor-heading icon-link" href="#tool-spotlight-ms2query"></a>Tool spotlight: MS2Query</h4>
+<ul>
+<li>Combines multiple scores/features with an ML model to rank candidates efficiently.</li>
+<li>Promises faster analogue search without needing strict mass-shift caps, enabling broader library consideration.</li>
+</ul>
+<h4 id="spectral--structural-annotation-tools"><a aria-hidden="true" class="anchor-heading icon-link" href="#spectral--structural-annotation-tools"></a>Spectral + structural annotation tools</h4>
+<ul>
+<li>Spectral libraries (MassBank, GNPS sublibraries, specialized NP libraries) remain essential but coverage is still limited vs NP chemical space.</li>
+<li>Hybrid/in silico approaches (MetFrag, CFM-ID, FIORA; large in silico DBs like ISDB-LOTUS) help bridge gaps.</li>
+</ul>
+<h4 id="substructure-annotation-when-full-id-fails"><a aria-hidden="true" class="anchor-heading icon-link" href="#substructure-annotation-when-full-id-fails"></a>Substructure annotation (when full ID fails)</h4>
+<ul>
+<li><strong>MS2LDA</strong> discovers Mass2Motifs; useful but interpretation can become a human bottleneck at scale.</li>
+<li><strong>MotifDB</strong>: curated motifs enable more efficient screening (fewer “free” motifs).</li>
+<li><strong>MESSAR</strong>: supervised substructure recommendation via association-rule mining.</li>
+<li>Scaling limits: memory use and human validation time → pushes toward more modular, community-driven, scalable ecosystems (e.g., MS2LDA 2.0 + improved visualization/annotation guidance).</li>
+</ul>
+<h4 id="de-novo-annotation-for-unknowns"><a aria-hidden="true" class="anchor-heading icon-link" href="#de-novo-annotation-for-unknowns"></a>De novo annotation for unknowns</h4>
+<ul>
+<li>Since unknowns dominate, generative approaches (e.g., MSNovelist) are positioned as important for expanding beyond known databases, though they bring heavier computational/validation demands.</li>
+</ul>
+<h4 id="non-structural-annotation-making-progress-without-full-structures"><a aria-hidden="true" class="anchor-heading icon-link" href="#non-structural-annotation-making-progress-without-full-structures"></a>Non-structural annotation: making progress without full structures</h4>
+<ul>
+<li>Predict bioactivity/toxicity or biosource associations from spectral/metadata patterns.</li>
+<li>Taxonomy-informed annotation (e.g., TIMA) improves confidence by using biological plausibility.</li>
+<li>MASST-style repository searches (foodMASST/microbeMASST/plantMASST) contextualize unknowns by linking spectra to known biosources across public datasets.</li>
+</ul>
+<h2 id="4-querying--decision-making-the-action-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#4-querying--decision-making-the-action-layer"></a>4) Querying + decision-making: the “action” layer</h2>
+<h3 id="query-languages-as-a-scalability-lever"><a aria-hidden="true" class="anchor-heading icon-link" href="#query-languages-as-a-scalability-lever"></a>Query languages as a scalability lever</h3>
+<ul>
+<li><strong>MassQL</strong>: MS-native querying over m/z/RT/intensity patterns; designed to be accessible to non-programmers.</li>
+<li><strong>SPARQL</strong>: knowledge-graph querying enabling rich, relational questions that combine spectral + biological + metadata context (example: IDSM with similarity extensions).</li>
+<li>The review frames a future where MassQL (signal-level) and SPARQL (semantic/metadata-level) are combined into hybrid query workflows.</li>
+</ul>
+<h3 id="prioritization-tools-and-strategies"><a aria-hidden="true" class="anchor-heading icon-link" href="#prioritization-tools-and-strategies"></a>Prioritization tools and strategies</h3>
+<ul>
+<li><strong>Inventa</strong>: scores extracts for structural novelty using multiple components (feature specificity/annotation, literature signals, class detection, ML-based dissimilarity).</li>
+<li><strong>Rational library minimization</strong>: reduce redundancy across organisms by iteratively selecting extracts that maximize new scaffold coverage; huge cost savings without losing hit rate (in the cited example).</li>
+<li><strong>FERMO</strong>: integrates heterogeneous data types to filter/prioritize features using novelty/uniqueness/specificity/phenotype association; separates scalable computation from optional dashboard visualization. Annotation time can balloon with huge libraries → targeted libraries recommended until faster search methods are integrated.</li>
+<li><strong>MS2DECIDE</strong>: “white-box” decision-theoretic ranking that combines GNPS + SIRIUS + ISDB-LOTUS outputs and agreement between suggested structures to estimate “knownness”/novelty.</li>
+<li><strong>msFeaST</strong>: integrates stats + feature grouping + interactive chemical map; warns about human/UI scalability limits beyond ~5–10k features → encourages thresholding and careful selection before dashboard-driven exploration.</li>
+</ul>
+<h2 id="5-outlook-what-scalable-nel-metabolomics-should-become"><a aria-hidden="true" class="anchor-heading icon-link" href="#5-outlook-what-scalable-nel-metabolomics-should-become"></a>5) Outlook: what “scalable NEL metabolomics” should become</h2>
+<ul>
+<li>Future progress requires coordinated advances in:
+<ul>
+<li><strong>acquisition quality and throughput</strong> (better separations, smarter fragmentation, scalable modes like multiplexing),</li>
+<li><strong>computational efficiency</strong> (indexing, embeddings, GPU acceleration),</li>
+<li><strong>annotation breadth</strong> (repository-scale propagation, hybrid spectral+structural, substructure and non-structural annotation),</li>
+<li><strong>data infrastructure</strong> (open formats, interoperability, reusable pipelines),</li>
+<li><strong>governance/community</strong> (open science, shared resources like LOTUS/ENPKG-like infrastructures).</li>
+</ul>
+</li>
+<li>The end-goal is an iterative “virtuous cycle”:
+<ul>
+<li>use prior knowledge (spectra/taxonomy/literature) → prioritize extracts → generate new data → refine priorities → rank features → elevate to semantic knowledge → enable complex queries → repeat.</li>
+</ul>
+</li>
+<li>A recurring theme: <em>scalability is not just compute</em>—it’s also <strong>human interpretability</strong>, reproducibility, modular software design, and community-maintained ecosystems.</li>
+</ul>

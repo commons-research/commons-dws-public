@@ -1,0 +1,11 @@
+<h1 id="functional-state-machines-in-rust-typestate-and-newtype-patterns"><a aria-hidden="true" class="anchor-heading icon-link" href="#functional-state-machines-in-rust-typestate-and-newtype-patterns"></a>Functional State Machines In Rust Typestate And Newtype Patterns</h1>
+<h1 id="functional-state-machines-in-rust-typestate-and-newtype-patterns-experience-report"><a aria-hidden="true" class="anchor-heading icon-link" href="#functional-state-machines-in-rust-typestate-and-newtype-patterns-experience-report"></a><a href="https://dl.acm.org/doi/10.1145/3830438.3830958">Functional State Machines in Rust: Typestate and Newtype Patterns (Experience Report)</a></h1>
+<h2 id="1-intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#1-intro"></a>1 Intro</h2>
+<p>Rust allows for concepts such as Algebraic Data Types (ADTs). However design patterns are still necessary for maintainable code. Gang of Four (GoF) patterns do not apply well to rust and prove antiquated. Design patterns have emerged in the Rust ecosystem. However their usefulness depends on the context of use. </p>
+<h3 id="23-qualitative-analysis"><a aria-hidden="true" class="anchor-heading icon-link" href="#23-qualitative-analysis"></a>2.3 Qualitative Analysis</h3>
+<p>There isn't strong support for analysis of code comprehension (its a pretty subjective concept so that makes sense). However boiler plate can cut down on this readability. </p>
+<h2 id="3-case-studies"><a aria-hidden="true" class="anchor-heading icon-link" href="#3-case-studies"></a>3 Case Studies</h2>
+<p><strong>Typestate Pattern</strong> forces invariants at compile time. <strong>Newtype Pattern</strong> can be used to wrap another type and only expose functions as needed through the wrapper. <strong>Functional Core, Imperative Shell</strong> treats domain logic as the core, functionally, invoked by an imperative shell, handling external IO etc calls. </p>
+<h2 id="4-results"><a aria-hidden="true" class="anchor-heading icon-link" href="#4-results"></a>4 Results</h2>
+<h2 id="5-conclusion"><a aria-hidden="true" class="anchor-heading icon-link" href="#5-conclusion"></a>5 Conclusion</h2>
+<p>typestate and newtype did not incur further runtime costs, however typestate improved testability and decreased faults, as error detection is shifted to compile time. It does however impact readability. </p>

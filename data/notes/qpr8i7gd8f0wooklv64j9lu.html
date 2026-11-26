@@ -1,0 +1,63 @@
+<h1 id="dataset-discovery-and-exploration---a-survey"><a aria-hidden="true" class="anchor-heading icon-link" href="#dataset-discovery-and-exploration---a-survey"></a>Dataset Discovery And Exploration   A Survey</h1>
+<h1 id="dataset-discovery-and-exploration-a-survey"><a aria-hidden="true" class="anchor-heading icon-link" href="#dataset-discovery-and-exploration-a-survey"></a><a href="/commons-dws-public/file:///home/alex/Downloads/3626521.pdf">Dataset Discovery and Exploration: A Survey</a></h1>
+<p>Key issue, there are more and more datasets available online, such as through data lakes, as data preparation and exploration becomes a prohibitively difficult task. </p>
+<p>Metadata models have been introduced to help with dataset identification and usability, but datasets are not easily labeled with these models, as well as the situation and growth of datasets changes rapidly. </p>
+<p>The primary steps to exploring and working with these large amounts of datasets are broken down into these activities and issues:</p>
+<ul>
+<li>dataset search: finding candidate datasets that meet the search criteria</li>
+<li>data navigation: finding and returning relevant attributes from candidate datasets</li>
+<li>data annotation: data annotation can be a hindrance as it is not necessarily uniform and results in inconsistencies between datasets. </li>
+<li>schema inference: a representation of a group of datasets, allowing for an abstract representation of the datasets content. </li>
+</ul>
+<p>These all taken together represent data discovery and exploration. </p>
+<h2 id="dataset-search"><a aria-hidden="true" class="anchor-heading icon-link" href="#dataset-search"></a>Dataset Search</h2>
+<p>Dataset search can be performed against:</p>
+<ul>
+<li>Intentional data: column headers, dataset names and structural information.</li>
+<li>Extensional data: the actual values contained within datasets.</li>
+<li>Annotations: existing metadata and semantic labels.</li>
+</ul>
+<p>Metadata-based search is dependent on datasets being adequately annotated. Content-based search can overcome some of these limitations.</p>
+<p>Interestingly, the survey explicitly excludes repository discovery from its scope.</p>
+<h2 id="data-navigation"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-navigation"></a>Data Navigation</h2>
+<p>Relationships between datasets can be inferred through:</p>
+<ul>
+<li>Shared values and identifiers.</li>
+<li>Similarity of attributes and semantic types.</li>
+<li>Shared domains.</li>
+<li>Provenance relationships.</li>
+</ul>
+<p>Provenance provides additional evidence of relationships between datasets by identifying how data was derived from other data.
+see <a href="https://dl.acm.org/doi/10.1145/3318464.3389726">https://dl.acm.org/doi/10.1145/3318464.3389726</a></p>
+<h2 id="data-annotation"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-annotation"></a>Data Annotation</h2>
+<p>Annotations can occur at multiple levels:</p>
+<ul>
+<li>Cell: datatype or entity.</li>
+<li>Column: datatype or semantic type.</li>
+<li>Table: semantic class.</li>
+<li>Between columns: semantic relationships.
+Datatype identification is frequently performed as a preprocessing step before semantic annotation.</li>
+</ul>
+<p>MTab and TableMiner+ perform datatype detection based on individual cell values. MTab uses majority voting to determine column types.</p>
+<h2 id="schema-inference"><a aria-hidden="true" class="anchor-heading icon-link" href="#schema-inference"></a>Schema Inference</h2>
+<p>Schema inference attempts to identify recurring structural patterns across independently produced datasets.</p>
+<p>There are three primary purposes:</p>
+<ul>
+<li>Querying: accurately representing the underlying data.</li>
+<li>Documentation: representing common structures and relationships.</li>
+<li>Summarization: identifying the most prominent structural patterns.</li>
+</ul>
+<p>There is a tradeoff between schema precision and conciseness. Most existing approaches are specific to individual data models.</p>
+<h2 id="evaluation"><a aria-hidden="true" class="anchor-heading icon-link" href="#evaluation"></a>Evaluation</h2>
+<p>Common evaluation metrics across the surveyed approaches include precision, recall, F1 score, runtime and scalability.</p>
+<p>Manual annotation is frequently used to establish ground truth. Scalability is comparatively under explored in data annotation research.</p>
+<h1 id="notes-on-findings"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes-on-findings"></a>Notes on findings</h1>
+<ul>
+<li>Evaluate metadata-based discovery against content-based discovery using datasets-rs.</li>
+<li>Perform scientific datatype identification independently of column headers.</li>
+<li>Identify recurring scientific data structures through large-scale crawling.</li>
+<li>Distinguish published metadata from computationally inferred metadata.</li>
+<li>Record the provenance of inferred annotations themselves.</li>
+<li>Investigate whether provenance relationships can improve scientific dataset discovery and integration.</li>
+<li>Investigate schema inference across heterogeneous scientific file formats.</li>
+</ul>

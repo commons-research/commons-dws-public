@@ -1,0 +1,109 @@
+<h1 id="inchi-the-iupac-international-chemcial-identifier"><a aria-hidden="true" class="anchor-heading icon-link" href="#inchi-the-iupac-international-chemcial-identifier"></a>Inchi The Iupac International Chemcial Identifier</h1>
+<p><a href="https://link.springer.com/article/10.1186/s13321-015-0068-4#Fig9">source</a></p>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>InChi</strong>: International Chemical Identifier</li>
+<li><strong>InChiKey</strong>: hashes of <em>InChi</em></li>
+<li><a aria-hidden="true" class="block-anchor anchor-heading icon-link" id="^core-parent-structure" href="#^core-parent-structure"></a><strong>Core Parent Structure</strong>: based on a core parent </li>
+<li><a aria-hidden="true" class="block-anchor anchor-heading icon-link" id="^layers" href="#^layers"></a><strong>Layers</strong>: layer of core parent structure - represents empirical formula </li>
+<li><a aria-hidden="true" class="block-anchor anchor-heading icon-link" id="^valence-schema" href="#^valence-schema"></a><strong>Valence Schema</strong>: Metal and Non-metal atoms are treated differently. 
+<ul>
+<li><strong>Non-Metals:</strong> H, He, B, C, N, O, F, Ne, Si, P, S, Cl, Ar, Ge, As, Se, Br, Kr, Te, I, Xe, At, Rn</li>
+<li><strong>Metals</strong>: All other elements</li>
+</ul>
+</li>
+<li><strong>Hill Convention</strong>: Starts with Carbon atoms, then hydrogens, then all other elements in <strong>alphabetical order</strong>. </li>
+<li><a aria-hidden="true" class="block-anchor anchor-heading icon-link" id="^tautomerism" href="#^tautomerism"></a><strong>Tautomerism</strong>: <a href="https://tgc.ac.in/pdf/study-material/chemistry/Sem_II_Chemistry_Hons.__Tautomerism.pdf">a phenomenon where a single chemical compound tends to exist in two or more interconvertible structures that are different in terms of the relative position of one atomic nucleus which is generally the hydrogen</a>. </li>
+<li><a aria-hidden="true" class="block-anchor anchor-heading icon-link" id="^mesomerism" href="#^mesomerism"></a><strong>Mesomerism</strong>: structure cannot be represented unambiguously by single classical structural formula, requiring two or more structure forumulas. </li>
+</ul>
+<h1 id="background"><a aria-hidden="true" class="anchor-heading icon-link" href="#background"></a>Background</h1>
+<p>Chemical identifiers are used to denote chemical substances with text labels. Labels must be unambiguous. </p>
+<h1 id="design-and-layout"><a aria-hidden="true" class="anchor-heading icon-link" href="#design-and-layout"></a>Design and Layout</h1>
+<h2 id="inchi-design-goals"><a aria-hidden="true" class="anchor-heading icon-link" href="#inchi-design-goals"></a>Inchi design goals</h2>
+<p>Inchi is open source and non proprietary. Core features:</p>
+<ul>
+<li>Structure based approach</li>
+<li>Strict uniqueness of identifier</li>
+<li>Non-proprietary/open source free free free</li>
+<li>applies to entire domain of 'classic organic chemistry' and mostly inorganic </li>
+<li>ability to generate the same InChI for structures drawn under (reasonably) different styles/conventions </li>
+<li>Hierarchical approach - allows for different levels of granularity when encoding molecule </li>
+<li>can create an identifier with 'default' swtiches tied to granularity
+Non required but important features:</li>
+<li>restore chemical structure from InChi string</li>
+<li>compact form</li>
+<li>ability to deal with coordination &#x26; organometallic compounds
+example: InChi to Structure to InChi
+Current software restores with 99.95% accuracy
+<strong>InChiKeys</strong> allow for a more compact identifier. </li>
+</ul>
+<p>Human readability was considered  low importance. For some reason. </p>
+<h3 id="inchi-model-of-chemical-structure"><a aria-hidden="true" class="anchor-heading icon-link" href="#inchi-model-of-chemical-structure"></a>InChi Model of Chemical Structure</h3>
+<p>Molecules are made of atoms - skeletons or terminal hydrogen atoms (hydrogens). </p>
+<p>Skeletal atoms are connected by bonds pair-wise and characterized by the atom's chemical element. Hydrogens may be connected to skeletal atoms or shared by a group of skeletal atoms (1 to many relationship). </p>
+<p>Bonds are simple linked and formed pair-wise so there can be no bond between three or more atoms - except for Hydrogens shared by a group of skeletal atoms. </p>
+<h3 id="core-parent-structure"><a aria-hidden="true" class="anchor-heading icon-link" href="#core-parent-structure"></a>Core Parent Structure</h3>
+<p>The InChi structure is layer. It uses a <a href="/commons-dws-public/notes/4tcj01ich46y2xtsgoz06hn#^core-parent-structure">Inchi The Iupac International Chemcial Identifier</a>. The source structure is derived from its parent core with explicitly added features. This allows for the mentioned granularity. Each layer starts with a <code>/</code> then the letter denoting the identity of the layer. <a href="/commons-dws-public/notes/4tcj01ich46y2xtsgoz06hn#^layers">Inchi The Iupac International Chemcial Identifier</a></p>
+<p>First layer such as: "InChi=1/", then the layer: "C10H16N5O13P3", and use of <code>/c</code> for skeletal connections and <code>/h</code> for hydrogens. </p>
+<h3 id="standard-and-non-standard-inchi"><a aria-hidden="true" class="anchor-heading icon-link" href="#standard-and-non-standard-inchi"></a>Standard and non-standard InChi</h3>
+<p>The same molecule can have different <code>InChi</code> strings based on the choices made and options applied. It is a major drawback to interoperability. Therefore a <em>standard</em> InChi was introduced in 2009. </p>
+<h3 id="inchi-valence-schema"><a aria-hidden="true" class="anchor-heading icon-link" href="#inchi-valence-schema"></a>InChi Valence Schema</h3>
+<p>Inchi also take into consideration the <a href="/commons-dws-public/notes/4tcj01ich46y2xtsgoz06hn#^valence-schema">Inchi The Iupac International Chemcial Identifier</a>. </p>
+<p>These metals all implicitly have hydrogens: Li, Be, Na, Mg, Al, K, Ca, Ga, Rb, Sr, In, Sn, Sb, Cs, Ba, Tl, Pb, Bi, Po, Fr, Ra</p>
+<h2 id="layout-of-inchi-layers"><a aria-hidden="true" class="anchor-heading icon-link" href="#layout-of-inchi-layers"></a>Layout of InChi Layers</h2>
+<h3 id="main-layer-representing-core-parent-structure"><a aria-hidden="true" class="anchor-heading icon-link" href="#main-layer-representing-core-parent-structure"></a>Main Layer: representing core parent structure</h3>
+<h3 id="empirical-formula-sublayer-representing-composition"><a aria-hidden="true" class="anchor-heading icon-link" href="#empirical-formula-sublayer-representing-composition"></a>Empirical formula sublayer: representing composition</h3>
+<p>Follows something called the <a href="/commons-dws-public/notes/4tcj01ich46y2xtsgoz06hn#^Hill-convention">Inchi The Iupac International Chemcial Identifier</a>. This is only layer prefixed with a single <code>/</code> without a following character.
+e.g.: "InChI=1S/ClH/h1H/p-1" -> formula layer: <em>ClH</em> </p>
+<h3 id="skeletal-connections-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#skeletal-connections-layer"></a>Skeletal connections layer</h3>
+<p>layer prefixed with <code>/c</code> connections between skeletal atoms, with branches in parentheses. </p>
+<blockquote>
+<p>For example, “/C10H16N5O13P3” (the beginning of InChI for adenosine triphosphate) implies that atoms numbered 1–10 are carbons, 11–15 are nitrogens, 16–28 are oxygens, and 29–31 are phosporus. Hydrogen atoms are not explicitly numbered.</p>
+</blockquote>
+<h3 id="hydrogen-layers"><a aria-hidden="true" class="anchor-heading icon-link" href="#hydrogen-layers"></a>Hydrogen layers</h3>
+<p>Prefixed with '/h' lists bonds between atoms in the structure, partitioned into three sublayers:
+1) represents all bonds other htan those to non-bridging H-atoms
+2) represents all bonds of immobile H-atoms
+3) location of any mobile H-atoms -> H-atoms that can be found at more than one location in a compound due to various types of tautomerism. <a href="/commons-dws-public/notes/4tcj01ich46y2xtsgoz06hn#^tautomerism">Inchi The Iupac International Chemcial Identifier</a></p>
+<h2 id="charge-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#charge-layer"></a>Charge Layer</h2>
+<p>layer provides information about net charge and is composed of two sublayers</p>
+<h3 id="charge-sublayer"><a aria-hidden="true" class="anchor-heading icon-link" href="#charge-sublayer"></a>Charge Sublayer</h3>
+<p><code>/q</code> net charge of core parent structure</p>
+<h3 id="protonationdeprotonation-sublayer"><a aria-hidden="true" class="anchor-heading icon-link" href="#protonationdeprotonation-sublayer"></a>Protonation/deprotonation sublayer</h3>
+<p><code>/p</code> net number of protons removed from or added to the source structure to derive its core parent. </p>
+<h2 id="inchi-the-iupac-international-chemcial-identifier-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#inchi-the-iupac-international-chemcial-identifier-1"></a><a href="/commons-dws-public/notes/4tcj01ich46y2xtsgoz06hn#^Mesomerism">Inchi The Iupac International Chemcial Identifier</a></h2>
+<p>InChis eliminate mesomers. The placement of hydrogens in a mesomeric system is the same no matter what.</p>
+<h3 id="fixedh-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#fixedh-layer"></a>FixedH Layer</h3>
+<p>prefixed with <code>/f</code> represents specification of tautomers. </p>
+<h2 id="stereochemistry-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#stereochemistry-layer"></a>Stereochemistry layer</h2>
+<h3 id="overview-of-stereochemistry-layer-with-its-sublayers"><a aria-hidden="true" class="anchor-heading icon-link" href="#overview-of-stereochemistry-layer-with-its-sublayers"></a>Overview of stereochemistry layer with its sublayers</h3>
+<p>Contains sublayers for double bonded stereochemistry and tetrahedral stereochemistry. This layer is dependent on the previous layers. This layer can be present in several locations in the identifier?!</p>
+<h3 id="double-bonded-sp2-ze-stereo-layer-b"><a aria-hidden="true" class="anchor-heading icon-link" href="#double-bonded-sp2-ze-stereo-layer-b"></a>Double bonded <span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><msup><mi>p</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">sp^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">s</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span> Z/E stereo layer '\b'</h3>
+<h3 id="tetrahedral-stereo-layer-t"><a aria-hidden="true" class="anchor-heading icon-link" href="#tetrahedral-stereo-layer-t"></a>Tetrahedral stereo layer '\t'</h3>
+<p>this will typically be denoted with <code>(+)</code> or <code>(-)</code>. but can also be <code>undefined</code>.  The default now is the <code>?</code> for both undefined and unknown. </p>
+<h4 id="isotopic-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#isotopic-layer"></a>Isotopic layer</h4>
+<p>prefixed with <code>/i</code> identifies isotopically labeled atoms. </p>
+<h4 id="reconnected-layer-coordination-compounds-and-oragnometallics"><a aria-hidden="true" class="anchor-heading icon-link" href="#reconnected-layer-coordination-compounds-and-oragnometallics"></a>Reconnected layer: coordination compounds and oragnometallics</h4>
+<p>prefixed with <code>/r</code> followed by the formula </p>
+<h2 id="inchikey"><a aria-hidden="true" class="anchor-heading icon-link" href="#inchikey"></a>InChiKey</h2>
+<p>A hashcode, formatted like:
+<code>AAAAAAAAAAAAAA-BBBBBBBBFV-P</code>
+Fixed at 27 characters in length and "base-26" English encoding. So like ONLY ASCII uppercase I guess?
+Sections:
+1) AAAAAAAAAAAAAA - 14 char core molecule
+2) BBBBBBBBF - 8 char encoding for structural features (stereochemistry, isotopic sub, mobile hydrogens, metal ligation)
+3) F - flag (S for standard and N for non standard)
+4) V - version character, which is an A for 1 for some reason
+5) P - protonation/deprotonation flag
+An N means no proton related ionization
+<img src="/commons-dws-public/assets/images/char_protons_table.png"></p>
+<h1 id="overview-of-implementation"><a aria-hidden="true" class="anchor-heading icon-link" href="#overview-of-implementation"></a>Overview of Implementation</h1>
+<h2 id="general-workflow"><a aria-hidden="true" class="anchor-heading icon-link" href="#general-workflow"></a>General Workflow</h2>
+<p>Workflow steps:
+1) normalization of input structure
+2) canonicalization of atomic numbering
+3) serialization - generating inchi key
+4) Optionally - hasing InChi to make InChiKey
+<img src="/commons-dws-public/assets/images/inchi_flowchart.png"></p>
+<h2 id="input-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#input-data"></a>Input Data</h2>
+<h2 id="normalization-of-input-structure"><a aria-hidden="true" class="anchor-heading icon-link" href="#normalization-of-input-structure"></a>Normalization of input structure</h2>

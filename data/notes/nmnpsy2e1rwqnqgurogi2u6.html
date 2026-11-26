@@ -1,0 +1,25 @@
+<h1 id="xpra"><a aria-hidden="true" class="anchor-heading icon-link" href="#xpra"></a>Xpra</h1>
+<p><a href="https://bytexd.com/xpra/">https://bytexd.com/xpra/</a></p>
+<p>xpra attach ssh:xxxx@xxxxx:100 should restore the session.</p>
+<p>Working smoothly :)</p>
+<h2 id="starting-on-the-server"><a aria-hidden="true" class="anchor-heading icon-link" href="#starting-on-the-server"></a>Starting (on the server)</h2>
+<p>xpra start :100 --start=chromium
+xpra start :200 --start=xterm
+xpra start :300 --start=xterm</p>
+<p>To view running session</p>
+<p>xpra sessions </p>
+<p>To rename a session
+xpra control :10 name WHATEVER</p>
+<p>Ex:
+xpra start :200 --start=xterm
+xpra control :200 name MZMINE</p>
+<p>xpra start :100 --start=chromium
+xpra control :100 name CHROMIUM</p>
+<h2 id="list-of-xpra-servers"><a aria-hidden="true" class="anchor-heading icon-link" href="#list-of-xpra-servers"></a>List of xpra servers</h2>
+<p>Command to attach from the client</p>
+<h3 id="chromium"><a aria-hidden="true" class="anchor-heading icon-link" href="#chromium"></a>Chromium</h3>
+<p>xpra attach ssh:allardpm@biolpc045600:100</p>
+<h3 id="xterm"><a aria-hidden="true" class="anchor-heading icon-link" href="#xterm"></a>Xterm</h3>
+<p>xpra attach ssh:allardpm@biolpc045600:200</p>
+<h3 id="xterm2"><a aria-hidden="true" class="anchor-heading icon-link" href="#xterm2"></a>Xterm2</h3>
+<p>xpra attach ssh:allardpm@biolpc045600:300</p>

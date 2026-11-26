@@ -1,0 +1,25 @@
+<h1 id="fair-principles-interpretations-and-implementation"><a aria-hidden="true" class="anchor-heading icon-link" href="#fair-principles-interpretations-and-implementation"></a>Fair Principles Interpretations And Implementation</h1>
+<h1 id="fair-principles-interpretations-and-implementation-considerations"><a aria-hidden="true" class="anchor-heading icon-link" href="#fair-principles-interpretations-and-implementation-considerations"></a><a href="https://direct.mit.edu/dint/article/2/1-2/10/10017/FAIR-Principles-Interpretations-and-Implementation">FAIR Principles: Interpretations and Implementation Considerations</a></h1>
+<h2 id="1-intro"><a aria-hidden="true" class="anchor-heading icon-link" href="#1-intro"></a>1 Intro</h2>
+<p>FAIR principles are inteded to guide for sharing digital resources that are FAIR (findable, accessible, interoperable, reusable). But there is a risk of solutions becoming incompatible as a result. This paper proposes some implementation considerations to help avoid these concerns. </p>
+<h2 id="2-from-interpretation-to-implementation"><a aria-hidden="true" class="anchor-heading icon-link" href="#2-from-interpretation-to-implementation"></a>2 From Interpretation to Implementation</h2>
+<p>Clarification on key aspects of making something FAIR:
+1) <strong>Machine Actionable:</strong> Making resources FAIR should make them knowable/findable to a machine. Which has 4 implications for FAIR:</p>
+<pre><code>- Findability: findable for humans and machines
+- accessibility: resources should be made explicit, with clear mechanisms for obtaining authorization
+- interoperability: should be able to merge similar resources into a singular "view" of the topic/entity. 
+- reusability: should be reusable for machines - that a machine can decide if the resource should be reused.
+</code></pre>
+<p>2) <strong>(Meta)data</strong>: Metadata should be any description of the sour ce for the purposes of findability, reusability, interpretation, assessment of the resource. So metadat should also be fair </p>
+<h3 id="3-interpretations-and-implementation-considerations-per-fair-guiding-principle"><a aria-hidden="true" class="anchor-heading icon-link" href="#3-interpretations-and-implementation-considerations-per-fair-guiding-principle"></a>3 Interpretations and Implementation Considerations per Fair Guiding Principle</h3>
+<p>The FAIR principles are intended to make scientific resources <strong>machine-actionable</strong>, not merely available to humans. The major point is that FAIRness depends on persistent identification, rich machine-readable metadata, standardized access, explicit semantics, meaningful links between resources, and enough contextual information to support reliable reuse. And this section is an extension of the last section. </p>
+<ul>
+<li><strong>Findable:</strong> Data and metadata need <strong>globally unique, persistent identifiers</strong> (e.g., DOIs), rich searchable metadata, explicit links between metadata and the objects they describe, and registration in searchable resources. </li>
+<li><strong>Accessible:</strong> Resources should be retrievable through <strong>standardized, open protocols</strong> such as HTTP. 
+<ul>
+<li><strong>FAIR does not mean open</strong>: authentication and authorization are compatible with FAIR, and metadata should remain accessible even if the underlying data disappear.  </li>
+</ul>
+</li>
+<li><strong>Interoperable:</strong> Data should use formal, machine-interpretable knowledge representations, like RDF. Shared vocabularies and ontologies should themselves be FAIR, and resources should use qualified links that explicitly describe relationships to other resources rather than merely linking to them.  </li>
+<li><strong>Reusable:</strong> Metadata should provide enough context to determine whether data are appropriate for a particular purpose. This includes an explicit license, detailed provenance, and adherence to domain/community standards; provenance should describe how, why, by whom, and from what sources a resource was produced and subsequently processed.  </li>
+</ul>

@@ -1,0 +1,90 @@
+<h1 id="massspecgym-in-the-wild"><a aria-hidden="true" class="anchor-heading icon-link" href="#massspecgym-in-the-wild"></a>Massspecgym In The Wild</h1>
+<p><a href="https://arxiv.org/pdf/2606.19624">source</a></p>
+<p><a href="https://github.com/pluskal-lab/MassSpecGym">MassSpecGym v1.5</a></p>
+<h1 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h1>
+<ul>
+<li><strong>in silico</strong>: experimentation done on the computer</li>
+<li><strong><a href="https://www.nature.com/articles/s42256-020-00257-z">shortcut learning</a></strong>: Decision rules that perform well with benchmarks but do not transfer to real world or more stringent testing of the model. </li>
+<li><strong><a href="https://www.ibm.com/think/topics/overfitting">Overfitting</a></strong>: Model fits training data too closely, and cannot make accurate predictions about non training data. </li>
+<li><strong>data leakage</strong>: test data are accidentally available during training/evaluation. Which makes the model performance look better than it should be</li>
+<li><strong>MCES</strong>: Maximum Common Edge Subgraph, similarity measure (distance) used for splitting into train/test without being too similar. </li>
+<li><strong><a href="https://goldbook.iupac.org/terms/view/11523">Tanimoto Similarity</a></strong>: Ranges from <code>0.0</code> to <code>1.0</code>, measures similarity between two molecular fingerprints</li>
+<li><strong><a href="https://en.wikipedia.org/wiki/International_Chemical_Identifier">InChIKey-14</a></strong>: First 14 characters of an InChIKey. </li>
+<li><strong>Chemical formula leak</strong>: Occurs when model gains information about formula which should be unknown to the model. </li>
+<li><strong>Candidate set</strong>: list of possible molecules retrieval model ranks the spectrum against. </li>
+</ul>
+<h1 id="introduction"><a aria-hidden="true" class="anchor-heading icon-link" href="#introduction"></a>Introduction</h1>
+<p>Misusing benchmarks can result in <em>shortcut learning</em>, data leakage, and overfitting.</p>
+<p>MassSpecGym breaks the molecule identification prcoess down into 3 tasks:
+1) spectrum simulation challenge
+2) retrieval challenge
+3) <em>de novo</em> generation challenge - where the model makes structures from the MS</p>
+<p>There are three commonly found types of failures for training models:
+1) Data leakage: Data splitting on exact structures can yield test splits that have tests that are strongly represented in the training data.
+2) Shortcut learning: inconsistencies, such as in SMILES canonicalization, can allow for shortcutting, which causes high fit for the model without working on the spectrum-molecule relationship
+3) Metrics and implementation divergence: Unchecked use of divergent metrics and implementations and drift from <em>fair</em> evaluation standards that MassSpecGym should be enforcing. </p>
+<h1 id="data-leakage"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-leakage"></a>Data Leakage</h1>
+<p>MassSpecGym tries to avoid leakage with MCES training / validation splits, rather than exact molecule matching. Because exact exclusion is insufficient and the model can still identify close analogs during the pretraining and falsely appear to generalize better than the model actually can. </p>
+<p>This is important for <em>de novo</em> models, such as
+1) spectrum-to-fingerprint encoder
+2) fingerprint-to-molecule decoder</p>
+<p>The issue is that the model could be learning - memorizing rather, the molecule space and not learning the MS/MS structure elucidation needed.</p>
+<h2 id="recommendations-for-training-against-data-leaks"><a aria-hidden="true" class="anchor-heading icon-link" href="#recommendations-for-training-against-data-leaks"></a>Recommendations for training against data leaks</h2>
+<ul>
+<li>exclude exact test matches from pretraining data</li>
+<li>exclude close analogs</li>
+<li>report performance stratified by test-set similarity to pretraining molecules</li>
+</ul>
+<h1 id="synthetic-spectra-leakage"><a aria-hidden="true" class="anchor-heading icon-link" href="#synthetic-spectra-leakage"></a>Synthetic spectra leakage</h1>
+<p>If a spectral simulator is trained on test molecules, then used to generate synthetic spectra for training another model, the leakage transfers through the simulator.</p>
+<p>This is “transitive leakage”:<br>
+test molecule -> simulator -> synthetic spectra -> downstream model</p>
+<h1 id="formula-leakage"><a aria-hidden="true" class="anchor-heading icon-link" href="#formula-leakage"></a>Formula leakage</h1>
+<p>Formula prediction is not solved, especially for halogenated molecules or higher mass molecules.</p>
+<p>MassSpecGym has:</p>
+<ol>
+<li>formula-based track: formula is known</li>
+<li>mass-based track: formula is not known
+If a model uses ground-truth formula but reports results on the mass-based track, that leaks information. Random retrieval improves massively if ground-truth formula is used to filter candidates, showing formula information is very powerful.</li>
+</ol>
+<h1 id="shortcut-learning-in-retrieval"><a aria-hidden="true" class="anchor-heading icon-link" href="#shortcut-learning-in-retrieval"></a>Shortcut learning in retrieval</h1>
+<p>MassSpecGym had candidate artifacts where true molecules and decoys had different SMILES formatting/canonicalization.</p>
+<p>A model could learn:  </p>
+<ul>
+<li>which SMILES looks different?<br>
+instead of:  </li>
+<li>which molecule matches this spectrum?</li>
+</ul>
+<p>Which produces very inflated retrieval scores.</p>
+<p>MassSpecGym v1.5 fixes this by enforcing uniform RDKit canonicalization across query and candidate SMILES.</p>
+<h1 id="pubchem-ranking-bias"><a aria-hidden="true" class="anchor-heading icon-link" href="#pubchem-ranking-bias"></a>PubChem ranking bias</h1>
+<p>Another shortcut: PubChem candidate order itself can leak useful information.</p>
+<ul>
+<li>A spectrum-blind baseline using PubChem default ranking reached high hit rate, meaning the candidate set has bias independent of spectra.</li>
+<li>This is worse than just a bug. It means the benchmark design itself can let models exploit candidate distributions.</li>
+</ul>
+<h1 id="implementation-bugs"><a aria-hidden="true" class="anchor-heading icon-link" href="#implementation-bugs"></a>Implementation bugs</h1>
+<p>Benchmark reuse can spread hidden bugs. They found a MIST batching/padding mask bug. Padding tokens were not properly excluded in attention, causing inflated/inconsistent behavior in batched inference. Later methods reused MIST checkpoints/components, so one bug propagated into multiple papers.</p>
+<h1 id="metric-divergence"><a aria-hidden="true" class="anchor-heading icon-link" href="#metric-divergence"></a>Metric divergence</h1>
+<p>Same predictions can look different if metrics are implemented differently. Important metric choices:</p>
+<ul>
+<li>InChIKey hit rate should use InChIKey-14, not full InChIKey</li>
+<li>Tanimoto should use pinned fingerprint settings</li>
+<li>MCES depends on solver/settings/timeouts</li>
+<li>confidence intervals should be reported
+Recommended pinned settings:</li>
+<li>InChIKey-14 for molecular hit rate</li>
+<li>ECFP4 / Morgan radius 2 / 2048-bit fingerprints for Tanimoto</li>
+<li>MCES threshold = 15 and always_stronger_bound = true</li>
+<li>report mean test metrics with confidence intervals</li>
+</ul>
+<h1 id="massspecgym-v15"><a aria-hidden="true" class="anchor-heading icon-link" href="#massspecgym-v15"></a>MassSpecGym v1.5</h1>
+<p>Main fixes in the updated version:</p>
+<ul>
+<li>uniform RDKit canonicalization</li>
+<li>safer pretraining sets excluding close test analogs</li>
+<li>data-safe versions of MIST-CF, ICEBERG, and DreaMS</li>
+<li>standardized baselines</li>
+<li>pinned metric implementations</li>
+<li>structured leaderboard submission/model card workflow</li>
+</ul>

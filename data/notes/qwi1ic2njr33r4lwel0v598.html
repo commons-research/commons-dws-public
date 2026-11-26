@@ -1,0 +1,72 @@
+<h1 id="database_mongo"><a aria-hidden="true" class="anchor-heading icon-link" href="#database_mongo"></a>Database_mongo</h1>
+<h1 id="databases"><a aria-hidden="true" class="anchor-heading icon-link" href="#databases"></a>databases</h1>
+<p>Databases stores your data. Different solutions are available. Mostly we can here about <strong>noSQL</strong> and <strong>SQL</strong> (Structured Query Language) solutions. <strong>RDBMS</strong> (RDBMS stands for Relational Database Management System) is the basis for all modern database systems based on SQL. The data in RDBMS is stored in database objects called tables. This objects can be accessed with querys.</p>
+<p>MongoDB is a document database. It stores data in a type of JSON format called BSON (no tables). It is more flexible, scalable and faster then the RDBMS approach. </p>
+<p>The website (datanyze))[https://www.datanyze.com/market-share/databases--272] showed, that mainly SQL databases has a big market share. The biggest market share with 24.78% has MySQL. MongoDB is on place 6 with 6.19%. [March 2024]</p>
+<h2 id="mongodb"><a aria-hidden="true" class="anchor-heading icon-link" href="#mongodb"></a>mongodb</h2>
+<p>MongoDB is a source-available, cross-platform, document-oriented database program. Classified as a NoSQL database product, MongoDB utilizes JSON-like documents with optional schemas. The initial release was in February 2009. <a href="https://en.wikipedia.org/wiki/MongoDB">Source Wikipedia</a></p>
+<p>Instead of using querys (like in SQL), they are using CRUD operations.</p>
+<p>This database is used by the <a href="https://github.com/tyo-nu/MINE-Database">minesdatabase</a>.</p>
+<h3 id="intallation-with-ubuntu"><a aria-hidden="true" class="anchor-heading icon-link" href="#intallation-with-ubuntu"></a>Intallation (with Ubuntu)</h3>
+<p><a href="https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu">Installation of mongodb</a></p>
+<p>After the installation, the service has to be started.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token comment"># start service</span>
+<span class="token function">sudo</span> systemctl start mongod
+
+<span class="token comment"># check status</span>
+<span class="token function">sudo</span> systemctl status mongod
+
+<span class="token comment"># if problems accurese, try this</span>
+<span class="token function">sudo</span> systemctl daemon-reload
+
+<span class="token comment"># stop service</span>
+<span class="token function">sudo</span> systemctl stop mongod
+</code></pre>
+<h3 id="mongo-shell-cli"><a aria-hidden="true" class="anchor-heading icon-link" href="#mongo-shell-cli"></a>mongo shell (CLI)</h3>
+<p>To have a look at the databases use the mongo shell <code>mongosh</code>. To use it, the mongod service needs to be running.
+The MongoDB Shell uses a Node REPL environment. This means that we are able to use JavaScript variable declaration, function declaration, and loops.</p>
+<pre class="language-sh"><code class="language-sh"># start CLI
+mongosh
+
+# show all databases
+show dbs
+
+# change to database
+use &#x3C;db_name>
+
+# show the headers of the database
+show collections
+show tables
+
+# find specific coloumns (like Json search)
+db.&#x3C;collection_name>.find()
+
+# look at help page
+db.help
+
+# change store location (default /var/lib/mongodb)
+# it can be changed also in the config file (/etc/mongod.conf)
+mongod --dbpath &#x3C;/path/to/store>
+
+</code></pre>
+<h3 id="mongo-compass-gui"><a aria-hidden="true" class="anchor-heading icon-link" href="#mongo-compass-gui"></a>mongo compass (GUI)</h3>
+<p>If the shell is to complicated, it is recommended to use the GUI <strong>mongo compass</strong>.
+It has the usefull function to show all the entries in one table.</p>
+<p>Installation: <a href="https://www.mongodb.com/docs/compass/master/install/">https://www.mongodb.com/docs/compass/master/install/</a></p>
+<h3 id="mongo-university-learning-area"><a aria-hidden="true" class="anchor-heading icon-link" href="#mongo-university-learning-area"></a>mongo university (learning area)</h3>
+<p>More informations about mongo db can be found here: <a href="https://learn.mongodb.com/learning-paths/introduction-to-mongodb">Mongo University</a></p>
+<h4 id="mongodb-commands"><a aria-hidden="true" class="anchor-heading icon-link" href="#mongodb-commands"></a>mongodb commands</h4>
+<p>search:
+<code>db.sales.find({ &#x3C;field>: { &#x3C;operator> : &#x3C;value> } })</code>
+example: <code>db.sales.find({ "items.price": { $gt: 50}})</code></p>
+<p>field:<br>
+$elemMatch - find this element in value</p>
+<p>operator:<br>
+<span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mi>q</mi><mo>−</mo><mi>e</mi><mi>q</mi><mi>u</mi><mi>a</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">eq - equal </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mord mathnormal">u</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span></span></span></span></span>gt - greater than
+<span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mi>t</mi><mi>e</mi><mo>−</mo><mi>g</mi><mi>r</mi><mi>e</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>r</mi><mi>t</mi><mi>h</mi><mi>a</mi><mi>n</mi><mi>o</mi><mi>r</mi><mi>e</mi><mi>q</mi><mi>u</mi><mi>a</mi><mi>l</mi><mi>t</mi><mi>o</mi></mrow><annotation encoding="application/x-tex">gte - greater than or equal to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">re</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">er</span><span class="mord mathnormal">t</span><span class="mord mathnormal">han</span><span class="mord mathnormal">ore</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mord mathnormal">u</span><span class="mord mathnormal">a</span><span class="mord mathnormal">lt</span><span class="mord mathnormal">o</span></span></span></span></span>lt - less than
+<span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>t</mi><mi>e</mi><mo>−</mo><mi>l</mi><mi>e</mi><mi>s</mi><mi>s</mi><mi>t</mi><mi>h</mi><mi>a</mi><mi>n</mi><mi>o</mi><mi>r</mi><mi>e</mi><mi>q</mi><mi>u</mi><mi>a</mi><mi>l</mi><mi>t</mi><mi>o</mi></mrow><annotation encoding="application/x-tex">lte - less than or equal to</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">lt</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">ess</span><span class="mord mathnormal">t</span><span class="mord mathnormal">han</span><span class="mord mathnormal">ore</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mord mathnormal">u</span><span class="mord mathnormal">a</span><span class="mord mathnormal">lt</span><span class="mord mathnormal">o</span></span></span></span></span>ne - not equal</p>
+<p>db.sales.find({
+items: {
+$elemMatch: { name: "laptop", price: { $gt: 800 }, quantity: { $gte: 1 } },
+},
+})</p>

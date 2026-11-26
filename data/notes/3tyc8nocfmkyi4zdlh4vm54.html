@@ -1,0 +1,207 @@
+<h1 id="why-we-built-our-own-sql-parser-from-scratch"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-we-built-our-own-sql-parser-from-scratch"></a>Why We Built Our Own Sql Parser From Scratch</h1>
+<h1 id="why-we-built-our-own-sql-parser-from-scratch-a-rust-implementation-story"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-we-built-our-own-sql-parser-from-scratch-a-rust-implementation-story"></a><a href="https://www.databend.com/blog/why-we-built-our-own-sql-parser-from-scratch">Why We Built Our Own SQL Parser From Scratch A Rust Implementation Story</a></h1>
+<p><strong>Demo Repo:</strong> <a href="https://github.com/zhihanz/sql-parser-demo">github.com/zhihanz/sql-parser-demo</a></p>
+<h2 id="1-introduction"><a aria-hidden="true" class="anchor-heading icon-link" href="#1-introduction"></a>1. Introduction</h2>
+<ul>
+<li>Databend faced performance bottlenecks in <strong>SQL parsing</strong>  13.29s of a 20s query were spent just parsing text into an AST.</li>
+<li>Existing solution: <a href="https://github.com/sqlparser-rs/sqlparser-rs"><code>sqlparser-rs</code></a>.</li>
+<li>Problem: parsing overhead, memory usage, poor error messages, limited dialect flexibility.</li>
+<li>Core decision: <strong>rewrite the parser from scratch</strong> in Rust.</li>
+<li>Outcome: faster parsing (~3.3×), clearer errors, and a more maintainable architecture.</li>
+</ul>
+<h2 id="2-why-sqlparser-rs-wasnt-enough"><a aria-hidden="true" class="anchor-heading icon-link" href="#2-why-sqlparser-rs-wasnt-enough"></a>2. Why <code>sqlparser-rs</code> Wasn’t Enough</h2>
+<h3 id="21-limited-dialect-support"><a aria-hidden="true" class="anchor-heading icon-link" href="#21-limited-dialect-support"></a>2.1 Limited Dialect Support</h3>
+<ul>
+<li>Supporting <strong>multiple SQL dialects</strong> (MySQL, PostgreSQL, Hive) became untenable.</li>
+<li>Adding dialect features required modifying the parser core → risk of regressions, upstream delays.</li>
+<li>Needed <strong>dynamic dialect composition</strong> → explored <code>nom</code> parser combinators for modular grammar rules.</li>
+</ul>
+<h3 id="22-poor-error-messages"><a aria-hidden="true" class="anchor-heading icon-link" href="#22-poor-error-messages"></a>2.2 Poor Error Messages</h3>
+<ul>
+<li>Default errors like <code>"syntax error at or near SELECT"</code> offered little context.</li>
+<li>Users struggled to locate syntax issues in large queries (200+ lines, multiple CTEs).</li>
+<li>Desired behavior: preserve parsing context, highlight <strong>where</strong> the parser got confused.    </li>
+<li>Example improvement:</li>
+</ul>
+<pre class="language-text"><code class="language-text">Expected ',' or 'FROM' after column name
+Found: 'user_age'
+Hint: Did you forget a comma after 'email'?
+</code></pre>
+<h3 id="23-memory-usage-issues"><a aria-hidden="true" class="anchor-heading icon-link" href="#23-memory-usage-issues"></a>2.3 Memory Usage Issues</h3>
+<ul>
+<li>Multiple string copies through tokenization → <strong>5× input size in memory</strong>.</li>
+<li>Needed <strong>zero-copy parsing</strong>, referencing input slices (<code>&#x26;str</code>) directly.</li>
+<li>Rust’s lifetime system made safe zero-copy designs possible.</li>
+</ul>
+<h2 id="3-better-errors-via-furthest-error-tracking"><a aria-hidden="true" class="anchor-heading icon-link" href="#3-better-errors-via-furthest-error-tracking"></a>3. Better Errors via Furthest-Error Tracking</h2>
+<h3 id="problem"><a aria-hidden="true" class="anchor-heading icon-link" href="#problem"></a>Problem</h3>
+<ul>
+<li>Traditional parsers report the <strong>first</strong> error, often the least informative one.</li>
+<li>A smarter strategy: track the <strong>furthest progress</strong> before failure.</li>
+</ul>
+<h3 id="solution"><a aria-hidden="true" class="anchor-heading icon-link" href="#solution"></a>Solution</h3>
+<ul>
+<li>Maintain a structure recording how far parsing got and what was expected:</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">struct</span> <span class="token type-definition class-name">ErrorTracker</span> <span class="token punctuation">{</span>
+	furthest_pos<span class="token punctuation">:</span> <span class="token keyword">usize</span><span class="token punctuation">,</span>
+	expected<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span><span class="token class-name">String</span><span class="token operator">></span><span class="token punctuation">,</span>
+	found<span class="token punctuation">:</span> <span class="token class-name">Option</span><span class="token operator">&#x3C;</span><span class="token class-name">String</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>Report the <strong>furthest error</strong>  the point of maximum successful parsing.</li>
+<li>Improves user trust (“everything before here is OK”).</li>
+</ul>
+<h3 id="implementation-detail"><a aria-hidden="true" class="anchor-heading icon-link" href="#implementation-detail"></a>Implementation Detail</h3>
+<ul>
+<li>Used <code>RefCell</code> for interior mutability in demo; production parser passes context explicitly.</li>
+<li>Added <strong>suggestion logic</strong> using <em>Jaro-Winkler similarity</em> to detect typos <sup id="fnref-1"><a href="#fn-1" class="footnote-ref">1</a></sup>:
+<ul>
+<li><code>"SELCT"</code> → <code>"SELECT"</code> (0.94)</li>
+<li><code>"FORM"</code> → <code>"FROM"</code> (0.91)</li>
+<li><code>"WHEER"</code> → <code>"WHERE"</code> (0.93)</li>
+</ul>
+</li>
+<li>Suggestions triggered above 80% similarity threshold.</li>
+</ul>
+<h2 id="4-zero-copy-architecture"><a aria-hidden="true" class="anchor-heading icon-link" href="#4-zero-copy-architecture"></a>4. Zero-Copy Architecture</h2>
+<h3 id="problem-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#problem-1"></a>Problem</h3>
+<ul>
+<li>Conventional tokenizers duplicate text into owned <code>String</code>s.</li>
+</ul>
+<h3 id="zero-copy-solution"><a aria-hidden="true" class="anchor-heading icon-link" href="#zero-copy-solution"></a>Zero-Copy Solution</h3>
+<ul>
+<li>Represent tokens as <strong>borrows into the original input</strong>:</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">Token</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">pub</span> text<span class="token punctuation">:</span> <span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">str</span><span class="token punctuation">,</span>
+	<span class="token keyword">pub</span> kind<span class="token punctuation">:</span> <span class="token class-name">TokenKind</span><span class="token punctuation">,</span>
+	<span class="token keyword">pub</span> span<span class="token punctuation">:</span> <span class="token class-name">Range</span><span class="token operator">&#x3C;</span><span class="token keyword">usize</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>The caller retains ownership of the source string, ensuring lifetime safety.</li>
+<li>Result: drastically reduced allocations and memory footprint.</li>
+</ul>
+<h3 id="cascade-effect"><a aria-hidden="true" class="anchor-heading icon-link" href="#cascade-effect"></a>Cascade Effect</h3>
+<ul>
+<li>Once tokens were zero-copy, the <strong>entire AST</strong> could borrow from the source:</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">SelectStmt</span><span class="token operator">&#x3C;</span><span class="token lifetime-annotation symbol">'a</span><span class="token operator">></span> <span class="token punctuation">{</span>
+	<span class="token keyword">pub</span> columns<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span><span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">str</span><span class="token operator">></span><span class="token punctuation">,</span>
+	<span class="token keyword">pub</span> from<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span><span class="token operator">&#x26;</span><span class="token lifetime-annotation symbol">'a</span> <span class="token keyword">str</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>Final architecture achieved ~1.2× input size memory usage (down from 5×).</li>
+</ul>
+<h2 id="5-the-cte-recursion-trap"><a aria-hidden="true" class="anchor-heading icon-link" href="#5-the-cte-recursion-trap"></a>5. The CTE Recursion Trap</h2>
+<h3 id="problem-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#problem-2"></a>Problem</h3>
+<ul>
+<li>Deep recursive CTEs (e.g., <code>WITH RECURSIVE</code>) caused <strong>stack overflow</strong>.</li>
+<li>Developers mistakenly conflated <strong>syntax analysis</strong> with <strong>semantic analysis</strong>.</li>
+</ul>
+<h3 id="lesson"><a aria-hidden="true" class="anchor-heading icon-link" href="#lesson"></a>Lesson</h3>
+<ul>
+<li><strong>Parser’s job:</strong> verify grammar (keywords, structure, balance).</li>
+<li><strong>Analyzer’s job:</strong> interpret meaning (valid references, recursion, execution logic).</li>
+<li>Fix: mark <code>recursive: bool</code> and move recursion handling to the query planner.</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">struct</span> <span class="token type-definition class-name">With</span> <span class="token punctuation">{</span>
+    <span class="token keyword">pub</span> recursive<span class="token punctuation">:</span> <span class="token keyword">bool</span><span class="token punctuation">,</span>
+    <span class="token keyword">pub</span> ctes<span class="token punctuation">:</span> <span class="token class-name">Vec</span><span class="token operator">&#x3C;</span><span class="token constant">CTE</span><span class="token operator">></span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="outcome"><a aria-hidden="true" class="anchor-heading icon-link" href="#outcome"></a>Outcome</h3>
+<ul>
+<li>2,000+ lines of unnecessary code deleted.</li>
+<li>Principle: <em>“Parse syntax; analyze semantics later.”</em></li>
+</ul>
+<h2 id="6-advanced-implementation-patterns"><a aria-hidden="true" class="anchor-heading icon-link" href="#6-advanced-implementation-patterns"></a>6. Advanced Implementation Patterns</h2>
+<h3 id="61-precedence-as-data"><a aria-hidden="true" class="anchor-heading icon-link" href="#61-precedence-as-data"></a>6.1 Precedence as Data</h3>
+<ul>
+<li>Traditional parsers encode operator precedence in nested functions.</li>
+<li>Databend switched to <strong>data-driven precedence climbing (Pratt parser)</strong>.</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token class-name">BinaryOperator</span><span class="token punctuation">::</span><span class="token class-name">Or</span>        <span class="token operator">=></span> <span class="token class-name">Precedence</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token class-name">BinaryOperator</span><span class="token punctuation">::</span><span class="token class-name">Multiply</span>  <span class="token operator">=></span> <span class="token class-name">Precedence</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span>
+</code></pre>
+<ul>
+<li>Benefits:
+<ul>
+<li>Adding new operators = one line in a table.</li>
+<li>Reduced function call depth → faster and simpler.</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-property-testing"><a aria-hidden="true" class="anchor-heading icon-link" href="#62-property-testing"></a>6.2 Property Testing</h3>
+<ul>
+<li>Random input testing ensures parser never panics.</li>
+<li>Properties:
+<ul>
+<li>Parsing any valid SQL twice yields identical ASTs.</li>
+<li>Detects deep nesting or Unicode edge cases.</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-logic-fuzzing-sqllancer"><a aria-hidden="true" class="anchor-heading icon-link" href="#63-logic-fuzzing-sqllancer"></a>6.3 Logic Fuzzing (<code>sqllancer</code>)</h3>
+<ul>
+<li>Fuzz tests <strong>entire pipeline</strong>, not just parser:
+<ul>
+<li>Generate valid random SQL.</li>
+<li>Compare Databend’s results vs PostgreSQL/MySQL.</li>
+<li>Detect mismatches in execution semantics.</li>
+</ul>
+</li>
+<li>Exposed subtle optimizer bugs (e.g., <code>JOIN + GROUP BY + window functions</code>).</li>
+</ul>
+<h2 id="7-real-world-impact"><a aria-hidden="true" class="anchor-heading icon-link" href="#7-real-world-impact"></a>7. Real-World Impact</h2>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Metric</th><th>Before</th><th>After</th><th>Gain</th></tr></thead><tbody><tr><td>Parse time</td><td>13.29s</td><td>~4s</td><td><strong>3.3× faster</strong></td></tr><tr><td>Memory use</td><td>~5× input</td><td>~1.2× input</td><td><strong>much lower</strong></td></tr><tr><td>Error quality</td><td>Generic</td><td>Contextual + suggestions</td><td><strong>improved UX</strong></td></tr></tbody></table></div>
+<h3 id="maintenance-benefits"><a aria-hidden="true" class="anchor-heading icon-link" href="#maintenance-benefits"></a>Maintenance Benefits</h3>
+<ul>
+<li>Adding dialects = configuration, not code fork.</li>
+<li>Precedence changes = single table entry.</li>
+<li>Error tracking aids internal debugging.</li>
+<li>Property tests prevent regressions.</li>
+</ul>
+<h3 id="architectural-takeaways"><a aria-hidden="true" class="anchor-heading icon-link" href="#architectural-takeaways"></a>Architectural Takeaways</h3>
+<ul>
+<li><strong>Performance problems = architecture problems.</strong></li>
+<li>Improvements emerged from:
+<ul>
+<li>Zero-copy design (memory model)</li>
+<li>Furthest-error tracking (user feedback)</li>
+<li>Syntax-only parsing (abstraction boundary)</li>
+</ul>
+</li>
+</ul>

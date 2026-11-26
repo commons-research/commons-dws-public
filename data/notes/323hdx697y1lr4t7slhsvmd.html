@@ -1,0 +1,63 @@
+<h1 id="the-monarch-initiative"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-monarch-initiative"></a>The Monarch Initiative</h1>
+<h1 id="the-monarch-initiative-in-2024-an-analytic-platform-integrating-phenotypes-genes-and-diseases-across-species"><a aria-hidden="true" class="anchor-heading icon-link" href="#the-monarch-initiative-in-2024-an-analytic-platform-integrating-phenotypes-genes-and-diseases-across-species"></a><a href="https://doi.org/10.1093/nar/gkad1082">The Monarch Initiative in 2024: an analytic platform integrating phenotypes, genes and diseases across species</a></h1>
+<h2 id="terms"><a aria-hidden="true" class="anchor-heading icon-link" href="#terms"></a>Terms</h2>
+<ul>
+<li><strong>Monarch Initiative</strong>: Open platform integrating genes, diseases and phenotypes across species using ontologies and knowledge graphs.</li>
+<li><strong><a href="https://biolink.github.io/biolink-model/">Biolink Model</a></strong>: Standardized data model for representing biological entities and their associations in knowledge graphs.</li>
+<li><strong><a href="https://github.com/biolink/kgx">KGX</a></strong>: Knowledge Graph Exchange format and tools for exchanging knowledge graphs.</li>
+<li><strong><a href="https://github.com/monarch-initiative/phenio">PHENIO</a></strong>: Phenomics Integrated Ontology. Integrates diseases, phenotypes, anatomy, chemicals and related biological concepts.</li>
+<li><strong><a href="https://mapping-commons.github.io/sssom/">SSSOM</a></strong>: Simple Standard for Sharing Ontological Mappings. Standard for representing mappings between identifiers and ontology concepts.</li>
+<li><strong>Entity normalization</strong>: Process of resolving different identifiers referring to the same concept into a canonical representation.</li>
+<li><strong>Materialized relationship</strong>: Relationship inferred from an ontology and explicitly stored rather than calculated when queried.</li>
+<li><strong><a href="https://github.com/monarch-initiative/semsimian">Semsimian</a></strong>: Semantic similarity tool for comparing sets of ontology terms using methods including Resnik, Jaccard and embedding cosine similarity.</li>
+<li><strong>Phenotype profile</strong>: Set of phenotype terms describing a patient, disease or organism.</li>
+<li><strong>Phenolog</strong>: Similar phenotype between organisms identified through overlapping sets of orthologous genes.</li>
+</ul>
+<h2 id="about"><a aria-hidden="true" class="anchor-heading icon-link" href="#about"></a>About</h2>
+<p>The Monarch Initiative integrates heterogeneous biological data into a knowledge graph focused primarily on genes, diseases and phenotypes across species. The 2024 platform integrates 33 biomedical resources and ontologies and provides the data through a web application, REST API and bulk downloads. The main contribution is not a new algorithm but the infrastructure required to make heterogeneous biological knowledge interoperable and computationally reusable. This includes ontology integration, identifier mapping, entity normalization, data provenance, semantic similarity and graph machine learning.</p>
+<h2 id="monarch-knowledge-graph"><a aria-hidden="true" class="anchor-heading icon-link" href="#monarch-knowledge-graph"></a>Monarch knowledge graph</h2>
+<p>The Monarch KG represents biological knowledge as nodes, edges and labels. Its primary entities are genes, diseases and phenotypes, with additional associations to Gene Ontology, anatomy, chemicals and pathways. The graph uses the Biolink Model as a common schema. Data from heterogeneous sources are transformed into this shared representation, allowing relationships from different databases and species to be queried and analyzed together. The previous Monarch KG contained more entity types, including variants and genotypes. The newer graph intentionally simplifies the primary structure because excessive complexity made it harder to derive meaningful knowledge.</p>
+<h2 id="semantic-layer"><a aria-hidden="true" class="anchor-heading icon-link" href="#semantic-layer"></a>Semantic layer</h2>
+<p>PHENIO provides the semantic layer of the Monarch KG by integrating multiple biomedical ontologies into a shared hierarchical structure. Ontology relationships allow queries to operate beyond exact matches. For example, a gene associated with a specific subtype of Usher syndrome can also be found when querying its broader parent disease classes. This hierarchical structure also enables semantic similarity between sets of ontology terms and supports phenotype profile matching, disease diagnosis and variant prioritization.</p>
+<h2 id="knowledge-graph-construction"><a aria-hidden="true" class="anchor-heading icon-link" href="#knowledge-graph-construction"></a>Knowledge graph construction</h2>
+<p>The KG pipeline:</p>
+<ol>
+<li>downloads source data</li>
+<li>transforms sources into the Biolink/KGX model using Koza</li>
+<li>maps and normalizes entities</li>
+<li>merges the resulting graphs</li>
+<li>performs quality control</li>
+<li>creates representations for search, semantic similarity and distribution
+<a href="https://github.com/monarch-initiative/koza">Koza</a> is a Python ETL tool using YAML configuration files to define source transformations and mappings. This reduces source-specific code and makes ingestion pipelines easier to maintain and test.</li>
+</ol>
+<h2 id="entity-mapping-and-normalization"><a aria-hidden="true" class="anchor-heading icon-link" href="#entity-mapping-and-normalization"></a>Entity mapping and normalization</h2>
+<p>Different databases frequently use different identifiers for the same biological concept. Monarch uses SSSOM mappings to describe relationships between identifiers, including mapping provenance, evidence and whether mappings are exact, broad or narrow. Entity normalization merges equivalent concepts into a single graph node. This is essential for integrating heterogeneous biological datasets because otherwise the same gene, disease or other entity may appear as multiple disconnected nodes.</p>
+<h2 id="semantic-similarity"><a aria-hidden="true" class="anchor-heading icon-link" href="#semantic-similarity"></a>Semantic similarity</h2>
+<p><a href="https://github.com/monarch-initiative/semsimian">Semsimian</a> compares sets of ontology terms, such as a patient's phenotype profile against phenotypes associated with a disease.
+Supported approaches include:</p>
+<ul>
+<li>
+<p>Resnik similarity</p>
+</li>
+<li>
+<p>Jaccard similarity</p>
+</li>
+<li>
+<p>cosine similarity between ontology term embeddings</p>
+<p>The embedding approach allows graph embeddings generated by tools such as GRAPE to be used for semantic similarity. This connects classical ontology-based similarity with learned vector representations of graph structure.</p>
+</li>
+</ul>
+<h2 id="grape-integration"><a aria-hidden="true" class="anchor-heading icon-link" href="#grape-integration"></a>GRAPE integration</h2>
+<p>The Monarch KG is integrated with <a href="https://github.com/AnacletoLAB/grape">GRAPE</a> for scalable graph analysis and machine learning. This allows graph statistics and ML to be performed directly on different versions of the Monarch KG.
+Supported tasks include:</p>
+<ul>
+<li>node embeddings</li>
+<li>node-label prediction</li>
+<li>edge-label prediction</li>
+<li>link prediction
+For example, link prediction can be used to predict possible gene-disease relationships. This demonstrates how a semantically integrated knowledge graph can become the input for machine learning rather than only being used for storage or querying.</li>
+</ul>
+<h2 id="knowledge-graphs-and-machine-learning"><a aria-hidden="true" class="anchor-heading icon-link" href="#knowledge-graphs-and-machine-learning"></a>Knowledge graphs and machine learning</h2>
+<p>The Monarch architecture provides a useful example of combining symbolic and learned representations. Ontologies provide explicit semantics and hierarchical relationships, while graph embeddings convert graph structure into numerical vector representations that can be used by ML models. For bioinformatics, this allows relationships from heterogeneous sources to become both human-interpretable knowledge and features for downstream machine learning.</p>
+<h2 id="llm-integration"><a aria-hidden="true" class="anchor-heading icon-link" href="#llm-integration"></a>LLM integration</h2>
+<p>Monarch developed an LLM interface that retrieves information from the KG before generating answers. The KG provides structured external knowledge and identifiers, reducing reliance on information contained only within the language model. The system demonstrates an early RAG-style approach where natural-language questions are translated into searches and association queries against a biomedical knowledge graph.</p>

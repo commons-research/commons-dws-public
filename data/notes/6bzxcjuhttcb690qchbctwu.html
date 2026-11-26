@@ -1,0 +1,49 @@
+<h1 id="2024-01-22"><a aria-hidden="true" class="anchor-heading icon-link" href="#2024-01-22"></a>2024-01-22</h1>
+<h1 id="this-is-pmass-commons-lab-daily-open-notebook"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-is-pmass-commons-lab-daily-open-notebook"></a>This is PMAS's COMMONS Lab daily Open Notebook.</h1>
+<p>Today is 2024.01.22</p>
+<h2 id="todo-today"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-today"></a>Todo today</h2>
+<h3 id="have-a-look-at-the-commons-research-discussion-forum"><a aria-hidden="true" class="anchor-heading icon-link" href="#have-a-look-at-the-commons-research-discussion-forum"></a>Have a look at the COMMONS research discussion forum</h3>
+<pre><code>- https://github.com/orgs/commons-research/discussions
+</code></pre>
+<h3 id="daily-work-on-the-open-science-for-natural-products-research-viewpoint"><a aria-hidden="true" class="anchor-heading icon-link" href="#daily-work-on-the-open-science-for-natural-products-research-viewpoint"></a>Daily work on the Open Science for natural products research Viewpoint</h3>
+<p>See <a href="/commons-dws-public/notes/43p60vv8btyhaclugl93jok">Viewpoint</a></p>
+<h3 id=""><a aria-hidden="true" class="anchor-heading icon-link" href="#"></a></h3>
+<h3 id="-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#-1"></a></h3>
+<h2 id="doing"><a aria-hidden="true" class="anchor-heading icon-link" href="#doing"></a>Doing</h2>
+<p>Some procrastination on <a href="https://gothenburgbitfactory.github.io/taskserver-setup/">https://gothenburgbitfactory.github.io/taskserver-setup/</a></p>
+<p>By default, Taskserver uses port 53589. You can choose any port you wish, provided it is unused. If you choose a port number that is under 1024, then Taskserver must run as root, which is not recommended.</p>
+<p>Creating a new user and group on the COMMONS server for taskserver</p>
+<p>taskd add user 'Public' 'First Last' (doesnt works)
+sudo taskd add user 'Public' 'First Last' --data /var/taskd (works)</p>
+<p>task_server_user@biolpc045600:~$ sudo taskd add user 'Public' 'First Last' --data /var/taskd
+New user key: 6240d660-30d9-4ab8-bdbe-d3d6b91f1944
+Created user 'First Last' for organization 'Public'</p>
+<p>task config taskd.credentials -- Public/First Last/6240d660-30d9-4ab8-bdbe-d3d6b91f1944</p>
+<p><a href="https://github.com/ogarcia/docker-taskd">https://github.com/ogarcia/docker-taskd</a></p>
+<p>docker run -d \
+--name=taskd \
+-e CERT_BITS=4096 \
+-e CERT_EXPIRATION_DAYS=365 \
+-e CERT_ORGANIZATION="COMMONS Lab Task server" \
+-e CERT_CN=localhost \
+-e CERT_COUNTRY=CH \
+-e CERT_STATE="Fribourg" \
+-e CERT_LOCALITY="Fribourg" \
+-p 53589:53589 \
+-v /home/task_server_user/taskd:/var/taskd \
+ghcr.io/connectical/taskd</p>
+<p>docker exec -t -i \
+86d94d29ed51c8c6230bc29bc0b2754297233e6a9d76c7dd3fd67813e2f82044 sh</p>
+<p>New user key: ae500061-a550-4dae-9b74-fa6a2b012c91
+Created user 'First Last' for organization 'Public'</p>
+<p>task config taskd.credentials -- Public/First Last/ae500061-a550-4dae-9b74-fa6a2b012c91</p>
+<h2 id="paused"><a aria-hidden="true" class="anchor-heading icon-link" href="#paused"></a>Paused</h2>
+<h2 id="done"><a aria-hidden="true" class="anchor-heading icon-link" href="#done"></a>Done</h2>
+<h2 id="notes"><a aria-hidden="true" class="anchor-heading icon-link" href="#notes"></a>Notes</h2>
+<h2 id="todo-tomorrow-one-day--or-never"><a aria-hidden="true" class="anchor-heading icon-link" href="#todo-tomorrow-one-day--or-never"></a>Todo tomorrow, one day ... or never</h2>
+<h3 id="-2"><a aria-hidden="true" class="anchor-heading icon-link" href="#-2"></a></h3>
+<h3 id="-3"><a aria-hidden="true" class="anchor-heading icon-link" href="#-3"></a></h3>
+<h2 id="today-i-learned-that"><a aria-hidden="true" class="anchor-heading icon-link" href="#today-i-learned-that"></a>Today I learned that</h2>
+<ul>
+<li>o</li>
+</ul>

@@ -1,0 +1,190 @@
+<h1 id="nginx"><a aria-hidden="true" class="anchor-heading icon-link" href="#nginx"></a>Nginx</h1>
+<h1 id="title"><a aria-hidden="true" class="anchor-heading icon-link" href="#title"></a>Title</h1>
+<p>2022-11-02 14:42</p>
+<h2 id="context"><a aria-hidden="true" class="anchor-heading icon-link" href="#context"></a>Context</h2>
+<p>Looking into nginx to setup a connection to NocoDB from the commons_lab server </p>
+<p>This was done on the metabomaps server for the graphDB instance with the help of Jo.
+Trying to reproduce here.</p>
+<h2 id="need"><a aria-hidden="true" class="anchor-heading icon-link" href="#need"></a>Need</h2>
+<p>setup a connection to NocoDB from the commons_lab server</p>
+<h2 id="task-of-the-noteparagraphtextpaperproject"><a aria-hidden="true" class="anchor-heading icon-link" href="#task-of-the-noteparagraphtextpaperproject"></a>Task (of the note/paragraph/text/paper/project)</h2>
+<p>Third, indicate what you have done in an effort to address the need (this is the task).</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> Watching <a href="https://www.youtube.com/watch?v=JKxlsvZXG7c">https://www.youtube.com/watch?v=JKxlsvZXG7c</a></li>
+</ul>
+<p>They indicate that the conf file is usually under etc/nginx.
+Indeed over there on the metabomaps server.</p>
+<p>Lets looks at the commonslab server
+Not there.</p>
+<p>Lets install this</p>
+<p>Following <a href="https://ubuntu.com/tutorials/install-and-configure-nginx#2-installing-nginx">https://ubuntu.com/tutorials/install-and-configure-nginx#2-installing-nginx</a></p>
+<p>We get the following error when starting nginx </p>
+<p>(base) allardpm@biolpc045600:/etc/nginx/sites-enabled$ systemctl status nginx.service
+● nginx.service - A high performance web server and a reverse proxy server
+Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+Active: failed (Result: exit-code) since Sun 2022-06-19 09:06:20 CEST; 57s ago
+Docs: man:nginx(8)
+Process: 3544101 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+Process: 3544102 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=1/FAILURE)</p>
+<p>Following <a href="https://stackoverflow.com/questions/51525710/nginx-failed-to-start-a-high-performance-web-server-and-a-reverse-proxy-server">https://stackoverflow.com/questions/51525710/nginx-failed-to-start-a-high-performance-web-server-and-a-reverse-proxy-server</a></p>
+<p>sudo systemctl reload nginx</p>
+<p>we
+sudo service apache2 stop</p>
+<p> <img src="/commons-dws-public/assets/images/2022-06-19-09-11-18.png"></p>
+<p> Amazing !</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> So this was a first step.
+Apparently certbot was used later one. Lets see how this one works</li>
+</ul>
+<p><a href="https://certbot.eff.org/instructions?ws=nginx&#x26;os=ubuntufocal">https://certbot.eff.org/instructions?ws=nginx&#x26;os=ubuntufocal</a></p>
+<p>I added the ip of the commons lab server to the dbgi DNS
+And can now vie the previously made placeholder website when serving on port 80</p>
+<p><img src="/commons-dws-public/assets/images/2022-06-19-09-43-57.png"></p>
+<p>However the certbot step is not working
+sudo certbot --nginx</p>
+<p>And returns </p>
+<p><a href="https://check-your-website.server-daten.de/?q=commons.dbgi.org">https://check-your-website.server-daten.de/?q=commons.dbgi.org</a></p>
+<p><img src="/commons-dws-public/assets/images/2022-06-19-10-53-34.png"></p>
+<p>Yeah !! But thats on the metabomaps server. Apparently thing will not work that smoothly on the commons server sinc it is behind the university firewall
+running (saved as a .sh script)
+certbot --authenticator standalone --installer nginx   -d xxxxxxx.xxxx.org --pre-hook "service nginx stop" --post-hook "service nginx start"</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" disabled> So I can serve the nocodb instance hosted on the commonslab server via a .dbgi.org domains</li>
+</ul>
+<p>nginx server file is as follows</p>
+<p>server {
+listen 80;
+listen [::]:80;</p>
+<pre><code>   server_name xxxxx.dbgi.org;
+</code></pre>
+<h1 id="if-you-would-like-to-gzip-your-stuff"><a aria-hidden="true" class="anchor-heading icon-link" href="#if-you-would-like-to-gzip-your-stuff"></a>If you would like to gzip your stuff</h1>
+<p>  gzip on;
+gzip_min_length 1;
+gzip_types *;</p>
+<h1 id="setup-the-proxy"><a aria-hidden="true" class="anchor-heading icon-link" href="#setup-the-proxy"></a>Setup the proxy</h1>
+<h1 id="this-will-forward-all-requests-to-the-server"><a aria-hidden="true" class="anchor-heading icon-link" href="#this-will-forward-all-requests-to-the-server"></a>This will forward all requests to the server</h1>
+<h1 id="and-then-it-will-relay-the-servers-response-back-to-the-client"><a aria-hidden="true" class="anchor-heading icon-link" href="#and-then-it-will-relay-the-servers-response-back-to-the-client"></a>and then it will relay the servers response back to the client</h1>
+<p>  location / {
+proxy_pass <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection 'upgrade';
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_cache_bypass $http_upgrade;
+}
+}</p>
+<p>Node: <strong>v16.15.1</strong>
+Arch: <strong>x64</strong>
+Platform: <strong>linux</strong>
+Docker: <strong>false</strong>
+Database: <strong>pg</strong>
+ProjectOnRootDB: <strong>true</strong>
+RootDB: <strong>pg</strong>
+PackageVersion: <strong>0.91.10</strong></p>
+<h2 id="object-of-the-noteparagraphtextpaperproject"><a aria-hidden="true" class="anchor-heading icon-link" href="#object-of-the-noteparagraphtextpaperproject"></a>Object (of the note/paragraph/text/paper/project)</h2>
+<p>Finally, preview the remainder of the paper to mentally prepare you/readers for its structure, in the object of the document.</p>
+<h2 id="ressources"><a aria-hidden="true" class="anchor-heading icon-link" href="#ressources"></a>Ressources</h2>
+<p>Some notes:
+<a href="https://www.youtube.com/watch?v=JKxlsvZXG7c">https://www.youtube.com/watch?v=JKxlsvZXG7c</a></p>
+<p>## serving the directus interface</p>
+<p>port 8055</p>
+<p>sudo certbot --authenticator standalone --installer nginx -d directus.dbgi.org --pre-hook "service nginx stop" --post-hook "service nginx start"</p>
+<p>Problem : </p>
+<p>Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Requesting a certificate for directus.dbgi.org</p>
+<p>Certbot failed to authenticate some domains (authenticator: standalone). The Certificate Authority reported these problems:
+Domain: directus.dbgi.org
+Type:   dns
+Detail: DNS problem: NXDOMAIN looking up A for directus.dbgi.org - check that a DNS record exists for this domain; DNS problem: NXDOMAIN looking up AAAA for directus.dbgi.org - check that a DNS record exists for this domain</p>
+<p>Hint: The Certificate Authority failed to download the challenge files from the temporary standalone webserver started by Certbot on port 80. Ensure that the listed domains point to this machine and that it can accept inbound connections from the internet.</p>
+<p>Of course it doesn't work as we need to declare the DNS first at our DNS provider interface lets go ther
+It needs to be opened </p>
+<p>Done</p>
+<p>Then copied the nocodb in /etc/nginx/sites-enabled and changed the server name</p>
+<p>Certbox command is still not OK but different error.
+Website is accessible</p>
+<p>(base) allardpm@biolpc045600:/etc/nginx/sites-enabled$ sudo certbot --authenticator standalone --installer nginx   -d directus.dbgi.org --pre-hook "service nginx stop" --post-hook "service nginx start"
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Requesting a certificate for directus.dbgi.org</p>
+<p>Certbot failed to authenticate some domains (authenticator: standalone). The Certificate Authority reported these problems:
+Domain: directus.dbgi.org
+Type:   connection
+Detail: 134.21.20.118: Fetching <a href="http://directus.dbgi.org/.well-known/acme-challenge/_3RMgi4TIamOSiw_A2g5iAccqERzpJywraSNUqlFGTc">http://directus.dbgi.org/.well-known/acme-challenge/_3RMgi4TIamOSiw_A2g5iAccqERzpJywraSNUqlFGTc</a>: Timeout during connect (likely firewall problem)</p>
+<p>Hint: The Certificate Authority failed to download the challenge files from the temporary standalone webserver started by Certbot on port 80. Ensure that the listed domains point to this machine and that it can accept inbound connections from the internet.</p>
+<p>Some challenges have failed.
+Ask for help or search for solutions at <a href="https://community.letsencrypt.org.">https://community.letsencrypt.org.</a> See the logfile /var/log/letsencrypt/letsencrypt.log or re-run Certbot with -v for more details.</p>
+<h3 id="checking-nginx-status"><a aria-hidden="true" class="anchor-heading icon-link" href="#checking-nginx-status"></a>Checking nginx status</h3>
+<p><code>systemctl status nginx</code></p>
+<p>on metabomaps it keeps falling.Here is an error message</p>
+<p>● nginx.service - A high performance web server and a reverse proxy server
+Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+Active: failed (Result: exit-code) since Mon 2022-10-17 19:05:49 UTC; 2 weeks 1 days ago
+Docs: man:nginx(8)
+Process: 4655 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+Process: 4656 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=1/FAILURE)</p>
+<p>This is runned to check the nginy conf</p>
+<p>sudo nginx -t</p>
+<p>nginx: [warn] conflicting server name "graph.metabomaps.com" on 0.0.0.0:443, ignored
+nginx: [warn] conflicting server name "graph.metabomaps.com" on 0.0.0.0:80, ignored
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful</p>
+<p>## serving the directus interface foor the commons lab</p>
+<p>port 8056</p>
+<p>sudo certbot --authenticator standalone --installer nginx -d directus.commons-lab.org --pre-hook "service nginx stop" --post-hook "service nginx start"</p>
+<h2 id="to-serve-a-directory"><a aria-hidden="true" class="anchor-heading icon-link" href="#to-serve-a-directory"></a>to serve a directory</h2>
+<p>Here is the used nginx file</p>
+<pre class="language-sh"><code class="language-sh">server {
+   server_name enpkg.commons-lab.org; # managed by Certbot
+
+   ignore_invalid_headers off;
+   client_max_body_size 1000m;
+   proxy_buffering off;
+
+   gzip on;
+   gzip_proxied any;
+   gzip_vary on;
+   gzip_http_version 1.1;
+   gzip_min_length 1100;
+   gzip_buffers 4 8k;
+   tcp_nopush on;
+   gzip_types application/javascript application/json text/css text/xml image/svg+xml application/svg+xml;
+   tcp_nodelay on;
+   location /sb/ {
+        proxy_pass       http://localhost:3148/; # use httpS here if needed
+        proxy_set_header Host      $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # add this if nginx is terminating TLS
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+   listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/enpkg.commons-lab.org/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/enpkg.commons-lab.org/privkey.pem; # managed by Certbot
+   include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = enpkg.commons-lab.org) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+  server_name enpkg.commons-lab.org;
+    listen 80;
+    return 404; # managed by Certbot
+}
+</code></pre>
+<p>What was causing issue was the fact that the style were not found by Graphdb.
+Jo send me this SO thread
+<a href="https://stackoverflow.com/questions/37301169/run-graphdb-behind-apache-proxy_add_x_forwarded_for">https://stackoverflow.com/questions/37301169/run-graphdb-behind-apache-proxy_add_x_forwarded_for</a>
+And after adding this to the GDB config it went smoothly</p>
+<pre class="language-sh"><code class="language-sh">graphdb.workbench.external-url = https://enpkg.commons-lab.org/sb/
+</code></pre>
+<h3 id="dashboard"><a aria-hidden="true" class="anchor-heading icon-link" href="#dashboard"></a>dashboard</h3>
+<ul>
+<li>Declared the DNS </li>
+<li>created file in /etc/nginx/sites-enabled</li>
+</ul>
+<h4 id="setting-up-on-the-dbgi-vm"><a aria-hidden="true" class="anchor-heading icon-link" href="#setting-up-on-the-dbgi-vm"></a>Setting up on the dbgi vm</h4>
+<p>sudo certbot certonly --standalone --preferred-challenges http -d kg.earthmetabolome.org</p>

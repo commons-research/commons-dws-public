@@ -1,0 +1,51 @@
+<h1 id="get-in-line-superfast-spsc-queue"><a aria-hidden="true" class="anchor-heading icon-link" href="#get-in-line-superfast-spsc-queue"></a>Get In Line Superfast Spsc Queue</h1>
+<h1 id="get-in-line---superfast-spsc-queue"><a aria-hidden="true" class="anchor-heading icon-link" href="#get-in-line---superfast-spsc-queue"></a><a href="https://abhikja.in/blog/2025-12-07-get-in-line/">Get in Line - superfast SPSC Queue</a></h1>
+<p>Author built a bounded <strong>SPSC (single-producer / single-consumer)</strong> queue in Rust</p>
+<h1 id="starting-simple"><a aria-hidden="true" class="anchor-heading icon-link" href="#starting-simple"></a>Starting Simple</h1>
+<p>Baseline: <code>VecDeque&#x3C;T></code> behind <code>Arc&#x3C;Mutex&#x3C;...>></code> with spin loops.
+Key observations:</p>
+<ul>
+<li>Correctness is easy, performance is awful.</li>
+<li>Spin loops inflate benchmarks but are terrible in real apps (burn CPU).
+Results (rough):</li>
+<li>Latency: ~1–4 µs</li>
+<li>Throughput: ~133–206 MiB/s</li>
+</ul>
+<h1 id="conditional-variables"><a aria-hidden="true" class="anchor-heading icon-link" href="#conditional-variables"></a>Conditional Variables</h1>
+<p>Replace spin-locking with <code>Condvar</code> to sleep/wake.
+Tradeoffs:</p>
+<ul>
+<li>Latency regresses (wakeups / syscalls / scheduling)</li>
+<li>Throughput improves a lot vs naive mutex-spin</li>
+<li>Much more “real application friendly” (doesn’t burn CPU)
+Results (rough):</li>
+<li>Latency: ~2.2 µs</li>
+<li>Throughput: ~430–445 MiB/s</li>
+</ul>
+<h1 id="separating--sharding-the-shared-state"><a aria-hidden="true" class="anchor-heading icon-link" href="#separating--sharding-the-shared-state"></a>Separating / Sharding the Shared State</h1>
+<p>Idea: lock only <code>head</code> and <code>tail</code> separately, since producer mostly cares about tail and consumer about head.
+Reality:</p>
+<ul>
+<li>Easy to introduce <strong>deadlock</strong> if locks are taken in different orders.</li>
+<li>Even after fixing order, performance becomes <em>worse</em> due to taking multiple locks and more sync overhead.</li>
+</ul>
+<p>“Shard state” is on the right track, but locks are the wrong primitive here.</p>
+<h1 id="waiting-to-sync-shadow-variables"><a aria-hidden="true" class="anchor-heading icon-link" href="#waiting-to-sync-shadow-variables"></a>Waiting to Sync (Shadow Variables)</h1>
+<p>Idea: keep local cached copies (“shadow head/tail”) so you don’t lock/sync every time.
+Only sync when you hit full/empty.
+Result:</p>
+<ul>
+<li>Doesn’t help much when locks are still involved.</li>
+<li>Flamegraphs still show lock waiting dominates.</li>
+</ul>
+<p>Shadowing is good, but you need cheaper synchronization than Mutex.</p>
+<h1 id="atomics"><a aria-hidden="true" class="anchor-heading icon-link" href="#atomics"></a>Atomics</h1>
+<p>Replace <code>Mutex&#x3C;usize></code> with <code>AtomicUsize</code> for <code>head</code> and <code>tail</code>.
+Why it works well for SPSC:</p>
+<ul>
+<li>Only one thread writes each index (producer writes tail, consumer writes head)</li>
+<li>So you can avoid CAS loops and just load/store with appropriate ordering
+Result: massive jump.</li>
+<li>Latency drops to ~130–155 ns</li>
+<li>Throughput rises to ~721–754 MiB/s</li>
+</ul>

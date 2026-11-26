@@ -1,0 +1,35 @@
+<h1 id="http-streaming"><a aria-hidden="true" class="anchor-heading icon-link" href="#http-streaming"></a>Http Streaming</h1>
+<h1 id="understanding-http-streaming-a-real-world-implementation-medium"><a aria-hidden="true" class="anchor-heading icon-link" href="#understanding-http-streaming-a-real-world-implementation-medium"></a><a href="https://medium.com/@abhishekdubey3107/understanding-http-streaming-a-real-world-implementation-526fbddb5cc7">Understanding HTTP Streaming: A Real-World Implementation (Medium)</a></h1>
+<p>HTTP Streaming: data sent in chunks over HTTP connection, benefits:</p>
+<ul>
+<li>reduced memory usage</li>
+<li>better user experience</li>
+<li>efficient handling of large <strong>datasets</strong></li>
+<li>real-time data transmission</li>
+</ul>
+<h1 id="http-streaming-the-game-changer-thats-leaving-traditional-http-in-the-dust--dev"><a aria-hidden="true" class="anchor-heading icon-link" href="#http-streaming-the-game-changer-thats-leaving-traditional-http-in-the-dust--dev"></a><a href="https://dev.to/kenxuho/http-streaming-the-game-changer-thats-leaving-traditional-http-in-the-dust-cp2">HTTP Streaming: The Game-Changer That's Leaving Traditional HTTP in the Dust  (dev)</a></h1>
+<p>Traditional HTTP is rigid pattern. Whereas streaming presents a continuous pipeline. </p>
+<p>Benefits:</p>
+<ul>
+<li>time to first byte (TTFB) much faster</li>
+<li>memory usage greatly reduced</li>
+<li>much more efficient use of bandwidth</li>
+</ul>
+<h2 id="areas-where-streaming-dominates"><a aria-hidden="true" class="anchor-heading icon-link" href="#areas-where-streaming-dominates"></a>Areas where streaming dominates</h2>
+<ol>
+<li>live data dashbaords</li>
+<li><strong>large file processing</strong> - time to value increased greatly</li>
+<li>ai power apps</li>
+</ol>
+<h1 id="mdn-documentation"><a aria-hidden="true" class="anchor-heading icon-link" href="#mdn-documentation"></a>MDN Documentation</h1>
+<h2 id="http-range-requests"><a aria-hidden="true" class="anchor-heading icon-link" href="#http-range-requests"></a><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Range_requests?utm_source=chatgpt.com">HTTP range requests</a></h2>
+<p>A <code>Range</code> request asks the server to send parts of a resource back to a client. Useful for streaming. </p>
+<h2 id="checking-if-a-server-supports-partial-requests"><a aria-hidden="true" class="anchor-heading icon-link" href="#checking-if-a-server-supports-partial-requests"></a>Checking if a server supports partial requests</h2>
+<p>If server includes <code>Acept-Ranges</code> header wiht any value besides <code>None</code> then it does support them. </p>
+<p>can check with <code>curl -I [url to file]</code>. if it has something like <code>accept-ranges: bytes</code> then it can be streamed as bytes! </p>
+<p>This does also mean that ranges can be requested to (such as for a partial stream of the resource). </p>
+<h2 id="range-header"><a aria-hidden="true" class="anchor-heading icon-link" href="#range-header"></a><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Range?utm_source=chatgpt.com">Range Header</a></h2>
+<p>The <code>Range</code> request header indicates the part of the resource the server should return. Server is able to send back partial requests of resources, and if not enabled will ignore the <code>Range</code> header and send back the whole request. Ignoring the <code>Range</code> is the same as <code>Accept-Ranges: none</code> and therefore streaming is not possible from that server. <code>Range</code> uses bytes, zero indexed for the range.
+Check if server supports <code>Range</code>:
+<code>curl -v --http1.1 -I [url to file]</code> and if possible see:
+<code>Accept-Ranges: bytes</code>. </p>

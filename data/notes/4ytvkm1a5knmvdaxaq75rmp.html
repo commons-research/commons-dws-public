@@ -1,0 +1,81 @@
+<h1 id="data-lineage-and-data-provenance"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-lineage-and-data-provenance"></a>Data Lineage And Data Provenance</h1>
+<h1 id="data-lineage-wikipedia"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-lineage-wikipedia"></a><a href="https://en.wikipedia.org/wiki/Data_lineage">Data Lineage (Wikipedia)</a></h1>
+<p><strong>Data Lineage</strong>: tracking of data generation, transformation, and transmission - over time. </p>
+<h2 id="representations-of-data-lineage"><a aria-hidden="true" class="anchor-heading icon-link" href="#representations-of-data-lineage"></a>Representations of data lineage</h2>
+<p>Representations are dependent on the metadata management. </p>
+<h2 id="data-provenance"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-provenance"></a>Data Provenance</h2>
+<ul>
+<li>information about entities, activities, and agents involved in producing a piece of data. Records how data was derived, and useful or assessing reliability and trustworthiness.
+In scientific workflows provenance is used to document how values are derived, for reproducibility and reuse. </li>
+</ul>
+<h2 id="prov-data-model"><a aria-hidden="true" class="anchor-heading icon-link" href="#prov-data-model"></a>PROV Data Model</h2>
+<p>PROV is a W3C recommendation, where:</p>
+<ul>
+<li>information is about entities, activities, and people involved in producing data</li>
+<li>Used to form assessments about data quality, reliability, trustworthiness. </li>
+<li>Provenance gives credit to the people and institutions that created, influenced, delivered the data. </li>
+<li>The provenance can and should be used to evaluate the trustworthiness of the data. </li>
+</ul>
+<h3 id="lineage-capture"><a aria-hidden="true" class="anchor-heading icon-link" href="#lineage-capture"></a>Lineage Capture</h3>
+<p>Lineage can be stored as a triplet: <span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mi>i</mi><mo separator="true">,</mo><mi>T</mi><mo separator="true">,</mo><mi>o</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{i,T,o\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">o</span><span class="mclose">}</span></span></span></span></span>  where:</p>
+<ul>
+<li><span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span></span> is the set of inputs</li>
+<li><span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span></span> is the producer/operator</li>
+<li><span class="math math-inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi></mrow><annotation encoding="application/x-tex">o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">o</span></span></span></span></span> the outputs</li>
+</ul>
+<h3 id="eager-vs-lazy-lineage"><a aria-hidden="true" class="anchor-heading icon-link" href="#eager-vs-lazy-lineage"></a>Eager vs Lazy Lineage</h3>
+<p>Eager: capture lineage at run time, all of it.
+Lazy: Only captures less refined lineage at runtime. Overhead is less.</p>
+<h1 id="data-provenance-wikipedia"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-provenance-wikipedia"></a><a href="https://en.wikipedia.org/wiki/Data_lineage">Data Provenance (Wikipedia)</a></h1>
+<p> Good provenance holds when documented enough for reproducibility.</p>
+<h1 id="data-lineage-vs-data-provenance-whats-the-difference"><a aria-hidden="true" class="anchor-heading icon-link" href="#data-lineage-vs-data-provenance-whats-the-difference"></a><a href="https://datahub.com/blog/data-lineage-vs-data-provenance/">Data Lineage vs Data Provenance: Whats the difference?</a></h1>
+<p><strong>Data Lineage:</strong> tracks how data flows through systems, source -> destination.
+<strong>Data Provenance:</strong> Historical record of data:</p>
+<pre><code>- who created it
+- where
+- when
+- what conditions
+- Trustworthiness/authority
+</code></pre>
+<h2 id="how-data-lineage-and-data-provenance-differ-in-practice"><a aria-hidden="true" class="anchor-heading icon-link" href="#how-data-lineage-and-data-provenance-differ-in-practice"></a>How data lineage and data provenance differ in practice</h2>
+<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th><strong>Dimension</strong></th><th><strong>Data lineage</strong></th><th><strong>Data provenance</strong></th></tr></thead><tbody><tr><td><strong>Question it answers</strong></td><td>How did this data get here, and what transformed it?</td><td>Where did this come from, who created it, and what authority does it carry?</td></tr><tr><td><strong>Primary user</strong></td><td>Data engineers, analysts, ML practitioners</td><td>Auditors, compliance teams, AI governance leads, researchers</td></tr><tr><td><strong>What it depends on</strong></td><td>Pipeline metadata, transformation logic, dependency graph</td><td>Ownership records, source identifiers, audit logs, ingestion metadata</td></tr><tr><td><strong>Where it shows up</strong></td><td>Debugging, impact analysis, deprecation, migration</td><td>Audits, regulatory submissions, AI training data review, forensic investigation</td></tr><tr><td><strong>Example</strong></td><td>Tracing a broken revenue dashboard back through dbt models to a schema change in the source table</td><td>Confirming that a training dataset was collected from approved sources, by authorized owners, with logged ingestion timestamps</td></tr></tbody></table></div>
+<h1 id="what-is-data-provenance"><a aria-hidden="true" class="anchor-heading icon-link" href="#what-is-data-provenance"></a><a href="https://www.ibm.com/think/topics/data-provenance">What is data provenance?</a></h1>
+<p><strong>Data Provenance</strong>: historical record of data detailing origin using metadata. Focused on authenticity. </p>
+<h2 id="why-is-data-provenance-important"><a aria-hidden="true" class="anchor-heading icon-link" href="#why-is-data-provenance-important"></a>Why is data provenance important?</h2>
+<p>Tracks origins of data, helps evaluate data trustworthiness, and allows attribution to data originating bodies. </p>
+<p>websites: <a href="https://www.dataprovenance.org/">https://www.dataprovenance.org/</a> </p>

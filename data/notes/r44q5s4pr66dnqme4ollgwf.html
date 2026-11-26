@@ -1,0 +1,5 @@
+<h1 id="fast-udp-i-o-for-firefox-in-rust"><a aria-hidden="true" class="anchor-heading icon-link" href="#fast-udp-i-o-for-firefox-in-rust"></a>Fast Udp I O For Firefox In Rust</h1>
+<h1 id="fast-udp-i-o-for-firefox-in-rust-1"><a aria-hidden="true" class="anchor-heading icon-link" href="#fast-udp-i-o-for-firefox-in-rust-1"></a><a href="https://max-inden.de/post/fast-udp-io-in-firefox/">Fast UDP I-O for Firefox in Rust</a></h1>
+<p>Firefox's UDP i/o api's are dated. Could this be updated?</p>
+<p>they built a replacement for Firefox, to replace its QUIC implementation. They used <code>quinn-udp</code> for quic. This sped things up by quite a bit. </p>
+<p>Before UDP datagrams were being sent one at a time. This scales poorly. So newer systems offer multi-message system call families. </p>
